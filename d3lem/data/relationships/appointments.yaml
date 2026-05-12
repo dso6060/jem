@@ -1,0 +1,194 @@
+# ============================================================
+# D3LEM — Appointment Relationships
+# License: CC0
+# ============================================================
+# Format: list of relationship objects matching relationship_schema.yaml
+# ============================================================
+
+relationships:
+
+  # ── Supreme Court Appointments ───────────────────────────
+
+  - id: rel_collegium_sc_recommends_sc_judges
+    source: collegium_sc
+    target: supreme_court_india
+    relationship_type: Recommends
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: true
+    constitutional_basis: "Article 124(2) — as interpreted by SC in Second Judges Case (1993) and Third Judges Case (1998)"
+    year_established: 1993
+    year_abolished: null
+    notes: >
+      The Collegium system is entirely judge-made — not written in the Constitution.
+      Article 124(2) says President appoints "in consultation with" CJI and other judges.
+      SC in Second Judges Case (1993) held this consultation is binding; CJI's recommendation
+      is determinative. This reversed SP Gupta (1981) which had held executive supremacy.
+      The 99th Amendment NJAC (2014) attempted to change this but was struck down in
+      Supreme Court Advocates-on-Record v Union of India (2015).
+    data_quality: verified
+    sources:
+      - label: "Constitution Article 124(2)"
+        url: "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf"
+        type: Constitution
+        accessed_date: "2025-04-01"
+      - label: "Supreme Court Advocates-on-Record v Union of India (1993) 4 SCC 441"
+        url: "https://main.sci.gov.in/"
+        type: SCJudgment
+        accessed_date: "2025-04-01"
+
+  - id: rel_president_formally_appoints_sc_judges
+    source: president_india
+    target: supreme_court_india
+    relationship_type: FormallyAppoints
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: true
+    constitutional_basis: "Article 124(2)"
+    year_established: 1950
+    notes: >
+      Formal instrument of appointment issued by President.
+      In practice, President acts on Collegium's recommendation.
+      Post-1993, President cannot appoint a judge the Collegium has not recommended.
+    data_quality: verified
+    sources:
+      - label: "Constitution Article 124(2)"
+        url: "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf"
+        type: Constitution
+        accessed_date: "2025-04-01"
+
+  # ── NJAC (Historical — abolished) ────────────────────────
+
+  - id: rel_njac_recommends_sc_hc_judges_ABOLISHED
+    source: national_judicial_appointments_commission
+    target: supreme_court_india
+    relationship_type: Recommends
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: true
+    constitutional_basis: "99th Constitutional Amendment Act 2014 — STRUCK DOWN"
+    year_established: 2014
+    year_abolished: 2015
+    notes: >
+      NJAC was constituted by 99th Constitutional Amendment. Would have replaced
+      the Collegium with a 6-member commission including CJI, 2 senior SC judges,
+      Law Minister, and 2 eminent persons. Struck down by SC 5-judge bench in
+      Supreme Court Advocates-on-Record v Union of India (2015) as violating
+      the basic structure of judicial independence.
+      This relationship is HISTORICAL — rendered as faded/ghosted in the UI
+      when time slider is set after 2015.
+    data_quality: verified
+    sources:
+      - label: "99th Constitutional Amendment Act 2014"
+        url: "https://india-code.nic.in/"
+        type: CentralAct
+        accessed_date: "2025-04-01"
+      - label: "Supreme Court Advocates-on-Record v Union of India (2015) 5 SCC 1"
+        url: "https://main.sci.gov.in/"
+        type: SCJudgment
+        accessed_date: "2025-04-01"
+
+  # ── High Court Appointments ───────────────────────────────
+
+  - id: rel_collegium_hc_recommends_hc_judges
+    source: collegium_hc_appointment
+    target: high_courts_all
+    relationship_type: Recommends
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: true
+    constitutional_basis: "Article 217(1) — as interpreted by SC Third Judges Case (1998)"
+    year_established: 1998
+    notes: >
+      For HC judge appointment, the recommending Collegium involves:
+      CJI + 2 most senior SC judges + HC Chief Justice + most senior HC judge
+      elevated to SC. Governor and State Government consulted but their
+      consultation is advisory only — not binding on the Collegium.
+    data_quality: verified
+    sources:
+      - label: "Constitution Article 217(1)"
+        url: "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf"
+        type: Constitution
+        accessed_date: "2025-04-01"
+
+  - id: rel_governor_consulted_hc_appointment
+    source: governor_state
+    target: high_courts_all
+    relationship_type: ConsultedOn_Appointment
+    relationship_category: appointment
+    is_binding: false
+    is_constitutional: true
+    constitutional_basis: "Article 217(1)"
+    notes: >
+      Governor (acting on advice of State Council of Ministers under Art. 163)
+      is consulted on HC judge appointments. This consultation is NOT binding.
+      This is the primary formal channel for state government input into
+      HC appointments — but its non-binding nature means a state government
+      cannot veto an appointment the Collegium has recommended.
+    data_quality: verified
+    sources:
+      - label: "Constitution Article 217(1)"
+        url: "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf"
+        type: Constitution
+        accessed_date: "2025-04-01"
+
+  # ── Subordinate Court Appointments ───────────────────────
+
+  - id: rel_governor_appoints_district_judges
+    source: governor_state
+    target: district_courts
+    relationship_type: FormallyAppoints
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: true
+    constitutional_basis: "Article 233(1)"
+    notes: >
+      Governor appoints, posts and promotes District Judges in consultation
+      with the High Court. HC's consultation is binding (K. Ashok Reddy 1994).
+      For direct recruitment from bar: Governor acts; HC dominates.
+      For promotions from lower service: Governor acts on HC recommendation.
+    data_quality: verified
+    sources:
+      - label: "Constitution Article 233"
+        url: "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf"
+        type: Constitution
+        accessed_date: "2025-04-01"
+
+  - id: rel_hc_consulted_district_judge_appointment
+    source: high_courts_all
+    target: district_courts
+    relationship_type: ConsultedOn_Appointment
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: true
+    constitutional_basis: "Article 233(1)"
+    notes: >
+      HC consultation on District Judge appointment is binding on the Governor.
+      K. Ashok Reddy v Government of India (1994) SC confirmed HC primacy.
+    data_quality: verified
+    sources:
+      - label: "K. Ashok Reddy v Government of India (1994) 5 SCC 765"
+        url: "https://main.sci.gov.in/"
+        type: SCJudgment
+        accessed_date: "2025-04-01"
+
+  - id: rel_state_psc_recruits_below_district_judge
+    source: state_public_service_commission
+    target: subordinate_civil_courts
+    relationship_type: ConsultedOn_Appointment
+    relationship_category: appointment
+    is_binding: false
+    is_constitutional: true
+    constitutional_basis: "Article 234"
+    notes: >
+      For judicial officers below District Judge, Governor acts according
+      to rules framed in consultation with both the HC AND the State PSC.
+      In practice many HCs have taken the lead through High Court
+      Recruitment Committees, with PSC in a supporting/administrative role.
+      Delhi (UT) has no state PSC — Delhi HC handles recruitment directly.
+    data_quality: verified
+    sources:
+      - label: "Constitution Article 234"
+        url: "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf"
+        type: Constitution
+        accessed_date: "2025-04-01"

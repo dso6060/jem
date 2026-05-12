@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Judiciary Entity Map (India) - JEM</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     TOOLBAR — title, search, modes, advanced, zoom
+     ═══════════════════════════════════════════════════ -->
+<div id="toolbar">
+  <div class="app-title">Judiciary Entity Map (India) — JEM</div>
+
+  <div id="search-container">
+    <input type="text" id="search-input" placeholder="Search entity, article, statute…" autocomplete="off">
+    <div id="search-results" class="hidden"></div>
+  </div>
+
+  <div id="mode-switcher" role="group" aria-label="View mode">
+    <button type="button" class="mode-btn mode-btn-structure active" data-mode="structure" title="Appellate hierarchy only, government level colouring">Structure</button>
+    <button type="button" class="mode-btn mode-btn-risk" data-mode="risk" title="Independence risk rings and discretionary power sizing">Risk</button>
+    <button type="button" class="mode-btn mode-btn-gaps" data-mode="gaps" title="Structural gaps, exceptions, circularity, broken appellate paths">Gaps</button>
+  </div>
+
+  <div id="toolbar-advanced-slot">
+    <button type="button" id="btn-advanced-toggle" class="btn-advanced-toggle" aria-expanded="false" title="Relationship lenses and derived score toggles">⚙ Advanced</button>
+    <div id="advanced-drawer" class="advanced-drawer hidden">
+      <div class="advanced-drawer-inner">
+        <div class="lens-header-row">
+          <span class="lens-label">Relationship lenses</span>
+          <div class="lens-bulk-actions">
+            <button type="button" class="lens-bulk" id="lens-select-all" title="Show all relationship types">All</button>
+            <button type="button" class="lens-bulk" id="lens-clear-all" title="Hide all relationship types">None</button>
+          </div>
+        </div>
+        <div id="lens-toggles">
+          <button type="button" class="lens-btn active" data-lens="appellate_chain" title="Show appellate chain">⚖ Appellate</button>
+          <button type="button" class="lens-btn" data-lens="appointment" title="Show appointment relationships">👤 Appointment</button>
+          <button type="button" class="lens-btn" data-lens="funding" title="Show funding flows">₹ Funding</button>
+          <button type="button" class="lens-btn" data-lens="supervisory" title="Show supervisory relationships">👁 Supervisory</button>
+          <button type="button" class="lens-btn" data-lens="audit" title="Show audit relationships">🔍 Audit</button>
+          <button type="button" class="lens-btn" data-lens="complaint" title="Show complaint mechanisms">📋 Complaints</button>
+          <button type="button" class="lens-btn" data-lens="digital" title="Show digital infrastructure">🖥 Digital</button>
+          <button type="button" class="lens-btn" data-lens="security" title="Show security relationships">🛡 Security</button>
+          <button type="button" class="lens-btn" data-lens="training" title="Show training / professional links">📚 Training</button>
+          <button type="button" class="lens-btn" data-lens="statutory_ref" title="Show statutory references">§ Statutory</button>
+          <button type="button" class="lens-btn lens-investigative" data-lens="investigative" title="CBI/ED investigative overlay (separate layer)">⚠ CBI/ED</button>
+        </div>
+        <div id="explorer-tree-actions" class="explorer-tree-actions hidden">
+          <span class="lens-label">Appellate tree</span>
+          <div class="explorer-tree-row">
+            <button type="button" class="explorer-tree-btn" id="explorer-expand-tree" title="Reveal full appellate subtree at once">All levels</button>
+            <button type="button" class="explorer-tree-btn" id="explorer-collapse-tree" title="Hide everything except President and Supreme Court">Roots only</button>
+          </div>
+          <p class="explorer-tree-hint">Nodes with appellate children show + to expand one level or − to collapse.</p>
+        </div>
+        <div id="derived-toggles">
+          <button type="button" class="toggle-btn" id="toggle-ir" title="Toggle independence risk heat rings">
+            <span class="ring-preview"></span> Independence Risk
+          </button>
+          <button type="button" class="toggle-btn" id="toggle-dp" title="Toggle discretionary power node sizing">
+            ◉ Discretionary Power
+          </button>
+          <div class="unvalidated-note" id="unvalidated-note">⚐ Derived scores — pending community review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="zoom-controls">
+    <button id="btn-zoom-in" title="Zoom in">+</button>
+    <button id="btn-zoom-reset" title="Reset view">⌂</button>
+    <button id="btn-zoom-out" title="Zoom out">−</button>
+    <span id="zoom-level-label">L0</span>
+  </div>
+
+  <button id="btn-about" class="btn-ghost" title="About this project">About</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     KPI STRIP — 4 large cards, derived impact metrics
+     ═══════════════════════════════════════════════════ -->
+<div id="kpi-strip">
+  <button type="button" class="kpi-card" id="kpi-card-ir" data-card="ir"
+          title="High or severe independence risk — switches to Risk mode and filters the graph">
+    <span class="kpi-number" id="kpi-num-ir">—</span>
+    <span class="kpi-label">High risk entities</span>
+  </button>
+  <button type="button" class="kpi-card" id="kpi-card-gaps" data-card="gaps"
+          title="Entities with at least one structural gap — switches to Gaps mode">
+    <span class="kpi-number" id="kpi-num-gaps">—</span>
+    <span class="kpi-label">With structural gaps</span>
+  </button>
+  <button type="button" class="kpi-card" id="kpi-card-blocked" data-card="blocked"
+          title="Appellate vacuums + bodies legislated but never constituted — filters the graph">
+    <span class="kpi-number" id="kpi-num-blocked">—</span>
+    <span class="kpi-label">Blocked or absent</span>
+  </button>
+  <button type="button" class="kpi-card" id="kpi-card-clog" data-card="clog"
+          title="Entities at critical or high case clog — toggles the case-volume overlay">
+    <span class="kpi-number" id="kpi-num-clog">—</span>
+    <span class="kpi-label">Case clog critical/high</span>
+  </button>
+
+  <div id="kpi-strip-actions">
+    <button id="btn-clear-filter" class="btn-ghost hidden">Clear filter</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN CANVAS
+     ═══════════════════════════════════════════════════ -->
+<div id="canvas-container">
+  <svg id="main-svg">
+    <defs>
+      <!-- Arrowhead markers per relationship category -->
+      <marker id="arrow-appellate_chain" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#2c3e50"/>
+      </marker>
+      <marker id="arrow-appointment" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#e67e22"/>
+      </marker>
+      <marker id="arrow-funding" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#27ae60"/>
+      </marker>
+      <marker id="arrow-supervisory" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#8e44ad"/>
+      </marker>
+      <marker id="arrow-audit" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#7f8c8d"/>
+      </marker>
+      <marker id="arrow-complaint" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#e74c3c"/>
+      </marker>
+      <marker id="arrow-investigative" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#c0392b"/>
+      </marker>
+      <marker id="arrow-digital" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#2980b9"/>
+      </marker>
+      <!-- Filter for glow on hover -->
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <!-- Diagonal stripes for structural-exception highlight (Gaps mode) -->
+      <pattern id="pat-exception-stripes" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="8" height="8" fill="rgba(255,255,255,0)"/>
+        <path d="M0,8 L8,0 M-2,2 L2,-2 M6,10 L10,6" stroke="rgba(231,76,60,0.85)" stroke-width="2.5"/>
+      </pattern>
+    </defs>
+    <g id="graph-root">
+      <g id="layer-clusters"></g>
+      <g id="layer-edges"></g>
+      <g id="layer-nodes"></g>
+      <g id="layer-labels"></g>
+    </g>
+  </svg>
+
+  <!-- Loading overlay -->
+  <div id="loading-overlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Loading Judiciary Entity Map (India) - JEM…</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     DETAIL PANEL — Level 3, slides in on entity click
+     ═══════════════════════════════════════════════════ -->
+<div id="detail-panel" class="hidden">
+  <div id="detail-panel-header">
+    <div>
+      <div id="detail-entity-name"></div>
+      <div id="detail-entity-type"></div>
+    </div>
+    <button id="detail-close">✕</button>
+  </div>
+  <div id="detail-panel-body">
+    <!-- Populated by panel.js -->
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CENTER/STATE OVERLAY LEGEND
+     ═══════════════════════════════════════════════════ -->
+<div id="govt-level-legend">
+  <div class="legend-item"><span class="legend-swatch central"></span>Central</div>
+  <div class="legend-item"><span class="legend-swatch state"></span>State</div>
+  <div class="legend-item"><span class="legend-swatch shared"></span>Shared</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     DATA QUALITY LEGEND
+     ═══════════════════════════════════════════════════ -->
+<div id="quality-legend">
+  <div class="ql-row"><span class="ql-sample verified">Text</span> Verified source</div>
+  <div class="ql-row"><span class="ql-sample complete">Text</span> Complete</div>
+  <div class="ql-row"><span class="ql-sample partial">Text?</span> Partial data</div>
+  <div class="ql-row"><span class="ql-sample unverified">Text</span> Unverified</div>
+  <div class="ql-row"><span class="ql-sample contested">Text⚑</span> Contested</div>
+  <div class="ql-row"><span class="ql-node-sample not-constituted"></span> Not constituted</div>
+  <div class="ql-row"><span class="ql-node-sample abolished"></span> Abolished</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TIME SCROLLER — persistent across all zoom levels
+     ═══════════════════════════════════════════════════ -->
+<div id="timeline-container">
+  <div id="timeline-label-left">1950</div>
+  <div id="timeline-track">
+    <div id="timeline-events-layer"></div>
+    <div id="timeline-progress"></div>
+    <div id="timeline-thumb" draggable="false"></div>
+  </div>
+  <div id="timeline-label-right"></div>
+  <div id="timeline-year-max" class="hidden"></div>
+  <div id="timeline-year-display"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     ABOUT PANEL — slide-over from right (same chrome as detail)
+     ═══════════════════════════════════════════════════ -->
+<div id="about-panel" class="hidden">
+  <div id="about-panel-header">
+    <div></div>
+    <button id="about-close" type="button" aria-label="Close">✕</button>
+  </div>
+  <div id="about-panel-body">
+    <h2>D3LEM — Indian Legal Entity Map</h2>
+    <p>Structural map of the Indian judicial ecosystem. Not case outcomes — how courts,
+tribunals and regulatory bodies are built, funded, appointed and held accountable.</p>
+
+    <h3>Scores</h3>
+
+    <h4>Independence Risk (0–15+)</h4>
+    <p>Measures structural vulnerability of an entity to executive influence.</p>
+    <table>
+      <tr><td>Appointed by executive body</td><td>+3</td></tr>
+      <tr><td>Reappointment by same executive</td><td>+2</td></tr>
+      <tr><td>Funder = Appointing authority</td><td>+2</td></tr>
+      <tr><td>No external complaint mechanism</td><td>+2</td></tr>
+      <tr><td>No public appointment criteria</td><td>+1</td></tr>
+      <tr><td>Removal by appointer, no committee</td><td>+1</td></tr>
+      <tr><td>Constitutional basis</td><td>−2</td></tr>
+      <tr><td>Collegium-appointed</td><td>−2</td></tr>
+      <tr><td>Parliamentary removal</td><td>−1</td></tr>
+    </table>
+    <p>Levels: Low (0–2) · Moderate (3–5) · High (6–8) · Severe (9+)</p>
+
+    <h4>Structural Health Score (0.0–1.0)</h4>
+    <p>Composite score for policy dashboard. Components:</p>
+    <ul>
+      <li>Independence Risk — 30%</li>
+      <li>Case clog severity — 25%</li>
+      <li>Gap severity — 25%</li>
+      <li>Appellate path operational — 10%</li>
+      <li>Vacancy rate — 10%</li>
+    </ul>
+    <p>Not_Constituted / De_Facto_Blocked entities are hard-capped at 0.20.</p>
+    <p>Health: Critical (&lt;0.3) · Concerning (0.3–0.5) · Moderate (0.5–0.7) · Healthy (0.7–1.0)</p>
+
+    <h4>Clog Severity</h4>
+    <p>From disposal rate (disposed ÷ filed) and avg disposal days.</p>
+    <ul>
+      <li>Critical: rate &lt;0.85 AND days &gt;730</li>
+      <li>High: rate &lt;0.95 OR days &gt;365</li>
+      <li>Moderate: rate &lt;1.0</li>
+      <li>Low: rate ≥1.0 AND days ≤365</li>
+    </ul>
+
+    <h3>Markers</h3>
+    <ul>
+      <li><strong>*</strong> red asterisk — documented structural gap</li>
+      <li><strong>⟳</strong> — structural circularity (appointer is also litigant, etc.)</li>
+      <li><strong>⊘</strong> — appellate path blocked in practice</li>
+      <li><strong>NC</strong> — legislated but not yet constituted</li>
+      <li><strong>EX</strong> amber stripe — structural exception (deviates from statutory template)</li>
+      <li><strong>UT</strong> teal — Union Territory (no legislature or limited legislature)</li>
+      <li>Double ring — shared jurisdiction across multiple states</li>
+    </ul>
+
+    <h3>Data</h3>
+    <p>Sources: Constitution of India · Central Acts · SC judgments · NJDG ·
+DoJ Annual Reports · Tribunal Annual Reports · CAG Reports.</p>
+    <p>Data licence: CC0. Code: MIT.</p>
+    <p>Scores are auto-computed. ⚐ = pending community review.</p>
+    <a href="https://github.com/your-org/d3lem">GitHub →</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCRIPTS — CDN then local modules
+     ═══════════════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+<script type="module" src="src/main.js"></script>
+
+</body>
+</html>

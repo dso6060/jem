@@ -1,0 +1,1444 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "generated_at": "2026-05-11T03:47:30.808291+00:00",
+    "entity_count": 13,
+    "relationship_count": 8,
+    "canvas_width": 1800,
+    "canvas_height": 1200,
+    "year_range": [
+      1950,
+      2026
+    ]
+  },
+  "impact_metrics": {
+    "high_independence_risk_count": 3,
+    "appointer_equals_funder_removal_count": 0,
+    "no_public_appointment_criteria_count": 3,
+    "not_constituted_count": 1,
+    "no_external_complaint_mechanism_count": 3
+  },
+  "timeline_events": [
+    {
+      "year": 1950,
+      "label": "Constitution of India comes into force",
+      "type": "constitutional"
+    },
+    {
+      "year": 1958,
+      "label": "Law Commission of India (1st)",
+      "type": "reform"
+    },
+    {
+      "year": 1963,
+      "label": "CBI constituted",
+      "type": "institutional"
+    },
+    {
+      "year": 1976,
+      "label": "42nd Amendment — tribunalisation",
+      "type": "constitutional"
+    },
+    {
+      "year": 1981,
+      "label": "SP Gupta (First Judges Case) — executive primacy in appointments",
+      "type": "judgment"
+    },
+    {
+      "year": 1984,
+      "label": "Family Courts Act",
+      "type": "legislation"
+    },
+    {
+      "year": 1991,
+      "label": "ITAT established (antedated)",
+      "type": "institutional"
+    },
+    {
+      "year": 1993,
+      "label": "Second Judges Case — Collegium system born",
+      "type": "judgment"
+    },
+    {
+      "year": 1996,
+      "label": "Arbitration and Conciliation Act",
+      "type": "legislation"
+    },
+    {
+      "year": 1997,
+      "label": "Vineet Narain — CBI 'caged parrot'",
+      "type": "judgment"
+    },
+    {
+      "year": 1998,
+      "label": "Third Judges Case — Collegium expanded",
+      "type": "judgment"
+    },
+    {
+      "year": 1999,
+      "label": "SC In-House Procedure for judge complaints",
+      "type": "institutional"
+    },
+    {
+      "year": 2002,
+      "label": "PMLA enacted",
+      "type": "legislation"
+    },
+    {
+      "year": 2005,
+      "label": "eCourts ICT Policy — e-Committee formed",
+      "type": "digital"
+    },
+    {
+      "year": 2010,
+      "label": "NGT established; eCourts Phase I",
+      "type": "institutional"
+    },
+    {
+      "year": 2013,
+      "label": "Lokpal and Lokayuktas Act",
+      "type": "legislation"
+    },
+    {
+      "year": 2014,
+      "label": "99th Amendment — NJAC created",
+      "type": "constitutional"
+    },
+    {
+      "year": 2015,
+      "label": "NJAC struck down; NCLT/NCLAT replace CLB/BIFR",
+      "type": "judgment"
+    },
+    {
+      "year": 2015,
+      "label": "eCourts Phase II; A&C Amendment",
+      "type": "digital"
+    },
+    {
+      "year": 2016,
+      "label": "IBC enacted — Insolvency & Bankruptcy Code",
+      "type": "legislation"
+    },
+    {
+      "year": 2019,
+      "label": "ACI legislated (not constituted); J&K reorganisation",
+      "type": "institutional"
+    },
+    {
+      "year": 2020,
+      "label": "Tribunals Reforms Act contested",
+      "type": "legislation"
+    },
+    {
+      "year": 2023,
+      "label": "Mediation Act; BNS/BNSS/BSA replace IPC/CrPC/Evidence",
+      "type": "legislation"
+    },
+    {
+      "year": 2023,
+      "label": "eCourts Phase III — ₹7210 crore; NJDG-SC launched",
+      "type": "digital"
+    },
+    {
+      "year": 2025,
+      "label": "Lokpal jurisdiction over HC judges — SC stays order",
+      "type": "judgment"
+    }
+  ],
+  "clusters": [
+    {
+      "id": "arbitration",
+      "name": "Arbitration",
+      "color": "#3182ce",
+      "entity_count": 1,
+      "avg_independence_risk": 11.0,
+      "not_constituted_count": 1,
+      "position": {
+        "x": 1342,
+        "y": 316,
+        "width": 430,
+        "height": 280,
+        "cluster_col": 3,
+        "cluster_row": 1
+      }
+    },
+    {
+      "id": "constitutional_courts",
+      "name": "Constitutional Courts",
+      "color": "#1a365d",
+      "entity_count": 1,
+      "avg_independence_risk": 6.0,
+      "not_constituted_count": 0,
+      "position": {
+        "x": 904,
+        "y": 28,
+        "width": 430,
+        "height": 280,
+        "cluster_col": 2,
+        "cluster_row": 0
+      }
+    },
+    {
+      "id": "digital_infrastructure",
+      "name": "Digital Infrastructure",
+      "color": "#1a3a4a",
+      "entity_count": 1,
+      "avg_independence_risk": 4.0,
+      "not_constituted_count": 0,
+      "position": {
+        "x": 1342,
+        "y": 604,
+        "width": 430,
+        "height": 280,
+        "cluster_col": 3,
+        "cluster_row": 2
+      }
+    },
+    {
+      "id": "executive_interface",
+      "name": "Executive Interface",
+      "color": "#742a2a",
+      "entity_count": 1,
+      "avg_independence_risk": 10.0,
+      "not_constituted_count": 0,
+      "position": {
+        "x": 466,
+        "y": 604,
+        "width": 430,
+        "height": 280,
+        "cluster_col": 1,
+        "cluster_row": 2
+      }
+    },
+    {
+      "id": "legislative_executive",
+      "name": "Legislative Executive",
+      "color": "#1f2d3d",
+      "entity_count": 9,
+      "avg_independence_risk": 0,
+      "not_constituted_count": 0,
+      "position": {
+        "x": 28,
+        "y": 28,
+        "width": 430,
+        "height": 280,
+        "cluster_col": 0,
+        "cluster_row": 0
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "arbitration_council_india",
+      "name": "Arbitration Council of India",
+      "name_hindi": null,
+      "abbreviation": "ACI",
+      "type": "StatutoryBodyNotConstituted",
+      "cluster": "arbitration",
+      "level_of_government": "Central",
+      "created_year": 2019,
+      "abolished_year": null,
+      "operational_status": "Not_Constituted",
+      "constitutional_basis": null,
+      "statutory_basis": "Arbitration and Conciliation (Amendment) Act 2019, Part IA, Sections 43A–43M (inserted into Arbitration and Conciliation Act 1996).\n",
+      "data_quality": "verified",
+      "data_quality_notes": "ACI's non-constitution is confirmed by GoI press release (Feb 2026) and SC notice to Union government to respond to petition seeking its establishment. The Draft Arbitration and Conciliation (Amendment) Bill 2024 proposes revised powers. Status as of April 2025: Bill in public consultation; ACI not constituted.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type StatutoryBodyNotConstituted": 1,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 3,
+        "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
+          "Funder == Appointing authority": 2,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1,
+          "Statutory body not constituted — regulatory vacuum": 3
+        },
+        "independence_risk_level": "severe",
+        "independence_risk_score": 11,
+        "scores_validated": false
+      },
+      "funding_source": "Ministry_Budget",
+      "funding_ministry": "ministry_law_justice",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "Arbitration and Conciliation (Amendment) Act 2019 — Part IA",
+          "url": "https://india-code.nic.in/DocsPdfData/2019/201919wd.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2025-04-01"
+        },
+        {
+          "label": "PIB: ACI not yet constituted (Feb 2026)",
+          "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2224369",
+          "type": "GoIWebsite",
+          "accessed_date": "2025-04-15"
+        },
+        {
+          "label": "Draft Arbitration Bill 2024 — Ministry of Law & Justice",
+          "url": "https://doj.gov.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2025-04-01"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": null,
+          "recommends": null,
+          "consulted": [
+            "chief_justice_india"
+          ],
+          "consultation_binding": true,
+          "formally_appoints": "central_government",
+          "criteria_public": true,
+          "tenure": "3 years or age 70 (whichever earlier); non-renewable",
+          "reappointment_possible": false,
+          "removal_authority": "central_government",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Ministry_Budget",
+          "ministry_responsible": "ministry_law_justice",
+          "budget_figure_crore": null,
+          "budget_year": null
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true,
+          "conduct_oversight_body": null
+        },
+        "complaint_mechanism": {
+          "bias_complaint_to": [],
+          "removal_mechanism": "Central Government, on recommendation of committee. Chairperson removable only on grounds stated in statute.\n",
+          "lokpal_jurisdiction": "Not_Applicable",
+          "lokpal_jurisdiction_note": "Body not constituted — question does not arise.",
+          "source": "Arbitration and Conciliation Act 1996, Section 43F (as amended 2019)"
+        },
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [
+          {
+            "variation_id": "aci_2024_bill_revision",
+            "description": "Draft Arbitration Bill 2024 proposes to replace ACI's grading power with recognition of arbitral institutions and model rules. This would change the composition and functions defined in the 2019 Act if passed.\n",
+            "applicable_to": [
+              "all"
+            ],
+            "source": "Draft Arbitration and Conciliation (Amendment) Bill 2024 — Ministry of Law & Justice",
+            "independence_risk_note": "ACI Chairperson appointed by Central Government in consultation with CJI. CJI consultation is binding. However, Government retains formal appointment power.\n"
+          }
+        ],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": []
+        }
+      },
+      "position": {
+        "x": 1557,
+        "y": 480
+      }
+    },
+    {
+      "id": "supreme_court_india",
+      "name": "Supreme Court of India",
+      "name_hindi": "भारत का उच्चतम न्यायालय",
+      "abbreviation": "SC",
+      "type": "ConstitutionalCourt",
+      "cluster": "constitutional_courts",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": "Constitution of India, Articles 124–147",
+      "statutory_basis": null,
+      "data_quality": "verified",
+      "data_quality_notes": null,
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ConstitutionalCourt": 4,
+          "Controls own case listing and bench composition (no statutory rule)": 2,
+          "Entity-specific documented extra-statutory discretion": 5,
+          "Has removal authority over other entities": 1,
+          "No public criteria for key decisions": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 14,
+        "independence_risk_breakdown": {
+          "All complaint mechanisms are internal (no external body)": 1,
+          "Appointed directly by executive body": 3,
+          "Complainant has no locus in the inquiry process": 1,
+          "Complaint process is not public/transparent": 1,
+          "Constitutional basis (harder to politicise) (deduction)": -2,
+          "Lokpal has no jurisdiction": 1,
+          "No defined timeframe for complaint resolution": 1,
+          "No publicly stated appointment criteria": 1,
+          "Removal requires Parliamentary process (deduction)": -1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": "ministry_of_finance",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": false,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "Constitution of India — Articles 124-147",
+          "url": "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf",
+          "type": "Constitution",
+          "accessed_date": "2025-04-01"
+        },
+        {
+          "label": "Supreme Court of India — Official Website",
+          "url": "https://main.sci.gov.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2025-04-01"
+        },
+        {
+          "label": "eCourts Phase III — NJDG-SC launch",
+          "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1957318",
+          "type": "GazetteNotification",
+          "accessed_date": "2025-04-01"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "collegium_sc",
+          "recommends": "collegium_sc",
+          "consulted": [],
+          "consultation_binding": true,
+          "formally_appoints": "president_india",
+          "criteria_public": false,
+          "tenure": "Until age 65 (Article 124(2))",
+          "reappointment_possible": false,
+          "removal_authority": "parliament_both_houses",
+          "removal_requires_parliament": true,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Consolidated_Fund_India",
+          "ministry_responsible": "ministry_of_finance",
+          "budget_figure_crore": null,
+          "budget_year": null
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true,
+          "conduct_oversight_body": "in_house_procedure_sc"
+        },
+        "complaint_mechanism": {
+          "bias_complaint_to": [
+            {
+              "body": "chief_justice_india",
+              "mechanism": "In-House Procedure (SC Resolution 1999). Complaint to CJI. CJI constitutes 3-judge committee. Report is confidential. Complainant has no locus in inquiry proceedings.\n",
+              "complainant_has_locus": false,
+              "is_public_process": false,
+              "timeframe_defined": false,
+              "external_to_judiciary": false
+            }
+          ],
+          "criminal_prosecution": {
+            "requires_sanction_from": "president_india",
+            "consultation_required_with": "chief_justice_india",
+            "consultation_binding": true
+          },
+          "removal_mechanism": "Impeachment — Article 124(4). Motion by 100+ LS MPs or 50+ RS MPs. Never successfully completed in Indian history.",
+          "lokpal_jurisdiction": "No",
+          "lokpal_jurisdiction_note": "Lokpal ruled in Jan 2025 that it cannot hear complaints against SC judges because the SC is established by Article 124 (Constitution), not an Act of Parliament. SC stayed Lokpal's attempt to assert jurisdiction over HC judges (suo moto, Feb 2025). Status: active litigation.\n",
+          "source": "K. Veeraswami v Union of India (1991) 3 SCC 655; SC In-House Procedure 1999; SC Stay Order Feb 2025 (suo moto)"
+        },
+        "training": {
+          "trained_by": [
+            "national_judicial_academy"
+          ],
+          "induction_training": false,
+          "continuing_education": true,
+          "training_mandatory": false
+        },
+        "digital_infrastructure": {
+          "system_used": [
+            "NJDG_SC",
+            "eCourts_Portal",
+            "SCI_Website"
+          ],
+          "digital_variant": "NIC_Standard",
+          "integrated_with_njdg": true,
+          "integration_notes": "NJDG-SC portal launched in 2023 as part of eCourts Phase III. SC data was the last to be integrated into national NJDG.\n"
+        },
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "Original",
+            "Appellate",
+            "Writ",
+            "Advisory"
+          ]
+        }
+      },
+      "position": {
+        "x": 1119,
+        "y": 192
+      }
+    },
+    {
+      "id": "ecommittee_sc",
+      "name": "e-Committee of the Supreme Court of India",
+      "name_hindi": null,
+      "abbreviation": "e-Committee",
+      "type": "DigitalInfraBody",
+      "cluster": "digital_infrastructure",
+      "level_of_government": "Shared_CentralState",
+      "created_year": 2005,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Constituted by Government of India in pursuance of proposal from Chief Justice of India. No separate statutory basis — functions under the administrative authority of the SC and DoJ MMP framework.\n",
+      "data_quality": "verified",
+      "data_quality_notes": null,
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type DigitalInfraBody": 1,
+          "Has removal authority over other entities": 1,
+          "No public criteria for key decisions": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 4,
+        "independence_risk_breakdown": {
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1,
+          "No publicly stated appointment criteria": 1
+        },
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 4,
+        "scores_validated": false
+      },
+      "funding_source": "Ministry_Budget",
+      "funding_ministry": "department_of_justice",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": false,
+      "reappointment_possible": true,
+      "sources": [
+        {
+          "label": "e-Committee SC — Official Website",
+          "url": "https://ecommitteesci.gov.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2025-04-01"
+        },
+        {
+          "label": "eCourts MMP — Department of Justice",
+          "url": "https://doj.gov.in/division/ecourts/",
+          "type": "GoIWebsite",
+          "accessed_date": "2025-04-01"
+        },
+        {
+          "label": "eCourts Phase III Cabinet Approval",
+          "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=1903158",
+          "type": "GazetteNotification",
+          "accessed_date": "2025-04-01"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "chief_justice_india",
+          "recommends": "chief_justice_india",
+          "consulted": [],
+          "consultation_binding": true,
+          "formally_appoints": "chief_justice_india",
+          "criteria_public": false,
+          "tenure": "At pleasure of CJI — no fixed tenure",
+          "reappointment_possible": true,
+          "removal_authority": "chief_justice_india",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": false
+        },
+        "funding": {
+          "primary_source": "Ministry_Budget",
+          "ministry_responsible": "department_of_justice",
+          "budget_figure_crore": 7210,
+          "budget_year": 2023
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true,
+          "conduct_oversight_body": null
+        },
+        "complaint_mechanism": {
+          "bias_complaint_to": [],
+          "lokpal_jurisdiction": "Not_Applicable",
+          "source": "Not applicable — e-Committee is policy/oversight body, not adjudicatory"
+        },
+        "training": null,
+        "digital_infrastructure": {
+          "system_used": [
+            "eCourts_MMP",
+            "CIS",
+            "NJDG",
+            "eCourts_Portal",
+            "JustIS_App"
+          ],
+          "digital_variant": "NIC_Standard",
+          "integrated_with_njdg": true,
+          "integration_notes": "e-Committee sets standards; NIC (under MeitY) builds and maintains. High Courts are Implementing Agencies under their respective jurisdictions. The Central Project Coordinator (CPC) in each HC is accountable to the e-Committee via the PPMS portal (ecourts.nic.in).\n"
+        },
+        "structural_variations": [
+          {
+            "variation_id": "ecommittee_dual_principal_problem",
+            "description": "The e-Committee is chaired by a sitting SC judge (CJI-designated), making it a judicial body. However, eCourts Mission Mode Project is monitored and funded by Department of Justice, Ministry of Law & Justice (executive). This creates a dual-principal problem: e-Committee sets technology policy; DoJ controls the budget. Every technology decision of scale requires DoJ sanction. No formal dispute resolution mechanism exists between the two bodies for technology disagreements.\n",
+            "applicable_to": [
+              "all"
+            ],
+            "source": "ecommitteesci.gov.in; doj.gov.in/division/ecourts/",
+            "independence_risk_note": "The executive (DoJ/MeitY) controls the budget and the technical vendor (NIC). The SC (via e-Committee) controls the policy. This structural tension means the judiciary's technology backbone is ultimately dependent on executive goodwill and budget allocation cycles. No SLA or contractual obligation exists between NIC and the courts.\n"
+          },
+          {
+            "variation_id": "hc_custom_systems",
+            "description": "Several HCs have developed custom Case Management Systems that do not fully conform to NIC CIS standards: Bombay HC (custom CMS), Delhi HC (enhanced digital services), Madras HC (independent IT development). Data from these HCs enters NJDG in non-standard formats, reducing national data reliability. This is a documented standardisation failure.\n",
+            "applicable_to": [
+              "Maharashtra",
+              "Delhi",
+              "TamilNadu"
+            ],
+            "source": "eCourts Phase III documentation; doj.gov.in",
+            "independence_risk_note": "HC autonomy (Article 235 administrative independence) conflicts with the e-Committee's mandate for uniform national standards. No enforcement mechanism exists against an HC that builds its own system.\n"
+          }
+        ],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "PolicyOversight"
+          ]
+        }
+      },
+      "position": {
+        "x": 1557,
+        "y": 768
+      }
+    },
+    {
+      "id": "cbi",
+      "name": "Central Bureau of Investigation",
+      "name_hindi": null,
+      "abbreviation": "CBI",
+      "type": "InvestigativeAgency",
+      "cluster": "executive_interface",
+      "level_of_government": "Central",
+      "created_year": 1963,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Delhi Special Police Establishment Act 1946 (DSPE Act). CBI constituted by Ministry of Home Affairs Resolution 1963.\n",
+      "data_quality": "verified",
+      "data_quality_notes": "\"Caged parrot\" characterisation from SC in Vineet Narain (1997) is well-documented. State consent withdrawal figures should be verified against latest state government notifications — list may have changed since the entries above.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type InvestigativeAgency": 3,
+          "Has removal authority over other entities": 1,
+          "No public criteria for key decisions": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 6,
+        "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
+          "Funder == Appointing authority": 2,
+          "No defined timeframe for complaint resolution": 1,
+          "No publicly stated appointment criteria": 1,
+          "Reappointment possible by same executive authority": 2,
+          "Removal by same authority that appoints (no independent committee)": 1
+        },
+        "independence_risk_level": "severe",
+        "independence_risk_score": 10,
+        "scores_validated": false
+      },
+      "funding_source": "Ministry_Budget",
+      "funding_ministry": "ministry_personnel_dopt",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": true,
+      "appointment_criteria_public": false,
+      "reappointment_possible": true,
+      "sources": [
+        {
+          "label": "Delhi Special Police Establishment Act 1946",
+          "url": "https://india-code.nic.in/DocsPdfData/1946/194643.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2025-04-01"
+        },
+        {
+          "label": "Vineet Narain v Union of India (1997) 6 SCC 767",
+          "url": "https://main.sci.gov.in/",
+          "type": "SCJudgment",
+          "accessed_date": "2025-04-01"
+        },
+        {
+          "label": "Prakash Singh v Union of India — police reform directives",
+          "url": "https://main.sci.gov.in/",
+          "type": "SCJudgment",
+          "accessed_date": "2025-04-01"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "dopt_dpc",
+          "recommends": "central_vigilance_commission",
+          "consulted": [],
+          "consultation_binding": false,
+          "formally_appoints": "central_government",
+          "criteria_public": false,
+          "tenure": "Minimum 2 years fixed tenure (post-Prakash Singh SC direction)",
+          "reappointment_possible": true,
+          "removal_authority": "central_government",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": false
+        },
+        "funding": {
+          "primary_source": "Ministry_Budget",
+          "ministry_responsible": "ministry_personnel_dopt",
+          "budget_figure_crore": null,
+          "budget_year": null
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true,
+          "conduct_oversight_body": "central_vigilance_commission"
+        },
+        "complaint_mechanism": {
+          "bias_complaint_to": [
+            {
+              "body": "central_vigilance_commission",
+              "mechanism": "Complaint to CVC for corruption/misconduct by CBI officials",
+              "complainant_has_locus": true,
+              "is_public_process": false,
+              "timeframe_defined": false,
+              "external_to_judiciary": true
+            },
+            {
+              "body": "high_court_competent",
+              "mechanism": "Writ petition under Article 226 challenging CBI action",
+              "complainant_has_locus": true,
+              "is_public_process": true,
+              "timeframe_defined": false,
+              "external_to_judiciary": true
+            },
+            {
+              "body": "supreme_court_india",
+              "mechanism": "Special Leave Petition or direct writ under Article 32",
+              "complainant_has_locus": true,
+              "is_public_process": true,
+              "timeframe_defined": false,
+              "external_to_judiciary": true
+            }
+          ],
+          "lokpal_jurisdiction": "Yes",
+          "lokpal_jurisdiction_note": "CBI officers are central government servants — Lokpal has jurisdiction for corruption allegations.\n",
+          "source": "DSPE Act 1946; Vineet Narain v Union of India (1997) 6 SCC 767"
+        },
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [
+          {
+            "variation_id": "cbi_state_consent",
+            "description": "Under DSPE Act Section 6, CBI cannot exercise jurisdiction in a state without that state's general or specific consent. As of 2025, several states have withdrawn general consent (Maharashtra, West Bengal, Chhattisgarh, Rajasthan, Jharkhand, Mizoram, Kerala, Telangana). This means CBI can only investigate in those states when directed by the SC or the relevant High Court.\n",
+            "applicable_to": [
+              "Maharashtra",
+              "WestBengal",
+              "Chhattisgarh",
+              "Rajasthan",
+              "Jharkhand",
+              "Mizoram",
+              "Kerala",
+              "Telangana"
+            ],
+            "source": "DSPE Act 1946, Section 6; respective State Government notifications",
+            "independence_risk_note": "State consent withdrawal structurally restricts central investigation in states with different political dispensations. Creates a gap in central accountability where state police investigates instead.\n"
+          }
+        ],
+        "jurisdiction_scope": {
+          "is_all_india": false,
+          "jurisdiction_types": [
+            "Special"
+          ]
+        }
+      },
+      "position": {
+        "x": 681,
+        "y": 768
+      }
+    },
+    {
+      "id": "collegium_sc",
+      "name": "Collegium Sc",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "data_quality": "unverified",
+      "data_quality_notes": "Placeholder node auto-created because relationships reference this entity id, but no entity YAML exists yet.",
+      "derived": {},
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": []
+        }
+      },
+      "position": {
+        "x": 93,
+        "y": 192
+      }
+    },
+    {
+      "id": "president_india",
+      "name": "President India",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "data_quality": "unverified",
+      "data_quality_notes": "Placeholder node auto-created because relationships reference this entity id, but no entity YAML exists yet.",
+      "derived": {},
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": []
+        }
+      },
+      "position": {
+        "x": 131,
+        "y": 156
+      }
+    },
+    {
+      "id": "national_judicial_appointments_commission",
+      "name": "National Judicial Appointments Commission",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "data_quality": "unverified",
+      "data_quality_notes": "Placeholder node auto-created because relationships reference this entity id, but no entity YAML exists yet.",
+      "derived": {},
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": []
+        }
+      },
+      "position": {
+        "x": 168,
+        "y": 192
+      }
+    },
+    {
+      "id": "collegium_hc_appointment",
+      "name": "Collegium Hc Appointment",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "data_quality": "unverified",
+      "data_quality_notes": "Placeholder node auto-created because relationships reference this entity id, but no entity YAML exists yet.",
+      "derived": {},
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": []
+        }
+      },
+      "position": {
+        "x": 206,
+        "y": 156
+      }
+    },
+    {
+      "id": "high_courts_all",
+      "name": "High Courts All",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "data_quality": "unverified",
+      "data_quality_notes": "Placeholder node auto-created because relationships reference this entity id, but no entity YAML exists yet.",
+      "derived": {},
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": []
+        }
+      },
+      "position": {
+        "x": 243,
+        "y": 192
+      }
+    },
+    {
+      "id": "governor_state",
+      "name": "Governor State",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "data_quality": "unverified",
+      "data_quality_notes": "Placeholder node auto-created because relationships reference this entity id, but no entity YAML exists yet.",
+      "derived": {},
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": []
+        }
+      },
+      "position": {
+        "x": 280,
+        "y": 156
+      }
+    },
+    {
+      "id": "district_courts",
+      "name": "District Courts",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "data_quality": "unverified",
+      "data_quality_notes": "Placeholder node auto-created because relationships reference this entity id, but no entity YAML exists yet.",
+      "derived": {},
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": []
+        }
+      },
+      "position": {
+        "x": 318,
+        "y": 192
+      }
+    },
+    {
+      "id": "state_public_service_commission",
+      "name": "State Public Service Commission",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "data_quality": "unverified",
+      "data_quality_notes": "Placeholder node auto-created because relationships reference this entity id, but no entity YAML exists yet.",
+      "derived": {},
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": []
+        }
+      },
+      "position": {
+        "x": 355,
+        "y": 156
+      }
+    },
+    {
+      "id": "subordinate_civil_courts",
+      "name": "Subordinate Civil Courts",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "data_quality": "unverified",
+      "data_quality_notes": "Placeholder node auto-created because relationships reference this entity id, but no entity YAML exists yet.",
+      "derived": {},
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": []
+        }
+      },
+      "position": {
+        "x": 393,
+        "y": 192
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel_collegium_sc_recommends_sc_judges",
+      "source": "collegium_sc",
+      "target": "supreme_court_india",
+      "relationship_type": "Recommends",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": true,
+      "year_established": 1993,
+      "year_abolished": null,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": "The Collegium system is entirely judge-made — not written in the Constitution. Article 124(2) says President appoints \"in consultation with\" CJI and other judges. SC in Second Judges Case (1993) held this consultation is binding; CJI's recommendation is determinative. This reversed SP Gupta (1981) which had held executive supremacy. The 99th Amendment NJAC (2014) attempted to change this but was struck down in Supreme Court Advocates-on-Record v Union of India (2015).\n",
+      "sources": [
+        {
+          "label": "Constitution Article 124(2)",
+          "url": "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf",
+          "type": "Constitution",
+          "accessed_date": "2025-04-01"
+        },
+        {
+          "label": "Supreme Court Advocates-on-Record v Union of India (1993) 4 SCC 441",
+          "url": "https://main.sci.gov.in/",
+          "type": "SCJudgment",
+          "accessed_date": "2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": "rel_president_formally_appoints_sc_judges",
+      "source": "president_india",
+      "target": "supreme_court_india",
+      "relationship_type": "FormallyAppoints",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": true,
+      "year_established": 1950,
+      "year_abolished": null,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": "Formal instrument of appointment issued by President. In practice, President acts on Collegium's recommendation. Post-1993, President cannot appoint a judge the Collegium has not recommended.\n",
+      "sources": [
+        {
+          "label": "Constitution Article 124(2)",
+          "url": "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf",
+          "type": "Constitution",
+          "accessed_date": "2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": "rel_njac_recommends_sc_hc_judges_ABOLISHED",
+      "source": "national_judicial_appointments_commission",
+      "target": "supreme_court_india",
+      "relationship_type": "Recommends",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": true,
+      "year_established": 2014,
+      "year_abolished": 2015,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": "NJAC was constituted by 99th Constitutional Amendment. Would have replaced the Collegium with a 6-member commission including CJI, 2 senior SC judges, Law Minister, and 2 eminent persons. Struck down by SC 5-judge bench in Supreme Court Advocates-on-Record v Union of India (2015) as violating the basic structure of judicial independence. This relationship is HISTORICAL — rendered as faded/ghosted in the UI when time slider is set after 2015.\n",
+      "sources": [
+        {
+          "label": "99th Constitutional Amendment Act 2014",
+          "url": "https://india-code.nic.in/",
+          "type": "CentralAct",
+          "accessed_date": "2025-04-01"
+        },
+        {
+          "label": "Supreme Court Advocates-on-Record v Union of India (2015) 5 SCC 1",
+          "url": "https://main.sci.gov.in/",
+          "type": "SCJudgment",
+          "accessed_date": "2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": "rel_collegium_hc_recommends_hc_judges",
+      "source": "collegium_hc_appointment",
+      "target": "high_courts_all",
+      "relationship_type": "Recommends",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": true,
+      "year_established": 1998,
+      "year_abolished": null,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": "For HC judge appointment, the recommending Collegium involves: CJI + 2 most senior SC judges + HC Chief Justice + most senior HC judge elevated to SC. Governor and State Government consulted but their consultation is advisory only — not binding on the Collegium.\n",
+      "sources": [
+        {
+          "label": "Constitution Article 217(1)",
+          "url": "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf",
+          "type": "Constitution",
+          "accessed_date": "2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": "rel_governor_consulted_hc_appointment",
+      "source": "governor_state",
+      "target": "high_courts_all",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": false,
+      "is_constitutional": true,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": "Governor (acting on advice of State Council of Ministers under Art. 163) is consulted on HC judge appointments. This consultation is NOT binding. This is the primary formal channel for state government input into HC appointments — but its non-binding nature means a state government cannot veto an appointment the Collegium has recommended.\n",
+      "sources": [
+        {
+          "label": "Constitution Article 217(1)",
+          "url": "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf",
+          "type": "Constitution",
+          "accessed_date": "2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": "rel_governor_appoints_district_judges",
+      "source": "governor_state",
+      "target": "district_courts",
+      "relationship_type": "FormallyAppoints",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": true,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": "Governor appoints, posts and promotes District Judges in consultation with the High Court. HC's consultation is binding (K. Ashok Reddy 1994). For direct recruitment from bar: Governor acts; HC dominates. For promotions from lower service: Governor acts on HC recommendation.\n",
+      "sources": [
+        {
+          "label": "Constitution Article 233",
+          "url": "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf",
+          "type": "Constitution",
+          "accessed_date": "2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": "rel_hc_consulted_district_judge_appointment",
+      "source": "high_courts_all",
+      "target": "district_courts",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": true,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": "HC consultation on District Judge appointment is binding on the Governor. K. Ashok Reddy v Government of India (1994) SC confirmed HC primacy.\n",
+      "sources": [
+        {
+          "label": "K. Ashok Reddy v Government of India (1994) 5 SCC 765",
+          "url": "https://main.sci.gov.in/",
+          "type": "SCJudgment",
+          "accessed_date": "2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": "rel_state_psc_recruits_below_district_judge",
+      "source": "state_public_service_commission",
+      "target": "subordinate_civil_courts",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": false,
+      "is_constitutional": true,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": "For judicial officers below District Judge, Governor acts according to rules framed in consultation with both the HC AND the State PSC. In practice many HCs have taken the lead through High Court Recruitment Committees, with PSC in a supporting/administrative role. Delhi (UT) has no state PSC — Delhi HC handles recruitment directly.\n",
+      "sources": [
+        {
+          "label": "Constitution Article 234",
+          "url": "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf",
+          "type": "Constitution",
+          "accessed_date": "2025-04-01"
+        }
+      ]
+    }
+  ],
+  "data_quality_legend": {
+    "verified": {
+      "font_weight": "700",
+      "color": "#000000",
+      "border": "solid",
+      "opacity": 1.0,
+      "badge": null
+    },
+    "complete": {
+      "font_weight": "400",
+      "color": "#000000",
+      "border": "solid",
+      "opacity": 1.0,
+      "badge": null
+    },
+    "partial": {
+      "font_weight": "400",
+      "color": "#555555",
+      "border": "solid",
+      "opacity": 0.85,
+      "badge": "?",
+      "italic": true
+    },
+    "unverified": {
+      "font_weight": "400",
+      "color": "#999999",
+      "border": "dashed",
+      "opacity": 0.7,
+      "badge": null,
+      "italic": true
+    },
+    "contested": {
+      "font_weight": "400",
+      "color": "#c0392b",
+      "border": "dashed",
+      "opacity": 0.85,
+      "badge": "⚑",
+      "italic": true,
+      "underline": "dotted"
+    }
+  },
+  "operational_status_legend": {
+    "Active": {
+      "node_stroke": "solid",
+      "node_opacity": 1.0
+    },
+    "Not_Constituted": {
+      "node_stroke": "dashed",
+      "node_opacity": 0.8,
+      "label_style": "italic"
+    },
+    "Proposed": {
+      "node_stroke": "dotted",
+      "node_opacity": 0.65,
+      "label_style": "italic"
+    },
+    "Abolished": {
+      "node_stroke": "solid",
+      "node_opacity": 0.25,
+      "label_style": "line-through"
+    },
+    "Merged": {
+      "node_stroke": "solid",
+      "node_opacity": 0.25,
+      "label_style": "line-through"
+    },
+    "Suspended": {
+      "node_stroke": "dashed",
+      "node_opacity": 0.6
+    }
+  },
+  "relationship_colors": {
+    "appointment": "#e67e22",
+    "funding": "#27ae60",
+    "appellate_chain": "#2c3e50",
+    "supervisory": "#8e44ad",
+    "training": "#16a085",
+    "audit": "#7f8c8d",
+    "complaint": "#e74c3c",
+    "investigative": "#c0392b",
+    "digital": "#2980b9",
+    "security": "#6d4c41",
+    "statutory_ref": "#bdc3c7"
+  },
+  "independence_risk_colors": {
+    "low": "#27ae60",
+    "moderate": "#f39c12",
+    "high": "#e74c3c",
+    "severe": "#8e44ad"
+  }
+}

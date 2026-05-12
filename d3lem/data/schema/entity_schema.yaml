@@ -1,0 +1,377 @@
+# ============================================================
+# D3LEM — Indian Legal Entity Map
+# Entity Schema v0.1.0
+# License: CC0 (Public Domain)
+# Source of truth: india-code.nic.in, Constitution of India,
+#   official Government of India gazettes and acts.
+# ============================================================
+#
+# DATA QUALITY LEVELS:
+#   verified   — Primary source cited, fact confirmed from official GoI source
+#   complete   — All fields populated, secondary source acceptable
+#   partial    — Some fields missing or inferred; source may be secondary
+#   unverified — Community-submitted, not yet reviewed against primary source
+#   contested  — Factual dispute exists; source cited for each position
+#
+# Visual treatment (do not change — renderer reads these values):
+#   verified   → black bold font, solid node border
+#   complete   → black normal font, solid node border
+#   partial    → grey italic font, solid node border, "?" badge
+#   unverified → light-grey italic font, dashed node border
+#   contested  → red dotted-underline italic, dashed border, "⚑" badge
+#   abolished  → ghost/faded node, strikethrough label
+#   not_constituted → dashed node border, italic label
+# ============================================================
+
+entity:
+  # ── Identity ────────────────────────────────────────────
+  id:
+    type: string
+    required: true
+    description: >
+      Unique snake_case identifier. Once set, never change —
+      relationships reference this id.
+    example: supreme_court_india
+
+  name:
+    type: string
+    required: true
+    description: Official English name of the entity.
+
+  name_hindi:
+    type: string
+    required: false
+    description: Official Hindi name if available.
+
+  abbreviation:
+    type: string
+    required: false
+    example: SC
+
+  aliases:
+    type: list[string]
+    required: false
+    description: Common alternate names used in legal practice.
+
+  # ── Classification ──────────────────────────────────────
+  type:
+    type: enum
+    required: true
+    values:
+      - ConstitutionalCourt       # SC, HCs
+      - SubordinateCivilCourt     # District civil court hierarchy
+      - SubordinateCriminalCourt  # Sessions, Magistrate courts
+      - CityCivilCourt            # Separate city civil court (Mumbai, Bangalore etc.)
+      - SpecialCourt              # NIA, PMLA, POCSO, SC/ST courts
+      - CentralTribunal           # NCLT, NGT, CAT, ITAT etc.
+      - StateTribunal             # State labour, revenue tribunals
+      - ConsumerCommission        # NCDRC, State CDRCs, District CDRCs
+      - ArbitralInstitution       # IIAC, DIAC, MCIA etc.
+      - MediationBody             # Mediation Act 2023 bodies
+      - RegulatoryBodyQJ          # Quasi-judicial regulatory body (SEBI, CCI etc.)
+      - ADRBody                   # Lok Adalat, DLSA, SLSA, NALSA
+      - AppointmentBody           # Collegium, PSC, President's office
+      - InvestigativeAgency       # CBI, ED, NIA, SFIO
+      - ProsecutionBody           # Public Prosecutor offices
+      - TrainingBody              # NJA, State Judicial Academies, BCI, NLUs
+      - AuditBody                 # CAG, PACs
+      - DigitalInfraBody          # e-Committee, NIC, CIS, NJDG
+      - SecurityBody              # MHA, State Police, CISF, Court Marshal
+      - FinancingBody             # Ministry of Finance, State Finance Depts
+      - LegislativeBody           # Parliament, State Legislatures
+      - ExecutiveBody             # President, Governor, Ministries
+      - LegalOfficer              # AG, SG, ASG, State AGs, Public Prosecutors
+      - ProfessionalBody          # Bar Council of India, State Bar Councils
+      - StatutoryBodyNotConstituted  # Legislated but not yet set up (ACI, MCI)
+      - ProposedBody              # Under legislation / draft bill
+
+  cluster:
+    type: enum
+    required: true
+    values:
+      - constitutional_courts
+      - subordinate_courts
+      - tribunals_adr
+      - arbitration
+      - regulatory_bodies
+      - executive_interface       # Police, investigation, prosecution
+      - digital_infrastructure
+      - financing_audit
+      - training_professional
+      - appointment_bodies
+      - legislative_executive     # Parliament, President, Governors
+
+  # ── Jurisdiction & Government Level ─────────────────────
+  level_of_government:
+    type: enum
+    required: true
+    values: [Central, State, UT, Shared_MultiState, Shared_CentralState]
+
+  jurisdiction_scope:
+    type: object
+    required: false
+    fields:
+      states_covered:
+        type: list[string]
+        description: >
+          ISO state codes. List ALL states for shared HCs.
+          Leave empty if all-India or Central-only.
+      uts_covered:
+        type: list[string]
+      is_all_india:
+        type: boolean
+        default: false
+      jurisdiction_types:
+        type: list[enum]
+        values: [Original, Appellate, Writ, Advisory, Supervisory, Special, Criminal, Civil, Revenue]
+
+  # ── Lifecycle ────────────────────────────────────────────
+  created_year:
+    type: integer
+    required: true
+    description: Year entity came into existence / was established.
+
+  abolished_year:
+    type: integer
+    required: false
+    description: Year abolished. Null if still operational.
+
+  operational_status:
+    type: enum
+    required: true
+    values:
+      - Active
+      - Not_Constituted    # Legislated but not set up
+      - Proposed           # Under draft legislation
+      - Abolished          # No longer exists
+      - Merged             # Merged into another body
+      - Suspended          # Temporarily non-operational
+
+  constitutional_basis:
+    type: string
+    required: false
+    description: Article and clause of Constitution of India.
+    example: "Article 124(1)"
+
+  statutory_basis:
+    type: string
+    required: false
+    description: Central or State Act section(s) creating this entity.
+    example: "Arbitration and Conciliation Act 1996, Part IA, Section 43A"
+
+  # ── Appointment Chain ────────────────────────────────────
+  appointment:
+    type: object
+    required: false
+    fields:
+      nominates:
+        type: entity_id_or_string
+        description: Who first proposes the candidate.
+      recommends:
+        type: entity_id_or_string
+        description: Who formally recommends (may equal nominates).
+      consulted:
+        type: list[entity_id_or_string]
+        description: Bodies whose consultation is required.
+      consultation_binding:
+        type: boolean
+        description: Is the consultation binding on the appointing authority?
+      formally_appoints:
+        type: entity_id_or_string
+        description: Who issues the formal instrument of appointment.
+      criteria_public:
+        type: boolean
+        description: Are appointment criteria publicly stated in statute?
+      tenure:
+        type: string
+        description: Duration or age-limit.
+        example: "Until age 65" or "4 years, non-renewable"
+      reappointment_possible:
+        type: boolean
+        description: Can the appointee be reappointed by the same authority?
+      removal_authority:
+        type: entity_id_or_string
+        description: Who can remove this entity's leadership.
+      removal_requires_parliament:
+        type: boolean
+      removal_independent_committee:
+        type: boolean
+        description: Is removal via an independent committee, not the appointing authority directly?
+
+  # ── Funding ──────────────────────────────────────────────
+  funding:
+    type: object
+    required: false
+    fields:
+      primary_source:
+        type: enum
+        values:
+          - Consolidated_Fund_India
+          - State_Consolidated_Fund
+          - Centrally_Sponsored_Scheme   # 60:40 center:state split
+          - Ministry_Budget
+          - Statutory_Fund
+          - Party_Fees                   # Arbitrators — paid by parties
+          - Mixed
+      ministry_responsible:
+        type: entity_id_or_string
+      state_contribution_percent:
+        type: integer
+        description: State share in CSS schemes.
+      budget_figure_crore:
+        type: number
+        required: false
+        description: >
+          Annual budget allocation in crore INR.
+          Populate from Union Budget / State Budget.
+          When populated, enables Sankey view.
+      budget_year:
+        type: integer
+        required: false
+
+  # ── Audit ────────────────────────────────────────────────
+  audit:
+    type: object
+    required: false
+    fields:
+      audited_by:
+        type: entity_id_or_string
+      audit_type:
+        type: enum
+        values: [CAG_Statutory, CAG_Performance, Internal, Parliamentary_PAC, None, Contested]
+      audit_report_public:
+        type: boolean
+      conduct_oversight_body:
+        type: entity_id_or_string
+        description: >
+          Who oversees conduct/behaviour (distinct from financial audit).
+          For judges: In-House Procedure / Lokpal (contested).
+
+  # ── Complaint Mechanism ──────────────────────────────────
+  complaint_mechanism:
+    type: object
+    required: false
+    description: >
+      Where does an advocate, petitioner, or defendant complain
+      in case of alleged bias or misconduct?
+    fields:
+      bias_complaint_to:
+        type: list[object]
+        item_fields:
+          body: entity_id_or_string
+          mechanism: string
+          complainant_has_locus: boolean
+          is_public_process: boolean
+          timeframe_defined: boolean
+          external_to_judiciary: boolean
+      criminal_prosecution:
+        type: object
+        fields:
+          requires_sanction_from: entity_id_or_string
+          consultation_required_with: entity_id_or_string
+          consultation_binding: boolean
+      removal_mechanism: string
+      lokpal_jurisdiction:
+        type: enum
+        values: [Yes, No, Contested, Not_Applicable]
+      lokpal_jurisdiction_note: string
+      source: string
+
+  # ── Training ─────────────────────────────────────────────
+  training:
+    type: object
+    required: false
+    fields:
+      trained_by:
+        type: list[entity_id_or_string]
+      induction_training: boolean
+      continuing_education: boolean
+      training_mandatory: boolean
+
+  # ── Digital Infrastructure ───────────────────────────────
+  digital_infrastructure:
+    type: object
+    required: false
+    fields:
+      system_used:
+        type: list[string]
+        description: e.g., CIS_4.0, HC_Custom_CMS, NJDG, eCourts_Portal
+      digital_variant:
+        type: enum
+        values: [NIC_Standard, HC_Custom, Hybrid, None, Unknown]
+      integrated_with_njdg: boolean
+      integration_notes: string
+
+  # ── State-Specific Variations ────────────────────────────
+  structural_variations:
+    type: list[object]
+    required: false
+    description: >
+      Variations in structure, rules, or operations by state.
+    item_fields:
+      variation_id: string
+      description: string
+      applicable_to: list[string]   # state codes or "all"
+      source: string
+      independence_risk_note: string
+
+  # ── Derived Scores (auto-computed by derive.py) ──────────
+  # Do NOT manually set these fields.
+  # They are written by scripts/derive.py and stored in derived/scores.yaml
+  derived:
+    type: object
+    required: false
+    fields:
+      independence_risk_score:
+        type: integer
+        description: Auto-computed. See docs/DATA_MODEL.md for formula.
+      independence_risk_breakdown:
+        type: object
+        description: Per-factor contributions to the score.
+      discretionary_power_score:
+        type: integer
+        description: Auto-computed. See docs/DATA_MODEL.md for formula.
+      discretionary_power_breakdown:
+        type: object
+      scores_validated:
+        type: boolean
+        default: false
+        description: >
+          Set to true only after community review confirms the
+          formula inputs are accurate. Unvalidated scores display
+          with a "Pending review" badge in the UI.
+
+  # ── Data Quality ─────────────────────────────────────────
+  data_quality:
+    type: enum
+    required: true
+    values: [verified, complete, partial, unverified, contested]
+    description: >
+      Renderer uses this field directly for font and border style.
+      verified   → black bold, solid border
+      complete   → black normal, solid border
+      partial    → grey italic, solid border, ? badge
+      unverified → light-grey italic, dashed border
+      contested  → red dotted-underline italic, dashed border, ⚑ badge
+
+  data_quality_notes:
+    type: string
+    required: false
+    description: >
+      Explain what is missing or contested. Visible in detail panel.
+
+  # ── Sources ──────────────────────────────────────────────
+  sources:
+    type: list[object]
+    required: true
+    description: >
+      At least one primary source required for data_quality: verified.
+      Primary sources: india-code.nic.in, official GoI gazette notifications,
+      SC judgments on SCI website, doj.gov.in, ecommitteesci.gov.in.
+    item_fields:
+      label: string         # Short citation label
+      url: string           # Direct URL to primary source
+      type:
+        type: enum
+        values: [Constitution, CentralAct, StateAct, SCJudgment, HCJudgment, GazetteNotification, GoIWebsite, OfficialReport]
+      accessed_date: string # YYYY-MM-DD

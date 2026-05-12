@@ -1,0 +1,168 @@
+# ============================================================
+# D3LEM — Relationship Schema v0.1.0
+# License: CC0
+# ============================================================
+#
+# Relationship types grouped by semantic category.
+# The renderer uses relationship_category to assign arc colors.
+# Arc styles follow the same data_quality rules as entities.
+#
+# COLOR MAP (do not change — renderer reads these values):
+#   appointment      → orange  #e67e22
+#   funding          → green   #27ae60
+#   appellate_chain  → navy    #2c3e50
+#   supervisory      → purple  #8e44ad
+#   training         → teal    #16a085
+#   audit            → slate   #7f8c8d
+#   complaint        → red     #e74c3c
+#   investigative    → crimson #c0392b  (CBI/ED overlay, off by default)
+#   digital          → cyan    #2980b9
+#   security         → brown   #6d4c41
+#   statutory_ref    → grey    #bdc3c7
+# ============================================================
+
+relationship:
+  # ── Identity ─────────────────────────────────────────────
+  id:
+    type: string
+    required: true
+    description: Unique snake_case identifier. Format: rel_{source}_{type}_{target}
+
+  source:
+    type: entity_id
+    required: true
+    description: The entity where the relationship originates.
+
+  target:
+    type: entity_id
+    required: true
+    description: The entity the relationship points to.
+
+  # ── Typing ───────────────────────────────────────────────
+  relationship_type:
+    type: enum
+    required: true
+    values:
+      # Appointment category
+      - Nominates
+      - Recommends
+      - ConsultedOn_Appointment   # Advisory, may or may not be binding
+      - FormallyAppoints
+      - CanRemove
+
+      # Funding category
+      - PrimaryFunder
+      - CoFunder                  # CSS schemes — both center and state
+      - BudgetAllocatedBy         # Ministry that allocates budget line
+
+      # Appellate chain category
+      - AppealableTo              # First-instance decision goes here on appeal
+      - FinalAppealTo             # No further appeal beyond this
+      - ReferredTo                # Preliminary reference (like S.11 A&C, or Art. 143 advisory)
+      - TransferableTo            # SC can transfer cases between HCs
+
+      # Supervisory category
+      - AdministrativeSupervision # HC over subordinate courts (Art. 235)
+      - DisciplinaryControl       # Who initiates departmental proceedings
+      - PolicyOversight           # Policy direction without direct control
+      - Designates                # SC/HC designates arbitral institution (S.11 A&C)
+
+      # Training category
+      - ProvidesInductionTraining
+      - ProvidesContinuingEducation
+      - SetsTrainingCurriculum
+      - AccreditsTrainingInstitution
+
+      # Audit category
+      - AuditsAccounts            # CAG financial audit
+      - AuditsPerformance         # CAG performance/value-for-money audit
+      - ConductOversight          # In-house procedure, Lokpal (where applicable)
+      - ReportsTo                 # Audit report destination (PAC, Parliament, etc.)
+
+      # Complaint mechanism category
+      - BiasComplaintReceivedBy   # Where bias/misconduct complaint is filed
+      - CriminalSanctionGrantedBy # President/CJI sanction for criminal prosecution
+      - ImpeachmentInitiatedBy    # Parliament
+
+      # Investigative overlay (separate layer, off by default)
+      - InvestigatesOffencesIn    # CBI, ED — where cases filed in courts
+      - RequiresConsentOf         # CBI needs state consent for state offences
+      - SupervisedBy_Investigation # CVC supervises CBI on corruption
+
+      # Digital infrastructure category
+      - BuildsMaintains           # NIC builds CIS, NJDG
+      - FundsDigitalProject       # DoJ funds eCourts MMP
+      - PolicyDirectionDigital    # e-Committee sets ICT policy
+      - ImplementingAgency        # HC is implementing agency for eCourts
+
+      # Security category
+      - ProvidesCourtSecurity     # State Police / CISF secures court premises
+      - ProvidesPersonalSecurity  # Guards for individual judges
+      - ThreatAssessedBy          # IB / State Special Branch
+
+      # Statutory reference
+      - EstablishedUnder          # Entity → its creating statute
+      - JurisdictionDefinedBy     # Court → statute defining jurisdiction
+      - AwardEnforcedIn           # Arbitral award → court
+      - AwardChallengedIn         # S.34 A&C Act relationship
+
+  relationship_category:
+    type: enum
+    required: true
+    values:
+      [appointment, funding, appellate_chain, supervisory, training,
+       audit, complaint, investigative, digital, security, statutory_ref]
+
+  # ── Properties ───────────────────────────────────────────
+  is_binding:
+    type: boolean
+    required: false
+    description: >
+      For ConsultedOn_Appointment: is the consultation binding?
+      For supervisory: is direction binding?
+
+  is_constitutional:
+    type: boolean
+    required: false
+    description: Does this relationship derive directly from the Constitution?
+
+  statutory_basis:
+    type: string
+    required: false
+    description: Act + section creating or defining this relationship.
+
+  year_established:
+    type: integer
+    required: false
+
+  year_abolished:
+    type: integer
+    required: false
+    description: If this relationship no longer exists (e.g., NJAC before SC struck it down).
+
+  notes:
+    type: string
+    required: false
+    description: >
+      Factual contextual notes. E.g., "CBI requires state consent under
+      DSPE Act S.6 — but this is waived when SC/HC directs investigation."
+
+  # ── Data Quality ─────────────────────────────────────────
+  data_quality:
+    type: enum
+    required: true
+    values: [verified, complete, partial, unverified, contested]
+
+  contested_note:
+    type: string
+    required: false
+    description: >
+      If data_quality is contested, explain the dispute and cite both positions.
+
+  sources:
+    type: list[object]
+    required: true
+    item_fields:
+      label: string
+      url: string
+      type: string

@@ -1,0 +1,581 @@
+# ============================================================
+# D3LEM — Entity Schema v1.2.0
+# License: CC0
+# Adds: structural_exception, appellate_health, new gap types,
+#       SharedRegulatoryBody type, structural_health_score,
+#       legislature_status, entity_scope
+# ============================================================
+#
+# VISUAL TREATMENT MAP (renderer reads these exact values):
+#
+# data_quality:
+#   verified     → black bold (#000), solid border, full opacity
+#   complete     → black normal (#000), solid border
+#   partial      → grey italic (#666), solid border, "?" badge
+#   unverified   → light-grey italic (#999), dashed border
+#   contested    → red dotted-underline italic (#c0392b), dashed border, "⚑" badge
+#
+# operational_status:
+#   Active              → normal render
+#   Not_Constituted     → dashed border, italic label, "NC" badge, grey tint
+#   Partial_Operational → half-dashed border, "P" badge
+#   De_Facto_Blocked    → solid border BUT broken appellate arc, "✗" badge on arc
+#   Abolished           → ghost/faded, strikethrough label
+#
+# structural_exception.flag = true
+#   → diagonal stripe fill (CSS pattern) on node background
+#   → "EX" badge at lower-right of node
+#   → visible in exception overlay (toggle, off by default)
+#
+# appellate_health.de_facto_operational = false
+#   → broken arc style (dashed orange) on appellate chain arcs FROM this entity
+#   → "⊘" overlay badge on node
+#   → listed in Appellate Vacuum filter in impact bar
+#
+# legislature_status = absent
+#   → small "UT" badge (teal) on node — no legislature in governing jurisdiction
+#
+# jurisdiction_scope.is_shared_multi = true (shared regulators like JERC)
+#   → double-ring border (two concentric strokes)
+#   → tooltip lists all covered states
+#   → state filter shows node for ANY covered state
+#
+# structural_gap.flag = true → red "*" asterisk in gap overlay
+# structural_circularity.circularity_score > 0 → "⟳" loop icon
+# role_layer = true → renders as rectangle, not circle
+#
+# structural_health_score (auto-computed by derive.py):
+#   0.0–0.3  → RED    (critical failures)
+#   0.3–0.6  → AMBER  (significant concerns)
+#   0.6–0.8  → YELLOW (moderate concerns)
+#   0.8–1.0  → GREEN  (functioning well)
+#   Policy view overlay: node fill = health score colour
+# ============================================================
+
+entity:
+
+  # ── Identity ────────────────────────────────────────────
+  id:
+    type: string
+    required: true
+
+  name:
+    type: string
+    required: true
+
+  name_hindi:
+    type: string
+    required: false
+
+  abbreviation:
+    type: string
+    required: false
+
+  aliases:
+    type: list[string]
+    required: false
+
+  # ── Classification ──────────────────────────────────────
+  type:
+    type: enum
+    required: true
+    values:
+      # Courts
+      - ConstitutionalCourt
+      - SubordinateCivilCourt
+      - SubordinateCriminalCourt
+      - CityCivilCourt
+      - SpecialCourt
+      - FastTrackCourt
+      - RevenueCourt
+      - FamilyCourt               # Family Courts Act 1984 — distinct appointment criteria
+      - CommercialCourt           # Commercial Courts Act 2015 — distinct procedure
+      # Tribunals & QJ bodies
+      - CentralTribunal
+      - StateTribunal
+      - ConsumerCommission
+      - RegulatoryBodyQJ
+      - BankingOmbudsman
+      - SharedRegulatoryBody      # Multi-state/UT shared body (JERC pattern)
+      # ADR
+      - ArbitralInstitution
+      - MediationBody
+      - LokAdalat
+      - ADRBody
+      # Oversight & Accountability
+      - AppointmentBody
+      - AuditBody
+      - ProfessionalBody
+      - Lokayukta
+      # Executive / Legislative
+      - ExecutiveBody
+      - LegislativeBody
+      - Ministry
+      - Department
+      # Infrastructure
+      - DigitalInfraBody
+      - SecurityBody
+      - TrainingBody
+      # Investigative
+      - InvestigativeAgency
+      - ProsecutionBody
+      # People / Roles
+      - JudicialOfficerRole
+      - CourtAdminRole
+      - LegalProfessionalRole
+      - ProsecutionRole
+      - PartyRole
+      # Not yet operational
+      - StatutoryBodyNotConstituted
+      - ProposedBody
+
+  cluster:
+    type: enum
+    required: true
+    values:
+      - constitutional_courts
+      - subordinate_courts
+      - tribunals_adr
+      - arbitration
+      - regulatory_bodies
+      - consumer_redressal
+      - executive_interface
+      - digital_infrastructure
+      - financing_audit
+      - training_professional
+      - appointment_bodies
+      - legislative_executive
+      - security
+      - people_roles
+
+  # ── Entity scope (for state filter granularity) ──────────
+  entity_scope:
+    type: enum
+    required: false
+    description: >
+      Granularity of entity's territorial scope. Used by state filter
+      to determine which entities to show at each zoom level.
+    values:
+      - National        # SC, central tribunals, central ministries
+      - MultiState      # HC covering multiple states, JERC, shared BCs
+      - State           # State-level entity — one state or UT
+      - District        # District-level entity
+      - LocalBody       # Panchayat, Gram Sabha level
+
+  # ── Role Layer ───────────────────────────────────────────
+  role_layer:
+    type: boolean
+    required: false
+    default: false
+
+  role_type:
+    type: enum
+    required: false
+    values: [JudicialOfficer, CourtAdminStaff, LegalProfessional, ProsecutionOfficer, Party, Witness]
+
+  # ── Legislature Status (for UT vs State distinction) ─────
+  legislature_status:
+    type: enum
+    required: false
+    description: >
+      Indicates whether the governing jurisdiction has a legislature.
+      Drives the "UT" teal badge and affects appointment chain rendering.
+      'absent' = UT without legislature (AN, CH, DN, DD, LD, LA).
+      'partial' = UT with legislature but limited powers (DL, PY, JK).
+      'full' = Full state or UT with full legislature.
+    values:
+      - full       # Full state legislature, Governor, state consolidated fund
+      - partial    # UT with legislature — LG, limited powers, CFI funded
+      - absent     # UT without legislature — Central Govt governs directly
+
+  # ── Jurisdiction ─────────────────────────────────────────
+  level_of_government:
+    type: enum
+    required: true
+    values: [Central, State, UT, Shared_MultiState, Shared_CentralState, Independent]
+
+  jurisdiction_scope:
+    type: object
+    fields:
+      states_covered: list[string]
+      uts_covered: list[string]
+      is_all_india: boolean
+      is_shared_multi: boolean    # true for JERC, multi-state HCs, multi-state BCs
+      shared_appointer: string    # for shared bodies: who appoints (Central vs state coalition)
+      jurisdiction_types:
+        type: list[enum]
+        values: [Original, Appellate, Writ, Advisory, Supervisory, Special,
+                 Criminal, Civil, Revenue, Regulatory, Disciplinary, Arbitral]
+
+  # ── Lifecycle ────────────────────────────────────────────
+  created_year:
+    type: integer
+    required: true
+
+  enacted_year:
+    type: integer
+    required: false
+
+  operational_year:
+    type: integer
+    required: false
+
+  abolished_year:
+    type: integer
+    required: false
+
+  operational_status:
+    type: enum
+    required: true
+    values:
+      - Active
+      - Not_Constituted
+      - Partial_Operational
+      - De_Facto_Blocked       # Constituted, but key function (e.g. appellate) non-operational
+      - Proposed
+      - Abolished
+      - Merged
+      - Suspended
+
+  constitutional_basis:
+    type: string
+    required: false
+
+  statutory_basis:
+    type: string
+    required: false
+
+  # ── Amendment History ────────────────────────────────────
+  amendment_history:
+    type: list[object]
+    required: false
+    item_fields:
+      year: integer
+      amendment_name: string
+      key_change: string
+      impact_on_ir_score: integer
+      source_url: string
+
+  # ── Appointment Chain ────────────────────────────────────
+  appointment:
+    type: object
+    fields:
+      nominates: string
+      recommends: string
+      consulted: list[string]
+      consultation_binding: boolean
+      formally_appoints: string
+      criteria_public: boolean
+      criteria_document_url: string
+      tenure: string
+      reappointment_possible: boolean
+      removal_authority: string
+      removal_requires_parliament: boolean
+      removal_independent_committee: boolean
+      sanctioned_strength: integer
+      working_strength: integer
+      avg_days_vacancy_unfilled: integer
+      vacancy_data_as_of: string
+
+  # ── Funding ──────────────────────────────────────────────
+  funding:
+    type: object
+    fields:
+      primary_source:
+        type: enum
+        values: [Consolidated_Fund_India, State_Consolidated_Fund,
+                 Centrally_Sponsored_Scheme, Ministry_Budget, Statutory_Fund,
+                 Party_Fees, Court_Fees, Grants_in_Aid, Mixed]
+      ministry_responsible: string
+      state_contribution_percent: integer
+      budget_figure_crore: number
+      budget_year: integer
+      state_funding_notes: string
+
+  # ── Case Volume & Clog ───────────────────────────────────
+  case_volume:
+    type: object
+    required: false
+    fields:
+      data_as_of: string
+      sanctioned_strength: integer
+      working_strength: integer
+      vacancy_count: integer
+      vacancy_rate: number
+      pending_cases: integer
+      filed_last_year: integer
+      disposed_last_year: integer
+      disposal_rate: number
+      avg_disposal_days: number
+      institution_rate_trend:
+        type: enum
+        values: [rising, stable, falling, unknown]
+      source_url: string
+      source_type:
+        type: enum
+        values: [NJDG_Live, NJDG_Snapshot, DoJ_Report, Tribunal_Report, HC_Report, Estimated]
+      clog_severity:
+        type: enum
+        values: [critical, high, moderate, low, unknown]
+
+  # ── Appellate Health (NEW) ───────────────────────────────
+  appellate_health:
+    type: object
+    required: false
+    description: >
+      Tracks whether the de jure (legal) appellate path actually functions
+      in practice. Distinct from the existence of an appellate chain arc.
+      de_facto_operational = false triggers:
+        - Broken arc visual on appellate chain arcs FROM this entity
+        - "⊘" badge on node
+        - Listed in "Appellate Vacuum" impact bar filter
+    fields:
+      de_jure_path:
+        type: string
+        description: "What the law prescribes as the appellate body"
+      de_facto_operational:
+        type: boolean
+        description: "Is this appellate path actually functioning in practice?"
+      de_facto_note:
+        type: string
+        description: "Why it is not operational — vacancy, no members, no courtroom, etc."
+      de_facto_source:
+        type: string
+        description: "Primary source confirming non-operational status"
+      de_facto_since_year:
+        type: integer
+      workaround:
+        type: string
+        description: "What parties actually do — typically file writ directly in HC"
+
+  # ── Structural Exception (NEW) ───────────────────────────
+  structural_exception:
+    type: object
+    required: false
+    description: >
+      Documents when this entity deviates from the standard statutory
+      template for its type. Renders as diagonal stripe fill on node
+      and "EX" badge. Visible in exception overlay (toggle, off by default).
+      Allows policymakers to identify where the 'rule' breaks down.
+    fields:
+      flag:
+        type: boolean
+      exception_type:
+        type: enum
+        values:
+          - UT_Governance        # UT without legislature — CFI funded, Central appoints
+          - UT_Legislature       # UT with legislature — partial powers, LG tension
+          - Shared_Jurisdiction  # One body covering multiple states/UTs (JERC pattern)
+          - Alternative_Legislation  # State enacted different act (WB HIRA vs RERA)
+          - Post_Reorganisation  # J&K/Ladakh post-2019 UT conversion
+          - Amendment_Curtailed  # Powers reduced by subsequent amendment (KA Lokayukta 2023)
+          - Historical_Anomaly   # Predates current statutory framework (MH Lokayukta 1971)
+          - Concurrent_Body      # Overlapping jurisdiction with another body (MHADA vs MahaRERA)
+          - No_Enabling_Act      # Statutory framework requires but state has not enacted
+          - Sixth_Schedule       # NE states with customary law jurisdiction carve-outs
+          - Defence_Jurisdiction # Military/cantonment overlay on civil jurisdiction
+      deviation_from:
+        type: string
+        description: "What the 'normal' template would prescribe"
+      exception_source:
+        type: string
+        description: "Constitutional/statutory basis for the deviation"
+      exception_since_year:
+        type: integer
+
+  # ── Audit ────────────────────────────────────────────────
+  audit:
+    type: object
+    fields:
+      audited_by: string
+      audit_type:
+        type: enum
+        values: [CAG_Statutory, CAG_Performance, Internal, Parliamentary_PAC, None, Contested]
+      audit_report_public: boolean
+      conduct_oversight_body: string
+
+  # ── Complaint Mechanism ──────────────────────────────────
+  complaint_mechanism:
+    type: object
+    fields:
+      bias_complaint_to:
+        type: list[object]
+        item_fields:
+          body: string
+          mechanism: string
+          complainant_has_locus: boolean
+          is_public_process: boolean
+          timeframe_defined: boolean
+          timeframe_days: integer
+          external_to_judiciary: boolean
+      criminal_prosecution:
+        type: object
+        fields:
+          requires_sanction_from: string
+          consultation_required_with: string
+          consultation_binding: boolean
+      removal_mechanism: string
+      lokpal_jurisdiction:
+        type: enum
+        values: [Yes, No, Contested, Not_Applicable]
+      lokpal_jurisdiction_note: string
+      lokayukta_jurisdiction:
+        type: enum
+        values: [Yes, No, Contested, Not_Applicable, Varies_by_State]
+      source: string
+
+  # ── Structural Gap ───────────────────────────────────────
+  structural_gap:
+    type: object
+    required: false
+    fields:
+      flag: boolean
+      gaps:
+        type: list[object]
+        item_fields:
+          gap_id: string
+          gap_type:
+            type: enum
+            values:
+              - Legislative_Vacuum      # Legislated, not constituted/operational
+              - Accountability_Gap      # No functioning complaint/oversight mechanism
+              - Independence_Gap        # Structural conflict of interest
+              - Appointment_Gap         # Vacancy / criteria opacity / delay
+              - Digital_Gap             # IT system failure / data reliability
+              - Jurisdiction_Gap        # Contested or unclear jurisdiction
+              - Security_Gap            # Court security not guaranteed
+              - Data_Gap                # No public data on performance
+              - Circularity_Gap         # Structural circularity documented
+              - Appellate_Vacuum        # NEW: appellate body constituted but non-functional
+              - Legislature_Absent      # NEW: UT without legislature — different governance chain
+              - Concurrent_Jurisdiction # NEW: overlapping jurisdiction with another body
+              - Transition_Gap          # NEW: reorganisation/abolition with no transition mechanism
+          gap_severity:
+            type: enum
+            values: [Critical, High, Moderate, Low]
+          gap_description: string
+          gap_source: string
+          gap_since_year: integer
+          gap_status:
+            type: enum
+            values: [Open, Partial_Addressed, Addressed, Contested]
+
+  # ── Structural Circularity ───────────────────────────────
+  structural_circularity:
+    type: object
+    required: false
+    fields:
+      loops:
+        type: list[object]
+        item_fields:
+          loop_id: string
+          loop_type:
+            type: enum
+            values:
+              - Appointer_Litigant
+              - Funder_Litigant
+              - Regulator_Regulated
+              - Oversight_Subject
+              - Security_Litigant
+              - Self_Regulatory
+              - Principal_Agent
+          entities_in_loop: list[string]
+          description: string
+          source: string
+
+  # ── State Disaggregation ─────────────────────────────────
+  state_data:
+    type: object
+    required: false
+    fields:
+      default_applies_to: string
+      variations:
+        type: list[object]
+        item_fields:
+          state_code: string
+          state_name: string
+          operational_status_override: string
+          pending_cases: integer
+          vacancy_rate: number
+          digital_variant: string
+          independence_risk_note: string
+          appellate_operational: boolean   # NEW: is appellate path functional in this state?
+          appellate_note: string           # NEW: why not, if false
+          exception_note: string           # NEW: state-specific structural exception
+          source: string
+
+  # ── Structural Variations ────────────────────────────────
+  structural_variations:
+    type: list[object]
+    required: false
+    item_fields:
+      variation_id: string
+      description: string
+      applicable_to: list[string]
+      source: string
+      independence_risk_note: string
+
+  # ── Digital Infrastructure ───────────────────────────────
+  digital_infrastructure:
+    type: object
+    fields:
+      system_used: list[string]
+      digital_variant:
+        type: enum
+        values: [NIC_Standard, HC_Custom, Hybrid, None, Unknown]
+      integrated_with_njdg: boolean
+      njdg_data_reliability:
+        type: enum
+        values: [High, Medium, Low, Unknown]
+      integration_notes: string
+
+  # ── Training ─────────────────────────────────────────────
+  training:
+    type: object
+    fields:
+      trained_by: list[string]
+      induction_training: boolean
+      continuing_education: boolean
+      training_mandatory: boolean
+
+  # ── Derived (auto-computed, do not edit) ─────────────────
+  derived:
+    type: object
+    fields:
+      independence_risk_score: integer
+      independence_risk_level: string
+      independence_risk_breakdown: object
+      discretionary_power_score: integer
+      discretionary_power_breakdown: object
+      circularity_score: integer
+      circularity_breakdown: object
+      structural_health_score: number     # NEW: 0.0–1.0 composite score
+      structural_health_level: string     # NEW: critical/concerning/moderate/healthy
+      structural_health_breakdown: object # NEW: component scores
+      vacancy_rate: number
+      disposal_rate: number
+      clog_severity: string
+      appellate_functional: boolean       # NEW: derived from appellate_health
+      scores_validated: boolean
+
+  # ── Data Quality ─────────────────────────────────────────
+  data_quality:
+    type: enum
+    required: true
+    values: [verified, complete, partial, unverified, contested]
+
+  data_quality_notes:
+    type: string
+
+  # ── Sources ──────────────────────────────────────────────
+  sources:
+    type: list[object]
+    required: true
+    item_fields:
+      label: string
+      url: string
+      type:
+        type: enum
+        values: [Constitution, CentralAct, StateAct, SCJudgment, HCJudgment,
+                 GazetteNotification, GoIWebsite, OfficialReport, NJDG, AnnualReport]
+      accessed_date: string
