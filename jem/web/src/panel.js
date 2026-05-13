@@ -1,4 +1,4 @@
-// D3LEM — Entity Detail Panel (Level 3)
+// JEM — Entity Detail Panel (Level 3)
 // Opens on entity click. Shows all attributes with sourced facts.
 // Derived scores shown with "Pending review" notice if not validated.
 

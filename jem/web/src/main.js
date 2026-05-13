@@ -1,4 +1,4 @@
-// D3LEM — Main Entry Point
+// JEM — Main Entry Point
 // Loads graph.json, initialises all modules, wires events.
 
 import { State } from './state.js';
@@ -139,7 +139,7 @@ async function boot() {
     render();
 
   } catch (err) {
-    console.error('D3LEM boot error:', err);
+    console.error('JEM boot error:', err);
     document.getElementById('loading-overlay').innerHTML =
       `<div class="loading-error">
         <strong>Failed to load graph data</strong><br>

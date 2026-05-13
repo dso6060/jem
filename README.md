@@ -1,10 +1,11 @@
-# D3LEM — Indian Legal Entity Map
+# Judiciary Entity Map (India) - JEM
 
-**Open-source structural map of the Indian judicial ecosystem.**
+**Open-source structural map of the Indian judicial ecosystem.**  
+*Working name during early builds was “d3lem”; the project and paths are now **JEM** / `jem/`.*
 
-D3LEM maps *how* courts, tribunals, regulators, and oversight bodies are built — appointment chains, funding flows, independence risk, structural gaps, case volume and clogging — not *what* they decide.
+JEM maps *how* courts, tribunals, regulators, and oversight bodies are built — appointment chains, funding flows, independence risk, structural gaps, case volume and clogging — not *what* they decide.
 
-→ **Live:** `https://vyomcloud.in/apps/d3lem/`  
+→ **Live:** `https://friedso.com/apps/jem/` *(adjust to your public URL if different)*  
 → **Data licence:** CC0 (public domain)  
 → **Code licence:** MIT  
 
@@ -205,7 +206,7 @@ Individual DLSA entities (650+), individual district CDRC entries (670+), indivi
 
 ### E. Out of scope by design — separate project candidates
 
-These are structurally related but have different data models, source types, or audiences. D3LEM's YAML schema and pipeline could be forked as a starting point.
+These are structurally related but have different data models, source types, or audiences. JEM's YAML schema and pipeline could be forked as a starting point.
 
 | Domain | Rationale for separation |
 |---|---|
@@ -225,7 +226,10 @@ These are structurally related but have different data models, source types, or 
 
 ## Build
 
+From the repository root, app scripts and data live under `jem/`:
+
 ```bash
+cd jem
 pip install -r scripts/requirements.txt
 python scripts/validate.py            # 0 errors required
 python scripts/derive.py              # Scores + auto-gap detection
@@ -237,12 +241,15 @@ python scripts/derive.py --clog-report
 python scripts/derive.py --gaps-only
 ```
 
-**Deploy:**
+**Deploy** (from `jem/`):
+
 ```bash
-rsync -avz web/ vyomcloud:~/apps/d3lem/
+cd jem && rsync -avz --delete web/ you@friedso.com:~/path/to/site/apps/jem/
 ```
 
-GitHub Actions validates all PRs touching `data/**`, `scripts/**`, or `web/**`. Does not auto-deploy.
+Replace `you@friedso.com:~/path/to/site/apps/jem/` with the same deploy target you use for other apps on friedso.com.
+
+GitHub Actions validates all PRs touching `jem/data/**` or `jem/scripts/**`. Does not auto-deploy.
 
 ---
 
@@ -260,6 +267,6 @@ GitHub Actions validates all PRs touching `data/**`, `scripts/**`, or `web/**`. 
 
 ## Contributing
 
-See [CONTRIBUTING.md](docs/CONTRIBUTING.md). Every field that affects a score or gap marker needs a primary source. `data_quality: unverified` renders with a dashed border — always better to be honest about what is and is not verified.
+See [jem/docs/CONTRIBUTING.md](jem/docs/CONTRIBUTING.md). Every field that affects a score or gap marker needs a primary source. `data_quality: unverified` renders with a dashed border — always better to be honest about what is and is not verified.
 
 No case outcomes. No individual judge names. No editorial commentary. Structural facts from Constitution, statutes, judgments, official reports only.

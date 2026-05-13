@@ -1,4 +1,4 @@
-# D3LEM — Data Model & Score Formulae
+# Judiciary Entity Map (India) - JEM — Data Model & Score Formulae
 
 All derived scores are computed by `scripts/derive.py` from structural
 data fields. No editorial judgment is applied. Every point traces to a

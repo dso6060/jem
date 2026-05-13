@@ -1,4 +1,4 @@
-// D3LEM — Timeline Scroller
+// JEM — Timeline Scroller
 // Persistent across all zoom levels.
 // Marks key constitutional events on the track.
 // Filters visible entities as year changes.

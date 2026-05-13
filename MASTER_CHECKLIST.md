@@ -1,4 +1,4 @@
-# D3LEM — Master Build & Deployment Checklist
+# Judiciary Entity Map (India) - JEM — Master Build & Deployment Checklist
 # Generated: April 25 2026
 # Status at generation: v1 complete, 147 entities, 163 relationships, 818 KB graph.json
 # Last progress audit: May 11 2026 (see PROGRESS & TBD below)
@@ -6,13 +6,15 @@
 # HOW TO USE THIS FILE
 # - Work top to bottom
 # - Check each box [x] as you complete it
-# - Never edit data/derived/ or web/public/graph.json manually
+# - Never edit jem/data/derived/ manually; do not hand-edit jem/web/public/graph.json (symlink → repo-root graph.json — rebuild via scripts)
 # - After ANY data change: validate → derive → build → spot-check
 # ============================================================
 
 ---
 
 ## PROGRESS & TBD (May 11 2026)
+
+**Living schedule (Threads 1–2):** [`jem/docs/GANTT_AND_V1_PLAN.md`](jem/docs/GANTT_AND_V1_PLAN.md) (day-by-day table + flowchart; v1.0.0 gates). **Restore procedure:** [`jem/docs/V1_DATA_RESTORE.md`](jem/docs/V1_DATA_RESTORE.md). **Safe staging build:** `jem/scripts/build_safe.sh` → writes `jem/build/graph.staging.json` only.
 
 **Completed (verified in workspace or prior baseline)**
 
@@ -25,10 +27,10 @@
 
 **TBD / not verified here**
 
-- **Restore full `graph.json` (urgent if overwritten):** `web/public/graph.json` → `../../../graph.json`. Running `build.py` while only a **small YAML subset** exists replaces the viewer graph with a tiny build (e.g. ~13 entities). **TBD:** copy back the full ~946 KB `graph.json` from backup, another machine, or the canonical d3lem export before trusting local spot-checks or deploy.
+- **Restore full `graph.json` (urgent if overwritten):** `web/public/graph.json` → `../../../graph.json`. Running `build.py` while only a **small YAML subset** exists replaces the viewer graph with a tiny build (e.g. ~13 entities). **TBD:** copy back the full ~946 KB `graph.json` from backup, another machine, or the canonical jem export before trusting local spot-checks or deploy.
 - **Full export inventory:** Checklist originally expected ~49 top-level deliverables; this tree may be a partial copy — reconcile file list when syncing from canonical source.
-- **`docs/CURSOR_PHASE1_BRIEF.md`**, **`docs/V2_SESSION_SPEC.md`:** not present under `d3lem/docs/` in this workspace — restore from canonical export if needed.
-- **VyomCloud deploy & live QA (Part 1.2):** README lists a live URL; re-run rsync + on-site checks to confirm current build.
+- **`docs/CURSOR_PHASE1_BRIEF.md`**, **`docs/V2_SESSION_SPEC.md`:** not present under `jem/docs/` in this workspace — restore from canonical export if needed.
+- **Production deploy (friedso.com) & live QA (Part 1.2):** set README live URL to your public path; re-run rsync + on-site checks after each release.
 - **Git remote & Actions (Part 1.3):** no `.git` in this workspace snapshot — confirm repo on GitHub and that `validate.yml` passes on push.
 - **MH / DL / KA state packs (Part 3):** not present as dedicated state entity packs in the canonical graph baseline reviewed for this audit — still outstanding vs checklist.
 - **V2 build (Part 4):** no `fetch_njdg.py`, `sankey.js`, Canvas L1/L2 renderer per spec — outstanding.
@@ -41,53 +43,57 @@
 
 ### 1.1 Download from Claude
 
-Download the entire d3lem folder from the Claude output.
-It contains everything. Structure:
+Download this repository (or the packaged output that contains the layout below).
+It contains everything. Structure (this repository):
 
-  d3lem/
+  <repo root>/
   ├── .github/workflows/validate.yml    ← CI config
-  ├── .gitignore
-  ├── README.md                         ← Gap registry lives here
-  ├── data/
-  │   ├── schema/                       ← entity_schema.yaml, relationship_schema.yaml
-  │   ├── entities/                     ← all entity YAML files
-  │   ├── relationships/                ← all relationship YAML files
-  │   └── derived/                      ← auto-generated, do not edit
-  ├── docs/
-  │   ├── DATA_MODEL.md
-  │   ├── CONTRIBUTING.md
-  │   ├── CURSOR_PHASE1_BRIEF.md        ← Cursor task brief for MH/DL/KA
-  │   └── V2_SESSION_SPEC.md            ← Paste into Claude on April 27
-  ├── scripts/
-  │   ├── validate.py
-  │   ├── derive.py
-  │   ├── build.py
-  │   └── requirements.txt
-  └── web/
-      ├── index.html
-      ├── public/graph.json             ← pre-built, deploy-ready
-      ├── src/                          ← main.js, state.js, renderer.js, panel.js, timeline.js
-      └── styles/main.css
+  ├── README.md
+  ├── MASTER_CHECKLIST.md
+  ├── entity_schema.yaml
+  ├── graph.json
+  └── jem/                                ← app + data + scripts
+      ├── README.md
+      ├── .gitignore
+      ├── data/
+      │   ├── schema/                       ← entity_schema.yaml, relationship_schema.yaml
+      │   ├── entities/                     ← all entity YAML files
+      │   ├── relationships/                ← all relationship YAML files
+      │   └── derived/                      ← auto-generated, do not edit
+      ├── docs/
+      │   ├── DATA_MODEL.md
+      │   ├── CONTRIBUTING.md
+      │   ├── CURSOR_PHASE1_BRIEF.md        ← Cursor task brief for MH/DL/KA
+      │   └── V2_SESSION_SPEC.md            ← Paste into Claude on April 27
+      ├── scripts/
+      │   ├── validate.py
+      │   ├── derive.py
+      │   ├── build.py
+      │   └── requirements.txt
+      └── web/
+          ├── index.html
+          ├── public/graph.json             ← symlink → repo-root graph.json
+          ├── src/                          ← main.js, state.js, renderer.js, panel.js, timeline.js
+          └── styles/main.css
 
-- [x] Download d3lem folder from Claude outputs *(project `d3lem/` present in workspace)*
+- [x] Repository present in workspace *(app in `jem/`, CI at repo root)*
 - [ ] Unzip / confirm all 49 files present *(TBD: full inventory vs April 25 spec — partial tree possible)*
 
 ---
 
-### 1.2 Deploy v1 to VyomCloud (server)
+### 1.2 Deploy v1 to production (friedso.com)
 
-The web/ folder is all nginx needs. graph.json is pre-built — no server-side processing.
+The `jem/web/` tree is static (HTML/CSS/JS + `public/` assets). `graph.json` is loaded from the repo-root file via `jem/web/public/graph.json` symlink — no app server beyond your normal static hosting (match your existing friedso.com site layout).
 
 ```bash
-# From your local machine (Command-Center):
-rsync -avz --delete d3lem/web/ vyomcloud:~/apps/d3lem/
+# From repo root — adjust user and remote path to your friedso.com host (same pattern as your other apps):
+rsync -avz --delete jem/web/ you@friedso.com:~/path/to/site/apps/jem/
 
-# On VyomCloud — verify nginx config points to ~/apps/d3lem/
-# Confirm: https://vyomcloud.in/apps/d3lem/ loads
+# Confirm public URL loads, e.g. https://friedso.com/apps/jem/ (exact URL depends on your vhost / path)
 ```
 
-- [ ] rsync web/ to VyomCloud
-- [ ] Open https://vyomcloud.in/apps/d3lem/ — confirm it loads
+- [ ] rsync `jem/web/` to friedso.com deploy target
+- [ ] Open public URL — confirm it loads
 - [ ] Confirm search works (type "Supreme Court")
 - [ ] Confirm appellate chain arcs visible by default
 - [ ] Confirm L0 cluster view shows 14 cluster rectangles
@@ -100,9 +106,9 @@ rsync -avz --delete d3lem/web/ vyomcloud:~/apps/d3lem/
 ### 1.3 Push to GitHub
 
 ```bash
-cd d3lem
+cd jem
 git init
-git remote add origin https://github.com/YOUR-ORG/d3lem.git
+git remote add origin https://github.com/YOUR-ORG/jem.git
 git add .
 git commit -m "feat: v1 complete — 147 entities, 163 relationships, TN+PY sample"
 git push -u origin main
@@ -123,15 +129,15 @@ git push -u origin main
 
 ```bash
 # In Cursor terminal:
-cd d3lem
+cd jem
 pip install -r scripts/requirements.txt
 python scripts/validate.py     # should show: 0 errors, 0 warnings
 python scripts/build.py        # should show: 147 entities, 818 KB
 ```
 
-- [x] Open d3lem/ as Cursor project
+- [x] Open jem/ as Cursor project
 - [x] Run validate.py — confirm clean *(May 11 2026: 0 errors on current YAML set; entity file count smaller than v1 full export)*
-- [ ] Read docs/CURSOR_PHASE1_BRIEF.md fully before starting *(TBD: file not in `d3lem/docs/` — restore from canonical export)*
+- [ ] Read docs/CURSOR_PHASE1_BRIEF.md fully before starting *(TBD: file not in `jem/docs/` — restore from canonical export)*
 - [ ] Read docs/DATA_MODEL.md sections on structural_gap and case_volume *(doc present; mark when read)*
 
 ### 2.2 Cursor workflow (repeat for every data session)
@@ -145,7 +151,7 @@ Every session, in this exact order:
 5. python scripts/build.py              # recompile graph.json
 6. python scripts/derive.py --clog-report   # spot-check
 7. git add . && git commit -m "data(STATE): description"
-8. rsync -avz web/ vyomcloud:~/apps/d3lem/    # deploy
+8. rsync -avz --delete web/ you@friedso.com:~/path/to/site/apps/jem/    # deploy (from `jem/`; adjust remote path)
 ```
 
 - [ ] Bookmark this workflow — run it in full every session
@@ -230,7 +236,7 @@ Every session, in this exact order:
 
 - [ ] MH validate + derive + build passes 0 errors
 - [ ] Commit: `data(MH): add Maharashtra state entities`
-- [ ] rsync to VyomCloud
+- [ ] rsync `jem/web/` to friedso.com
 
 ---
 
@@ -300,7 +306,7 @@ Every session, in this exact order:
 
 - [ ] DL validate + derive + build passes 0 errors
 - [ ] Commit: `data(DL): add Delhi state entities`
-- [ ] rsync to VyomCloud
+- [ ] rsync `jem/web/` to friedso.com
 
 ---
 
@@ -368,7 +374,7 @@ Every session, in this exact order:
 
 - [ ] KA validate + derive + build passes 0 errors
 - [ ] Commit: `data(KA): add Karnataka state entities`
-- [ ] rsync to VyomCloud
+- [ ] rsync `jem/web/` to friedso.com
 
 ---
 
@@ -381,7 +387,7 @@ After MH, DL, KA are committed:
 - [ ] Check entity count: should be ~390-420 entities
 - [ ] Check graph.json: should be ~2.0-2.5 MB
 - [ ] Check clog report: City Civil Court Mumbai and Tis Hazari should appear
-- [ ] Deploy: `rsync -avz web/ vyomcloud:~/apps/d3lem/`
+- [ ] Deploy: `rsync -avz --delete jem/web/ you@friedso.com:~/path/to/site/apps/jem/` (from repo root; adjust path)
 - [ ] Open live site — confirm state filter works for MH, DL, KA, TN, PY
 - [ ] Confirm new gap markers visible (MH Lokayukta appointment delay, KA Lokayukta amendment)
 - [ ] Tag GitHub release: `git tag v1.0.0 && git push --tags`
@@ -459,7 +465,7 @@ After MH, DL, KA are committed:
 - [ ] Canvas performance: open devtools, confirm <16ms render at current entity count
 - [ ] Sankey displays correctly
 - [ ] Journey mode breadcrumb works for District → HC → SC path
-- [ ] `rsync -avz web/ vyomcloud:~/apps/d3lem/`
+- [ ] `rsync -avz --delete jem/web/ you@friedso.com:~/path/to/site/apps/jem/`
 - [ ] Tag: `git tag v2.0.0 && git push --tags`
 
 ---
@@ -629,12 +635,12 @@ Not a Cursor or Claude session task — plan only.
 
 ### 6.2 Data infrastructure
 
-- [ ] Scheduled NJDG fetch: cron job on VyomCloud, weekly
-  `0 3 * * 0 cd ~/d3lem && python scripts/fetch_njdg.py --all-hcs && python scripts/build.py && rsync web/ ~/apps/d3lem/`
+- [ ] Scheduled NJDG fetch: cron on your production or build host (e.g. friedso.com), weekly
+  `0 3 * * 0 cd /path/to/repo/jem && python3 scripts/fetch_njdg.py --all-hcs && python3 scripts/derive.py && python3 scripts/build.py && rsync -avz --delete web/ you@friedso.com:~/path/to/site/apps/jem/`
 - [ ] Historical NJDG snapshots: store data/cache/njdg/ in git-annex or S3
   (enables year-over-year clog trend in time scroller)
 - [ ] Community contribution pipeline: GitHub Actions auto-builds on merge to main
-  Requires: VyomCloud webhook or GitHub Actions SSH deploy step
+  Requires: GitHub Actions deploy step (e.g. SSH/rsync to friedso.com) or webhook to your host
 
 ### 6.3 Remaining feature deferrals
 
@@ -650,7 +656,7 @@ Not a Cursor or Claude session task — plan only.
 
 ### 6.4 Separate project candidates (from README)
 
-These need their own repos. D3LEM's schema is a usable starting point.
+These need their own repos. JEM's schema is a usable starting point.
 
 - [ ] Revenue administration map (Patwari → Tehsildar → DM → Board of Revenue)
 - [ ] Tax dispute chain map (AO → CIT(A) → ITAT → HC → SC)

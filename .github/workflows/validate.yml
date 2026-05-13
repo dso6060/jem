@@ -1,14 +1,17 @@
-name: Validate D3LEM Data
+name: Validate JEM Data
 
 on:
   pull_request:
     paths:
-      - 'data/**'
-      - 'scripts/**'
+      - 'jem/data/**'
+      - 'jem/scripts/**'
 
 jobs:
   validate:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: jem
     steps:
       - uses: actions/checkout@v4
 

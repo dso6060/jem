@@ -1,4 +1,4 @@
-// D3LEM — Renderer
+// JEM — Renderer
 // Handles all SVG rendering across 4 semantic zoom levels.
 // State-driven: re-renders when State emits relevant events.
 

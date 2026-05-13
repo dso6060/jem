@@ -1,4 +1,4 @@
-// D3LEM — Central State Store
+// JEM — Central State Store
 // All UI state lives here. Modules subscribe to changes.
 
 // Relationship categories shown in Structure (and as baseline for other modes).
@@ -363,7 +363,7 @@ export const State = {
   },
 
   // Graph bundles may nest palettes under `legends` (repo-root graph.json) or
-  // expose the same keys at the top level (d3lem/scripts/build.py output).
+  // expose the same keys at the top level (jem/scripts/build.py output).
   getRelationshipColors() {
     if (!this.graph) return {};
     return this.graph.legends?.relationship_colors

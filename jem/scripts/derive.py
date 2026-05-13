@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-D3LEM — Score Derivation Script
+JEM — Score Derivation Script
 Computes independence_risk_score and discretionary_power_score
 for every entity from their structural data attributes.
 
@@ -340,7 +340,7 @@ def explain_entity(entity_id: str, data_dir: Path):
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="D3LEM score derivation")
+    parser = argparse.ArgumentParser(description="JEM score derivation")
     parser.add_argument("--explain", type=str, default=None,
                         help="Print detailed score explanation for one entity ID")
     parser.add_argument("--entity", type=str, default=None,
@@ -355,7 +355,7 @@ if __name__ == "__main__":
         explain_entity(args.explain, data_dir)
         sys.exit(0)
 
-    print("\nD3LEM — Deriving structural scores...")
+    print("\nJEM — Deriving structural scores...")
     results = derive_scores_for_all(data_dir)
 
     print(f"\nProcessed {len(results)} entities:")

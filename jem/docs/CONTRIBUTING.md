@@ -1,4 +1,4 @@
-# Contributing to D3LEM
+# Contributing to Judiciary Entity Map (India) - JEM
 
 ## Principles
 

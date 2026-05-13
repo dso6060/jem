@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-D3LEM — Data Validation Script
+JEM — Data Validation Script
 Validates all YAML entity and relationship files against the schema.
 Runs as a GitHub Actions check on every Pull Request.
 Exit code 0 = all valid. Exit code 1 = validation errors found.
@@ -421,7 +421,7 @@ def run_validation(data_dir: Path, strict: bool = False, single_file: Optional[P
             files_checked += 1
 
     print(f"\n{'='*60}")
-    print(f"D3LEM Validation Report")
+    print(f"JEM Validation Report")
     print(f"Files checked: {files_checked}")
     print(f"Errors found:  {len(all_errors)}")
     print(f"{'='*60}")
@@ -442,7 +442,7 @@ def run_validation(data_dir: Path, strict: bool = False, single_file: Optional[P
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="D3LEM data validation")
+    parser = argparse.ArgumentParser(description="JEM data validation")
     parser.add_argument("--strict", action="store_true",
                         help="Fail on placeholder URLs and missing optional fields for verified entities")
     parser.add_argument("--entity", type=str, default=None,

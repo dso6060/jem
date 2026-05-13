@@ -1,10 +1,10 @@
-# D3LEM — Indian Legal Entity Map
+# Judiciary Entity Map (India) - JEM
 
 An open, honest structural study of the Indian judicial ecosystem.
 Maps institutional relationships — appointment chains, funding flows,
 oversight mechanisms, complaint pathways — not case outcomes.
 
-**Live:** `https://your-domain/apps/d3lem/`
+**Live:** `https://friedso.com/apps/jem/` *(adjust if your public path differs)*
 
 ---
 
@@ -12,7 +12,7 @@ oversight mechanisms, complaint pathways — not case outcomes.
 
 The Indian judiciary involves roughly 1,500 distinct institutional entities across constitutional courts, subordinate courts, central and state tribunals, arbitration bodies, regulatory quasi-judicial bodies, investigative agencies, digital infrastructure bodies, audit bodies, and training institutions. No public map of their structural relationships exists.
 
-D3LEM maps:
+JEM maps:
 - Who appoints whom, and whether that appointment is binding
 - Who funds whom, and whether the funder equals the appointer
 - Which audit bodies exist for each entity
@@ -39,12 +39,17 @@ python scripts/derive.py
 # 4. Build graph.json (written to ../graph.json at the repo root; web/public/graph.json is a symlink)
 python scripts/build.py
 
+# 4b. Safe staging build (does NOT overwrite repo-root graph.json)
+./scripts/build_safe.sh
+
 # 5. Serve the web directory
-# Deploy web/ to your server at /apps/d3lem/
+# Deploy web/ to your server at /apps/jem/
 ```
 
 The frontend requires no build step. It is vanilla HTML + JS + CSS.
 All CDN dependencies load from jsdelivr/cdnjs.
+
+**Schedule & v1.0.0 path:** [docs/GANTT_AND_V1_PLAN.md](docs/GANTT_AND_V1_PLAN.md) · **Restore canonical data:** [docs/V1_DATA_RESTORE.md](docs/V1_DATA_RESTORE.md) · Repo-wide checklist: [../MASTER_CHECKLIST.md](../MASTER_CHECKLIST.md)
 
 ---
 

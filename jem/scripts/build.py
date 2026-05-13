@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-D3LEM — Build Script
+JEM — Build Script
 Reads all validated YAML files, merges derived scores,
 computes cluster aggregates and layout positions,
-outputs the canonical graph at the repository root: ../graph.json (sibling of d3lem/).
+outputs the canonical graph at the repository root: ../graph.json (sibling of jem/).
 The web app loads it via web/public/graph.json → symlink to that file.
 
 Usage:
@@ -350,7 +350,7 @@ def add_placeholder_entities_for_relationships(entities: List[Dict], relationshi
 # ── Main Build ────────────────────────────────────────────────────────────────
 
 def build_graph_json(data_dir: Path, output_path: Path, no_derive: bool = False):
-    print("\nD3LEM Build")
+    print("\nJEM Build")
     print(f"{'='*50}")
 
     if not no_derive:
@@ -564,7 +564,7 @@ def build_graph_json(data_dir: Path, output_path: Path, no_derive: bool = False)
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="D3LEM build")
+    parser = argparse.ArgumentParser(description="JEM build")
     parser.add_argument("--output", type=str, default=None,
                         help="Output path for graph.json (default: <repo>/graph.json)")
     parser.add_argument("--no-derive", action="store_true",
@@ -577,7 +577,7 @@ if __name__ == "__main__":
     if args.output:
         output_path = Path(args.output)
     else:
-        # Repo root: …/jem/graph.json when this script lives in …/jem/d3lem/scripts/
+        # Repo root: …/<repository>/graph.json when this script lives in …/<repository>/jem/scripts/
         output_path = script_dir.parent.parent / "graph.json"
 
     build_graph_json(data_dir, output_path, no_derive=args.no_derive)
