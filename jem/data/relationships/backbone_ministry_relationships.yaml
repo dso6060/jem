@@ -1,0 +1,82 @@
+# ── Ministry → Tribunal PrimaryFunder edges ──────────────────────────────────
+# Resolves broken funding.ministry_responsible references in:
+#   aptel.yaml  → ministry_of_power
+#   ncdrc.yaml  → ministry_consumer_affairs
+#   nclt.yaml   → ministry_corporate_affairs
+#   ngt.yaml    → ministry_environment
+# relationship_type : PrimaryFunder (RELATIONSHIP_TYPES ✓)
+# relationship_category: funding (RELATIONSHIP_CATEGORIES ✓)
+# ─────────────────────────────────────────────────────────────────────────────
+
+relationships:
+
+  - id: rel_mop_aptel_primary_funder
+    source: ministry_of_power
+    target: aptel
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    statutory_basis: "Electricity Act 2003, Sections 110–122"
+    year_established: 2005
+    notes: >
+      MoP administers the Electricity Act 2003 under which APTEL was
+      constituted. APTEL is listed as an attached body on the MoP website.
+      Budget demand flows through MoP demand head in Union Budget.
+    data_quality: partial
+    sources:
+      - label: "Ministry of Power — Attached & Subordinate Offices (APTEL listed)"
+        url: https://powermin.gov.in/en/content/attached-subordinate-offices
+        type: GoIWebsite
+        accessed_date: '2026-05-18'
+
+  - id: rel_moca_ncdrc_primary_funder
+    source: ministry_consumer_affairs
+    target: ncdrc
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    statutory_basis: "Consumer Protection Act 2019, Section 53"
+    year_established: 1988
+    notes: >
+      Department of Consumer Affairs (under MoCAF&PD) administers the
+      Consumer Protection Act 2019 under which NCDRC is constituted.
+      NCDRC budget demand flows through that department's demand head.
+    data_quality: partial
+    sources:
+      - label: "Ministry of Consumer Affairs — NCDRC (official page)"
+        url: https://consumeraffairs.nic.in/ncdrc
+        type: GoIWebsite
+        accessed_date: '2026-05-18'
+
+  - id: rel_mca_nclt_primary_funder
+    source: ministry_corporate_affairs
+    target: nclt
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    statutory_basis: "Companies Act 2013, Section 408"
+    year_established: 2016
+    notes: >
+      MCA administers the Companies Act 2013 under which NCLT was
+      constituted. NCLT is an attached body of MCA; budget demand flows
+      through MCA demand head in Union Budget.
+    data_quality: partial
+    sources:
+      - label: "Ministry of Corporate Affairs — Official Website"
+        url: https://www.mca.gov.in
+        type: GoIWebsite
+        accessed_date: '2026-05-18'
+
+  - id: rel_moefcc_ngt_primary_funder
+    source: ministry_environment
+    target: ngt
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    statutory_basis: "National Green Tribunal Act 2010, Section 3"
+    year_established: 2010
+    notes: >
+      MoEFCC administers the NGT Act 2010 under which NGT was constituted.
+      NGT budget demand flows through MoEFCC demand head in Union Budget.
+    data_quality: partial
+    sources:
+      - label: "NGT — Official Website (MoEFCC)"
+        url: https://greentribunal.gov.in
+        type: GoIWebsite
+        accessed_date: '2026-05-18'

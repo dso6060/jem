@@ -1,0 +1,40 @@
+id: ministry_corporate_affairs
+name: Ministry of Corporate Affairs
+name_hindi: कॉर्पोरेट कार्य मंत्रालय
+abbreviation: MCA
+
+type: ExecutiveBody
+cluster: legislative_executive
+level_of_government: Central
+
+created_year: 2004
+# Renamed from "Ministry of Company Affairs" to "Ministry of Corporate
+# Affairs" in 2004 per Allocation of Business amendment.
+# created_year reflects name-in-current-form; ministry lineage is older.
+
+operational_status: Active
+
+statutory_basis: >
+  Government of India (Allocation of Business) Rules, 1961 —
+  Ministry of Corporate Affairs entry; Companies Act 2013 (s.408) and
+  Insolvency and Bankruptcy Code 2016 (s.60) are the primary legislation
+  under which NCLT operates; MCA demand head funds NCLT.
+
+funding:
+  primary_source: Consolidated_Fund_India
+
+data_quality: partial
+data_quality_notes: >
+  created_year 2004 is the rename date; Ministry of Company Affairs
+  (earlier lineage) predates this — flag if lineage origin year is
+  required. NCLAT (CA 2013 s.410) is also under MCA; a separate
+  ministry_corporate_affairs → nclat PrimaryFunder edge should be
+  added when nclat.yaml is created.
+  name_hindi unverified against official letterhead.
+  funding block is ministry-level only; budget_figure_crore not populated.
+
+sources:
+  - label: "Ministry of Corporate Affairs — Official Website"
+    url: https://www.mca.gov.in
+    type: GoIWebsite
+    accessed_date: '2026-05-18'

@@ -1,9 +1,9 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-05-15T08:24:13.643265+00:00",
-    "entity_count": 461,
-    "relationship_count": 461,
+    "generated_at": "2026-05-18T11:52:31.823321+00:00",
+    "entity_count": 472,
+    "relationship_count": 472,
     "canvas_width": 1800,
     "canvas_height": 1200,
     "year_range": [
@@ -12,11 +12,11 @@
     ]
   },
   "impact_metrics": {
-    "high_independence_risk_count": 64,
+    "high_independence_risk_count": 72,
     "appointer_equals_funder_removal_count": 0,
-    "no_public_appointment_criteria_count": 42,
-    "not_constituted_count": 3,
-    "no_external_complaint_mechanism_count": 460
+    "no_public_appointment_criteria_count": 39,
+    "not_constituted_count": 2,
+    "no_external_complaint_mechanism_count": 471
   },
   "timeline_events": [
     {
@@ -150,8 +150,8 @@
       "id": "tribunals_adr",
       "name": "Tribunals Adr",
       "color": "#2b6cb0",
-      "entity_count": 88,
-      "avg_independence_risk": 3.1,
+      "entity_count": 94,
+      "avg_independence_risk": 3.4,
       "not_constituted_count": 0,
       "position": {
         "x": 28,
@@ -182,7 +182,7 @@
       "id": "legislative_executive",
       "name": "Legislative Executive",
       "color": "#1f2d3d",
-      "entity_count": 43,
+      "entity_count": 48,
       "avg_independence_risk": 6.0,
       "not_constituted_count": 0,
       "position": {
@@ -198,8 +198,8 @@
       "id": "executive_interface",
       "name": "Executive Interface",
       "color": "#742a2a",
-      "entity_count": 12,
-      "avg_independence_risk": 4.3,
+      "entity_count": 11,
+      "avg_independence_risk": 3.8,
       "not_constituted_count": 2,
       "position": {
         "x": 466,
@@ -214,7 +214,7 @@
       "id": "constitutional_courts",
       "name": "Constitutional Courts",
       "color": "#1a365d",
-      "entity_count": 44,
+      "entity_count": 43,
       "avg_independence_risk": 4.2,
       "not_constituted_count": 0,
       "position": {
@@ -294,9 +294,9 @@
       "id": "arbitration",
       "name": "Arbitration",
       "color": "#3182ce",
-      "entity_count": 1,
-      "avg_independence_risk": 11.0,
-      "not_constituted_count": 1,
+      "entity_count": 3,
+      "avg_independence_risk": 5.0,
+      "not_constituted_count": 0,
       "position": {
         "x": 1342,
         "y": 316,
@@ -307,19 +307,19 @@
       }
     },
     {
-      "id": "digital_infrastructure",
-      "name": "Digital Infrastructure",
-      "color": "#1a3a4a",
+      "id": "consumer_redressal",
+      "name": "Consumer Redressal",
+      "color": "#6b3480",
       "entity_count": 1,
-      "avg_independence_risk": 4.0,
+      "avg_independence_risk": 7.0,
       "not_constituted_count": 0,
       "position": {
-        "x": 1342,
-        "y": 604,
+        "x": 904,
+        "y": 316,
         "width": 430,
         "height": 280,
-        "cluster_col": 3,
-        "cluster_row": 2
+        "cluster_col": 2,
+        "cluster_row": 1
       }
     }
   ],
@@ -327,60 +327,89 @@
     {
       "id": "aptel",
       "name": "Appellate Tribunal for Electricity",
-      "name_hindi": null,
-      "abbreviation": null,
-      "type": "ExecutiveBody",
+      "name_hindi": "विद्युत अपीलीय अधिकरण",
+      "abbreviation": "APTEL",
+      "type": "CentralTribunal",
       "cluster": "tribunals_adr",
       "level_of_government": "Central",
-      "created_year": 1950,
+      "created_year": 2005,
       "abolished_year": null,
       "operational_status": "Active",
       "constitutional_basis": null,
-      "statutory_basis": null,
+      "statutory_basis": "Electricity Act 2003, Sections 110–122",
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "created_year set to 2005 (operational constitution of APTEL under Electricity Act 2003); the Act received Presidential assent 26 May 2003 (created_year 2003 is also defensible if the entity is dated to statute, not constitution). Appointment block is partially verified — judicial-member consultation binding status follows practice, not express statutory language; verify against Electricity Act Amendment history and any SC judgment on APTEL appointment. funding.ministry_responsible assumes entity id 'ministry_of_power' — verify this id exists in graph before merging. case_volume and judge_strength left null; populate from APTEL Annual Report or DoJ quarterly vacancy data in a separate §3 / §7 pass. ministry_responsible corroborated by MoP website listing APTEL as attached body, but Union Budget DDG line should be confirmed for budget_figure_crore.\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
+          "Base discretionary power for type CentralTribunal": 2,
+          "Has removal authority over other entities": 1,
           "No universal mandatory timeline for all decisions": 1
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 4,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
+          "Appointed directly by executive body": 3,
           "Lokpal has no jurisdiction": 1,
           "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
           "No independent conduct oversight body": 1
         },
         "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_score": 7,
         "scores_validated": false
       },
-      "funding_source": null,
-      "funding_ministry": null,
-      "audited_by": null,
-      "audit_report_public": null,
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": "ministry_of_power",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
       "complaint_external_exists": false,
-      "appointment_criteria_public": null,
-      "reappointment_possible": null,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
       "sources": [
         {
-          "label": "India Code — Constitution & Acts",
-          "url": "https://india-code.nic.in/",
+          "label": "Electricity Act 2003 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MTQ3MA==",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Ministry of Power — Attached & Subordinate Offices (APTEL listed)",
+          "url": "https://powermin.gov.in/en/content/attached-subordinate-offices",
           "type": "GoIWebsite",
-          "accessed_date": "2026-05-13"
+          "accessed_date": "2026-05-18"
         }
       ],
       "_detail": {
-        "appointment": null,
-        "funding": null,
-        "audit": null,
+        "appointment": {
+          "nominates": "central_government",
+          "formally_appoints": "central_government",
+          "consulted": [
+            "supreme_court_india"
+          ],
+          "consultation_binding": false,
+          "criteria_public": true,
+          "tenure": "5 years or until age 70, whichever is earlier (s.114)",
+          "reappointment_possible": false,
+          "removal_authority": "central_government",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Consolidated_Fund_India",
+          "ministry_responsible": "ministry_of_power"
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
         "complaint_mechanism": null,
         "training": null,
         "digital_infrastructure": null,
         "structural_variations": [],
         "jurisdiction_scope": {
-          "is_all_india": true
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "Appellate"
+          ]
         },
         "case_volume": null,
         "judge_strength": null,
@@ -456,6 +485,109 @@
       "position": {
         "x": 1495,
         "y": 192
+      }
+    },
+    {
+      "id": "cat",
+      "name": "Central Administrative Tribunal",
+      "name_hindi": "केन्द्रीय प्रशासनिक अधिकरण",
+      "abbreviation": "CAT",
+      "type": "CentralTribunal",
+      "cluster": "tribunals_adr",
+      "level_of_government": "Central",
+      "created_year": 1985,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Administrative Tribunals Act 1985, Section 4",
+      "data_quality": "partial",
+      "data_quality_notes": "Appointment block verified against AT Act 1985 and TRA 2021 text. tenure updated to TRA 2021 regime (4 years / age 70); pre-2021 tenure was 5 years or age 65 (Chairman) / 62 (members) under AT Act 1985 s.8 — confirm whether any incumbent predates TRA 2021 with saved terms. ministry_responsible entity id 'ministry_personnel_dopt' assumed — verify in graph. case_volume and judge_strength null — populate from CAT Annual Report or DoJ vacancy data in §3 / §7 session. Consultation binding status: AT Act 1985 s.6 says \"after consultation\" — practice not expressly binding; post-Madras Bar Assn. SC judgments reinforce independence norms but TRA 2021 framework governs.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type CentralTribunal": 2,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 4,
+        "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 7,
+        "scores_validated": false
+      },
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": "ministry_personnel_dopt",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "Administrative Tribunals Act 1985 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/NzAx",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Tribunals Reforms Act 2021 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MjY5MzQ=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "DoPT — Central Administrative Tribunal (official page)",
+          "url": "https://dopt.gov.in/cat",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "central_government",
+          "formally_appoints": "president_india",
+          "consulted": [
+            "supreme_court_india"
+          ],
+          "consultation_binding": false,
+          "criteria_public": true,
+          "tenure": "4 years or until age 70, whichever is earlier — Tribunals Reforms Act 2021, s.3(2)",
+          "reappointment_possible": false,
+          "removal_authority": "president_india",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Consolidated_Fund_India",
+          "ministry_responsible": "ministry_personnel_dopt"
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "Original",
+            "Appellate"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 64,
+        "y": 444
       }
     },
     {
@@ -588,8 +720,110 @@
         "parent_hc": null
       },
       "position": {
-        "x": 523,
+        "x": 525,
         "y": 768
+      }
+    },
+    {
+      "id": "cestat",
+      "name": "Customs, Excise and Service Tax Appellate Tribunal",
+      "name_hindi": "सीमा शुल्क, उत्पाद शुल्क और सेवा कर अपीलीय अधिकरण",
+      "abbreviation": "CESTAT",
+      "type": "CentralTribunal",
+      "cluster": "tribunals_adr",
+      "level_of_government": "Central",
+      "created_year": 1982,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Customs Act 1962, Section 129; Central Excise Act 1944, Section 35B; Finance Act 1994, Section 86 (service tax — now subsumed into GST)\n",
+      "data_quality": "partial",
+      "data_quality_notes": "created_year 1982 reflects CEGAT founding (entity continuity). Service tax jurisdiction added 2003 (Finance Act 2003); GST replaced service tax from 1 July 2017 but CESTAT retains jurisdiction over pre-GST service tax disputes. statutory_basis lists three Acts — all currently operative for legacy dispute resolution; Finance Act 1994 s.86 remains relevant for service tax appeals predating GST. ministry_responsible entity id 'ministry_of_finance' assumed — verify in graph. CESTAT shares the id with ITAT funding (both MoF/Revenue); the specific CBIC demand head should be cited for budget_figure_crore in §3. case_volume and judge_strength null — CESTAT Annual Report or CBIC in §3/§7.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type CentralTribunal": 2,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 4,
+        "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 7,
+        "scores_validated": false
+      },
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": "ministry_of_finance",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "Customs Act 1962 — CBIC (GoI)",
+          "url": "https://www.cbic.gov.in/resources//htdocs-cbec/customs/cs-act/formatted-htmls/cs-act.htm",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Tribunals Reforms Act 2021 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MjY5MzQ=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "CESTAT — Official Website",
+          "url": "https://cestat.gov.in",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "central_government",
+          "formally_appoints": "central_government",
+          "consulted": [
+            "supreme_court_india"
+          ],
+          "consultation_binding": false,
+          "criteria_public": true,
+          "tenure": "4 years or until age 70, whichever is earlier — Tribunals Reforms Act 2021, s.3(2)",
+          "reappointment_possible": false,
+          "removal_authority": "central_government",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Consolidated_Fund_India",
+          "ministry_responsible": "ministry_of_finance"
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "Appellate"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 68,
+        "y": 480
       }
     },
     {
@@ -870,7 +1104,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 73,
+        "x": 71,
         "y": 156
       }
     },
@@ -1004,7 +1238,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 82,
+        "x": 79,
         "y": 192
       }
     },
@@ -1143,7 +1377,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 957,
+        "x": 958,
         "y": 192
       }
     },
@@ -1210,28 +1444,216 @@
         "parent_hc": null
       },
       "position": {
-        "x": 965,
+        "x": 966,
         "y": 156
       }
     },
     {
-      "id": "lok_adalat_generic",
-      "name": "Lok Adalat (generic)",
-      "name_hindi": null,
-      "abbreviation": null,
-      "type": "ADRBody",
+      "id": "itat",
+      "name": "Income Tax Appellate Tribunal",
+      "name_hindi": "आयकर अपीलीय अधिकरण",
+      "abbreviation": "ITAT",
+      "type": "CentralTribunal",
       "cluster": "tribunals_adr",
-      "level_of_government": "Shared_MultiState",
-      "created_year": 1950,
+      "level_of_government": "Central",
+      "created_year": 1941,
       "abolished_year": null,
       "operational_status": "Active",
       "constitutional_basis": null,
-      "statutory_basis": null,
+      "statutory_basis": "Income Tax Act 1961, Section 252",
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "created_year 1941 reflects founding date (first bench, New Delhi). Statutory basis is ITA 1961 s.252 (current); historical basis IT Act 1922 s.5A. Appointment block reflects TRA 2021 regime; pre-2021 tenure was 4 years or age 62 under earlier ITA provisions. ministry_responsible entity id 'ministry_of_finance' assumed — verify in graph. ITAT has 63+ benches across India as of 2024 — structural_variations and digital_infrastructure fields to be populated in a future session. case_volume and judge_strength null — ITAT Annual Report or NJDG in §3/§7.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type CentralTribunal": 2,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 4,
+        "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 7,
+        "scores_validated": false
+      },
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": "ministry_of_finance",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "Income Tax Act 1961 — Income Tax Department (GoI)",
+          "url": "https://incometaxindia.gov.in/pages/acts/income-tax-act.aspx",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Tribunals Reforms Act 2021 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MjY5MzQ=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "ITAT — Official Website",
+          "url": "https://itat.gov.in",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "central_government",
+          "formally_appoints": "central_government",
+          "consulted": [
+            "supreme_court_india"
+          ],
+          "consultation_binding": false,
+          "criteria_public": true,
+          "tenure": "4 years or until age 70, whichever is earlier — Tribunals Reforms Act 2021, s.3(2)",
+          "reappointment_possible": false,
+          "removal_authority": "central_government",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Consolidated_Fund_India",
+          "ministry_responsible": "ministry_of_finance"
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "Appellate"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 72,
+        "y": 444
+      }
+    },
+    {
+      "id": "lok_adalat_generic",
+      "name": "Lok Adalat",
+      "name_hindi": "लोक अदालत",
+      "abbreviation": null,
+      "type": "ADRBody",
+      "cluster": "tribunals_adr",
+      "level_of_government": "Shared_CentralState",
+      "created_year": 1987,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Legal Services Authorities Act 1987, Section 19",
+      "data_quality": "partial",
+      "data_quality_notes": "Generic entity representing the Lok Adalat institution. Individual sessions are not modelled separately. Permanent Lok Adalat (LSA Act 1987 ss.22A–22E, for public utility services) may warrant a separate entity — see SPEC §4. Award finality (s.21(2)) is a significant feature: no appellate chain from Lok Adalat (unlike regular tribunals). Graph should not show AppealableTo edge from this entity. Designated as target by tn_slsa (tn_relationships.yaml: tn_slsa_adr) and by nalsa (adr_arbitration_relationships.yaml: nalsa_designates_lok_adalat).\n",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ADRBody": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 5,
+        "scores_validated": false
+      },
+      "funding_source": "Mixed",
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": false,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Legal Services Authorities Act 1987 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/NzI2",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "NALSA — Lok Adalat",
+          "url": "https://nalsa.gov.in/lok-adalat",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": {
+          "primary_source": "Mixed",
+          "ministry_responsible": null
+        },
+        "audit": {
+          "audited_by": null,
+          "audit_type": "None",
+          "audit_report_public": false
+        },
+        "complaint_mechanism": {
+          "lokpal_jurisdiction": "Not_Applicable",
+          "removal_mechanism": null
+        },
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "Original",
+            "Special"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 76,
+        "y": 480
+      }
+    },
+    {
+      "id": "ministry_consumer_affairs",
+      "name": "Ministry of Consumer Affairs, Food and Public Distribution",
+      "name_hindi": "उपभोक्ता मामले, खाद्य और सार्वजनिक वितरण मंत्रालय",
+      "abbreviation": "MoCAF&PD",
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1997,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Government of India (Allocation of Business) Rules, 1961 — Ministry of Consumer Affairs, Food and Public Distribution entry; Consumer Protection Act 2019 (ss.53 ff.) is the primary legislation constituting NCDRC, administered by the Department of Consumer Affairs.\n",
+      "data_quality": "partial",
+      "data_quality_notes": "created_year 1997 is approximate for the ministry in its current configuration — verify against Allocation of Business gazette notification. Ministry has two departments (Consumer Affairs; Food and Public Distribution); NCDRC sits under Department of Consumer Affairs specifically. Sub-department entity not created per session rules. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ExecutiveBody": 1,
           "No universal mandatory timeline for all decisions": 1
         },
         "discretionary_power_score": 2,
@@ -1246,7 +1668,7 @@
         "independence_risk_score": 6,
         "scores_validated": false
       },
-      "funding_source": null,
+      "funding_source": "Consolidated_Fund_India",
       "funding_ministry": null,
       "audited_by": null,
       "audit_report_public": null,
@@ -1255,30 +1677,164 @@
       "reappointment_possible": null,
       "sources": [
         {
-          "label": "India Code — Constitution & Acts",
-          "url": "https://india-code.nic.in/",
+          "label": "Ministry of Consumer Affairs — Official Website",
+          "url": "https://consumeraffairs.nic.in",
           "type": "GoIWebsite",
-          "accessed_date": "2026-05-13"
+          "accessed_date": "2026-05-18"
         }
       ],
       "_detail": {
         "appointment": null,
-        "funding": null,
+        "funding": {
+          "primary_source": "Consolidated_Fund_India"
+        },
         "audit": null,
         "complaint_mechanism": null,
         "training": null,
         "digital_infrastructure": null,
         "structural_variations": [],
-        "jurisdiction_scope": {
-          "is_all_india": false
-        },
+        "jurisdiction_scope": null,
         "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 64,
-        "y": 444
+        "x": 87,
+        "y": 156
+      }
+    },
+    {
+      "id": "ministry_corporate_affairs",
+      "name": "Ministry of Corporate Affairs",
+      "name_hindi": "कॉर्पोरेट कार्य मंत्रालय",
+      "abbreviation": "MCA",
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 2004,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Government of India (Allocation of Business) Rules, 1961 — Ministry of Corporate Affairs entry; Companies Act 2013 (s.408) and Insolvency and Bankruptcy Code 2016 (s.60) are the primary legislation under which NCLT operates; MCA demand head funds NCLT.\n",
+      "data_quality": "partial",
+      "data_quality_notes": "created_year 2004 is the rename date; Ministry of Company Affairs (earlier lineage) predates this — flag if lineage origin year is required. NCLAT (CA 2013 s.410) is also under MCA; a separate ministry_corporate_affairs → nclat PrimaryFunder edge should be added when nclat.yaml is created. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ExecutiveBody": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Ministry of Corporate Affairs — Official Website",
+          "url": "https://www.mca.gov.in",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": {
+          "primary_source": "Consolidated_Fund_India"
+        },
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": null,
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 94,
+        "y": 192
+      }
+    },
+    {
+      "id": "ministry_environment",
+      "name": "Ministry of Environment, Forest and Climate Change",
+      "name_hindi": "पर्यावरण, वन और जलवायु परिवर्तन मंत्रालय",
+      "abbreviation": "MoEFCC",
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1985,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Government of India (Allocation of Business) Rules, 1961 — Ministry of Environment, Forest and Climate Change entry; National Green Tribunal Act 2010 (s.3) is the primary legislation constituting NGT; MoEFCC demand head funds NGT.\n",
+      "data_quality": "partial",
+      "data_quality_notes": "created_year 1985 is the ministry establishment date; confirm exact gazette notification. Ministry renamed in 2014 to add \"Climate Change\" — aliases block captures earlier name for graph resolution. The earlier form \"Ministry of Environment and Forests\" (MoEF) may appear as a source reference in older YAML files; treat as same entity. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ExecutiveBody": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Ministry of Environment, Forest and Climate Change — Official Website",
+          "url": "https://moef.gov.in",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": {
+          "primary_source": "Consolidated_Fund_India"
+        },
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": null,
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 102,
+        "y": 156
       }
     },
     {
@@ -1344,8 +1900,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 90,
-        "y": 156
+        "x": 109,
+        "y": 192
       }
     },
     {
@@ -1416,6 +1972,79 @@
       }
     },
     {
+      "id": "ministry_of_power",
+      "name": "Ministry of Power",
+      "name_hindi": "विद्युत मंत्रालय",
+      "abbreviation": "MoP",
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1992,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Government of India (Allocation of Business) Rules, 1961 — Ministry of Power entry; Electricity Act 2003 is the primary legislation administered (APTEL constituted under ss.110–122).\n",
+      "data_quality": "partial",
+      "data_quality_notes": "created_year 1992 is the trifurcation date of Ministry of Energy; confirm exact gazette notification date if ISO-8601 full date is required by schema. name_hindi unverified against official letterhead — flag if Hindi nomenclature policy requires cross-check. funding block is ministry-level only; budget_figure_crore and budget_year not populated — add from Union Budget Detailed Demands for Grants (MoP demand head) in a separate pass.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ExecutiveBody": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Ministry of Power — Official Website",
+          "url": "https://powermin.gov.in",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Ministry of Power — Attached & Subordinate Offices (APTEL listed)",
+          "url": "https://powermin.gov.in/en/content/attached-subordinate-offices",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": {
+          "primary_source": "Consolidated_Fund_India"
+        },
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": null,
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 117,
+        "y": 156
+      }
+    },
+    {
       "id": "ministry_personnel_dopt",
       "name": "Ministry of Personnel, Public Grievances and Pensions (DoPT)",
       "name_hindi": null,
@@ -1478,7 +2107,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 98,
+        "x": 125,
         "y": 192
       }
     },
@@ -1623,69 +2252,202 @@
       }
     },
     {
-      "id": "ncdrc",
-      "name": "National Consumer Disputes Redressal Commission",
-      "name_hindi": null,
-      "abbreviation": null,
-      "type": "ExecutiveBody",
+      "id": "nclt",
+      "name": "National Company Law Tribunal",
+      "name_hindi": "राष्ट्रीय कंपनी विधि अधिकरण",
+      "abbreviation": "NCLT",
+      "type": "CentralTribunal",
       "cluster": "tribunals_adr",
       "level_of_government": "Central",
-      "created_year": 1950,
+      "created_year": 2016,
       "abolished_year": null,
       "operational_status": "Active",
       "constitutional_basis": null,
-      "statutory_basis": null,
+      "statutory_basis": "Companies Act 2013, Section 408; Insolvency and Bankruptcy Code 2016, Section 60",
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "created_year 2016 (operational constitution); CA 2013 enacted is the statute date — maintainer to choose policy. Statutory basis includes IBC 2016 s.60 as NCLT is the adjudicating authority under the Insolvency and Bankruptcy Code — significant expansion of jurisdiction post-2016. NCLAT (National Company Law Appellate Tribunal, CA 2013 s.410) is a separate entity and should have its own YAML — not created here. ministry_responsible entity id 'ministry_corporate_affairs' assumed — verify in graph. case_volume and judge_strength null — MCA NCLT portal or IBBI annual report in §3/§7.\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
+          "Base discretionary power for type CentralTribunal": 2,
+          "Has removal authority over other entities": 1,
           "No universal mandatory timeline for all decisions": 1
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 4,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
+          "Appointed directly by executive body": 3,
           "Lokpal has no jurisdiction": 1,
           "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
           "No independent conduct oversight body": 1
         },
         "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_score": 7,
         "scores_validated": false
       },
-      "funding_source": null,
-      "funding_ministry": null,
-      "audited_by": null,
-      "audit_report_public": null,
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": "ministry_corporate_affairs",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
       "complaint_external_exists": false,
-      "appointment_criteria_public": null,
-      "reappointment_possible": null,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
       "sources": [
         {
-          "label": "India Code — Constitution & Acts",
-          "url": "https://india-code.nic.in/",
+          "label": "Companies Act 2013 — Ministry of Corporate Affairs",
+          "url": "https://www.mca.gov.in/content/mca/global/en/acts-rules/ebooks/acts.html",
           "type": "GoIWebsite",
-          "accessed_date": "2026-05-13"
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Insolvency and Bankruptcy Code 2016 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MjMxMDk=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Tribunals Reforms Act 2021 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MjY5MzQ=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
         }
       ],
       "_detail": {
-        "appointment": null,
-        "funding": null,
-        "audit": null,
+        "appointment": {
+          "nominates": "central_government",
+          "formally_appoints": "central_government",
+          "consulted": [
+            "supreme_court_india"
+          ],
+          "consultation_binding": false,
+          "criteria_public": true,
+          "tenure": "5 years or until age 67, whichever is earlier — Companies Act 2013, s.413(2) as amended by TRA 2021",
+          "reappointment_possible": false,
+          "removal_authority": "central_government",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Consolidated_Fund_India",
+          "ministry_responsible": "ministry_corporate_affairs"
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
         "complaint_mechanism": null,
         "training": null,
         "digital_infrastructure": null,
         "structural_variations": [],
         "jurisdiction_scope": {
-          "is_all_india": true
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "Original",
+            "Appellate"
+          ]
         },
         "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 69,
+        "x": 80,
+        "y": 444
+      }
+    },
+    {
+      "id": "ngt",
+      "name": "National Green Tribunal",
+      "name_hindi": "राष्ट्रीय हरित अधिकरण",
+      "abbreviation": "NGT",
+      "type": "CentralTribunal",
+      "cluster": "tribunals_adr",
+      "level_of_government": "Central",
+      "created_year": 2010,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "National Green Tribunal Act 2010, Section 4",
+      "data_quality": "partial",
+      "data_quality_notes": "NGT is excluded from Tribunals Reforms Act 2021 — appointment block reflects NGT Act 2010 s.5–7 directly; verify this remains accurate if any subsequent amending legislation applies. NGT has 5 zonal benches (New Delhi principal; Chennai, Bhopal, Pune, Kolkata zonal) — structural_variations and bench routing to be added in a §6 pass if zonal benches are modelled as separate entities. ministry_responsible entity id 'ministry_environment' assumed — verify in graph. case_volume and judge_strength null — NGT Annual Report in §3/§7.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type CentralTribunal": 2,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 4,
+        "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 7,
+        "scores_validated": false
+      },
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": "ministry_environment",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "National Green Tribunal Act 2010 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MjA2OTU=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "NGT — Official Website (MoEFCC)",
+          "url": "https://greentribunal.gov.in",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "central_government",
+          "formally_appoints": "central_government",
+          "consulted": [
+            "supreme_court_india"
+          ],
+          "consultation_binding": false,
+          "criteria_public": true,
+          "tenure": "5 years or until age 70 (Chairperson) / 67 (Expert Members), whichever is earlier — NGT Act 2010, s.7",
+          "reappointment_possible": false,
+          "removal_authority": "central_government",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Consolidated_Fund_India",
+          "ministry_responsible": "ministry_environment"
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "Original",
+            "Appellate"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 84,
         "y": 480
       }
     },
@@ -1752,7 +2514,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 107,
+        "x": 132,
         "y": 156
       }
     },
@@ -1819,8 +2581,110 @@
         "parent_hc": null
       },
       "position": {
-        "x": 116,
+        "x": 140,
         "y": 192
+      }
+    },
+    {
+      "id": "sat",
+      "name": "Securities Appellate Tribunal",
+      "name_hindi": "प्रतिभूति अपीलीय अधिकरण",
+      "abbreviation": "SAT",
+      "type": "CentralTribunal",
+      "cluster": "tribunals_adr",
+      "level_of_government": "Central",
+      "created_year": 1995,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Securities and Exchange Board of India Act 1992, Section 15K; Pension Fund Regulatory and Development Authority Act 2013, Section 44; Insurance Regulatory and Development Authority Act 1999, Section 110D\n",
+      "data_quality": "partial",
+      "data_quality_notes": "created_year 1995 (Securities Laws (Amendment) Act 1995, SAT constituted). Statutory basis lists three Acts — SEBI Act 1992 is primary; PFRDA Act 2013 and IRDAI Act 1999 confer additional appellate jurisdiction. SAT jurisdiction expanded to PFRDA orders (2014) and IRDAI orders (per IRDAI Act amendment) — verify current scope of IRDAI appeals via latest amendment. ministry_responsible entity id 'ministry_of_finance' assumed — verify in graph; note this is DEA (not Revenue) demand head, unlike ITAT/CESTAT. case_volume and judge_strength null — SAT Annual Report or MoF/SEBI data in §3/§7.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type CentralTribunal": 2,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 4,
+        "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 7,
+        "scores_validated": false
+      },
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": "ministry_of_finance",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "SEBI Act 1992 — SEBI Official Website",
+          "url": "https://www.sebi.gov.in/legal/acts/aug-1992/the-securities-and-exchange-board-of-india-act-1992_2101.html",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Tribunals Reforms Act 2021 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MjY5MzQ=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "SAT — Official Website",
+          "url": "https://sat.gov.in",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "central_government",
+          "formally_appoints": "central_government",
+          "consulted": [
+            "supreme_court_india"
+          ],
+          "consultation_binding": false,
+          "criteria_public": true,
+          "tenure": "5 years or until age 70, whichever is earlier — SEBI Act 1992 s.15M as amended by TRA 2021",
+          "reappointment_possible": false,
+          "removal_authority": "central_government",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Consolidated_Fund_India",
+          "ministry_responsible": "ministry_of_finance"
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "Appellate"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 87,
+        "y": 444
       }
     },
     {
@@ -2023,7 +2887,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 124,
+        "x": 148,
         "y": 156
       }
     },
@@ -2093,7 +2957,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 132,
+        "x": 155,
         "y": 192
       }
     },
@@ -2163,7 +3027,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 141,
+        "x": 163,
         "y": 156
       }
     },
@@ -2233,7 +3097,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 150,
+        "x": 170,
         "y": 192
       }
     },
@@ -2303,7 +3167,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 158,
+        "x": 178,
         "y": 156
       }
     },
@@ -2373,7 +3237,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 166,
+        "x": 186,
         "y": 192
       }
     },
@@ -2443,7 +3307,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 175,
+        "x": 193,
         "y": 156
       }
     },
@@ -2513,7 +3377,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 184,
+        "x": 201,
         "y": 192
       }
     },
@@ -2583,7 +3447,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 192,
+        "x": 209,
         "y": 156
       }
     },
@@ -2653,7 +3517,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 200,
+        "x": 216,
         "y": 192
       }
     },
@@ -2723,7 +3587,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 209,
+        "x": 224,
         "y": 156
       }
     },
@@ -2793,7 +3657,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 218,
+        "x": 232,
         "y": 192
       }
     },
@@ -2863,7 +3727,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 226,
+        "x": 239,
         "y": 156
       }
     },
@@ -2930,7 +3794,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 234,
+        "x": 247,
         "y": 192
       }
     },
@@ -3000,7 +3864,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 243,
+        "x": 254,
         "y": 156
       }
     },
@@ -3070,7 +3934,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 252,
+        "x": 262,
         "y": 192
       }
     },
@@ -3140,7 +4004,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 260,
+        "x": 270,
         "y": 156
       }
     },
@@ -3207,7 +4071,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 268,
+        "x": 277,
         "y": 192
       }
     },
@@ -3277,7 +4141,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 277,
+        "x": 285,
         "y": 156
       }
     },
@@ -3347,7 +4211,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 286,
+        "x": 293,
         "y": 192
       }
     },
@@ -3417,7 +4281,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 294,
+        "x": 300,
         "y": 156
       }
     },
@@ -3487,7 +4351,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 302,
+        "x": 308,
         "y": 192
       }
     },
@@ -3554,7 +4418,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 311,
+        "x": 316,
         "y": 156
       }
     },
@@ -3624,7 +4488,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 320,
+        "x": 323,
         "y": 192
       }
     },
@@ -3694,7 +4558,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 328,
+        "x": 331,
         "y": 156
       }
     },
@@ -3764,7 +4628,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 336,
+        "x": 338,
         "y": 192
       }
     },
@@ -3834,7 +4698,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 345,
+        "x": 346,
         "y": 156
       }
     },
@@ -3971,7 +4835,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 362,
+        "x": 361,
         "y": 156
       }
     },
@@ -4041,7 +4905,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 370,
+        "x": 369,
         "y": 192
       }
     },
@@ -4111,7 +4975,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 379,
+        "x": 377,
         "y": 156
       }
     },
@@ -4181,7 +5045,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 388,
+        "x": 384,
         "y": 192
       }
     },
@@ -4251,7 +5115,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 396,
+        "x": 392,
         "y": 156
       }
     },
@@ -4321,7 +5185,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 404,
+        "x": 399,
         "y": 192
       }
     },
@@ -4443,12 +5307,10 @@
         },
         "case_volume": null,
         "judge_strength": {
-          "data_as_of": null,
           "allotted": null,
           "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
+          "source_type": "HC_Report",
+          "notes": "Judges are drawn from parent HC pool (hc_allahabad). Allotted is null — sanctioned strength is set at parent HC level only.\n"
         },
         "parent_hc": "hc_allahabad"
       },
@@ -4579,17 +5441,15 @@
         },
         "case_volume": null,
         "judge_strength": {
-          "data_as_of": null,
           "allotted": null,
           "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
+          "source_type": "HC_Report",
+          "notes": "Judges are drawn from parent HC pool (hc_bombay). Allotted is null — sanctioned strength is set at parent HC level only.\n"
         },
         "parent_hc": "hc_bombay"
       },
       "position": {
-        "x": 982,
+        "x": 983,
         "y": 156
       }
     },
@@ -4715,17 +5575,15 @@
         },
         "case_volume": null,
         "judge_strength": {
-          "data_as_of": null,
           "allotted": null,
           "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
+          "source_type": "HC_Report",
+          "notes": "Judges are drawn from parent HC pool (hc_bombay). Allotted is null — sanctioned strength is set at parent HC level only.\n"
         },
         "parent_hc": "hc_bombay"
       },
       "position": {
-        "x": 990,
+        "x": 992,
         "y": 192
       }
     },
@@ -4851,17 +5709,15 @@
         },
         "case_volume": null,
         "judge_strength": {
-          "data_as_of": null,
           "allotted": null,
           "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
+          "source_type": "HC_Report",
+          "notes": "Judges are drawn from parent HC pool (hc_bombay). Allotted is null — sanctioned strength is set at parent HC level only.\n"
         },
         "parent_hc": "hc_bombay"
       },
       "position": {
-        "x": 998,
+        "x": 1000,
         "y": 156
       }
     },
@@ -4985,17 +5841,15 @@
         },
         "case_volume": null,
         "judge_strength": {
-          "data_as_of": null,
           "allotted": null,
           "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
+          "source_type": "HC_Report",
+          "notes": "Judges are drawn from parent HC pool (hc_calcutta). Allotted is null — sanctioned strength is set at parent HC level only.\n"
         },
         "parent_hc": "hc_calcutta"
       },
       "position": {
-        "x": 1007,
+        "x": 1008,
         "y": 192
       }
     },
@@ -5119,17 +5973,15 @@
         },
         "case_volume": null,
         "judge_strength": {
-          "data_as_of": null,
           "allotted": null,
           "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
+          "source_type": "HC_Report",
+          "notes": "Judges are drawn from parent HC pool (hc_calcutta). Allotted is null — sanctioned strength is set at parent HC level only.\n"
         },
         "parent_hc": "hc_calcutta"
       },
       "position": {
-        "x": 1015,
+        "x": 1017,
         "y": 156
       }
     },
@@ -5254,17 +6106,15 @@
         },
         "case_volume": null,
         "judge_strength": {
-          "data_as_of": null,
           "allotted": null,
           "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
+          "source_type": "HC_Report",
+          "notes": "Judges are drawn from parent HC pool (hc_gauhati). Allotted is null — sanctioned strength is set at parent HC level only.\n"
         },
         "parent_hc": "hc_gauhati"
       },
       "position": {
-        "x": 1023,
+        "x": 1026,
         "y": 192
       }
     },
@@ -5389,17 +6239,15 @@
         },
         "case_volume": null,
         "judge_strength": {
-          "data_as_of": null,
           "allotted": null,
           "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
+          "source_type": "HC_Report",
+          "notes": "Judges are drawn from parent HC pool (hc_gauhati). Allotted is null — sanctioned strength is set at parent HC level only.\n"
         },
         "parent_hc": "hc_gauhati"
       },
       "position": {
-        "x": 1032,
+        "x": 1034,
         "y": 156
       }
     },
@@ -5524,17 +6372,15 @@
         },
         "case_volume": null,
         "judge_strength": {
-          "data_as_of": null,
           "allotted": null,
           "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
+          "source_type": "HC_Report",
+          "notes": "Judges are drawn from parent HC pool (hc_gauhati). Allotted is null — sanctioned strength is set at parent HC level only.\n"
         },
         "parent_hc": "hc_gauhati"
       },
       "position": {
-        "x": 1040,
+        "x": 1042,
         "y": 192
       }
     },
@@ -5656,285 +6502,15 @@
         },
         "case_volume": null,
         "judge_strength": {
-          "data_as_of": null,
           "allotted": null,
           "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
+          "source_type": "HC_Report",
+          "notes": "Judges are drawn from parent HC pool (hc_karnataka). Allotted is null — sanctioned strength is set at parent HC level only.\n"
         },
         "parent_hc": "hc_karnataka"
       },
       "position": {
-        "x": 1048,
-        "y": 156
-      }
-    },
-    {
-      "id": "hc_madras_bench_madurai",
-      "name": "Madurai Bench of Madras High Court",
-      "name_hindi": null,
-      "abbreviation": "MADR",
-      "type": "HighCourtBench",
-      "cluster": "constitutional_courts",
-      "level_of_government": "State",
-      "created_year": 1948,
-      "abolished_year": null,
-      "operational_status": "Active",
-      "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
-      "statutory_basis": null,
-      "data_quality": "partial",
-      "data_quality_notes": "Permanent bench at Madurai; parent hc_madras. Populate judge_strength and case_volume from HC website / DoJ / NJDG.",
-      "derived": {
-        "discretionary_power_breakdown": {
-          "Base discretionary power for type HighCourtBench": 4,
-          "Controls own case listing and bench composition (no statutory rule)": 2,
-          "Has removal authority over other entities": 1,
-          "No public criteria for key decisions": 1,
-          "No universal mandatory timeline for all decisions": 1
-        },
-        "discretionary_power_score": 9,
-        "independence_risk_breakdown": {
-          "Appointed directly by executive body": 3,
-          "Constitutional basis (harder to politicise) (deduction)": -2,
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1,
-          "No publicly stated appointment criteria": 1,
-          "Removal requires Parliamentary process (deduction)": -1
-        },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 4,
-        "scores_validated": false
-      },
-      "funding_source": "State_Consolidated_Fund",
-      "funding_ministry": null,
-      "audited_by": "cag_india",
-      "audit_report_public": true,
-      "complaint_external_exists": false,
-      "appointment_criteria_public": false,
-      "reappointment_possible": false,
-      "sources": [
-        {
-          "label": "India Code — Constitution & Acts",
-          "url": "https://india-code.nic.in/",
-          "type": "GoIWebsite",
-          "accessed_date": "2026-05-13"
-        },
-        {
-          "label": "Supreme Court of India",
-          "url": "https://main.sci.gov.in/",
-          "type": "GoIWebsite",
-          "accessed_date": "2026-05-13"
-        }
-      ],
-      "_detail": {
-        "appointment": {
-          "nominates": "collegium_hc_appointment",
-          "recommends": "collegium_hc_appointment",
-          "consulted": [
-            "governor_state"
-          ],
-          "consultation_binding": true,
-          "formally_appoints": "president_india",
-          "criteria_public": false,
-          "tenure": "Until age 62 (Article 217)",
-          "reappointment_possible": false,
-          "removal_authority": "president_india",
-          "removal_requires_parliament": true,
-          "removal_independent_committee": false
-        },
-        "funding": {
-          "primary_source": "State_Consolidated_Fund",
-          "ministry_responsible": null,
-          "budget_figure_crore": null,
-          "budget_year": null
-        },
-        "audit": {
-          "audited_by": "cag_india",
-          "audit_type": "CAG_Statutory",
-          "audit_report_public": true,
-          "conduct_oversight_body": null
-        },
-        "complaint_mechanism": {
-          "bias_complaint_to": [],
-          "lokpal_jurisdiction": "Not_Applicable"
-        },
-        "training": {
-          "trained_by": [],
-          "induction_training": false,
-          "continuing_education": true,
-          "training_mandatory": false
-        },
-        "digital_infrastructure": {
-          "system_used": [
-            "eCourts_Portal",
-            "NJDG"
-          ],
-          "digital_variant": "NIC_Standard",
-          "integrated_with_njdg": true
-        },
-        "structural_variations": [],
-        "jurisdiction_scope": {
-          "states_covered": [
-            "TN"
-          ],
-          "uts_covered": [
-            "PY"
-          ],
-          "is_all_india": false,
-          "jurisdiction_types": [
-            "Original",
-            "Appellate",
-            "Writ"
-          ]
-        },
-        "case_volume": null,
-        "judge_strength": {
-          "data_as_of": null,
-          "allotted": null,
-          "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
-        },
-        "parent_hc": "hc_madras"
-      },
-      "position": {
-        "x": 1057,
-        "y": 192
-      }
-    },
-    {
-      "id": "hc_madras_bench_tiruchirappalli",
-      "name": "Tiruchirappalli Bench of Madras High Court",
-      "name_hindi": null,
-      "abbreviation": "MADR",
-      "type": "HighCourtBench",
-      "cluster": "constitutional_courts",
-      "level_of_government": "State",
-      "created_year": 1948,
-      "abolished_year": null,
-      "operational_status": "Active",
-      "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
-      "statutory_basis": null,
-      "data_quality": "partial",
-      "data_quality_notes": "Permanent bench at Tiruchirappalli; parent hc_madras. Populate judge_strength and case_volume from HC website / DoJ / NJDG.",
-      "derived": {
-        "discretionary_power_breakdown": {
-          "Base discretionary power for type HighCourtBench": 4,
-          "Controls own case listing and bench composition (no statutory rule)": 2,
-          "Has removal authority over other entities": 1,
-          "No public criteria for key decisions": 1,
-          "No universal mandatory timeline for all decisions": 1
-        },
-        "discretionary_power_score": 9,
-        "independence_risk_breakdown": {
-          "Appointed directly by executive body": 3,
-          "Constitutional basis (harder to politicise) (deduction)": -2,
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1,
-          "No publicly stated appointment criteria": 1,
-          "Removal requires Parliamentary process (deduction)": -1
-        },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 4,
-        "scores_validated": false
-      },
-      "funding_source": "State_Consolidated_Fund",
-      "funding_ministry": null,
-      "audited_by": "cag_india",
-      "audit_report_public": true,
-      "complaint_external_exists": false,
-      "appointment_criteria_public": false,
-      "reappointment_possible": false,
-      "sources": [
-        {
-          "label": "India Code — Constitution & Acts",
-          "url": "https://india-code.nic.in/",
-          "type": "GoIWebsite",
-          "accessed_date": "2026-05-13"
-        },
-        {
-          "label": "Supreme Court of India",
-          "url": "https://main.sci.gov.in/",
-          "type": "GoIWebsite",
-          "accessed_date": "2026-05-13"
-        }
-      ],
-      "_detail": {
-        "appointment": {
-          "nominates": "collegium_hc_appointment",
-          "recommends": "collegium_hc_appointment",
-          "consulted": [
-            "governor_state"
-          ],
-          "consultation_binding": true,
-          "formally_appoints": "president_india",
-          "criteria_public": false,
-          "tenure": "Until age 62 (Article 217)",
-          "reappointment_possible": false,
-          "removal_authority": "president_india",
-          "removal_requires_parliament": true,
-          "removal_independent_committee": false
-        },
-        "funding": {
-          "primary_source": "State_Consolidated_Fund",
-          "ministry_responsible": null,
-          "budget_figure_crore": null,
-          "budget_year": null
-        },
-        "audit": {
-          "audited_by": "cag_india",
-          "audit_type": "CAG_Statutory",
-          "audit_report_public": true,
-          "conduct_oversight_body": null
-        },
-        "complaint_mechanism": {
-          "bias_complaint_to": [],
-          "lokpal_jurisdiction": "Not_Applicable"
-        },
-        "training": {
-          "trained_by": [],
-          "induction_training": false,
-          "continuing_education": true,
-          "training_mandatory": false
-        },
-        "digital_infrastructure": {
-          "system_used": [
-            "eCourts_Portal",
-            "NJDG"
-          ],
-          "digital_variant": "NIC_Standard",
-          "integrated_with_njdg": true
-        },
-        "structural_variations": [],
-        "jurisdiction_scope": {
-          "states_covered": [
-            "TN"
-          ],
-          "uts_covered": [
-            "PY"
-          ],
-          "is_all_india": false,
-          "jurisdiction_types": [
-            "Original",
-            "Appellate",
-            "Writ"
-          ]
-        },
-        "case_volume": null,
-        "judge_strength": {
-          "data_as_of": null,
-          "allotted": null,
-          "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
-        },
-        "parent_hc": "hc_madras"
-      },
-      "position": {
-        "x": 1065,
+        "x": 1051,
         "y": 156
       }
     },
@@ -6059,17 +6635,15 @@
         },
         "case_volume": null,
         "judge_strength": {
-          "data_as_of": null,
           "allotted": null,
           "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
+          "source_type": "HC_Report",
+          "notes": "Judges are drawn from parent HC pool (hc_punjab_haryana). Allotted is null — sanctioned strength is set at parent HC level only.\n"
         },
         "parent_hc": "hc_punjab_haryana"
       },
       "position": {
-        "x": 1073,
+        "x": 1060,
         "y": 192
       }
     },
@@ -6191,17 +6765,15 @@
         },
         "case_volume": null,
         "judge_strength": {
-          "data_as_of": null,
           "allotted": null,
           "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
+          "source_type": "HC_Report",
+          "notes": "Judges are drawn from parent HC pool (hc_rajasthan). Allotted is null — sanctioned strength is set at parent HC level only.\n"
         },
         "parent_hc": "hc_rajasthan"
       },
       "position": {
-        "x": 1082,
+        "x": 1068,
         "y": 156
       }
     },
@@ -6333,7 +6905,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1090,
+        "x": 1076,
         "y": 192
       }
     },
@@ -6465,7 +7037,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1098,
+        "x": 1085,
         "y": 156
       }
     },
@@ -6601,7 +7173,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1107,
+        "x": 1094,
         "y": 192
       }
     },
@@ -6735,7 +7307,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1115,
+        "x": 1102,
         "y": 156
       }
     },
@@ -6867,7 +7439,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1123,
+        "x": 1110,
         "y": 192
       }
     },
@@ -6999,7 +7571,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1131,
+        "x": 1119,
         "y": 156
       }
     },
@@ -7134,7 +7706,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1140,
+        "x": 1128,
         "y": 192
       }
     },
@@ -7266,7 +7838,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1148,
+        "x": 1136,
         "y": 156
       }
     },
@@ -7398,7 +7970,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1156,
+        "x": 1144,
         "y": 192
       }
     },
@@ -7532,7 +8104,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1165,
+        "x": 1153,
         "y": 156
       }
     },
@@ -7664,7 +8236,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1173,
+        "x": 1162,
         "y": 192
       }
     },
@@ -7796,7 +8368,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1181,
+        "x": 1170,
         "y": 156
       }
     },
@@ -7930,7 +8502,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1190,
+        "x": 1178,
         "y": 192
       }
     },
@@ -8062,142 +8634,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1198,
+        "x": 1187,
         "y": 156
-      }
-    },
-    {
-      "id": "hc_madras",
-      "name": "High Court of Judicature at Madras",
-      "name_hindi": null,
-      "abbreviation": "MADR",
-      "type": "ConstitutionalCourt",
-      "cluster": "constitutional_courts",
-      "level_of_government": "Shared_MultiState",
-      "created_year": 1862,
-      "abolished_year": null,
-      "operational_status": "Active",
-      "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
-      "statutory_basis": null,
-      "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
-      "derived": {
-        "discretionary_power_breakdown": {
-          "Base discretionary power for type ConstitutionalCourt": 4,
-          "Controls own case listing and bench composition (no statutory rule)": 2,
-          "Has removal authority over other entities": 1,
-          "No public criteria for key decisions": 1,
-          "No universal mandatory timeline for all decisions": 1
-        },
-        "discretionary_power_score": 9,
-        "independence_risk_breakdown": {
-          "Appointed directly by executive body": 3,
-          "Constitutional basis (harder to politicise) (deduction)": -2,
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1,
-          "No publicly stated appointment criteria": 1,
-          "Removal requires Parliamentary process (deduction)": -1
-        },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 4,
-        "scores_validated": false
-      },
-      "funding_source": "State_Consolidated_Fund",
-      "funding_ministry": null,
-      "audited_by": "cag_india",
-      "audit_report_public": true,
-      "complaint_external_exists": false,
-      "appointment_criteria_public": false,
-      "reappointment_possible": false,
-      "sources": [
-        {
-          "label": "India Code — Constitution & Acts",
-          "url": "https://india-code.nic.in/",
-          "type": "GoIWebsite",
-          "accessed_date": "2026-05-13"
-        },
-        {
-          "label": "Supreme Court of India",
-          "url": "https://main.sci.gov.in/",
-          "type": "GoIWebsite",
-          "accessed_date": "2026-05-13"
-        }
-      ],
-      "_detail": {
-        "appointment": {
-          "nominates": "collegium_hc_appointment",
-          "recommends": "collegium_hc_appointment",
-          "consulted": [
-            "governor_state"
-          ],
-          "consultation_binding": true,
-          "formally_appoints": "president_india",
-          "criteria_public": false,
-          "tenure": "Until age 62 (Article 217)",
-          "reappointment_possible": false,
-          "removal_authority": "president_india",
-          "removal_requires_parliament": true,
-          "removal_independent_committee": false
-        },
-        "funding": {
-          "primary_source": "State_Consolidated_Fund",
-          "ministry_responsible": null,
-          "budget_figure_crore": null,
-          "budget_year": null
-        },
-        "audit": {
-          "audited_by": "cag_india",
-          "audit_type": "CAG_Statutory",
-          "audit_report_public": true,
-          "conduct_oversight_body": null
-        },
-        "complaint_mechanism": {
-          "bias_complaint_to": [],
-          "lokpal_jurisdiction": "Not_Applicable"
-        },
-        "training": {
-          "trained_by": [],
-          "induction_training": false,
-          "continuing_education": true,
-          "training_mandatory": false
-        },
-        "digital_infrastructure": {
-          "system_used": [
-            "eCourts_Portal",
-            "NJDG"
-          ],
-          "digital_variant": "NIC_Standard",
-          "integrated_with_njdg": true
-        },
-        "structural_variations": [],
-        "jurisdiction_scope": {
-          "states_covered": [
-            "TN"
-          ],
-          "uts_covered": [
-            "PY"
-          ],
-          "is_all_india": false,
-          "jurisdiction_types": [
-            "Original",
-            "Appellate",
-            "Writ"
-          ]
-        },
-        "case_volume": null,
-        "judge_strength": {
-          "data_as_of": null,
-          "allotted": null,
-          "appointed": null,
-          "source_type": "DoJ_Report",
-          "source_url": "https://doj.gov.in/",
-          "notes": "Allotted = sanctioned posts; appointed = working judges in post. Populate from DoJ quarterly vacancy report or NJDG bench strength."
-        },
-        "parent_hc": null
-      },
-      "position": {
-        "x": 1206,
-        "y": 192
       }
     },
     {
@@ -8328,8 +8766,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1215,
-        "y": 156
+        "x": 1196,
+        "y": 192
       }
     },
     {
@@ -8460,8 +8898,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1223,
-        "y": 192
+        "x": 1204,
+        "y": 156
       }
     },
     {
@@ -8592,8 +9030,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1231,
-        "y": 156
+        "x": 1212,
+        "y": 192
       }
     },
     {
@@ -8724,8 +9162,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1240,
-        "y": 192
+        "x": 1221,
+        "y": 156
       }
     },
     {
@@ -8859,8 +9297,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1248,
-        "y": 156
+        "x": 1230,
+        "y": 192
       }
     },
     {
@@ -8991,8 +9429,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1256,
-        "y": 192
+        "x": 1238,
+        "y": 156
       }
     },
     {
@@ -9123,8 +9561,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1264,
-        "y": 156
+        "x": 1246,
+        "y": 192
       }
     },
     {
@@ -9255,8 +9693,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1273,
-        "y": 192
+        "x": 1255,
+        "y": 156
       }
     },
     {
@@ -9387,8 +9825,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1281,
-        "y": 156
+        "x": 1264,
+        "y": 192
       }
     },
     {
@@ -9519,8 +9957,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1289,
-        "y": 192
+        "x": 1272,
+        "y": 156
       }
     },
     {
@@ -14651,8 +15089,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 73,
-        "y": 444
+        "x": 91,
+        "y": 480
       }
     },
     {
@@ -14730,8 +15168,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 77,
-        "y": 480
+        "x": 95,
+        "y": 444
       }
     },
     {
@@ -15070,8 +15508,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 81,
-        "y": 444
+        "x": 99,
+        "y": 480
       }
     },
     {
@@ -15149,8 +15587,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 85,
-        "y": 480
+        "x": 103,
+        "y": 444
       }
     },
     {
@@ -15401,8 +15839,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 90,
-        "y": 444
+        "x": 107,
+        "y": 480
       }
     },
     {
@@ -15480,8 +15918,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 94,
-        "y": 480
+        "x": 111,
+        "y": 444
       }
     },
     {
@@ -15820,8 +16258,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 98,
-        "y": 444
+        "x": 115,
+        "y": 480
       }
     },
     {
@@ -15899,8 +16337,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 102,
-        "y": 480
+        "x": 119,
+        "y": 444
       }
     },
     {
@@ -16239,8 +16677,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 106,
-        "y": 444
+        "x": 123,
+        "y": 480
       }
     },
     {
@@ -16318,8 +16756,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 111,
-        "y": 480
+        "x": 127,
+        "y": 444
       }
     },
     {
@@ -16570,8 +17008,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 115,
-        "y": 444
+        "x": 131,
+        "y": 480
       }
     },
     {
@@ -16649,8 +17087,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 119,
-        "y": 480
+        "x": 135,
+        "y": 444
       }
     },
     {
@@ -16901,8 +17339,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 123,
-        "y": 444
+        "x": 139,
+        "y": 480
       }
     },
     {
@@ -16980,8 +17418,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 127,
-        "y": 480
+        "x": 143,
+        "y": 444
       }
     },
     {
@@ -17136,7 +17574,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 552,
+        "x": 556,
         "y": 732
       }
     },
@@ -17212,8 +17650,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 132,
-        "y": 444
+        "x": 147,
+        "y": 480
       }
     },
     {
@@ -17288,8 +17726,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 136,
-        "y": 480
+        "x": 150,
+        "y": 444
       }
     },
     {
@@ -17364,8 +17802,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 140,
-        "y": 444
+        "x": 154,
+        "y": 480
       }
     },
     {
@@ -17440,8 +17878,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 144,
-        "y": 480
+        "x": 158,
+        "y": 444
       }
     },
     {
@@ -17516,8 +17954,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 148,
-        "y": 444
+        "x": 162,
+        "y": 480
       }
     },
     {
@@ -17592,8 +18030,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 153,
-        "y": 480
+        "x": 166,
+        "y": 444
       }
     },
     {
@@ -18279,7 +18717,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 413,
+        "x": 407,
         "y": 156
       }
     },
@@ -18365,7 +18803,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 580,
+        "x": 588,
         "y": 768
       }
     },
@@ -18600,8 +19038,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 157,
-        "y": 444
+        "x": 170,
+        "y": 480
       }
     },
     {
@@ -18764,8 +19202,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 161,
-        "y": 480
+        "x": 174,
+        "y": 444
       }
     },
     {
@@ -19016,8 +19454,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 165,
-        "y": 444
+        "x": 178,
+        "y": 480
       }
     },
     {
@@ -19095,8 +19533,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 169,
-        "y": 480
+        "x": 182,
+        "y": 444
       }
     },
     {
@@ -19435,8 +19873,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 174,
-        "y": 444
+        "x": 186,
+        "y": 480
       }
     },
     {
@@ -19514,8 +19952,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 178,
-        "y": 480
+        "x": 190,
+        "y": 444
       }
     },
     {
@@ -19766,8 +20204,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 182,
-        "y": 444
+        "x": 194,
+        "y": 480
       }
     },
     {
@@ -19845,8 +20283,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 186,
-        "y": 480
+        "x": 198,
+        "y": 444
       }
     },
     {
@@ -20097,8 +20535,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 190,
-        "y": 444
+        "x": 202,
+        "y": 480
       }
     },
     {
@@ -20176,8 +20614,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 195,
-        "y": 480
+        "x": 206,
+        "y": 444
       }
     },
     {
@@ -20428,8 +20866,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 199,
-        "y": 444
+        "x": 210,
+        "y": 480
       }
     },
     {
@@ -20507,8 +20945,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 203,
-        "y": 480
+        "x": 213,
+        "y": 444
       }
     },
     {
@@ -20759,8 +21197,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 207,
-        "y": 444
+        "x": 217,
+        "y": 480
       }
     },
     {
@@ -20838,8 +21276,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 211,
-        "y": 480
+        "x": 221,
+        "y": 444
       }
     },
     {
@@ -21002,7 +21440,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 609,
+        "x": 619,
         "y": 732
       }
     },
@@ -21078,8 +21516,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 216,
-        "y": 444
+        "x": 225,
+        "y": 480
       }
     },
     {
@@ -21154,8 +21592,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 220,
-        "y": 480
+        "x": 229,
+        "y": 444
       }
     },
     {
@@ -21230,8 +21668,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 224,
-        "y": 444
+        "x": 233,
+        "y": 480
       }
     },
     {
@@ -21306,8 +21744,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 228,
-        "y": 480
+        "x": 237,
+        "y": 444
       }
     },
     {
@@ -24117,7 +24555,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 638,
+        "x": 650,
         "y": 768
       }
     },
@@ -24352,8 +24790,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 232,
-        "y": 444
+        "x": 241,
+        "y": 480
       }
     },
     {
@@ -24516,8 +24954,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 237,
-        "y": 480
+        "x": 245,
+        "y": 444
       }
     },
     {
@@ -24848,8 +25286,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 241,
-        "y": 444
+        "x": 249,
+        "y": 480
       }
     },
     {
@@ -24927,8 +25365,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 245,
-        "y": 480
+        "x": 253,
+        "y": 444
       }
     },
     {
@@ -25179,8 +25617,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 249,
-        "y": 444
+        "x": 257,
+        "y": 480
       }
     },
     {
@@ -25258,8 +25696,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 254,
-        "y": 480
+        "x": 261,
+        "y": 444
       }
     },
     {
@@ -25510,8 +25948,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 258,
-        "y": 444
+        "x": 265,
+        "y": 480
       }
     },
     {
@@ -25589,8 +26027,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 262,
-        "y": 480
+        "x": 269,
+        "y": 444
       }
     },
     {
@@ -25833,7 +26271,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 667,
+        "x": 681,
         "y": 732
       }
     },
@@ -25987,8 +26425,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 266,
-        "y": 444
+        "x": 273,
+        "y": 480
       }
     },
     {
@@ -26063,8 +26501,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 270,
-        "y": 480
+        "x": 276,
+        "y": 444
       }
     },
     {
@@ -26139,8 +26577,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 275,
-        "y": 444
+        "x": 280,
+        "y": 480
       }
     },
     {
@@ -26215,8 +26653,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 279,
-        "y": 480
+        "x": 284,
+        "y": 444
       }
     },
     {
@@ -29661,7 +30099,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 695,
+        "x": 712,
         "y": 768
       }
     },
@@ -29896,8 +30334,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 283,
-        "y": 444
+        "x": 288,
+        "y": 480
       }
     },
     {
@@ -30060,8 +30498,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 287,
-        "y": 480
+        "x": 292,
+        "y": 444
       }
     },
     {
@@ -30312,8 +30750,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 291,
-        "y": 444
+        "x": 296,
+        "y": 480
       }
     },
     {
@@ -30391,8 +30829,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 296,
-        "y": 480
+        "x": 300,
+        "y": 444
       }
     },
     {
@@ -30643,8 +31081,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 300,
-        "y": 444
+        "x": 304,
+        "y": 480
       }
     },
     {
@@ -30722,8 +31160,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 304,
-        "y": 480
+        "x": 308,
+        "y": 444
       }
     },
     {
@@ -31062,8 +31500,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 308,
-        "y": 444
+        "x": 312,
+        "y": 480
       }
     },
     {
@@ -31141,8 +31579,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 312,
-        "y": 480
+        "x": 316,
+        "y": 444
       }
     },
     {
@@ -31393,8 +31831,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 317,
-        "y": 444
+        "x": 320,
+        "y": 480
       }
     },
     {
@@ -31472,8 +31910,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 321,
-        "y": 480
+        "x": 324,
+        "y": 444
       }
     },
     {
@@ -31724,8 +32162,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 325,
-        "y": 444
+        "x": 328,
+        "y": 480
       }
     },
     {
@@ -31803,8 +32241,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 329,
-        "y": 480
+        "x": 332,
+        "y": 444
       }
     },
     {
@@ -32055,8 +32493,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 333,
-        "y": 444
+        "x": 336,
+        "y": 480
       }
     },
     {
@@ -32134,8 +32572,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 338,
-        "y": 480
+        "x": 339,
+        "y": 444
       }
     },
     {
@@ -32386,8 +32824,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 342,
-        "y": 444
+        "x": 343,
+        "y": 480
       }
     },
     {
@@ -32465,8 +32903,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 346,
-        "y": 480
+        "x": 347,
+        "y": 444
       }
     },
     {
@@ -32541,7 +32979,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 724,
+        "x": 743,
         "y": 732
       }
     },
@@ -32617,8 +33055,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 350,
-        "y": 444
+        "x": 351,
+        "y": 480
       }
     },
     {
@@ -32775,7 +33213,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 422,
+        "x": 415,
         "y": 192
       }
     },
@@ -32862,7 +33300,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 753,
+        "x": 774,
         "y": 768
       }
     },
@@ -32941,8 +33379,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 354,
-        "y": 480
+        "x": 355,
+        "y": 444
       }
     },
     {
@@ -33282,7 +33720,7 @@
       },
       "position": {
         "x": 359,
-        "y": 444
+        "y": 480
       }
     },
     {
@@ -33361,7 +33799,7 @@
       },
       "position": {
         "x": 363,
-        "y": 480
+        "y": 444
       }
     },
     {
@@ -33613,7 +34051,7 @@
       },
       "position": {
         "x": 367,
-        "y": 444
+        "y": 480
       }
     },
     {
@@ -33692,7 +34130,7 @@
       },
       "position": {
         "x": 371,
-        "y": 480
+        "y": 444
       }
     },
     {
@@ -33767,7 +34205,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 782,
+        "x": 806,
         "y": 732
       }
     },
@@ -33922,7 +34360,7 @@
       },
       "position": {
         "x": 375,
-        "y": 444
+        "y": 480
       }
     },
     {
@@ -37342,7 +37780,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 810,
+        "x": 837,
         "y": 768
       }
     },
@@ -37500,85 +37938,6 @@
       "position": {
         "x": 383,
         "y": 1056
-      }
-    },
-    {
-      "id": "tn_slsa",
-      "name": "Tamil Nadu State Legal Services Authority",
-      "name_hindi": null,
-      "abbreviation": null,
-      "type": "ADRBody",
-      "cluster": "tribunals_adr",
-      "level_of_government": "State",
-      "created_year": 1995,
-      "abolished_year": null,
-      "operational_status": "Active",
-      "constitutional_basis": null,
-      "statutory_basis": "Legal Services Authorities Act 1987",
-      "data_quality": "partial",
-      "data_quality_notes": null,
-      "derived": {
-        "discretionary_power_breakdown": {
-          "Base discretionary power for type ADRBody": 1,
-          "No universal mandatory timeline for all decisions": 1
-        },
-        "discretionary_power_score": 2,
-        "independence_risk_breakdown": {
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1
-        },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 3,
-        "scores_validated": false
-      },
-      "funding_source": "State_Consolidated_Fund",
-      "funding_ministry": null,
-      "audited_by": "cag_india",
-      "audit_report_public": true,
-      "complaint_external_exists": false,
-      "appointment_criteria_public": null,
-      "reappointment_possible": null,
-      "sources": [
-        {
-          "label": "India Code — Constitution & Acts",
-          "url": "https://india-code.nic.in/",
-          "type": "GoIWebsite",
-          "accessed_date": "2026-05-13"
-        }
-      ],
-      "_detail": {
-        "appointment": null,
-        "funding": {
-          "primary_source": "State_Consolidated_Fund"
-        },
-        "audit": {
-          "audited_by": "cag_india",
-          "audit_type": "CAG_Statutory",
-          "audit_report_public": true
-        },
-        "complaint_mechanism": {
-          "bias_complaint_to": [],
-          "lokpal_jurisdiction": "Not_Applicable"
-        },
-        "training": null,
-        "digital_infrastructure": null,
-        "structural_variations": [],
-        "jurisdiction_scope": {
-          "states_covered": [
-            "TN"
-          ],
-          "is_all_india": false,
-          "jurisdiction_types": [
-            "Civil"
-          ]
-        },
-        "case_volume": null,
-        "judge_strength": null,
-        "parent_hc": null
-      },
-      "position": {
-        "x": 380,
-        "y": 480
       }
     },
     {
@@ -37741,7 +38100,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 384,
+        "x": 379,
         "y": 444
       }
     },
@@ -37900,7 +38259,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 388,
+        "x": 383,
         "y": 480
       }
     },
@@ -38152,7 +38511,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 392,
+        "x": 387,
         "y": 444
       }
     },
@@ -38231,7 +38590,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 396,
+        "x": 391,
         "y": 480
       }
     },
@@ -38571,7 +38930,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 401,
+        "x": 395,
         "y": 444
       }
     },
@@ -38650,7 +39009,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 405,
+        "x": 399,
         "y": 480
       }
     },
@@ -38902,7 +39261,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 409,
+        "x": 402,
         "y": 444
       }
     },
@@ -38981,7 +39340,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 413,
+        "x": 406,
         "y": 480
       }
     },
@@ -39321,7 +39680,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 417,
+        "x": 410,
         "y": 444
       }
     },
@@ -39400,7 +39759,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 422,
+        "x": 414,
         "y": 480
       }
     },
@@ -39740,45 +40099,346 @@
         "parent_hc": null
       },
       "position": {
-        "x": 426,
+        "x": 418,
         "y": 444
       }
     },
     {
-      "id": "arbitration_council_india",
-      "name": "Arbitration Council of India",
+      "id": "diac",
+      "name": "Delhi International Arbitration Centre",
       "name_hindi": null,
-      "abbreviation": "ACI",
-      "type": "StatutoryBodyNotConstituted",
+      "abbreviation": "DIAC",
+      "type": "ArbitralInstitution",
       "cluster": "arbitration",
-      "level_of_government": "Central",
-      "created_year": 2019,
+      "level_of_government": "State",
+      "created_year": 2009,
       "abolished_year": null,
-      "operational_status": "Not_Constituted",
+      "operational_status": "Active",
       "constitutional_basis": null,
-      "statutory_basis": "Arbitration and Conciliation (Amendment) Act 2019, Part IA, Sections 43A–43M (inserted into Arbitration and Conciliation Act 1996).\n",
-      "data_quality": "verified",
-      "data_quality_notes": "ACI's non-constitution is confirmed by GoI press release (Feb 2026) and SC notice to Union government to respond to petition seeking its establishment. The Draft Arbitration and Conciliation (Amendment) Bill 2024 proposes revised powers. Status as of April 2025: Bill in public consultation; ACI not constituted.\n NJDG snapshot case_volume merged",
+      "statutory_basis": null,
+      "data_quality": "partial",
+      "data_quality_notes": "created_year 2009 unverified — locate Delhi HC administrative order constituting DIAC / DHCAC. DIAC Rules 2023 (current) supersede earlier rules; cite specific gazette notification when verifying. statutory_basis null — no dedicated Act confirmed; update if DIAC-specific legislation enacted. funding.primary_source Mixed (HC budget + fees) is an inference — confirm from Delhi HC annual budget documents. audit_type Internal flagged partial — CAG may audit through Delhi HC consolidated accounts; confirm. AwardChallengedIn → hc_delhi (adr_arbitration_relationships.yaml).\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type StatutoryBodyNotConstituted": 1,
+          "Base discretionary power for type ArbitralInstitution": 1,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 3,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 4,
+        "scores_validated": false
+      },
+      "funding_source": "Mixed",
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": false,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "DIAC — Official Website (Delhi High Court)",
+          "url": "https://diac.in",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Arbitration and Conciliation Act 1996 — India Code (governing law)",
+          "url": "https://india-code.nic.in/acts-detail/MTA4NDE=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": null,
+          "formally_appoints": null,
+          "consulted": [
+            "hc_delhi"
+          ],
+          "consultation_binding": true,
+          "criteria_public": true,
+          "tenure": null,
+          "reappointment_possible": null,
+          "removal_authority": "hc_delhi",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": false
+        },
+        "funding": {
+          "primary_source": "Mixed",
+          "ministry_responsible": null
+        },
+        "audit": {
+          "audited_by": null,
+          "audit_type": "Internal",
+          "audit_report_public": false
+        },
+        "complaint_mechanism": {
+          "lokpal_jurisdiction": "Not_Applicable",
+          "removal_mechanism": "Arbitrator challenge under DIAC Rules 2023. Award challenge under Arbitration and Conciliation Act 1996, s.34 in Delhi High Court. DIAC administrative decisions subject to Delhi HC oversight.\n"
+        },
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "states_covered": [
+            "DL"
+          ],
+          "uts_covered": [
+            "DL"
+          ],
+          "is_all_india": false,
+          "jurisdiction_types": [
+            "Original"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 1464,
+        "y": 480
+      }
+    },
+    {
+      "id": "mcia",
+      "name": "Mumbai Centre for International Arbitration",
+      "name_hindi": null,
+      "abbreviation": "MCIA",
+      "type": "ArbitralInstitution",
+      "cluster": "arbitration",
+      "level_of_government": "State",
+      "created_year": 2016,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "data_quality": "partial",
+      "data_quality_notes": "Non-statutory body; data_quality partial throughout. created_year 2016 from incorporation records — verify exact date from MCA Registrar of Companies (Mumbai). MCIA Rules 2016 updated periodically; current version (2024?) should be cited once confirmed. level_of_government State (MH) reflects incorporation; MCIA handles international arbitrations outside Maharashtra — consider Shared_MultiState or Central if scope classification policy changes. No CAG audit; audit_type Internal (Companies Act 2013 statutory auditor). AwardChallengedIn → hc_bombay (adr_arbitration_relationships.yaml; default seat). ministry_responsible null — non-government body.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ArbitralInstitution": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Funded by parties (not state) — reduces executive dependency (deduction)": -1,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 3,
+        "scores_validated": false
+      },
+      "funding_source": "Party_Fees",
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": false,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "MCIA — Official Website",
+          "url": "https://www.mcia.world",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Arbitration and Conciliation Act 1996 — India Code (governing law)",
+          "url": "https://india-code.nic.in/acts-detail/MTA4NDE=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": null,
+          "formally_appoints": null,
+          "consulted": [],
+          "consultation_binding": null,
+          "criteria_public": true,
+          "tenure": null,
+          "reappointment_possible": null,
+          "removal_authority": null,
+          "removal_requires_parliament": false,
+          "removal_independent_committee": false
+        },
+        "funding": {
+          "primary_source": "Party_Fees",
+          "ministry_responsible": null
+        },
+        "audit": {
+          "audited_by": null,
+          "audit_type": "Internal",
+          "audit_report_public": false
+        },
+        "complaint_mechanism": {
+          "lokpal_jurisdiction": "Not_Applicable",
+          "removal_mechanism": "Arbitrator challenge under MCIA Rules 2016, Rule 14. Award challenge under Arbitration and Conciliation Act 1996, s.34 in Bombay High Court.\n"
+        },
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "states_covered": [
+            "MH"
+          ],
+          "is_all_india": false,
+          "jurisdiction_types": [
+            "Original"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 1557,
+        "y": 444
+      }
+    },
+    {
+      "id": "nalsa",
+      "name": "National Legal Services Authority",
+      "name_hindi": "राष्ट्रीय विधिक सेवा प्राधिकरण",
+      "abbreviation": "NALSA",
+      "type": "ADRBody",
+      "cluster": "tribunals_adr",
+      "level_of_government": "Central",
+      "created_year": 1995,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Legal Services Authorities Act 1987, Section 3",
+      "data_quality": "partial",
+      "data_quality_notes": "created_year 1995 (operational constitution); LSA Act enacted 1987. Patron-in-Chief (CJI) role is ex officio and nominal — not modelled as an appointment relationship; noted here for reference. Funding: National Legal Aid Fund is a Statutory Fund under LSA Act 1987 s.17; primary_source Consolidated_Fund_India reflects the source of Central Government grants into the Fund. Relationships: PrimaryFunder ← ministry_law_justice; Designates → lok_adalat_generic (adr_arbitration_relationships.yaml). NALSA does not ReportsTo a ministry — CJI patronage is ex officio (not modelled as an edge). EstablishedUnder → statute deferred. State SLSAs (e.g. tn_slsa) ReportsTo nalsa in same file.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ADRBody": 1,
           "Has removal authority over other entities": 1,
           "No universal mandatory timeline for all decisions": 1
         },
         "discretionary_power_score": 3,
         "independence_risk_breakdown": {
           "Appointed directly by executive body": 3,
-          "Funder == Appointing authority": 2,
           "No bias complaint mechanism exists": 2,
           "No independent conduct oversight body": 1,
-          "Statutory body not constituted — regulatory vacuum": 3
+          "Removal by same authority that appoints (no independent committee)": 1
         },
-        "independence_risk_level": "severe",
-        "independence_risk_score": 11,
+        "independence_risk_level": "high",
+        "independence_risk_score": 7,
         "scores_validated": false
       },
-      "funding_source": "Ministry_Budget",
+      "funding_source": "Consolidated_Fund_India",
       "funding_ministry": "ministry_law_justice",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Legal Services Authorities Act 1987 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/NzI2",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "NALSA — Official Website",
+          "url": "https://nalsa.gov.in",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "president_india",
+          "formally_appoints": "president_india",
+          "consulted": [
+            "supreme_court_india"
+          ],
+          "consultation_binding": false,
+          "criteria_public": true,
+          "tenure": null,
+          "reappointment_possible": null,
+          "removal_authority": "president_india",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": false
+        },
+        "funding": {
+          "primary_source": "Consolidated_Fund_India",
+          "ministry_responsible": "ministry_law_justice"
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": {
+          "lokpal_jurisdiction": "Not_Applicable",
+          "removal_mechanism": "NALSA Executive Chairman removal follows SC judge removal provisions (by President; no parliamentary impeachment process specified separately).\n"
+        },
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "Original"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 422,
+        "y": 480
+      }
+    },
+    {
+      "id": "ncdrc",
+      "name": "National Consumer Disputes Redressal Commission",
+      "name_hindi": "राष्ट्रीय उपभोक्ता विवाद प्रतितोष आयोग",
+      "abbreviation": "NCDRC",
+      "type": "ConsumerCommission",
+      "cluster": "consumer_redressal",
+      "level_of_government": "Central",
+      "created_year": 1988,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Consumer Protection Act 2019, Section 53 (orig. Consumer Protection Act 1986, Section 20 — continued by s.107 of 2019 Act)\n",
+      "data_quality": "partial",
+      "data_quality_notes": "cluster is 'tribunals_adr' as a temporary fallback — change to 'consumer_redressal' after CURSOR FIX 1 is applied to validate.py and entity_schema.yaml (see flags at top of session output). created_year 1988 is the operational constitution date; statutory basis originates in CPA 1986. If entity dating policy is \"earliest statute\", set to 1986 and add a note — either is defensible; maintainer to decide. Appointment block is partially verified — judicial member selection criteria verified against CPA 2019 text; non-judicial member criteria (s.57(1)(b)) are broadly stated and not enumerated precisely. funding.ministry_responsible assumes entity id 'ministry_consumer_affairs' — verify this id exists in graph before merging. case_volume and judge_strength left null; populate from NCDRC Annual Report or DoJ vacancy data in a separate §3 / §7 pass.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ConsumerCommission": 1,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 3,
+        "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 7,
+        "scores_validated": false
+      },
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": "ministry_consumer_affairs",
       "audited_by": "cag_india",
       "audit_report_public": true,
       "complaint_external_exists": false,
@@ -39786,135 +40446,205 @@
       "reappointment_possible": false,
       "sources": [
         {
-          "label": "Arbitration and Conciliation (Amendment) Act 2019 — Part IA",
-          "url": "https://india-code.nic.in/DocsPdfData/2019/201919wd.pdf",
+          "label": "Consumer Protection Act 2019 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MjMxMzM=",
           "type": "CentralAct",
-          "accessed_date": "2025-04-01"
+          "accessed_date": "2026-05-18"
         },
         {
-          "label": "PIB: ACI not yet constituted (Feb 2026)",
-          "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2224369",
+          "label": "Consumer Protection Act 1986 — India Code (origin statute)",
+          "url": "https://india-code.nic.in/acts-detail/NzQ3",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Ministry of Consumer Affairs — NCDRC (official page)",
+          "url": "https://consumeraffairs.nic.in/ncdrc",
           "type": "GoIWebsite",
-          "accessed_date": "2025-04-15"
-        },
-        {
-          "label": "Draft Arbitration Bill 2024 — Ministry of Law & Justice",
-          "url": "https://doj.gov.in/",
-          "type": "GoIWebsite",
-          "accessed_date": "2025-04-01"
-        },
-        {
-          "label": "National Judicial Data Grid (NJDG)",
-          "url": "https://njdg.ecourts.gov.in/",
-          "type": "NJDG",
-          "accessed_date": "2024-12-01"
+          "accessed_date": "2026-05-18"
         }
       ],
       "_detail": {
         "appointment": {
-          "nominates": null,
-          "recommends": null,
-          "consulted": [
-            "chief_justice_india"
-          ],
-          "consultation_binding": true,
+          "nominates": "central_government",
           "formally_appoints": "central_government",
+          "consulted": [
+            "supreme_court_india"
+          ],
+          "consultation_binding": false,
           "criteria_public": true,
-          "tenure": "3 years or age 70 (whichever earlier); non-renewable",
+          "tenure": "5 years or until age 70, whichever is earlier (CPA 2019 s.58)",
           "reappointment_possible": false,
           "removal_authority": "central_government",
           "removal_requires_parliament": false,
           "removal_independent_committee": true
         },
         "funding": {
-          "primary_source": "Ministry_Budget",
-          "ministry_responsible": "ministry_law_justice",
-          "budget_figure_crore": null,
-          "budget_year": null
+          "primary_source": "Consolidated_Fund_India",
+          "ministry_responsible": "ministry_consumer_affairs"
         },
         "audit": {
           "audited_by": "cag_india",
           "audit_type": "CAG_Statutory",
-          "audit_report_public": true,
-          "conduct_oversight_body": null
+          "audit_report_public": true
         },
-        "complaint_mechanism": {
-          "bias_complaint_to": [],
-          "removal_mechanism": "Central Government, on recommendation of committee. Chairperson removable only on grounds stated in statute.\n",
-          "lokpal_jurisdiction": "Not_Applicable",
-          "lokpal_jurisdiction_note": "Body not constituted — question does not arise.",
-          "source": "Arbitration and Conciliation Act 1996, Section 43F (as amended 2019)"
-        },
+        "complaint_mechanism": null,
         "training": null,
         "digital_infrastructure": null,
-        "structural_variations": [
-          {
-            "variation_id": "aci_2024_bill_revision",
-            "description": "Draft Arbitration Bill 2024 proposes to replace ACI's grading power with recognition of arbitral institutions and model rules. This would change the composition and functions defined in the 2019 Act if passed.\n",
-            "applicable_to": [
-              "all"
-            ],
-            "source": "Draft Arbitration and Conciliation (Amendment) Bill 2024 — Ministry of Law & Justice",
-            "independence_risk_note": "ACI Chairperson appointed by Central Government in consultation with CJI. CJI consultation is binding. However, Government retains formal appointment power.\n"
-          }
-        ],
+        "structural_variations": [],
         "jurisdiction_scope": {
           "is_all_india": true,
-          "jurisdiction_types": []
+          "jurisdiction_types": [
+            "Appellate",
+            "Original"
+          ]
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 1557,
+        "x": 1119,
         "y": 480
       }
     },
     {
-      "id": "supreme_court_india",
-      "name": "Supreme Court of India",
-      "name_hindi": "भारत का उच्चतम न्यायालय",
-      "abbreviation": "SC",
-      "type": "ConstitutionalCourt",
-      "cluster": "constitutional_courts",
+      "id": "ndiac",
+      "name": "New Delhi International Arbitration Centre",
+      "name_hindi": "नई दिल्ली अन्तर्राष्ट्रीय मध्यस्थता केन्द्र",
+      "abbreviation": "NDIAC",
+      "type": "ArbitralInstitution",
+      "cluster": "arbitration",
       "level_of_government": "Central",
-      "created_year": 1950,
+      "created_year": 2019,
       "abolished_year": null,
       "operational_status": "Active",
-      "constitutional_basis": "Constitution of India, Articles 124–147",
-      "statutory_basis": null,
-      "data_quality": "verified",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "constitutional_basis": null,
+      "statutory_basis": "New Delhi International Arbitration Centre Act 2019, Section 3",
+      "data_quality": "partial",
+      "data_quality_notes": "Alias 'IIAC' / 'India International Arbitration Centre' used informally and in some government communications — verify whether a formal renaming amendment to NDIAC Act 2019 has been enacted; if so, update name, id, and statutory_basis accordingly. Funding: Statutory_Fund reflects hybrid model (CFI grants + party fees); update to Mixed once NDIAC is self-sustaining. Relationships: PrimaryFunder ← ministry_law_justice; AwardChallengedIn → hc_delhi (adr_arbitration_relationships.yaml). EstablishedUnder → statute deferred. case_volume null — NDIAC Annual Report for filings/awards in §3 session.\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ConstitutionalCourt": 4,
+          "Base discretionary power for type ArbitralInstitution": 1,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 3,
+        "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1,
+          "Reappointment possible by same executive authority": 2
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 8,
+        "scores_validated": false
+      },
+      "funding_source": "Statutory_Fund",
+      "funding_ministry": "ministry_law_justice",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": true,
+      "sources": [
+        {
+          "label": "New Delhi International Arbitration Centre Act 2019 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MjMyMDM=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Ministry of Law and Justice — NDIAC",
+          "url": "https://doj.gov.in/acts-rules/new-delhi-international-arbitration-centre-act-2019",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "central_government",
+          "formally_appoints": "central_government",
+          "consulted": [
+            "supreme_court_india"
+          ],
+          "consultation_binding": false,
+          "criteria_public": true,
+          "tenure": "3 years, renewable once — NDIAC Act 2019 s.4(5)",
+          "reappointment_possible": true,
+          "removal_authority": "central_government",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Statutory_Fund",
+          "ministry_responsible": "ministry_law_justice"
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": {
+          "lokpal_jurisdiction": "Not_Applicable",
+          "removal_mechanism": "Arbitrator removal under Arbitration and Conciliation Act 1996, s.14 (failure/inability to act). NDIAC institutional rules supplement.\n"
+        },
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "Original"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 1650,
+        "y": 480
+      }
+    },
+    {
+      "id": "hc_madras_bench_madurai",
+      "name": "Madurai Bench of Madras High Court",
+      "name_hindi": null,
+      "abbreviation": "MADR",
+      "type": "HighCourtBench",
+      "cluster": "constitutional_courts",
+      "level_of_government": "State",
+      "created_year": 1948,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": "Constitution of India, Article 214",
+      "statutory_basis": "High Courts Act 1861 — bench constituted by CJ administrative order under Letters Patent 1865",
+      "data_quality": "partial",
+      "data_quality_notes": "§7 pass complete (source type corrected to HC_Report; semantics documented). BenchOf → hc_madras in national_state_chains.yaml (enriched notes + Article 214 source); TN district routing in tn_relationships.yaml. allotted null by design — HighCourtBench entities do not have independent sanctioned strength. appointed null pending HC roster lookup. created_year 1948 unverified — requires Madras HC gazette notification or administrative order as primary source. abbreviation 'MADR' inherited from parent stub — verify official short form.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type HighCourtBench": 4,
           "Controls own case listing and bench composition (no statutory rule)": 2,
-          "Entity-specific documented extra-statutory discretion": 5,
           "Has removal authority over other entities": 1,
           "No public criteria for key decisions": 1,
           "No universal mandatory timeline for all decisions": 1
         },
-        "discretionary_power_score": 14,
+        "discretionary_power_score": 9,
         "independence_risk_breakdown": {
-          "All complaint mechanisms are internal (no external body)": 1,
           "Appointed directly by executive body": 3,
-          "Complainant has no locus in the inquiry process": 1,
-          "Complaint process is not public/transparent": 1,
           "Constitutional basis (harder to politicise) (deduction)": -2,
-          "Lokpal has no jurisdiction": 1,
-          "No defined timeframe for complaint resolution": 1,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1,
           "No publicly stated appointment criteria": 1,
           "Removal requires Parliamentary process (deduction)": -1
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 4,
         "scores_validated": false
       },
-      "funding_source": "Consolidated_Fund_India",
-      "funding_ministry": "ministry_of_finance",
+      "funding_source": "State_Consolidated_Fund",
+      "funding_ministry": null,
       "audited_by": "cag_india",
       "audit_report_public": true,
       "complaint_external_exists": false,
@@ -39922,219 +40652,39 @@
       "reappointment_possible": false,
       "sources": [
         {
-          "label": "Constitution of India — Articles 124-147",
-          "url": "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf",
-          "type": "Constitution",
-          "accessed_date": "2025-04-01"
-        },
-        {
-          "label": "Supreme Court of India — Official Website",
-          "url": "https://main.sci.gov.in/",
+          "label": "India Code — Constitution & Acts",
+          "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
-          "accessed_date": "2025-04-01"
+          "accessed_date": "2026-05-13"
         },
         {
-          "label": "eCourts Phase III — NJDG-SC launch",
-          "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1957318",
-          "type": "GazetteNotification",
-          "accessed_date": "2025-04-01"
-        },
-        {
-          "label": "National Judicial Data Grid (NJDG)",
-          "url": "https://njdg.ecourts.gov.in/",
-          "type": "NJDG",
-          "accessed_date": "2024-12-01"
+          "label": "Madras High Court — Official Website",
+          "url": "https://www.hcmadras.tn.nic.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
         }
       ],
       "_detail": {
         "appointment": {
-          "nominates": "collegium_sc",
-          "recommends": "collegium_sc",
-          "consulted": [],
+          "nominates": "collegium_hc_appointment",
+          "recommends": "collegium_hc_appointment",
+          "consulted": [
+            "governor_state"
+          ],
           "consultation_binding": true,
           "formally_appoints": "president_india",
           "criteria_public": false,
-          "tenure": "Until age 65 (Article 124(2))",
+          "tenure": "Until age 62 (Article 217) — same as parent HC",
           "reappointment_possible": false,
-          "removal_authority": "parliament_both_houses",
+          "removal_authority": "president_india",
           "removal_requires_parliament": true,
-          "removal_independent_committee": true
-        },
-        "funding": {
-          "primary_source": "Consolidated_Fund_India",
-          "ministry_responsible": "ministry_of_finance",
-          "budget_figure_crore": null,
-          "budget_year": null
-        },
-        "audit": {
-          "audited_by": "cag_india",
-          "audit_type": "CAG_Statutory",
-          "audit_report_public": true,
-          "conduct_oversight_body": "in_house_procedure_sc"
-        },
-        "complaint_mechanism": {
-          "bias_complaint_to": [
-            {
-              "body": "chief_justice_india",
-              "mechanism": "In-House Procedure (SC Resolution 1999). Complaint to CJI. CJI constitutes 3-judge committee. Report is confidential. Complainant has no locus in inquiry proceedings.\n",
-              "complainant_has_locus": false,
-              "is_public_process": false,
-              "timeframe_defined": false,
-              "external_to_judiciary": false
-            }
-          ],
-          "criminal_prosecution": {
-            "requires_sanction_from": "president_india",
-            "consultation_required_with": "chief_justice_india",
-            "consultation_binding": true
-          },
-          "removal_mechanism": "Impeachment — Article 124(4). Motion by 100+ LS MPs or 50+ RS MPs. Never successfully completed in Indian history.",
-          "lokpal_jurisdiction": "No",
-          "lokpal_jurisdiction_note": "Lokpal ruled in Jan 2025 that it cannot hear complaints against SC judges because the SC is established by Article 124 (Constitution), not an Act of Parliament. SC stayed Lokpal's attempt to assert jurisdiction over HC judges (suo moto, Feb 2025). Status: active litigation.\n",
-          "source": "K. Veeraswami v Union of India (1991) 3 SCC 655; SC In-House Procedure 1999; SC Stay Order Feb 2025 (suo moto)"
-        },
-        "training": {
-          "trained_by": [
-            "national_judicial_academy"
-          ],
-          "induction_training": false,
-          "continuing_education": true,
-          "training_mandatory": false
-        },
-        "digital_infrastructure": {
-          "system_used": [
-            "NJDG_SC",
-            "eCourts_Portal",
-            "SCI_Website"
-          ],
-          "digital_variant": "NIC_Standard",
-          "integrated_with_njdg": true,
-          "integration_notes": "NJDG-SC portal launched in 2023 as part of eCourts Phase III. SC data was the last to be integrated into national NJDG.\n"
-        },
-        "structural_variations": [],
-        "jurisdiction_scope": {
-          "is_all_india": true,
-          "jurisdiction_types": [
-            "Original",
-            "Appellate",
-            "Writ",
-            "Advisory"
-          ]
-        },
-        "case_volume": {
-          "data_as_of": "2024-12-01",
-          "sanctioned_strength": 34,
-          "working_strength": 34,
-          "pending_cases": 80000,
-          "filed_last_year": 82000,
-          "disposed_last_year": 68000,
-          "avg_disposal_days": 547,
-          "institution_rate_trend": "rising",
-          "source_url": "https://main.sci.gov.in/case-status",
-          "source_type": "AnnualReport",
-          "disposal_rate": 0.8293,
-          "clog_severity": "high"
-        },
-        "judge_strength": {
-          "data_as_of": "2024-12-01",
-          "allotted": 34,
-          "appointed": 34,
-          "vacancy_count": 0,
-          "source_type": "AnnualReport",
-          "source_url": "https://main.sci.gov.in/",
-          "notes": "Allotted = sanctioned strength of puisne judges + CJI (34); appointed = working strength per SC annual report."
-        },
-        "parent_hc": null
-      },
-      "position": {
-        "x": 1298,
-        "y": 156
-      }
-    },
-    {
-      "id": "ecommittee_sc",
-      "name": "e-Committee of the Supreme Court of India",
-      "name_hindi": null,
-      "abbreviation": "e-Committee",
-      "type": "DigitalInfraBody",
-      "cluster": "digital_infrastructure",
-      "level_of_government": "Shared_CentralState",
-      "created_year": 2005,
-      "abolished_year": null,
-      "operational_status": "Active",
-      "constitutional_basis": null,
-      "statutory_basis": "Constituted by Government of India in pursuance of proposal from Chief Justice of India. No separate statutory basis — functions under the administrative authority of the SC and DoJ MMP framework.\n",
-      "data_quality": "verified",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
-      "derived": {
-        "discretionary_power_breakdown": {
-          "Base discretionary power for type DigitalInfraBody": 1,
-          "Has removal authority over other entities": 1,
-          "No public criteria for key decisions": 1,
-          "No universal mandatory timeline for all decisions": 1
-        },
-        "discretionary_power_score": 4,
-        "independence_risk_breakdown": {
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1,
-          "No publicly stated appointment criteria": 1
-        },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 4,
-        "scores_validated": false
-      },
-      "funding_source": "Ministry_Budget",
-      "funding_ministry": "department_of_justice",
-      "audited_by": "cag_india",
-      "audit_report_public": true,
-      "complaint_external_exists": false,
-      "appointment_criteria_public": false,
-      "reappointment_possible": true,
-      "sources": [
-        {
-          "label": "e-Committee SC — Official Website",
-          "url": "https://ecommitteesci.gov.in/",
-          "type": "GoIWebsite",
-          "accessed_date": "2025-04-01"
-        },
-        {
-          "label": "eCourts MMP — Department of Justice",
-          "url": "https://doj.gov.in/division/ecourts/",
-          "type": "GoIWebsite",
-          "accessed_date": "2025-04-01"
-        },
-        {
-          "label": "eCourts Phase III Cabinet Approval",
-          "url": "https://pib.gov.in/PressReleasePage.aspx?PRID=1903158",
-          "type": "GazetteNotification",
-          "accessed_date": "2025-04-01"
-        },
-        {
-          "label": "National Judicial Data Grid (NJDG)",
-          "url": "https://njdg.ecourts.gov.in/",
-          "type": "NJDG",
-          "accessed_date": "2024-12-01"
-        }
-      ],
-      "_detail": {
-        "appointment": {
-          "nominates": "chief_justice_india",
-          "recommends": "chief_justice_india",
-          "consulted": [],
-          "consultation_binding": true,
-          "formally_appoints": "chief_justice_india",
-          "criteria_public": false,
-          "tenure": "At pleasure of CJI — no fixed tenure",
-          "reappointment_possible": true,
-          "removal_authority": "chief_justice_india",
-          "removal_requires_parliament": false,
           "removal_independent_committee": false
         },
         "funding": {
-          "primary_source": "Ministry_Budget",
-          "ministry_responsible": "department_of_justice",
-          "budget_figure_crore": 7210,
-          "budget_year": 2023
+          "primary_source": "State_Consolidated_Fund",
+          "ministry_responsible": null,
+          "budget_figure_crore": null,
+          "budget_year": null
         },
         "audit": {
           "audited_by": "cag_india",
@@ -40144,146 +40694,128 @@
         },
         "complaint_mechanism": {
           "bias_complaint_to": [],
-          "lokpal_jurisdiction": "Not_Applicable",
-          "source": "Not applicable — e-Committee is policy/oversight body, not adjudicatory"
+          "lokpal_jurisdiction": "Not_Applicable"
         },
-        "training": null,
+        "training": {
+          "trained_by": [],
+          "induction_training": false,
+          "continuing_education": true,
+          "training_mandatory": false
+        },
         "digital_infrastructure": {
           "system_used": [
-            "eCourts_MMP",
-            "CIS",
-            "NJDG",
             "eCourts_Portal",
-            "JustIS_App"
+            "NJDG"
           ],
           "digital_variant": "NIC_Standard",
-          "integrated_with_njdg": true,
-          "integration_notes": "e-Committee sets standards; NIC (under MeitY) builds and maintains. High Courts are Implementing Agencies under their respective jurisdictions. The Central Project Coordinator (CPC) in each HC is accountable to the e-Committee via the PPMS portal (ecourts.nic.in).\n"
+          "integrated_with_njdg": true
         },
-        "structural_variations": [
-          {
-            "variation_id": "ecommittee_dual_principal_problem",
-            "description": "The e-Committee is chaired by a sitting SC judge (CJI-designated), making it a judicial body. However, eCourts Mission Mode Project is monitored and funded by Department of Justice, Ministry of Law & Justice (executive). This creates a dual-principal problem: e-Committee sets technology policy; DoJ controls the budget. Every technology decision of scale requires DoJ sanction. No formal dispute resolution mechanism exists between the two bodies for technology disagreements.\n",
-            "applicable_to": [
-              "all"
-            ],
-            "source": "ecommitteesci.gov.in; doj.gov.in/division/ecourts/",
-            "independence_risk_note": "The executive (DoJ/MeitY) controls the budget and the technical vendor (NIC). The SC (via e-Committee) controls the policy. This structural tension means the judiciary's technology backbone is ultimately dependent on executive goodwill and budget allocation cycles. No SLA or contractual obligation exists between NIC and the courts.\n"
-          },
-          {
-            "variation_id": "hc_custom_systems",
-            "description": "Several HCs have developed custom Case Management Systems that do not fully conform to NIC CIS standards: Bombay HC (custom CMS), Delhi HC (enhanced digital services), Madras HC (independent IT development). Data from these HCs enters NJDG in non-standard formats, reducing national data reliability. This is a documented standardisation failure.\n",
-            "applicable_to": [
-              "Maharashtra",
-              "Delhi",
-              "TamilNadu"
-            ],
-            "source": "eCourts Phase III documentation; doj.gov.in",
-            "independence_risk_note": "HC autonomy (Article 235 administrative independence) conflicts with the e-Committee's mandate for uniform national standards. No enforcement mechanism exists against an HC that builds its own system.\n"
-          }
-        ],
+        "structural_variations": [],
         "jurisdiction_scope": {
-          "is_all_india": true,
+          "states_covered": [
+            "TN"
+          ],
+          "uts_covered": [],
+          "is_all_india": false,
           "jurisdiction_types": [
-            "PolicyOversight"
+            "Original",
+            "Appellate",
+            "Writ"
           ]
         },
-        "case_volume": {
-          "clog_severity": "unknown"
+        "case_volume": null,
+        "judge_strength": {
+          "data_as_of": null,
+          "allotted": null,
+          "appointed": null,
+          "vacancy_count": null,
+          "source_type": "HC_Report",
+          "source_url": "https://www.hcmadras.tn.nic.in/",
+          "notes": "Bench judges are drawn from parent HC pool (hc_madras). allotted is null — sanctioned strength is set at parent HC level only (no per-bench DoJ allocation). appointed = judges rostered to Madurai Bench by CJ order on snapshot date. Source: Madras HC website (Judges/Roster section) or HC Annual Report. Do NOT use DoJ vacancy reports for bench-level counts. Districts in Madurai bench zone: Madurai, Dindigul, Kanniyakumari, Ramanathapuram, Sivaganga, Tenkasi, Thoothukudi, Theni, Tirunelveli, Virudhunagar (per hc_benches_config.py TN_DISTRICT_TO_BENCH).\n"
         },
-        "judge_strength": null,
-        "parent_hc": null
+        "parent_hc": "hc_madras"
       },
       "position": {
-        "x": 1557,
-        "y": 768
+        "x": 1280,
+        "y": 192
       }
     },
     {
-      "id": "cbi",
-      "name": "Central Bureau of Investigation",
+      "id": "hc_madras_bench_tiruchirappalli",
+      "name": "Tiruchirappalli Bench of Madras High Court",
       "name_hindi": null,
-      "abbreviation": "CBI",
-      "type": "InvestigativeAgency",
-      "cluster": "executive_interface",
-      "level_of_government": "Central",
-      "created_year": 1963,
+      "abbreviation": null,
+      "type": "HighCourtBench",
+      "cluster": "constitutional_courts",
+      "level_of_government": "State",
+      "created_year": 1948,
       "abolished_year": null,
       "operational_status": "Active",
-      "constitutional_basis": null,
-      "statutory_basis": "Delhi Special Police Establishment Act 1946 (DSPE Act). CBI constituted by Ministry of Home Affairs Resolution 1963.\n",
-      "data_quality": "verified",
-      "data_quality_notes": "\"Caged parrot\" characterisation from SC in Vineet Narain (1997) is well-documented. State consent withdrawal figures should be verified against latest state government notifications — list may have changed since the entries above.\n NJDG snapshot case_volume merged",
+      "constitutional_basis": "Constitution of India, Article 214",
+      "statutory_basis": "High Courts Act 1861 — bench constituted by CJ administrative order under Letters Patent 1865",
+      "data_quality": "partial",
+      "data_quality_notes": "BenchOf and TN district routing present (national_state_chains.yaml, tn_relationships.yaml). created_year 1948 unverified — requires Madras HC gazette notification or administrative order as primary source. abbreviation null pending confirmation of official short form.\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type InvestigativeAgency": 3,
+          "Base discretionary power for type HighCourtBench": 4,
+          "Controls own case listing and bench composition (no statutory rule)": 2,
           "Has removal authority over other entities": 1,
           "No public criteria for key decisions": 1,
           "No universal mandatory timeline for all decisions": 1
         },
-        "discretionary_power_score": 6,
+        "discretionary_power_score": 9,
         "independence_risk_breakdown": {
           "Appointed directly by executive body": 3,
-          "Funder == Appointing authority": 2,
-          "No defined timeframe for complaint resolution": 1,
+          "Constitutional basis (harder to politicise) (deduction)": -2,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1,
           "No publicly stated appointment criteria": 1,
-          "Reappointment possible by same executive authority": 2,
-          "Removal by same authority that appoints (no independent committee)": 1
+          "Removal requires Parliamentary process (deduction)": -1
         },
-        "independence_risk_level": "severe",
-        "independence_risk_score": 10,
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 4,
         "scores_validated": false
       },
-      "funding_source": "Ministry_Budget",
-      "funding_ministry": "ministry_personnel_dopt",
+      "funding_source": "State_Consolidated_Fund",
+      "funding_ministry": null,
       "audited_by": "cag_india",
       "audit_report_public": true,
-      "complaint_external_exists": true,
+      "complaint_external_exists": false,
       "appointment_criteria_public": false,
-      "reappointment_possible": true,
+      "reappointment_possible": false,
       "sources": [
         {
-          "label": "Delhi Special Police Establishment Act 1946",
-          "url": "https://india-code.nic.in/DocsPdfData/1946/194643.pdf",
-          "type": "CentralAct",
-          "accessed_date": "2025-04-01"
+          "label": "Madras High Court — Official Website",
+          "url": "https://www.hcmadras.tn.nic.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
         },
         {
-          "label": "Vineet Narain v Union of India (1997) 6 SCC 767",
-          "url": "https://main.sci.gov.in/",
-          "type": "SCJudgment",
-          "accessed_date": "2025-04-01"
-        },
-        {
-          "label": "Prakash Singh v Union of India — police reform directives",
-          "url": "https://main.sci.gov.in/",
-          "type": "SCJudgment",
-          "accessed_date": "2025-04-01"
-        },
-        {
-          "label": "National Judicial Data Grid (NJDG)",
-          "url": "https://njdg.ecourts.gov.in/",
-          "type": "NJDG",
-          "accessed_date": "2024-12-01"
+          "label": "hc_benches_config.py — JEM internal",
+          "url": "https://india-code.nic.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
         }
       ],
       "_detail": {
         "appointment": {
-          "nominates": "dopt_dpc",
-          "recommends": "central_vigilance_commission",
-          "consulted": [],
-          "consultation_binding": false,
-          "formally_appoints": "central_government",
+          "nominates": "collegium_hc_appointment",
+          "recommends": "collegium_hc_appointment",
+          "consulted": [
+            "governor_state"
+          ],
+          "consultation_binding": true,
+          "formally_appoints": "president_india",
           "criteria_public": false,
-          "tenure": "Minimum 2 years fixed tenure (post-Prakash Singh SC direction)",
-          "reappointment_possible": true,
-          "removal_authority": "central_government",
-          "removal_requires_parliament": false,
+          "tenure": "Until age 62 (Article 217) — same as parent HC",
+          "reappointment_possible": false,
+          "removal_authority": "president_india",
+          "removal_requires_parliament": true,
           "removal_independent_committee": false
         },
         "funding": {
-          "primary_source": "Ministry_Budget",
-          "ministry_responsible": "ministry_personnel_dopt",
+          "primary_source": "State_Consolidated_Fund",
+          "ministry_responsible": null,
           "budget_figure_crore": null,
           "budget_year": null
         },
@@ -40291,78 +40823,504 @@
           "audited_by": "cag_india",
           "audit_type": "CAG_Statutory",
           "audit_report_public": true,
-          "conduct_oversight_body": "central_vigilance_commission"
+          "conduct_oversight_body": null
         },
         "complaint_mechanism": {
-          "bias_complaint_to": [
-            {
-              "body": "central_vigilance_commission",
-              "mechanism": "Complaint to CVC for corruption/misconduct by CBI officials",
-              "complainant_has_locus": true,
-              "is_public_process": false,
-              "timeframe_defined": false,
-              "external_to_judiciary": true
-            },
-            {
-              "body": "high_court_competent",
-              "mechanism": "Writ petition under Article 226 challenging CBI action",
-              "complainant_has_locus": true,
-              "is_public_process": true,
-              "timeframe_defined": false,
-              "external_to_judiciary": true
-            },
-            {
-              "body": "supreme_court_india",
-              "mechanism": "Special Leave Petition or direct writ under Article 32",
-              "complainant_has_locus": true,
-              "is_public_process": true,
-              "timeframe_defined": false,
-              "external_to_judiciary": true
-            }
+          "bias_complaint_to": [],
+          "lokpal_jurisdiction": "Not_Applicable"
+        },
+        "training": {
+          "trained_by": [],
+          "induction_training": false,
+          "continuing_education": true,
+          "training_mandatory": false
+        },
+        "digital_infrastructure": {
+          "system_used": [
+            "eCourts_Portal",
+            "NJDG"
           ],
-          "lokpal_jurisdiction": "Yes",
-          "lokpal_jurisdiction_note": "CBI officers are central government servants — Lokpal has jurisdiction for corruption allegations.\n",
-          "source": "DSPE Act 1946; Vineet Narain v Union of India (1997) 6 SCC 767"
+          "digital_variant": "NIC_Standard",
+          "integrated_with_njdg": true
+        },
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "states_covered": [
+            "TN"
+          ],
+          "uts_covered": [],
+          "is_all_india": false,
+          "jurisdiction_types": [
+            "Original",
+            "Appellate",
+            "Writ"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": {
+          "data_as_of": null,
+          "allotted": null,
+          "appointed": null,
+          "vacancy_count": null,
+          "source_type": "HC_Report",
+          "source_url": "https://www.hcmadras.tn.nic.in/",
+          "notes": "Bench judges drawn from parent HC pool (hc_madras). allotted null by design. appointed = judges on CJ roster for Tiruchirappalli Bench at snapshot date. Districts in Tiruchirappalli bench zone: Ariyalur, Cuddalore, Karur, Mayiladuthurai, Nagapattinam, Perambalur, Pudukkottai, Thanjavur, Tiruchirappalli, Tiruvarur (per hc_benches_config.py TN_DISTRICT_TO_BENCH). BenchOf → hc_madras in national_state_chains.yaml; TN routing in tn_relationships.yaml.\n"
+        },
+        "parent_hc": "hc_madras"
+      },
+      "position": {
+        "x": 1289,
+        "y": 156
+      }
+    },
+    {
+      "id": "hc_madras",
+      "name": "High Court of Judicature at Madras",
+      "name_hindi": null,
+      "abbreviation": "MADR",
+      "type": "ConstitutionalCourt",
+      "cluster": "constitutional_courts",
+      "level_of_government": "Shared_MultiState",
+      "created_year": 1862,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": "Constitution of India, Article 214 (Chapter VI — High Courts in the States)",
+      "statutory_basis": "High Courts Act 1861; Letters Patent 1865 (Madras)",
+      "data_quality": "partial",
+      "data_quality_notes": "§7 pass complete (structure + source links). allotted and appointed null pending DoJ/NJDG lookup by maintainer — see judge_strength.notes for exact source URLs and lookup steps. statutory_basis added (Letters Patent 1865 + High Courts Act 1861). funding.ministry_responsible left null: HC funding from State Consolidated Fund is not routed through a single ministry entity; populate if a state finance department entity exists in the graph.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ConstitutionalCourt": 4,
+          "Controls own case listing and bench composition (no statutory rule)": 2,
+          "Has removal authority over other entities": 1,
+          "No public criteria for key decisions": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 9,
+        "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
+          "Constitutional basis (harder to politicise) (deduction)": -2,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1,
+          "No publicly stated appointment criteria": 1,
+          "Removal requires Parliamentary process (deduction)": -1
+        },
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 4,
+        "scores_validated": false
+      },
+      "funding_source": "State_Consolidated_Fund",
+      "funding_ministry": null,
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": false,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "India Code — Constitution & Acts",
+          "url": "https://india-code.nic.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "Supreme Court of India",
+          "url": "https://main.sci.gov.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "DoJ — Judicial Vacancy Reports (quarterly)",
+          "url": "https://doj.gov.in/report-and-committees/judicial-vacancy-reports",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "NJDG — High Court Judge Strength Panel",
+          "url": "https://njdg.ecourts.gov.in/hcnjdg/",
+          "type": "NJDG",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "collegium_hc_appointment",
+          "recommends": "collegium_hc_appointment",
+          "consulted": [
+            "governor_state"
+          ],
+          "consultation_binding": true,
+          "formally_appoints": "president_india",
+          "criteria_public": false,
+          "tenure": "Until age 62 (Article 217)",
+          "reappointment_possible": false,
+          "removal_authority": "president_india",
+          "removal_requires_parliament": true,
+          "removal_independent_committee": false
+        },
+        "funding": {
+          "primary_source": "State_Consolidated_Fund",
+          "ministry_responsible": null,
+          "budget_figure_crore": null,
+          "budget_year": null
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true,
+          "conduct_oversight_body": null
+        },
+        "complaint_mechanism": {
+          "bias_complaint_to": [],
+          "lokpal_jurisdiction": "Not_Applicable"
+        },
+        "training": {
+          "trained_by": [],
+          "induction_training": false,
+          "continuing_education": true,
+          "training_mandatory": false
+        },
+        "digital_infrastructure": {
+          "system_used": [
+            "eCourts_Portal",
+            "NJDG"
+          ],
+          "digital_variant": "NIC_Standard",
+          "integrated_with_njdg": true
+        },
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "states_covered": [
+            "TN"
+          ],
+          "uts_covered": [
+            "PY"
+          ],
+          "is_all_india": false,
+          "jurisdiction_types": [
+            "Original",
+            "Appellate",
+            "Writ"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": {
+          "data_as_of": null,
+          "allotted": null,
+          "appointed": null,
+          "vacancy_count": null,
+          "source_type": "DoJ_Report",
+          "source_url": "https://doj.gov.in/report-and-committees/judicial-vacancy-reports",
+          "notes": "Sanctioned (allotted) and working (appointed) strength cover the full Madras HC including all permanent benches. Source: DoJ quarterly vacancy report → \"Statement of Strength of Judges in High Courts\", Madras row. Cross-check: NJDG HC panel (https://njdg.ecourts.gov.in/hcnjdg/). Bench-specific appointed counts in hc_madras_bench_madurai.yaml and hc_madras_bench_tiruchirappalli.yaml — those are rostered subsets, not additional posts.\n"
+        },
+        "parent_hc": null
+      },
+      "position": {
+        "x": 1298,
+        "y": 192
+      }
+    },
+    {
+      "id": "tn_slsa",
+      "name": "Tamil Nadu State Legal Services Authority",
+      "name_hindi": null,
+      "abbreviation": "TNSLSA",
+      "type": "ADRBody",
+      "cluster": "tribunals_adr",
+      "level_of_government": "State",
+      "created_year": 1995,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Legal Services Authorities Act 1987, Section 6",
+      "data_quality": "partial",
+      "data_quality_notes": "created_year 1995 approximate — verify from GoTN Gazette notification constituting TN SLSA. hc_madras entity id assumed correct for Patron-in-Chief/appointment block — verify. government_tamilnadu entity id used in tn_relationships.yaml — verify if expanded. ReportsTo → nalsa (adr_arbitration_relationships.yaml). Designates → lok_adalat_generic in tn_relationships.yaml only (id: tn_slsa_adr). TNSLSA also organises District Legal Services Authorities (DLSAs) in each of TN's 38 districts — DLSA entities not modelled (Phase-2).\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ADRBody": 1,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 3,
+        "independence_risk_breakdown": {
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 3,
+        "scores_validated": false
+      },
+      "funding_source": "Mixed",
+      "funding_ministry": null,
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Legal Services Authorities Act 1987 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/NzI2",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "TN SLSA — Official Website",
+          "url": "https://tnslsa.gov.in",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "hc_madras",
+          "formally_appoints": "hc_madras",
+          "consulted": [
+            "government_tamilnadu"
+          ],
+          "consultation_binding": false,
+          "criteria_public": true,
+          "tenure": null,
+          "reappointment_possible": null,
+          "removal_authority": "hc_madras",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": false
+        },
+        "funding": {
+          "primary_source": "Mixed",
+          "ministry_responsible": null
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": {
+          "lokpal_jurisdiction": "Not_Applicable",
+          "removal_mechanism": "TN SLSA Executive Chairman removal follows Madras HC judge administrative norms. NALSA oversight of SLSA operations under LSA Act 1987 s.6(8).\n"
         },
         "training": null,
         "digital_infrastructure": null,
-        "structural_variations": [
-          {
-            "variation_id": "cbi_state_consent",
-            "description": "Under DSPE Act Section 6, CBI cannot exercise jurisdiction in a state without that state's general or specific consent. As of 2025, several states have withdrawn general consent (Maharashtra, West Bengal, Chhattisgarh, Rajasthan, Jharkhand, Mizoram, Kerala, Telangana). This means CBI can only investigate in those states when directed by the SC or the relevant High Court.\n",
-            "applicable_to": [
-              "Maharashtra",
-              "WestBengal",
-              "Chhattisgarh",
-              "Rajasthan",
-              "Jharkhand",
-              "Mizoram",
-              "Kerala",
-              "Telangana"
-            ],
-            "source": "DSPE Act 1946, Section 6; respective State Government notifications",
-            "independence_risk_note": "State consent withdrawal structurally restricts central investigation in states with different political dispensations. Creates a gap in central accountability where state police investigates instead.\n"
-          }
-        ],
+        "structural_variations": [],
         "jurisdiction_scope": {
+          "states_covered": [
+            "TN"
+          ],
           "is_all_india": false,
           "jurisdiction_types": [
-            "Special"
+            "Original"
           ]
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 839,
-        "y": 732
+        "x": 426,
+        "y": 444
+      }
+    },
+    {
+      "id": "supreme_court_india",
+      "name": "Supreme Court India",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "data_quality": "unverified",
+      "data_quality_notes": "Placeholder node auto-created because relationships reference this entity id, but no entity YAML exists yet.",
+      "derived": {},
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": []
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 422,
+        "y": 156
       }
     }
   ],
   "relationships": [
+    {
+      "id": "moflj_funds_ndiac",
+      "source": "ministry_law_justice",
+      "target": "ndiac",
+      "relationship_type": "PrimaryFunder",
+      "relationship_category": "funding",
+      "is_binding": true,
+      "is_constitutional": null,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "Ministry of Law and Justice provides Central Government grants to NDIAC under NDIAC Act 2019 s.25(1)(a). Transitional arrangement pending self-sustaining fee model.\n",
+      "sources": [
+        {
+          "label": "New Delhi International Arbitration Centre Act 2019 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MjMyMDM=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
+      "id": "moflj_funds_nalsa",
+      "source": "ministry_law_justice",
+      "target": "nalsa",
+      "relationship_type": "PrimaryFunder",
+      "relationship_category": "funding",
+      "is_binding": true,
+      "is_constitutional": null,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "Ministry of Law and Justice provides Central Government grants to the National Legal Aid Fund (NALSA) under LSA Act 1987 s.17(1)(a). NALSA in turn grants funds to State Legal Services Authorities.\n",
+      "sources": [
+        {
+          "label": "Legal Services Authorities Act 1987 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/NzI2",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
+      "id": "ndiac_award_challenged_hc_delhi",
+      "source": "ndiac",
+      "target": "hc_delhi",
+      "relationship_type": "AwardChallengedIn",
+      "relationship_category": "appellate_chain",
+      "is_binding": true,
+      "is_constitutional": null,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "Awards from NDIAC arbitration proceedings challenged under Arbitration and Conciliation Act 1996 s.34. NDIAC seat is New Delhi; Delhi High Court is the competent court under A&C Act s.2(1)(e)(i). Appeals from s.34 orders lie to HC Division Bench under s.37.\n",
+      "sources": [
+        {
+          "label": "Arbitration and Conciliation Act 1996 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MTA4NDE=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
+      "id": "mcia_award_challenged_hc_bombay",
+      "source": "mcia",
+      "target": "hc_bombay",
+      "relationship_type": "AwardChallengedIn",
+      "relationship_category": "appellate_chain",
+      "is_binding": true,
+      "is_constitutional": null,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "Awards from MCIA arbitration proceedings challenged under A&C Act 1996 s.34. Default seat is Mumbai; Bombay High Court is typically the competent court. Seat is party-determined and may vary per arbitration agreement — this edge models the default/typical case.\n",
+      "sources": [
+        {
+          "label": "Arbitration and Conciliation Act 1996 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MTA4NDE=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
+      "id": "diac_award_challenged_hc_delhi",
+      "source": "diac",
+      "target": "hc_delhi",
+      "relationship_type": "AwardChallengedIn",
+      "relationship_category": "appellate_chain",
+      "is_binding": true,
+      "is_constitutional": null,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "Awards from DIAC arbitration proceedings challenged under A&C Act 1996 s.34 in Delhi High Court. DIAC is administered by Delhi HC itself — s.34 challenge venue is Delhi HC by both seat and administration.\n",
+      "sources": [
+        {
+          "label": "Arbitration and Conciliation Act 1996 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MTA4NDE=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
+      "id": "nalsa_designates_lok_adalat",
+      "source": "nalsa",
+      "target": "lok_adalat_generic",
+      "relationship_type": "Designates",
+      "relationship_category": "statutory_ref",
+      "is_binding": true,
+      "is_constitutional": null,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "NALSA organises Lok Adalats at national level under LSA Act 1987 s.19. State and District Legal Services Authorities organise Lok Adalats at state/district level within NALSA's policy framework (see state packs, e.g. tn_relationships.yaml tn_slsa_adr).\n",
+      "sources": [
+        {
+          "label": "Legal Services Authorities Act 1987 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/NzI2",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
+      "id": "tn_slsa_reports_nalsa",
+      "source": "tn_slsa",
+      "target": "nalsa",
+      "relationship_type": "ReportsTo",
+      "relationship_category": "supervisory",
+      "is_binding": true,
+      "is_constitutional": null,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "State Legal Services Authorities function under NALSA's supervisory control (LSA Act 1987 s.6(8)). TN SLSA reports to NALSA on policy, accounts, and receives NALSA grants through this channel.\n",
+      "sources": [
+        {
+          "label": "Legal Services Authorities Act 1987 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/NzI2",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
     {
       "id": "rel_collegium_sc_recommends_sc_judges",
       "source": "collegium_sc",
@@ -40548,6 +41506,94 @@
           "url": "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf",
           "type": "Constitution",
           "accessed_date": "2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": "rel_mop_aptel_primary_funder",
+      "source": "ministry_of_power",
+      "target": "aptel",
+      "relationship_type": "PrimaryFunder",
+      "relationship_category": "funding",
+      "is_binding": null,
+      "is_constitutional": null,
+      "year_established": 2005,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "MoP administers the Electricity Act 2003 under which APTEL was constituted. APTEL is listed as an attached body on the MoP website. Budget demand flows through MoP demand head in Union Budget.\n",
+      "sources": [
+        {
+          "label": "Ministry of Power — Attached & Subordinate Offices (APTEL listed)",
+          "url": "https://powermin.gov.in/en/content/attached-subordinate-offices",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
+      "id": "rel_moca_ncdrc_primary_funder",
+      "source": "ministry_consumer_affairs",
+      "target": "ncdrc",
+      "relationship_type": "PrimaryFunder",
+      "relationship_category": "funding",
+      "is_binding": null,
+      "is_constitutional": null,
+      "year_established": 1988,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "Department of Consumer Affairs (under MoCAF&PD) administers the Consumer Protection Act 2019 under which NCDRC is constituted. NCDRC budget demand flows through that department's demand head.\n",
+      "sources": [
+        {
+          "label": "Ministry of Consumer Affairs — NCDRC (official page)",
+          "url": "https://consumeraffairs.nic.in/ncdrc",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
+      "id": "rel_mca_nclt_primary_funder",
+      "source": "ministry_corporate_affairs",
+      "target": "nclt",
+      "relationship_type": "PrimaryFunder",
+      "relationship_category": "funding",
+      "is_binding": null,
+      "is_constitutional": null,
+      "year_established": 2016,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "MCA administers the Companies Act 2013 under which NCLT was constituted. NCLT is an attached body of MCA; budget demand flows through MCA demand head in Union Budget.\n",
+      "sources": [
+        {
+          "label": "Ministry of Corporate Affairs — Official Website",
+          "url": "https://www.mca.gov.in",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
+      "id": "rel_moefcc_ngt_primary_funder",
+      "source": "ministry_environment",
+      "target": "ngt",
+      "relationship_type": "PrimaryFunder",
+      "relationship_category": "funding",
+      "is_binding": null,
+      "is_constitutional": null,
+      "year_established": 2010,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "MoEFCC administers the NGT Act 2010 under which NGT was constituted. NGT budget demand flows through MoEFCC demand head in Union Budget.\n",
+      "sources": [
+        {
+          "label": "NGT — Official Website (MoEFCC)",
+          "url": "https://greentribunal.gov.in",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
         }
       ]
     },
@@ -41509,13 +42555,19 @@
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": "Permanent bench at Madurai — part of hc_madras",
+      "notes": "Madurai Bench is a permanent bench of the Madras High Court, constituted under CJ administrative order pursuant to Letters Patent (Madras) 1865 and Article 214 of the Constitution of India. Exercises full HC jurisdiction (Original, Appellate, Writ) for 10 southern TN districts per hc_benches_config.py TN_DISTRICT_TO_BENCH: Dindigul, Kanniyakumari, Madurai, Ramanathapuram, Sivaganga, Tenkasi, Thoothukudi, Theni, Tirunelveli, Virudhunagar. TN district routing in tn_relationships.yaml.\n",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "Constitution of India, Article 214",
+          "url": "https://india-code.nic.in/",
+          "type": "Constitution",
+          "accessed_date": "2026-05-18"
         }
       ]
     },
@@ -41531,13 +42583,19 @@
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": "Permanent bench at Tiruchirappalli — part of hc_madras",
+      "notes": "Tiruchirappalli Bench is a permanent bench of the Madras High Court, constituted under CJ administrative order pursuant to Letters Patent (Madras) 1865 and Article 214 of the Constitution of India. Exercises full HC jurisdiction (Original, Appellate, Writ) for 10 central TN districts per hc_benches_config.py TN_DISTRICT_TO_BENCH: Ariyalur, Cuddalore, Karur, Mayiladuthurai, Nagapattinam, Perambalur, Pudukkottai, Thanjavur, Tiruchirappalli, Tiruvarur. TN district routing in tn_relationships.yaml.\n",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "Constitution of India, Article 214",
+          "url": "https://india-code.nic.in/",
+          "type": "Constitution",
+          "accessed_date": "2026-05-18"
         }
       ]
     },

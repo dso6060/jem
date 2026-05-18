@@ -1,0 +1,45 @@
+id: ministry_of_power
+name: Ministry of Power
+name_hindi: विद्युत मंत्रालय
+abbreviation: MoP
+aliases:
+  - MoP
+
+type: ExecutiveBody
+cluster: legislative_executive
+level_of_government: Central
+
+created_year: 1992
+# Ministry of Energy trifurcated on 2 July 1992 into Ministry of Power,
+# Ministry of Coal, and Ministry of Non-Conventional Energy Sources.
+# created_year is ministry-in-current-form date, not lineage origin.
+
+operational_status: Active
+
+statutory_basis: >
+  Government of India (Allocation of Business) Rules, 1961 —
+  Ministry of Power entry; Electricity Act 2003 is the primary
+  legislation administered (APTEL constituted under ss.110–122).
+
+funding:
+  primary_source: Consolidated_Fund_India
+
+data_quality: partial
+data_quality_notes: >
+  created_year 1992 is the trifurcation date of Ministry of Energy;
+  confirm exact gazette notification date if ISO-8601 full date is
+  required by schema. name_hindi unverified against official letterhead —
+  flag if Hindi nomenclature policy requires cross-check.
+  funding block is ministry-level only; budget_figure_crore and
+  budget_year not populated — add from Union Budget Detailed Demands for
+  Grants (MoP demand head) in a separate pass.
+
+sources:
+  - label: "Ministry of Power — Official Website"
+    url: https://powermin.gov.in
+    type: GoIWebsite
+    accessed_date: '2026-05-18'
+  - label: "Ministry of Power — Attached & Subordinate Offices (APTEL listed)"
+    url: https://powermin.gov.in/en/content/attached-subordinate-offices
+    type: GoIWebsite
+    accessed_date: '2026-05-18'
