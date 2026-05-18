@@ -1,0 +1,86 @@
+id: drat
+name: Debt Recovery Appellate Tribunal
+name_hindi: ऋण वसूली अपीलीय अधिकरण
+abbreviation: DRAT
+aliases:
+  - Debts Recovery Appellate Tribunal
+
+type: CentralTribunal
+cluster: tribunals_adr
+level_of_government: Central
+
+jurisdiction_scope:
+  is_all_india: true
+  jurisdiction_types:
+    - appellate
+    - debt_recovery_appeals
+
+created_year: 1993
+operational_status: Active
+
+constitutional_basis: null
+statutory_basis: >-
+  Recovery of Debts Due to Banks and Financial Institutions Act 1993
+  (RDDBFI Act), s.8–18 — hears appeals from DRT orders. Four DRATs:
+  Allahabad, Chennai, Kolkata, Mumbai. Modelled as single central entity.
+
+appointment:
+  nominates: ministry_of_finance
+  recommends: null
+  consulted: []
+  consultation_binding: null
+  formally_appoints: central_government
+  criteria_public: true
+  tenure: "Chairperson: 5 years or age 65, whichever is earlier"
+  reappointment_possible: false
+  removal_authority: central_government
+  removal_requires_parliament: false
+  removal_independent_committee: false
+
+funding:
+  primary_source: Ministry_Budget
+  ministry_responsible: ministry_of_finance
+
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+  conduct_oversight_body: ministry_of_finance
+
+complaint_mechanism:
+  lokpal_jurisdiction: "No"
+  lokpal_jurisdiction_note: Judicial officers; Lokpal Act 2013 excludes.
+  removal_mechanism: >-
+    Removal by Central Government on proved misbehaviour after inquiry
+    (RDDBFI Act 1993, s.11B)
+
+case_volume:
+  data_as_of: null
+  pending_cases: null
+  source_type: AnnualReport
+  source_url: null
+
+judge_strength:
+  data_as_of: null
+  allotted: null
+  appointed: null
+  source_type: DoJ_Report
+  source_url: null
+  notes: 4 DRAT benches; one Chairperson each. Exact figures not verified.
+
+data_quality: partial
+data_quality_notes: >-
+  Modelled as single central entity covering 4 DRAT benches
+  (Allahabad, Chennai, Kolkata, Mumbai). ministry_of_finance assumed
+  present in graph. Case volume and strength data left partial pending
+  official source confirmation.
+
+sources:
+  - label: "RDDBFI Act 1993, s.8–18 — DRAT provisions"
+    url: https://india-code.nic.in/handle/123456789/1573
+    type: CentralAct
+    accessed_date: "2025-01-15"
+  - label: "DFS / Ministry of Finance — DRAT overview"
+    url: https://dfs.gov.in/financial-institutions/drat
+    type: GoIWebsite
+    accessed_date: "2025-01-15"

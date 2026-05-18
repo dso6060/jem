@@ -1,0 +1,33 @@
+id: ministry_communications
+name: Ministry of Communications
+name_hindi: संचार मंत्रालय
+abbreviation: MoC
+aliases:
+  - Ministry of Communications
+  - Department of Telecommunications (nodal for TRAI/TDSAT)
+
+type: ExecutiveBody
+cluster: legislative_executive
+level_of_government: Central
+
+created_year: 2016
+operational_status: Active
+
+statutory_basis: >
+  Government of India (Allocation of Business) Rules, 1961 —
+  Ministry of Communications entry; TRAI Act 1997 and telecom
+  disputes framework administered via DoT.
+
+funding:
+  primary_source: Consolidated_Fund_India
+
+data_quality: partial
+data_quality_notes: >
+  Stub for graph connectivity (Bundle 2). TRAI/TDSAT funding edges.
+  Confirm gazette notification date for current ministry configuration.
+
+sources:
+  - label: Ministry of Communications — Official Website
+    url: https://www.dot.gov.in
+    type: GoIWebsite
+    accessed_date: '2026-05-18'

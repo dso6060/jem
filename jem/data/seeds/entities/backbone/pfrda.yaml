@@ -1,0 +1,89 @@
+id: pfrda
+name: Pension Fund Regulatory and Development Authority
+name_hindi: पेंशन निधि विनियामक और विकास प्राधिकरण
+abbreviation: PFRDA
+aliases:
+  - Pension Fund Regulatory and Development Authority of India
+
+type: RegulatoryBodyQJ
+cluster: regulatory_bodies
+level_of_government: Central
+
+jurisdiction_scope:
+  is_all_india: true
+  jurisdiction_types:
+    - pension_regulation
+    - national_pension_system
+    - pension_fund_oversight
+    - subscriber_protection
+
+created_year: 2003
+operational_status: Active
+
+constitutional_basis: null
+statutory_basis: >-
+  Pension Fund Regulatory and Development Authority Act 2013 (Act 23
+  of 2013), s.3 (establishment). Originally constituted by GoI
+  resolution in 2003; given statutory status by PFRDA Act 2013.
+  Regulates the National Pension System (NPS) for government and
+  private sector subscribers.
+
+appointment:
+  nominates: ministry_of_finance
+  recommends: null
+  consulted: []
+  consultation_binding: null
+  formally_appoints: central_government
+  criteria_public: true
+  tenure: "Chairperson: 5 years or age 65; Whole-time Members: 5 years or age 65"
+  reappointment_possible: false
+  removal_authority: central_government
+  removal_requires_parliament: false
+  removal_independent_committee: true
+
+funding:
+  primary_source: Ministry_Budget
+  ministry_responsible: ministry_of_finance
+
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+  conduct_oversight_body: ministry_of_finance
+
+complaint_mechanism:
+  lokpal_jurisdiction: "No"
+  lokpal_jurisdiction_note: Regulatory body; oversight through DEA/MoF and judicial review.
+  removal_mechanism: >-
+    Removal by Central Government on grounds of misbehaviour or
+    incapacity (PFRDA Act 2013, s.6)
+
+case_volume:
+  data_as_of: null
+  pending_cases: null
+  source_type: AnnualReport
+  source_url: null
+
+judge_strength:
+  data_as_of: null
+  allotted: null
+  appointed: null
+  source_type: AnnualReport
+  source_url: null
+  notes: Member count set by PFRDA Act 2013, s.4.
+
+data_quality: partial
+data_quality_notes: >-
+  PFRDA adjudicatory orders are appealable to SAT (Securities Appellate
+  Tribunal) under PFRDA Act 2013, s.36. Relationship recorded in
+  relationships file. ministry_of_finance (DEA) is responsible ministry.
+
+sources:
+  - label: "PFRDA Act 2013 (Act 23 of 2013)"
+    url: https://india-code.nic.in/handle/123456789/2126
+    type: CentralAct
+    accessed_date: "2025-01-15"
+  - label: "PFRDA official website"
+    url: https://www.pfrda.org.in
+    type: GoIWebsite
+    accessed_date: "2025-01-15"

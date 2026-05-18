@@ -1450,10 +1450,16 @@ def main() -> None:
     dump_rels("ka_relationships.yaml", ka_rels)
     dump_rels("tn_relationships.yaml", tn_rels)
     dump_rels("py_relationships.yaml", py_rels)
+    for rel_name in (
+        "adr_arbitration_relationships.yaml",
+        "central_tribunal_regulator_relationships.yaml",
+    ):
+        rel_seed = SEEDS_REL / rel_name
+        if rel_seed.is_file():
+            shutil.copy2(rel_seed, REL / rel_name)
+
     adr_seed = SEEDS_REL / "adr_arbitration_relationships.yaml"
-    if adr_seed.is_file():
-        shutil.copy2(adr_seed, REL / "adr_arbitration_relationships.yaml")
-    else:
+    if not adr_seed.is_file():
         dump_rels(
             "adr_arbitration_relationships.yaml",
             adr_arbitration_relationships(),

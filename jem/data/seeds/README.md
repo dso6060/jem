@@ -6,3 +6,6 @@ when present, instead of emitting stubs.
 
 Edit seeds when enriching entities; run `python3 scripts/generate_v1_states_bundle.py`
 to refresh `_generated/` outputs. Daily work: `scripts/safe_pipeline.sh` only.
+
+Bundle 2 (central tribunals/regulators): entity seeds under `seeds/entities/backbone/`,
+relationships in `seeds/relationships/central_tribunal_regulator_relationships.yaml`.

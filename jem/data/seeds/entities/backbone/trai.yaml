@@ -1,0 +1,91 @@
+id: trai
+name: Telecom Regulatory Authority of India
+name_hindi: भारतीय दूरसंचार विनियामक प्राधिकरण
+abbreviation: TRAI
+aliases:
+  - Telecom Regulatory Authority
+
+type: RegulatoryBodyQJ
+cluster: regulatory_bodies
+level_of_government: Central
+
+jurisdiction_scope:
+  is_all_india: true
+  jurisdiction_types:
+    - telecom_regulation
+    - broadcasting_regulation
+    - tariff_determination
+    - spectrum_recommendations
+
+created_year: 1997
+operational_status: Active
+
+constitutional_basis: null
+statutory_basis: >-
+  Telecom Regulatory Authority of India Act 1997 (Act 24 of 1997);
+  amended by TRAI (Amendment) Act 2000 which also established TDSAT
+  as a separate appellate body, stripping TRAI of adjudicatory powers
+  and retaining recommendatory / regulatory functions.
+
+appointment:
+  nominates: ministry_communications
+  recommends: null
+  consulted: []
+  consultation_binding: null
+  formally_appoints: central_government
+  criteria_public: true
+  tenure: "Chairperson: 3 years or age 65; Members: 3 years or age 65"
+  reappointment_possible: false
+  removal_authority: central_government
+  removal_requires_parliament: false
+  removal_independent_committee: true
+
+funding:
+  primary_source: Ministry_Budget
+  ministry_responsible: ministry_communications
+
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+  conduct_oversight_body: ministry_communications
+
+complaint_mechanism:
+  lokpal_jurisdiction: "No"
+  lokpal_jurisdiction_note: >-
+    TRAI Members are not public servants under Lokpal Act 2013 per
+    Schedule exclusion; removal mechanism under TRAI Act 1997.
+  removal_mechanism: >-
+    Removal by Central Government on grounds of misbehaviour after
+    inquiry by a Supreme Court judge (TRAI Act 1997, s.5A)
+
+case_volume:
+  data_as_of: null
+  pending_cases: null
+  source_type: AnnualReport
+  source_url: null
+
+judge_strength:
+  data_as_of: null
+  allotted: null
+  appointed: null
+  source_type: AnnualReport
+  source_url: null
+  notes: Regulatory body; "judge_strength" refers to Member strength here.
+
+data_quality: partial
+data_quality_notes: >-
+  ministry_communications entity id assumed present in graph — flag if
+  absent. TRAI orders on tariffs/interconnection are appealable to TDSAT
+  (relationship recorded in relationships file). Case volume not
+  applicable in same sense as tribunals; left partial.
+
+sources:
+  - label: "TRAI Act 1997 (Act 24 of 1997)"
+    url: https://india-code.nic.in/handle/123456789/1907
+    type: CentralAct
+    accessed_date: "2025-01-15"
+  - label: "TRAI official website"
+    url: https://www.trai.gov.in
+    type: GoIWebsite
+    accessed_date: "2025-01-15"

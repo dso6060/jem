@@ -1,0 +1,341 @@
+# JEM relationships — central tribunals & regulators (Bundle 2)
+# Appellate chains and PrimaryFunder edges.
+
+relationships:
+
+  # ── Appellate chains ──────────────────────────────────────────────────────
+
+  - id: rel_nclt_to_nclat_appellate
+    source: nclt
+    target: nclat
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Companies Act 2013, s.410 — appeals from NCLT orders lie to NCLAT; IBC 2016, s.61 — insolvency appeals"
+    year_established: 2016
+    notes: >-
+      NCLAT is the appellate tribunal for all NCLT orders under the Companies
+      Act 2013 and the Insolvency and Bankruptcy Code 2016. CCI orders also
+      appeal to NCLAT under Competition Act 2002, s.53A (via Finance Act 2017).
+    data_quality: verified
+    sources:
+      - label: "Companies Act 2013, s.410"
+        url: https://india-code.nic.in/handle/123456789/2197
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_cci_to_nclat_appellate
+    source: cci
+    target: nclat
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Competition Act 2002, s.53A — appeals from CCI orders lie to NCLAT (amended by Finance Act 2017, replacing erstwhile COMPAT)"
+    year_established: 2017
+    notes: >-
+      Prior to Finance Act 2017, appeals from CCI went to Competition
+      Appellate Tribunal (COMPAT). COMPAT was dissolved and jurisdiction
+      transferred to NCLAT.
+    data_quality: verified
+    sources:
+      - label: "Competition Act 2002, s.53A (as amended by Finance Act 2017)"
+        url: https://india-code.nic.in/handle/123456789/2115
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_trai_to_tdsat_appellate
+    source: trai
+    target: tdsat
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "TRAI Act 1997, s.14(a) — any person aggrieved by TRAI order or direction may appeal to TDSAT"
+    year_established: 2000
+    notes: >-
+      TRAI (Amendment) Act 2000 established TDSAT to hear appeals from
+      TRAI orders and adjudicate telecom disputes, separating TRAI's
+      regulatory and adjudicatory roles.
+    data_quality: verified
+    sources:
+      - label: "TRAI Act 1997, s.14 (as amended 2000)"
+        url: https://india-code.nic.in/handle/123456789/1907
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_sebi_to_sat_appellate
+    source: sebi
+    target: sat
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "SEBI Act 1992, s.15Z — any person aggrieved by SEBI order may appeal to Securities Appellate Tribunal (SAT)"
+    year_established: 1995
+    notes: SAT (existing entity) hears appeals from SEBI adjudication orders.
+    data_quality: verified
+    sources:
+      - label: "SEBI Act 1992, s.15Z"
+        url: https://india-code.nic.in/handle/123456789/2080
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_irdai_to_sat_appellate
+    source: irdai
+    target: sat
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "IRDAI Act 1999, s.18A — appeals from IRDAI orders lie to SAT (Securities Appellate Tribunal, jurisdiction extended by Finance Act 2010)"
+    year_established: 2010
+    notes: >-
+      SAT jurisdiction extended to IRDAI appeals by Finance Act 2010,
+      amending IRDAI Act 1999.
+    data_quality: verified
+    sources:
+      - label: "IRDAI Act 1999, s.18A (as amended)"
+        url: https://india-code.nic.in/handle/123456789/2039
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_pfrda_to_sat_appellate
+    source: pfrda
+    target: sat
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "PFRDA Act 2013, s.36 — appeals from PFRDA adjudicatory orders lie to SAT"
+    year_established: 2013
+    notes: SAT jurisdiction extended to PFRDA appeals by PFRDA Act 2013.
+    data_quality: verified
+    sources:
+      - label: "PFRDA Act 2013, s.36"
+        url: https://india-code.nic.in/handle/123456789/2126
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_aft_to_sc_appellate
+    source: aft
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30 — appeals from AFT lie to the Supreme Court of India only; High Courts explicitly excluded"
+    year_established: 2009
+    notes: >-
+      AFT Act 2007, s.30 confines further appeal to the Supreme Court.
+      High Courts have no appellate or writ jurisdiction over AFT orders
+      (this was upheld by SC in Union of India v. Major General Shri Kant
+      Sharma). This is a deliberate statutory design to centralise appeals.
+    data_quality: verified
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_drt_to_drat_appellate
+    source: drt
+    target: drat
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18 — any person aggrieved by DRT order may appeal to DRAT"
+    year_established: 1993
+    notes: Appeal must be filed within 45 days; pre-deposit condition applies.
+    data_quality: verified
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  # ── PrimaryFunder edges (Ministry → Entity) ───────────────────────────────
+
+  - id: rel_mca_funds_nclat
+    source: ministry_corporate_affairs
+    target: nclat
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Companies Act 2013, s.412(4) — expenses of NCLAT charged to Consolidated Fund of India; MCA administers"
+    year_established: 2016
+    data_quality: partial
+    notes: ministry_corporate_affairs entity id assumed present in graph; flag if absent.
+    sources:
+      - label: "Companies Act 2013, s.412(4)"
+        url: https://india-code.nic.in/handle/123456789/2197
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_dot_funds_tdsat
+    source: ministry_communications
+    target: tdsat
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "TRAI Act 1997, s.15 — expenses of TDSAT from Consolidated Fund of India; DoT administers"
+    year_established: 2000
+    data_quality: partial
+    notes: ministry_communications entity id assumed present in graph; flag if absent.
+    sources:
+      - label: "TRAI Act 1997, s.15"
+        url: https://india-code.nic.in/handle/123456789/1907
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_mod_funds_aft
+    source: ministry_defence
+    target: aft
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "AFT Act 2007, s.22 — expenses charged to Consolidated Fund of India; MoD is administrative ministry"
+    year_established: 2009
+    data_quality: partial
+    notes: ministry_defence entity id assumed present in graph; flag if absent.
+    sources:
+      - label: "AFT Act 2007, s.22"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_mof_funds_drt
+    source: ministry_of_finance
+    target: drt
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.6 — expenses of Tribunals from Consolidated Fund of India; MoF/DFS administers"
+    year_established: 1993
+    data_quality: partial
+    notes: ministry_of_finance entity id assumed present in graph.
+    sources:
+      - label: "RDDBFI Act 1993, s.6"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_mof_funds_drat
+    source: ministry_of_finance
+    target: drat
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.10 — DRAT expenses from Consolidated Fund of India; MoF/DFS administers"
+    year_established: 1993
+    data_quality: partial
+    sources:
+      - label: "RDDBFI Act 1993, s.10"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_railways_funds_rct
+    source: ministry_railways
+    target: rct
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Railway Claims Tribunal Act 1987, s.3(5) — expenses charged to Consolidated Fund of India; Ministry of Railways administers"
+    year_established: 1989
+    data_quality: partial
+    notes: ministry_railways entity id assumed present in graph; flag if absent.
+    sources:
+      - label: "Railway Claims Tribunal Act 1987, s.3"
+        url: https://india-code.nic.in/handle/123456789/1877
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_dot_funds_trai
+    source: ministry_communications
+    target: trai
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "TRAI Act 1997, s.14A — TRAI Fund; DoT is administrative ministry for grant-in-aid and budget purposes"
+    year_established: 1997
+    data_quality: partial
+    notes: TRAI also receives fees; ministry_communications entity id assumed present in graph.
+    sources:
+      - label: "TRAI Act 1997, s.14A"
+        url: https://india-code.nic.in/handle/123456789/1907
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_mof_funds_sebi
+    source: ministry_of_finance
+    target: sebi
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "SEBI Act 1992, s.13 — SEBI Fund; MoF/DEA is responsible ministry; SEBI primarily self-funded via fees but budget line under DEA"
+    year_established: 1992
+    data_quality: partial
+    sources:
+      - label: "SEBI Act 1992, s.13"
+        url: https://india-code.nic.in/handle/123456789/2080
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_mca_funds_cci
+    source: ministry_corporate_affairs
+    target: cci
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Competition Act 2002, s.10(5) — CCI expenses from Consolidated Fund of India; MCA administers"
+    year_established: 2009
+    data_quality: partial
+    sources:
+      - label: "Competition Act 2002, s.10"
+        url: https://india-code.nic.in/handle/123456789/2115
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_mof_funds_irdai
+    source: ministry_of_finance
+    target: irdai
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "IRDAI Act 1999, s.16 — IRDAI Fund; MoF/DEA is responsible ministry"
+    year_established: 1999
+    data_quality: partial
+    sources:
+      - label: "IRDAI Act 1999, s.16"
+        url: https://india-code.nic.in/handle/123456789/2039
+        type: CentralAct
+        accessed_date: "2025-01-15"
+
+  - id: rel_mof_funds_pfrda
+    source: ministry_of_finance
+    target: pfrda
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "PFRDA Act 2013, s.16 — PFRDA Fund; MoF/DEA is responsible ministry"
+    year_established: 2013
+    data_quality: partial
+    sources:
+      - label: "PFRDA Act 2013, s.16"
+        url: https://india-code.nic.in/handle/123456789/2126
+        type: CentralAct
+        accessed_date: "2025-01-15"

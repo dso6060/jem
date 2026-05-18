@@ -1,0 +1,87 @@
+id: tdsat
+name: Telecom Disputes Settlement and Appellate Tribunal
+name_hindi: दूरसंचार विवाद निपटान और अपीलीय अधिकरण
+abbreviation: TDSAT
+aliases:
+  - Telecom Disputes Settlement & Appellate Tribunal
+
+type: CentralTribunal
+cluster: tribunals_adr
+level_of_government: Central
+
+jurisdiction_scope:
+  is_all_india: true
+  jurisdiction_types:
+    - appellate
+    - telecom_disputes
+    - broadcasting_disputes
+
+created_year: 2000
+operational_status: Active
+
+constitutional_basis: null
+statutory_basis: >-
+  Telecom Regulatory Authority of India Act 1997, s.14–18 (as amended
+  by TRAI (Amendment) Act 2000); Broadcasting disputes under same Act
+  (s.14(a)(ii)); internet and other telecom services included via
+  DoT policy directions.
+
+appointment:
+  nominates: ministry_communications
+  recommends: null
+  consulted: []
+  consultation_binding: null
+  formally_appoints: central_government
+  criteria_public: true
+  tenure: "Chairperson: 3 years or age 70; Members: 3 years or age 65"
+  reappointment_possible: false
+  removal_authority: central_government
+  removal_requires_parliament: false
+  removal_independent_committee: true
+
+funding:
+  primary_source: Ministry_Budget
+  ministry_responsible: ministry_communications
+
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+  conduct_oversight_body: ministry_communications
+
+complaint_mechanism:
+  lokpal_jurisdiction: "No"
+  lokpal_jurisdiction_note: Judicial members; Lokpal Act 2013 excludes judicial officers.
+  removal_mechanism: >-
+    Central Government removal on grounds of misbehaviour after inquiry
+    (TRAI Act 1997, s.17)
+
+case_volume:
+  data_as_of: null
+  pending_cases: null
+  source_type: AnnualReport
+  source_url: null
+
+judge_strength:
+  data_as_of: null
+  allotted: null
+  appointed: null
+  source_type: DoJ_Report
+  source_url: null
+  notes: Strength set by Central Government; exact current figures not verified.
+
+data_quality: partial
+data_quality_notes: >-
+  Entity created from statutory sources. ministry_communications entity id
+  assumed present in graph — flag if absent and use correct id.
+  Case volume and judge strength left partial pending official data.
+
+sources:
+  - label: "TRAI Act 1997, s.14 — establishment and jurisdiction of TDSAT"
+    url: https://india-code.nic.in/handle/123456789/1907
+    type: CentralAct
+    accessed_date: "2025-01-15"
+  - label: "TDSAT official website"
+    url: https://tdsat.gov.in
+    type: GoIWebsite
+    accessed_date: "2025-01-15"
