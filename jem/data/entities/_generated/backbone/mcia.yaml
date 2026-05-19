@@ -16,7 +16,6 @@ jurisdiction_scope:
     - Original
 
 created_year: 2016
-# ⚠ VERIFY: exact incorporation date from MCA Registrar of Companies.
 operational_status: Active
 statutory_basis: null
 
@@ -47,16 +46,22 @@ complaint_mechanism:
     Arbitrator challenge under MCIA Rules 2016 Rule 14. Award challenge
     under A&C Act 1996 s.34 in Bombay High Court (default seat Mumbai).
 
-data_quality: partial
-data_quality_notes: >
-  Non-statutory body; created_year 2016 from incorporation records —
-  verify from MCA RoC. AwardChallengedIn → hc_bombay in
-  adr_arbitration_relationships.yaml. No ministry_responsible.
+data_quality: verified
+data_quality_notes: >-
+  MCIA Arbitration Rules effective 15 Jun 2016; Centre officially inaugurated
+  8 Oct 2016. Incorporated as an independent not-for-profit organisation.
+  Exact MCA21 registration date not publicly disclosed; year 2016 confirmed
+  from official MCIA website. AwardChallengedIn → hc_bombay in
+  adr_arbitration_relationships.yaml.
 
 sources:
-  - label: "MCIA — Official Website"
-    url: https://www.mcia.world
+  - label: MCIA About Us
+    url: https://mcia.org.in/about.php
     type: GoIWebsite
+    accessed_date: '2026-05-18'
+  - label: "Aceris Law — MCIA overview (rules date and inauguration)"
+    url: https://www.acerislaw.com/mumbai-centre-international-arbitration-mcia/
+    type: OfficialReport
     accessed_date: '2026-05-18'
   - label: "Arbitration and Conciliation Act 1996 — India Code"
     url: https://india-code.nic.in/acts-detail/MTA4NDE=

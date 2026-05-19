@@ -58,17 +58,12 @@ complaint_mechanism:
   removal_mechanism: Abolished; no removal mechanism applicable.
 
 data_quality: partial
-data_quality_notes: >-
-  Abolished by Tribunals Reforms (Rationalisation and Conditions of
-  Service) Ordinance 2021, later enacted as Tribunals Reforms Act 2021.
-  Patent appeal jurisdiction transferred to High Courts (Patents Act
-  1970, s.117A as amended). Trade mark appeal jurisdiction transferred
-  to High Courts (Trade Marks Act 1999, s.91 as amended). Geographical
-  Indications appeals similarly transferred to High Courts.
-  Do NOT create AppealableTo edges for this abolished entity.
-  ministry_of_finance was the last funder (via DIPP/DPIIT line, but
-  budgeted under MoF per session context); flag if ministry id needs
-  correction to ministry_commerce_industry for DPIIT line.
+data_quality_notes: >
+  Patent appeals transferred to HC (Patents Act 1970 s.117A as amended
+  by TRA 2021). Trade mark appeals transferred to HC (TM Act 1999 s.91
+  as amended by TRA 2021). No appellate chain from ipab post-abolition.
+  Entity retained as abolished node for historical completeness; no
+  AppealableTo edges should be added.
 
 sources:
   - label: "Tribunals Reforms Act 2021, s.3(3) and Second Schedule — abolition of IPAB"

@@ -339,3 +339,67 @@ relationships:
         url: https://india-code.nic.in/handle/123456789/2126
         type: CentralAct
         accessed_date: "2025-01-15"
+
+  # ── APPELLATE CHAIN: SC-tier additions ──────────────────────────────────
+
+  - id: rel_nclat_appellate_sc
+    source: nclat
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    statutory_basis: "Companies Act 2013, s.423"
+    is_binding: true
+    is_constitutional: false
+    notes: >
+      NCLAT orders are appealable to the Supreme Court of India on a question
+      of law. Final appellate tier for the NCLT → NCLAT → SC
+      corporate-insolvency and company-law chain.
+    data_quality: verified
+    sources:
+      - label: "Companies Act 2013 — Section 423 (bare act, IndiaCode)"
+        url: https://www.indiacode.nic.in/handle/123456789/2114
+        type: CentralAct
+        accessed_date: "2025-01-01"
+
+  - id: rel_drat_appellate_sc
+    source: drat
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    statutory_basis: "Constitution of India, Arts. 226 & 227"
+    is_binding: false
+    is_constitutional: true
+    notes: >
+      No statutory appeal lies from DRAT under the Recovery of Debts and
+      Bankruptcy Act 1993. Review is available only through High Court writ
+      jurisdiction under Arts. 226/227 of the Constitution. This edge
+      represents the de facto review path; it is writ-only, not a
+      direct statutory appeal.
+    data_quality: partial
+    data_quality_notes: >
+      Writ-only path — RDBA 1993 creates no direct appeal from DRAT to SC.
+      Edge retained for appellate-chain completeness with partial flag.
+    sources:
+      - label: "Constitution of India — Articles 226 and 227"
+        url: https://www.indiacode.nic.in/handle/123456789/1
+        type: Constitution
+        accessed_date: "2025-01-01"
+
+  - id: rel_tdsat_appellate_sc
+    source: tdsat
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    statutory_basis: "Telecom Regulatory Authority of India Act 1997, s.18"
+    is_binding: true
+    is_constitutional: false
+    notes: >
+      TDSAT orders are appealable to the Supreme Court of India on a question
+      of law. Final appellate tier for the TRAI → TDSAT → SC
+      telecom-regulatory chain.
+    data_quality: verified
+    sources:
+      - label: "TRAI Act 1997 — Section 18 (bare act, IndiaCode)"
+        url: https://www.indiacode.nic.in/handle/123456789/1546
+        type: CentralAct
+        accessed_date: "2025-01-01"

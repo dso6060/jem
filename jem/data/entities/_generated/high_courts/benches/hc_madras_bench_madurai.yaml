@@ -16,12 +16,17 @@ jurisdiction_scope:
     - Appellate
     - Writ
 
-created_year: 1948
-# ⚠ VERIFY: confirm from Madras HC gazette notification / admin order.
+created_year: 2004
 operational_status: Active
 
 constitutional_basis: "Constitution of India, Article 214"
-statutory_basis: "High Courts Act 1861 — bench constituted by CJ administrative order under Letters Patent 1865"
+statutory_basis: >-
+  Madras High Court (Establishment of a Permanent Bench at Madurai) Order,
+  2004, issued under States Re-organisation Act, 1956, s.51(2); notified
+  06.07.2004, brought into force 24.07.2004. Inaugurated 24 Jul 2004 by
+  CJI R.C. Lahoti, presided by CJ B. Subashan Reddy. Original jurisdiction:
+  14 districts (Nagapattinam and Perambalur restored to principal seat by
+  Madras HC Permanent Bench Madurai Amendment Order, 2009).
 
 parent_hc: hc_madras
 
@@ -88,17 +93,21 @@ judge_strength:
     per-bench sanctioned allocation. appointed = CJ roster count for
     Madurai Bench at snapshot date.
 
-data_quality: partial
-data_quality_notes: >
-  judge_strength source_type corrected to HC_Report (DoJ reports show only
-  parent HC totals, not bench breakdown). allotted null by design.
-  created_year 1948 unverified — requires Madras HC gazette / admin order.
+data_quality: verified
+data_quality_notes: >-
+  Stub year 1948 referred to pre-independence circuit sittings — corrected
+  to 2004 (permanent bench). Presidential Order notified 06 Jul 2004;
+  bench operational from 24 Jul 2004. allotted null by design (parent HC pool).
 
 sources:
-  - label: "India Code — Constitution & Acts"
-    url: https://india-code.nic.in/
+  - label: Madras HC Official History Page
+    url: https://hcmadras.tn.nic.in/mashist.html
     type: GoIWebsite
-    accessed_date: '2026-05-13'
+    accessed_date: '2026-05-18'
+  - label: e-Committee Supreme Court — High Court of Madras profile
+    url: https://ecommitteesci.gov.in/division/high-court-of-madras/
+    type: GoIWebsite
+    accessed_date: '2026-05-18'
   - label: "Madras High Court — Official Website"
     url: https://www.hcmadras.tn.nic.in/
     type: GoIWebsite

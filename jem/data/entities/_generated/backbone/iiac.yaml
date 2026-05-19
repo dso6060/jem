@@ -1,10 +1,10 @@
-id: ndiac
-name: New Delhi International Arbitration Centre
-name_hindi: नई दिल्ली अन्तर्राष्ट्रीय मध्यस्थता केन्द्र
-abbreviation: NDIAC
+id: iiac
+name: India International Arbitration Centre
+name_hindi: भारत अंतर्राष्ट्रीय मध्यस्थता केंद्र
+abbreviation: IIAC
 aliases:
-  - IIAC
-  - India International Arbitration Centre
+  - NDIAC
+  - New Delhi International Arbitration Centre
   - ICADR
 
 type: ArbitralInstitution
@@ -19,7 +19,10 @@ jurisdiction_scope:
 created_year: 2019
 operational_status: Active
 
-statutory_basis: "New Delhi International Arbitration Centre Act 2019, Section 3"
+statutory_basis: >-
+  New Delhi International Arbitration Centre Act, 2019 (Act No. 17 of 2019),
+  as amended by the New Delhi International Arbitration Centre (Amendment)
+  Act, 2022 (Act No. 23 of 2022); rename to IIAC effective 27 January 2023.
 
 appointment:
   nominates: central_government
@@ -37,8 +40,6 @@ appointment:
 funding:
   primary_source: Statutory_Fund
   ministry_responsible: ministry_law_justice
-  # NDIAC Fund: Central Government grants + party fees + arbitrator fees.
-  # ⚠ VERIFY: confirm entity id 'ministry_law_justice' exists in graph.
 
 audit:
   audited_by: cag_india
@@ -51,19 +52,20 @@ complaint_mechanism:
     Arbitrator challenge under A&C Act 1996 s.13. Award challenge under
     A&C Act 1996 s.34 in Delhi High Court.
 
-data_quality: partial
-data_quality_notes: >
-  Alias 'IIAC' used informally — verify if NDIAC Act 2019 has been amended
-  to rename; update name/id/statutory_basis if confirmed.
-  Funding Statutory_Fund reflects hybrid model; update to Mixed once
-  self-sustaining. AwardChallengedIn → hc_delhi in
-  adr_arbitration_relationships.yaml. ministry_responsible
-  'ministry_law_justice' assumed — verify in graph.
+data_quality: verified
+data_quality_notes: >-
+  Renamed from NDIAC to IIAC by Act No. 23 of 2022, in force 27 Jan 2023.
+  Former id 'ndiac' retained as alias. File renamed ndiac.yaml → iiac.yaml.
+  AwardChallengedIn → hc_delhi in adr_arbitration_relationships.yaml.
 
 sources:
   - label: "New Delhi International Arbitration Centre Act 2019 — India Code"
     url: https://india-code.nic.in/acts-detail/MjMyMDM=
     type: CentralAct
+    accessed_date: '2026-05-18'
+  - label: IIAC Official Statutes Page
+    url: https://indiaiac.org/arbitration/about_act
+    type: GoIWebsite
     accessed_date: '2026-05-18'
   - label: "Ministry of Law and Justice — NDIAC"
     url: https://doj.gov.in/acts-rules/new-delhi-international-arbitration-centre-act-2019

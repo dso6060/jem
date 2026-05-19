@@ -1,0 +1,82 @@
+relationships:
+
+  # ── Consumer commission appellate chain (CPA 2019 s.51) ────────────────────
+
+  - id: rel_mh_scdrc_ncdrc_appellate
+    source: mh_scdrc
+    target: ncdrc
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Consumer Protection Act 2019, s.51"
+    year_established: 2019
+    notes: >
+      Any person aggrieved by an order of the SCDRC in exercise of its
+      pecuniary jurisdiction may appeal to the NCDRC. Limitation: 30 days
+      from date of order (CPA 2019 s.51(2)), condonable for sufficient cause.
+    data_quality: verified
+    sources:
+      - label: "Consumer Protection Act 2019, s.51"
+        url: https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019
+        type: CentralAct
+        accessed_date: "2026-05-18"
+
+  - id: rel_dl_scdrc_ncdrc_appellate
+    source: dl_scdrc
+    target: ncdrc
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Consumer Protection Act 2019, s.51"
+    year_established: 2019
+    notes: "Same appellate chain as other SCDRCs. DL is UT with legislature."
+    data_quality: verified
+    sources:
+      - label: "Consumer Protection Act 2019, s.51"
+        url: https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019
+        type: CentralAct
+        accessed_date: "2026-05-18"
+
+  - id: rel_ka_scdrc_ncdrc_appellate
+    source: ka_scdrc
+    target: ncdrc
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Consumer Protection Act 2019, s.51"
+    year_established: 2019
+    data_quality: verified
+    sources:
+      - label: "Consumer Protection Act 2019, s.51"
+        url: https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019
+        type: CentralAct
+        accessed_date: "2026-05-18"
+
+  # ── NHRC → Supreme Court (PHRA 1993 s.18) ──────────────────────────────────
+  # AppealableTo: closest available type; court-access pathway, not standard appeal.
+
+  - id: rel_nhrc_sc_court_access
+    source: nhrc
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: false
+    is_constitutional: false
+    statutory_basis: "Protection of Human Rights Act 1993, s.18"
+    year_established: 1993
+    notes: >
+      PHRA 1993 s.18: NHRC may approach the Supreme Court or High Court to present
+      submissions in ongoing proceedings involving human rights allegations, or
+      recommend transfer of court proceedings. Not a conventional inter-party
+      statutory appeal; is_binding false reflects advisory nature of NHRC findings.
+    data_quality: partial
+    contested_note: >
+      Court-access / submissions pathway, not a standard appellate step.
+    sources:
+      - label: "Protection of Human Rights Act 1993, s.18"
+        url: https://nhrc.nic.in/sites/default/files/PHRA.pdf
+        type: CentralAct
+        accessed_date: "2026-05-18"

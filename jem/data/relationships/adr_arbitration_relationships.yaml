@@ -6,9 +6,9 @@
 relationships:
 
 # ── Funding ──────────────────────────────────────────────────────────────────
-- id: moflj_funds_ndiac
+- id: moflj_funds_iiac
   source: ministry_law_justice
-  target: ndiac
+  target: iiac
   relationship_type: PrimaryFunder
   relationship_category: funding
   is_binding: true
@@ -43,8 +43,8 @@ relationships:
     accessed_date: '2026-05-18'
 
 # ── Award challenge — appellate chain ────────────────────────────────────────
-- id: ndiac_award_challenged_hc_delhi
-  source: ndiac
+- id: iiac_award_challenged_hc_delhi
+  source: iiac
   target: hc_delhi
   relationship_type: AwardChallengedIn
   relationship_category: appellate_chain

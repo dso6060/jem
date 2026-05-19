@@ -7,44 +7,23 @@ relationships:
   relationship_category: statutory_ref
   is_binding: true
   notes: >
-    Madurai Bench is a permanent bench of the Madras High Court, constituted
-    under CJ administrative order pursuant to Letters Patent (Madras) 1865 and
-    Article 214 of the Constitution of India. Exercises full HC jurisdiction
-    (Original, Appellate, Writ) for 10 southern TN districts per
-    hc_benches_config.py TN_DISTRICT_TO_BENCH: Dindigul, Kanniyakumari, Madurai,
-    Ramanathapuram, Sivaganga, Tenkasi, Thoothukudi, Theni, Tirunelveli,
-    Virudhunagar. TN district routing in tn_relationships.yaml.
-  data_quality: partial
+    Madurai Bench is the sole permanent bench of the Madras High Court (est.
+    2004). Exercises full HC jurisdiction for southern and central TN districts
+    including: Ariyalur, Cuddalore, Dindigul, Kanniyakumari, Karur, Madurai,
+    Mayiladuthurai, Nagapattinam, Perambalur, Pudukkottai, Ramanathapuram,
+    Sivaganga, Tenkasi, Thanjavur, Theni, Thoothukudi, Tiruchirappalli,
+    Tirunelveli, Tiruvarur, Virudhunagar. Former erroneous
+    hc_madras_bench_tiruchirappalli entity removed; districts re-pointed here.
+  data_quality: verified
   sources:
   - &id001
     label: India Code — Constitution & Acts
     url: https://india-code.nic.in/
     type: GoIWebsite
     accessed_date: '2026-05-13'
-  - label: Constitution of India, Article 214
-    url: https://india-code.nic.in/
-    type: Constitution
-    accessed_date: '2026-05-18'
-- id: hc_madras_bench_tiruchirappalli_bench_of_hc_madras
-  source: hc_madras_bench_tiruchirappalli
-  target: hc_madras
-  relationship_type: BenchOf
-  relationship_category: statutory_ref
-  is_binding: true
-  notes: >
-    Tiruchirappalli Bench is a permanent bench of the Madras High Court,
-    constituted under CJ administrative order pursuant to Letters Patent
-    (Madras) 1865 and Article 214 of the Constitution of India. Exercises full
-    HC jurisdiction (Original, Appellate, Writ) for 10 central TN districts per
-    hc_benches_config.py TN_DISTRICT_TO_BENCH: Ariyalur, Cuddalore, Karur,
-    Mayiladuthurai, Nagapattinam, Perambalur, Pudukkottai, Thanjavur,
-    Tiruchirappalli, Tiruvarur. TN district routing in tn_relationships.yaml.
-  data_quality: partial
-  sources:
-  - *id001
-  - label: Constitution of India, Article 214
-    url: https://india-code.nic.in/
-    type: Constitution
+  - label: Madras HC Official History — Madurai Bench
+    url: https://hcmadras.tn.nic.in/mashist.html
+    type: GoIWebsite
     accessed_date: '2026-05-18'
 - id: hc_bombay_bench_nagpur_bench_of_hc_bombay
   source: hc_bombay_bench_nagpur

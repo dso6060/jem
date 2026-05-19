@@ -64,18 +64,18 @@ relationships:
   data_quality: partial
   sources:
   - *id001
-- id: tn_district_ariyalur_appealable_hc_madras_bench_tiruchirappalli
+- id: tn_district_ariyalur_appealable_hc_madras_bench_madurai
   source: tn_district_court_ariyalur
-  target: hc_madras_bench_tiruchirappalli
+  target: hc_madras_bench_madurai
   relationship_type: AppealableTo
   relationship_category: appellate_chain
   is_binding: true
-  notes: District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)
+  notes: District court appeals to hc_madras_bench_madurai (Madras HC / bench)
   data_quality: partial
   sources:
   - *id001
-- id: tn_hc_madras_bench_tiruchirappalli_supervise_ariyalur
-  source: hc_madras_bench_tiruchirappalli
+- id: tn_hc_madras_bench_madurai_supervise_ariyalur
+  source: hc_madras_bench_madurai
   target: tn_district_court_ariyalur
   relationship_type: AdministrativeSupervision
   relationship_category: supervisory
@@ -144,18 +144,18 @@ relationships:
   data_quality: partial
   sources:
   - *id001
-- id: tn_district_cuddalore_appealable_hc_madras_bench_tiruchirappalli
+- id: tn_district_cuddalore_appealable_hc_madras_bench_madurai
   source: tn_district_court_cuddalore
-  target: hc_madras_bench_tiruchirappalli
+  target: hc_madras_bench_madurai
   relationship_type: AppealableTo
   relationship_category: appellate_chain
   is_binding: true
-  notes: District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)
+  notes: District court appeals to hc_madras_bench_madurai (Madras HC / bench)
   data_quality: partial
   sources:
   - *id001
-- id: tn_hc_madras_bench_tiruchirappalli_supervise_cuddalore
-  source: hc_madras_bench_tiruchirappalli
+- id: tn_hc_madras_bench_madurai_supervise_cuddalore
+  source: hc_madras_bench_madurai
   target: tn_district_court_cuddalore
   relationship_type: AdministrativeSupervision
   relationship_category: supervisory
@@ -264,18 +264,18 @@ relationships:
   data_quality: partial
   sources:
   - *id001
-- id: tn_district_karur_appealable_hc_madras_bench_tiruchirappalli
+- id: tn_district_karur_appealable_hc_madras_bench_madurai
   source: tn_district_court_karur
-  target: hc_madras_bench_tiruchirappalli
+  target: hc_madras_bench_madurai
   relationship_type: AppealableTo
   relationship_category: appellate_chain
   is_binding: true
-  notes: District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)
+  notes: District court appeals to hc_madras_bench_madurai (Madras HC / bench)
   data_quality: partial
   sources:
   - *id001
-- id: tn_hc_madras_bench_tiruchirappalli_supervise_karur
-  source: hc_madras_bench_tiruchirappalli
+- id: tn_hc_madras_bench_madurai_supervise_karur
+  source: hc_madras_bench_madurai
   target: tn_district_court_karur
   relationship_type: AdministrativeSupervision
   relationship_category: supervisory
@@ -344,18 +344,18 @@ relationships:
   data_quality: partial
   sources:
   - *id001
-- id: tn_district_mayiladuthurai_appealable_hc_madras_bench_tiruchirappalli
+- id: tn_district_mayiladuthurai_appealable_hc_madras_bench_madurai
   source: tn_district_court_mayiladuthurai
-  target: hc_madras_bench_tiruchirappalli
+  target: hc_madras_bench_madurai
   relationship_type: AppealableTo
   relationship_category: appellate_chain
   is_binding: true
-  notes: District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)
+  notes: District court appeals to hc_madras_bench_madurai (Madras HC / bench)
   data_quality: partial
   sources:
   - *id001
-- id: tn_hc_madras_bench_tiruchirappalli_supervise_mayiladuthurai
-  source: hc_madras_bench_tiruchirappalli
+- id: tn_hc_madras_bench_madurai_supervise_mayiladuthurai
+  source: hc_madras_bench_madurai
   target: tn_district_court_mayiladuthurai
   relationship_type: AdministrativeSupervision
   relationship_category: supervisory
@@ -364,18 +364,18 @@ relationships:
   data_quality: partial
   sources:
   - *id001
-- id: tn_district_nagapattinam_appealable_hc_madras_bench_tiruchirappalli
+- id: tn_district_nagapattinam_appealable_hc_madras_bench_madurai
   source: tn_district_court_nagapattinam
-  target: hc_madras_bench_tiruchirappalli
+  target: hc_madras_bench_madurai
   relationship_type: AppealableTo
   relationship_category: appellate_chain
   is_binding: true
-  notes: District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)
+  notes: District court appeals to hc_madras_bench_madurai (Madras HC / bench)
   data_quality: partial
   sources:
   - *id001
-- id: tn_hc_madras_bench_tiruchirappalli_supervise_nagapattinam
-  source: hc_madras_bench_tiruchirappalli
+- id: tn_hc_madras_bench_madurai_supervise_nagapattinam
+  source: hc_madras_bench_madurai
   target: tn_district_court_nagapattinam
   relationship_type: AdministrativeSupervision
   relationship_category: supervisory
@@ -424,18 +424,18 @@ relationships:
   data_quality: partial
   sources:
   - *id001
-- id: tn_district_perambalur_appealable_hc_madras_bench_tiruchirappalli
+- id: tn_district_perambalur_appealable_hc_madras_bench_madurai
   source: tn_district_court_perambalur
-  target: hc_madras_bench_tiruchirappalli
+  target: hc_madras_bench_madurai
   relationship_type: AppealableTo
   relationship_category: appellate_chain
   is_binding: true
-  notes: District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)
+  notes: District court appeals to hc_madras_bench_madurai (Madras HC / bench)
   data_quality: partial
   sources:
   - *id001
-- id: tn_hc_madras_bench_tiruchirappalli_supervise_perambalur
-  source: hc_madras_bench_tiruchirappalli
+- id: tn_hc_madras_bench_madurai_supervise_perambalur
+  source: hc_madras_bench_madurai
   target: tn_district_court_perambalur
   relationship_type: AdministrativeSupervision
   relationship_category: supervisory
@@ -444,18 +444,18 @@ relationships:
   data_quality: partial
   sources:
   - *id001
-- id: tn_district_pudukkottai_appealable_hc_madras_bench_tiruchirappalli
+- id: tn_district_pudukkottai_appealable_hc_madras_bench_madurai
   source: tn_district_court_pudukkottai
-  target: hc_madras_bench_tiruchirappalli
+  target: hc_madras_bench_madurai
   relationship_type: AppealableTo
   relationship_category: appellate_chain
   is_binding: true
-  notes: District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)
+  notes: District court appeals to hc_madras_bench_madurai (Madras HC / bench)
   data_quality: partial
   sources:
   - *id001
-- id: tn_hc_madras_bench_tiruchirappalli_supervise_pudukkottai
-  source: hc_madras_bench_tiruchirappalli
+- id: tn_hc_madras_bench_madurai_supervise_pudukkottai
+  source: hc_madras_bench_madurai
   target: tn_district_court_pudukkottai
   relationship_type: AdministrativeSupervision
   relationship_category: supervisory
@@ -564,18 +564,18 @@ relationships:
   data_quality: partial
   sources:
   - *id001
-- id: tn_district_thanjavur_appealable_hc_madras_bench_tiruchirappalli
+- id: tn_district_thanjavur_appealable_hc_madras_bench_madurai
   source: tn_district_court_thanjavur
-  target: hc_madras_bench_tiruchirappalli
+  target: hc_madras_bench_madurai
   relationship_type: AppealableTo
   relationship_category: appellate_chain
   is_binding: true
-  notes: District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)
+  notes: District court appeals to hc_madras_bench_madurai (Madras HC / bench)
   data_quality: partial
   sources:
   - *id001
-- id: tn_hc_madras_bench_tiruchirappalli_supervise_thanjavur
-  source: hc_madras_bench_tiruchirappalli
+- id: tn_hc_madras_bench_madurai_supervise_thanjavur
+  source: hc_madras_bench_madurai
   target: tn_district_court_thanjavur
   relationship_type: AdministrativeSupervision
   relationship_category: supervisory
@@ -624,18 +624,18 @@ relationships:
   data_quality: partial
   sources:
   - *id001
-- id: tn_district_tiruchirappalli_appealable_hc_madras_bench_tiruchirappalli
+- id: tn_district_tiruchirappalli_appealable_hc_madras_bench_madurai
   source: tn_district_court_tiruchirappalli
-  target: hc_madras_bench_tiruchirappalli
+  target: hc_madras_bench_madurai
   relationship_type: AppealableTo
   relationship_category: appellate_chain
   is_binding: true
-  notes: District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)
+  notes: District court appeals to hc_madras_bench_madurai (Madras HC / bench)
   data_quality: partial
   sources:
   - *id001
-- id: tn_hc_madras_bench_tiruchirappalli_supervise_tiruchirappalli
-  source: hc_madras_bench_tiruchirappalli
+- id: tn_hc_madras_bench_madurai_supervise_tiruchirappalli
+  source: hc_madras_bench_madurai
   target: tn_district_court_tiruchirappalli
   relationship_type: AdministrativeSupervision
   relationship_category: supervisory
@@ -744,18 +744,18 @@ relationships:
   data_quality: partial
   sources:
   - *id001
-- id: tn_district_tiruvarur_appealable_hc_madras_bench_tiruchirappalli
+- id: tn_district_tiruvarur_appealable_hc_madras_bench_madurai
   source: tn_district_court_tiruvarur
-  target: hc_madras_bench_tiruchirappalli
+  target: hc_madras_bench_madurai
   relationship_type: AppealableTo
   relationship_category: appellate_chain
   is_binding: true
-  notes: District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)
+  notes: District court appeals to hc_madras_bench_madurai (Madras HC / bench)
   data_quality: partial
   sources:
   - *id001
-- id: tn_hc_madras_bench_tiruchirappalli_supervise_tiruvarur
-  source: hc_madras_bench_tiruchirappalli
+- id: tn_hc_madras_bench_madurai_supervise_tiruvarur
+  source: hc_madras_bench_madurai
   target: tn_district_court_tiruvarur
   relationship_type: AdministrativeSupervision
   relationship_category: supervisory

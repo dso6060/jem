@@ -1,0 +1,65 @@
+id: dl_scdrc
+name: Delhi State Consumer Disputes Redressal Commission
+abbreviation: DL SCDRC
+aliases:
+  - Delhi SCDRC
+  - Delhi State Consumer Commission
+
+type: ConsumerCommission
+cluster: consumer_redressal
+level_of_government: UT
+
+jurisdiction_scope:
+  uts_covered:
+    - DL
+  jurisdiction_types:
+    - consumer_disputes_redressal
+
+created_year: 1987
+operational_status: Active
+
+statutory_basis: "Consumer Protection Act 2019, s.42"
+
+appointment:
+  formally_appoints: lt_governor_delhi
+  recommends: selection_committee_cpa2019_s54
+  criteria_public: true
+  tenure: "5 years or age 67, whichever earlier; CPA 2019 s.54(3)"
+  reappointment_possible: false
+
+funding:
+  primary_source: State_Consolidated_Fund
+  ministry_responsible: null
+
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+
+judge_strength:
+  data_as_of: null
+  allotted: null
+  appointed: null
+  source_type: HC_Report
+  notes: "Strength fixed by UT administration under CPA 2019 s.42(3); not yet verified."
+
+data_quality: partial
+data_quality_notes: >
+  Delhi is the NCT of Delhi — a Union Territory with a legislature.
+  level_of_government is UT. The GNCT of Delhi acts as the appointing
+  government for SCDRC purposes; Lt. Governor signs orders in this domain.
+  Entity established under COPRA 1986 (in force 1987); reconstituted under CPA 2019.
+  ministry_responsible is null — no Delhi consumer dept entity ID in JEM graph.
+  AppealableTo ncdrc per CPA 2019 s.51 — in relationships file.
+  WARNING: cluster 'consumer_redressal' must be present in validate.py CLUSTERS
+  (Cursor Fix 1 / Decision 1).
+
+sources:
+  - label: "Consumer Protection Act 2019 — Department of Consumer Affairs"
+    url: https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019
+    type: CentralAct
+    accessed_date: "2026-05-18"
+  - label: "National Consumer Helpline — State Commission listing"
+    url: https://consumerhelpline.gov.in/public-redressal.php
+    type: GoIWebsite
+    accessed_date: "2026-05-18"

@@ -1,9 +1,9 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-05-18T15:38:36.124455+00:00",
-    "entity_count": 490,
-    "relationship_count": 491,
+    "generated_at": "2026-05-19T08:02:00.168572+00:00",
+    "entity_count": 494,
+    "relationship_count": 497,
     "canvas_width": 1800,
     "canvas_height": 1200,
     "year_range": [
@@ -14,9 +14,9 @@
   "impact_metrics": {
     "high_independence_risk_count": 90,
     "appointer_equals_funder_removal_count": 0,
-    "no_public_appointment_criteria_count": 43,
+    "no_public_appointment_criteria_count": 42,
     "not_constituted_count": 3,
-    "no_external_complaint_mechanism_count": 489
+    "no_external_complaint_mechanism_count": 493
   },
   "timeline_events": [
     {
@@ -182,7 +182,7 @@
       "id": "regulatory_bodies",
       "name": "Regulatory Bodies",
       "color": "#4a235a",
-      "entity_count": 74,
+      "entity_count": 76,
       "avg_independence_risk": 3.3,
       "not_constituted_count": 0,
       "position": {
@@ -230,7 +230,7 @@
       "id": "constitutional_courts",
       "name": "Constitutional Courts",
       "color": "#1a365d",
-      "entity_count": 44,
+      "entity_count": 43,
       "avg_independence_risk": 4.2,
       "not_constituted_count": 0,
       "position": {
@@ -291,6 +291,22 @@
       }
     },
     {
+      "id": "consumer_redressal",
+      "name": "Consumer Redressal",
+      "color": "#6b3480",
+      "entity_count": 4,
+      "avg_independence_risk": 4.8,
+      "not_constituted_count": 0,
+      "position": {
+        "x": 904,
+        "y": 316,
+        "width": 430,
+        "height": 280,
+        "cluster_col": 2,
+        "cluster_row": 1
+      }
+    },
+    {
       "id": "training_professional",
       "name": "Training Professional",
       "color": "#1a2a3a",
@@ -304,22 +320,6 @@
         "height": 280,
         "cluster_col": 0,
         "cluster_row": 3
-      }
-    },
-    {
-      "id": "consumer_redressal",
-      "name": "Consumer Redressal",
-      "color": "#6b3480",
-      "entity_count": 1,
-      "avg_independence_risk": 7.0,
-      "not_constituted_count": 0,
-      "position": {
-        "x": 904,
-        "y": 316,
-        "width": 430,
-        "height": 280,
-        "cluster_col": 2,
-        "cluster_row": 1
       }
     },
     {
@@ -1295,6 +1295,107 @@
       }
     },
     {
+      "id": "cvc",
+      "name": "Central Vigilance Commission",
+      "name_hindi": "केन्द्रीय सतर्कता आयोग",
+      "abbreviation": "CVC",
+      "type": "RegulatoryBodyQJ",
+      "cluster": "regulatory_bodies",
+      "level_of_government": "Central",
+      "created_year": 1964,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Central Vigilance Commission Act 2003, s.3",
+      "data_quality": "partial",
+      "data_quality_notes": "CVC originally established 11 February 1964 by executive resolution on the recommendation of the Santhanam Committee on Prevention of Corruption. Given statutory footing by CVC Act 2003 (Act 45 of 2003). created_year is 1964 (original establishment); statutory_basis reflects the operative 2003 Act. ministry_responsible is null — CVC is an independent statutory body reporting to Parliament (annual report laid before each House under CVC Act 2003 s.25); it is not under the administrative control of any ministry. case_volume not populated. consulted IDs need graph alignment. No AppealableTo edge — CVC is a supervisory/investigative body with no appellate hierarchy above it; judicial review lies via Article 226/32.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type RegulatoryBodyQJ": 3,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 5,
+        "independence_risk_breakdown": {
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 3,
+        "scores_validated": false
+      },
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": null,
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "CVC Official Website",
+          "url": "https://cvc.gov.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Central Vigilance Commission Act 2003",
+          "url": "https://cvc.gov.in/sites/default/files/cvcact.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "formally_appoints": "president_of_india",
+          "recommends": "recommendation_committee_cvc_s4",
+          "consulted": [
+            "prime_minister",
+            "minister_home_affairs",
+            "leader_opposition_lok_sabha"
+          ],
+          "consultation_binding": true,
+          "criteria_public": true,
+          "tenure": "4 years from date of assumption of office, or age 65, whichever earlier; CVC Act 2003 s.6",
+          "reappointment_possible": false,
+          "removal_authority": "president_of_india",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Consolidated_Fund_India",
+          "ministry_responsible": null
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": {
+          "lokpal_jurisdiction": "Not_Applicable",
+          "lokpal_jurisdiction_note": "CVC is itself an anti-corruption oversight body; CVC Commissioner is not a public servant within Lokpal Act 2013 s.14 in the executive sense. Flag as Contested if a contrary position is formally argued.\n"
+        },
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "anti_corruption_oversight",
+            "vigilance_supervision",
+            "inquiry_referral"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 504,
+        "y": 444
+      }
+    },
+    {
       "id": "department_of_justice",
       "name": "Department of Justice",
       "name_hindi": null,
@@ -1373,9 +1474,9 @@
       "abolished_year": null,
       "operational_status": "Active",
       "constitutional_basis": null,
-      "statutory_basis": null,
-      "data_quality": "partial",
-      "data_quality_notes": "created_year 2009 unverified — locate Delhi HC admin order. statutory_basis null — update if DIAC-specific legislation enacted. AwardChallengedIn → hc_delhi in adr_arbitration_relationships.yaml. ⚠ hc_delhi entity id must exist in graph — verify.\n",
+      "statutory_basis": "Delhi High Court Administrative Charter (Centre inaugurated 25 Nov 2009 by CJI K.G. Balakrishnan); Delhi International Arbitration Centre (Internal Management) Rules, 2012 (effective 01 Nov 2012, updated 01 Jul 2018). Not constituted by statute — HC-annexed administrative body. Formerly known as Delhi High Court Arbitration Centre (DAC).",
+      "data_quality": "verified",
+      "data_quality_notes": "Inaugurated 25 Nov 2009 by CJI K.G. Balakrishnan; established under Delhi HC administrative charter by then CJ Ajit Prakash Shah (CJ May 2008 – Feb 2010). First ever HC-annexed institutional arbitration centre. AwardChallengedIn → hc_delhi in adr_arbitration_relationships.yaml.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ArbitralInstitution": 1,
@@ -1401,8 +1502,14 @@
       "reappointment_possible": null,
       "sources": [
         {
-          "label": "DIAC — Official Website",
-          "url": "https://diac.in",
+          "label": "DIAC About Page (inauguration date and founding CJ)",
+          "url": "https://dhcdiac.nic.in/about-diac/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "DIAC Why DIAC (establishment details)",
+          "url": "https://dhcdiac.nic.in/why_diac/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
         },
@@ -1530,6 +1637,101 @@
       "position": {
         "x": 58,
         "y": 768
+      }
+    },
+    {
+      "id": "dl_scdrc",
+      "name": "Delhi State Consumer Disputes Redressal Commission",
+      "name_hindi": null,
+      "abbreviation": "DL SCDRC",
+      "type": "ConsumerCommission",
+      "cluster": "consumer_redressal",
+      "level_of_government": "UT",
+      "created_year": 1987,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Consumer Protection Act 2019, s.42",
+      "data_quality": "partial",
+      "data_quality_notes": "Delhi is the NCT of Delhi — a Union Territory with a legislature. level_of_government is UT. The GNCT of Delhi acts as the appointing government for SCDRC purposes; Lt. Governor signs orders in this domain. Entity established under COPRA 1986 (in force 1987); reconstituted under CPA 2019. ministry_responsible is null — no Delhi consumer dept entity ID in JEM graph. AppealableTo ncdrc per CPA 2019 s.51 — in relationships file. WARNING: cluster 'consumer_redressal' must be present in validate.py CLUSTERS (Cursor Fix 1 / Decision 1).\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ConsumerCommission": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 4,
+        "scores_validated": false
+      },
+      "funding_source": "State_Consolidated_Fund",
+      "funding_ministry": null,
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "Consumer Protection Act 2019 — Department of Consumer Affairs",
+          "url": "https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Consumer Helpline — State Commission listing",
+          "url": "https://consumerhelpline.gov.in/public-redressal.php",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "formally_appoints": "lt_governor_delhi",
+          "recommends": "selection_committee_cpa2019_s54",
+          "criteria_public": true,
+          "tenure": "5 years or age 67, whichever earlier; CPA 2019 s.54(3)",
+          "reappointment_possible": false
+        },
+        "funding": {
+          "primary_source": "State_Consolidated_Fund",
+          "ministry_responsible": null
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "uts_covered": [
+            "DL"
+          ],
+          "jurisdiction_types": [
+            "consumer_disputes_redressal"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": {
+          "data_as_of": null,
+          "allotted": null,
+          "appointed": null,
+          "source_type": "HC_Report",
+          "notes": "Strength fixed by UT administration under CPA 2019 s.42(3); not yet verified."
+        },
+        "parent_hc": null
+      },
+      "position": {
+        "x": 1007,
+        "y": 480
       }
     },
     {
@@ -1969,8 +2171,113 @@
         "parent_hc": null
       },
       "position": {
-        "x": 957,
+        "x": 958,
         "y": 192
+      }
+    },
+    {
+      "id": "iiac",
+      "name": "India International Arbitration Centre",
+      "name_hindi": "भारत अंतर्राष्ट्रीय मध्यस्थता केंद्र",
+      "abbreviation": "IIAC",
+      "type": "ArbitralInstitution",
+      "cluster": "arbitration",
+      "level_of_government": "Central",
+      "created_year": 2019,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "New Delhi International Arbitration Centre Act, 2019 (Act No. 17 of 2019), as amended by the New Delhi International Arbitration Centre (Amendment) Act, 2022 (Act No. 23 of 2022); rename to IIAC effective 27 January 2023.",
+      "data_quality": "verified",
+      "data_quality_notes": "Renamed from NDIAC to IIAC by Act No. 23 of 2022, in force 27 Jan 2023. Former id 'ndiac' retained as alias. File renamed ndiac.yaml → iiac.yaml. AwardChallengedIn → hc_delhi in adr_arbitration_relationships.yaml.",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ArbitralInstitution": 1,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 3,
+        "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1,
+          "Reappointment possible by same executive authority": 2
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 8,
+        "scores_validated": false
+      },
+      "funding_source": "Statutory_Fund",
+      "funding_ministry": "ministry_law_justice",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": true,
+      "sources": [
+        {
+          "label": "New Delhi International Arbitration Centre Act 2019 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/MjMyMDM=",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "IIAC Official Statutes Page",
+          "url": "https://indiaiac.org/arbitration/about_act",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Ministry of Law and Justice — NDIAC",
+          "url": "https://doj.gov.in/acts-rules/new-delhi-international-arbitration-centre-act-2019",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "nominates": "central_government",
+          "formally_appoints": "central_government",
+          "consulted": [
+            "supreme_court_india"
+          ],
+          "consultation_binding": false,
+          "criteria_public": true,
+          "tenure": "3 years, renewable once — NDIAC Act 2019 s.4(5)",
+          "reappointment_possible": true,
+          "removal_authority": "central_government",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Statutory_Fund",
+          "ministry_responsible": "ministry_law_justice"
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": {
+          "lokpal_jurisdiction": "Not_Applicable",
+          "removal_mechanism": "Arbitrator challenge under A&C Act 1996 s.13. Award challenge under A&C Act 1996 s.34 in Delhi High Court.\n"
+        },
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "Original"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 1520,
+        "y": 444
       }
     },
     {
@@ -2036,7 +2343,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 965,
+        "x": 966,
         "y": 156
       }
     },
@@ -2054,7 +2361,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Trade Marks Act 1999, s.83 (establishment); Patents Act 1970, s.116 (jurisdiction); Geographical Indications of Goods (Registration and Protection) Act 1999, s.31. Abolished by Tribunals Reforms (Rationalisation and Conditions of Service) Ordinance 2021 (later enacted as Tribunals Reforms Act 2021, s.3(3) read with Second Schedule).",
       "data_quality": "partial",
-      "data_quality_notes": "Abolished by Tribunals Reforms (Rationalisation and Conditions of Service) Ordinance 2021, later enacted as Tribunals Reforms Act 2021. Patent appeal jurisdiction transferred to High Courts (Patents Act 1970, s.117A as amended). Trade mark appeal jurisdiction transferred to High Courts (Trade Marks Act 1999, s.91 as amended). Geographical Indications appeals similarly transferred to High Courts. Do NOT create AppealableTo edges for this abolished entity. ministry_of_finance was the last funder (via DIPP/DPIIT line, but budgeted under MoF per session context); flag if ministry id needs correction to ministry_commerce_industry for DPIIT line.",
+      "data_quality_notes": "Patent appeals transferred to HC (Patents Act 1970 s.117A as amended by TRA 2021). Trade mark appeals transferred to HC (TM Act 1999 s.91 as amended by TRA 2021). No appellate chain from ipab post-abolition. Entity retained as abolished node for historical completeness; no AppealableTo edges should be added.\n",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -2261,8 +2568,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 504,
-        "y": 444
+        "x": 509,
+        "y": 480
       }
     },
     {
@@ -2368,6 +2675,101 @@
       }
     },
     {
+      "id": "ka_scdrc",
+      "name": "Karnataka State Consumer Disputes Redressal Commission",
+      "name_hindi": null,
+      "abbreviation": "KA SCDRC",
+      "type": "ConsumerCommission",
+      "cluster": "consumer_redressal",
+      "level_of_government": "State",
+      "created_year": 1987,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Consumer Protection Act 2019, s.42",
+      "data_quality": "partial",
+      "data_quality_notes": "Entity established under COPRA 1986 (in force 1987); reconstituted under CPA 2019. ministry_responsible is null — Karnataka Consumer Affairs dept has no JEM entity ID. AppealableTo ncdrc per CPA 2019 s.51 — in relationships file. WARNING: cluster 'consumer_redressal' must be present in validate.py CLUSTERS (Cursor Fix 1 / Decision 1).\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ConsumerCommission": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 4,
+        "scores_validated": false
+      },
+      "funding_source": "State_Consolidated_Fund",
+      "funding_ministry": null,
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "Consumer Protection Act 2019 — Department of Consumer Affairs",
+          "url": "https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Consumer Helpline — State Commission listing",
+          "url": "https://consumerhelpline.gov.in/public-redressal.php",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "formally_appoints": "state_government_karnataka",
+          "recommends": "selection_committee_cpa2019_s54",
+          "criteria_public": true,
+          "tenure": "5 years or age 67, whichever earlier; CPA 2019 s.54(3)",
+          "reappointment_possible": false
+        },
+        "funding": {
+          "primary_source": "State_Consolidated_Fund",
+          "ministry_responsible": null
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "states_covered": [
+            "KA"
+          ],
+          "jurisdiction_types": [
+            "consumer_disputes_redressal"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": {
+          "data_as_of": null,
+          "allotted": null,
+          "appointed": null,
+          "source_type": "HC_Report",
+          "notes": "Strength fixed by State Government under CPA 2019 s.42(3); not yet verified."
+        },
+        "parent_hc": null
+      },
+      "position": {
+        "x": 1082,
+        "y": 444
+      }
+    },
+    {
       "id": "lok_adalat_generic",
       "name": "Lok Adalat",
       "name_hindi": "लोक अदालत",
@@ -2466,8 +2868,8 @@
       "operational_status": "Active",
       "constitutional_basis": null,
       "statutory_basis": null,
-      "data_quality": "partial",
-      "data_quality_notes": "Non-statutory body; created_year 2016 from incorporation records — verify from MCA RoC. AwardChallengedIn → hc_bombay in adr_arbitration_relationships.yaml. No ministry_responsible.\n",
+      "data_quality": "verified",
+      "data_quality_notes": "MCIA Arbitration Rules effective 15 Jun 2016; Centre officially inaugurated 8 Oct 2016. Incorporated as an independent not-for-profit organisation. Exact MCA21 registration date not publicly disclosed; year 2016 confirmed from official MCIA website. AwardChallengedIn → hc_bombay in adr_arbitration_relationships.yaml.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ArbitralInstitution": 1,
@@ -2493,9 +2895,15 @@
       "reappointment_possible": null,
       "sources": [
         {
-          "label": "MCIA — Official Website",
-          "url": "https://www.mcia.world",
+          "label": "MCIA About Us",
+          "url": "https://mcia.org.in/about.php",
           "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Aceris Law — MCIA overview (rules date and inauguration)",
+          "url": "https://www.acerislaw.com/mumbai-centre-international-arbitration-mcia/",
+          "type": "OfficialReport",
           "accessed_date": "2026-05-18"
         },
         {
@@ -2548,8 +2956,103 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1520,
-        "y": 444
+        "x": 1594,
+        "y": 480
+      }
+    },
+    {
+      "id": "mh_scdrc",
+      "name": "Maharashtra State Consumer Disputes Redressal Commission",
+      "name_hindi": null,
+      "abbreviation": "MH SCDRC",
+      "type": "ConsumerCommission",
+      "cluster": "consumer_redressal",
+      "level_of_government": "State",
+      "created_year": 1987,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Consumer Protection Act 2019, s.42",
+      "data_quality": "partial",
+      "data_quality_notes": "Entity established under COPRA 1986; reconstituted under Consumer Protection Act 2019. created_year reflects COPRA 1986 coming into force (1987). Current statutory_basis is CPA 2019 s.42. ministry_responsible is null — Maharashtra Consumer Affairs and Public Distribution Department is the administrative department but no JEM entity ID exists for it. Consumer commissions are not integrated with NJDG as of 2026; case_volume not populated. AppealableTo ncdrc per CPA 2019 s.51 — in relationships file. WARNING: cluster 'consumer_redressal' must be present in validate.py CLUSTERS (Cursor Fix 1 / Decision 1). Verify before running strict validation.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ConsumerCommission": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 4,
+        "scores_validated": false
+      },
+      "funding_source": "State_Consolidated_Fund",
+      "funding_ministry": null,
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "Consumer Protection Act 2019 — Department of Consumer Affairs",
+          "url": "https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Consumer Helpline — State Commission listing",
+          "url": "https://consumerhelpline.gov.in/public-redressal.php",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "formally_appoints": "state_government_maharashtra",
+          "recommends": "selection_committee_cpa2019_s54",
+          "criteria_public": true,
+          "tenure": "5 years or age 67, whichever earlier; CPA 2019 s.54(3)",
+          "reappointment_possible": false
+        },
+        "funding": {
+          "primary_source": "State_Consolidated_Fund",
+          "ministry_responsible": null
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "states_covered": [
+            "MH"
+          ],
+          "jurisdiction_types": [
+            "consumer_disputes_redressal"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": {
+          "data_as_of": null,
+          "allotted": null,
+          "appointed": null,
+          "source_type": "HC_Report",
+          "notes": "Strength fixed by State Government under CPA 2019 s.42(3). Sanctioned and working strength not verified; leave null pending extraction from Maharashtra consumer affairs department notifications.\n"
+        },
+        "parent_hc": null
+      },
+      "position": {
+        "x": 1156,
+        "y": 480
       }
     },
     {
@@ -3567,8 +4070,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1119,
-        "y": 480
+        "x": 1231,
+        "y": 444
       }
     },
     {
@@ -3795,105 +4298,6 @@
       }
     },
     {
-      "id": "ndiac",
-      "name": "New Delhi International Arbitration Centre",
-      "name_hindi": "नई दिल्ली अन्तर्राष्ट्रीय मध्यस्थता केन्द्र",
-      "abbreviation": "NDIAC",
-      "type": "ArbitralInstitution",
-      "cluster": "arbitration",
-      "level_of_government": "Central",
-      "created_year": 2019,
-      "abolished_year": null,
-      "operational_status": "Active",
-      "constitutional_basis": null,
-      "statutory_basis": "New Delhi International Arbitration Centre Act 2019, Section 3",
-      "data_quality": "partial",
-      "data_quality_notes": "Alias 'IIAC' used informally — verify if NDIAC Act 2019 has been amended to rename; update name/id/statutory_basis if confirmed. Funding Statutory_Fund reflects hybrid model; update to Mixed once self-sustaining. AwardChallengedIn → hc_delhi in adr_arbitration_relationships.yaml. ministry_responsible 'ministry_law_justice' assumed — verify in graph.\n",
-      "derived": {
-        "discretionary_power_breakdown": {
-          "Base discretionary power for type ArbitralInstitution": 1,
-          "Has removal authority over other entities": 1,
-          "No universal mandatory timeline for all decisions": 1
-        },
-        "discretionary_power_score": 3,
-        "independence_risk_breakdown": {
-          "Appointed directly by executive body": 3,
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1,
-          "Reappointment possible by same executive authority": 2
-        },
-        "independence_risk_level": "high",
-        "independence_risk_score": 8,
-        "scores_validated": false
-      },
-      "funding_source": "Statutory_Fund",
-      "funding_ministry": "ministry_law_justice",
-      "audited_by": "cag_india",
-      "audit_report_public": true,
-      "complaint_external_exists": false,
-      "appointment_criteria_public": true,
-      "reappointment_possible": true,
-      "sources": [
-        {
-          "label": "New Delhi International Arbitration Centre Act 2019 — India Code",
-          "url": "https://india-code.nic.in/acts-detail/MjMyMDM=",
-          "type": "CentralAct",
-          "accessed_date": "2026-05-18"
-        },
-        {
-          "label": "Ministry of Law and Justice — NDIAC",
-          "url": "https://doj.gov.in/acts-rules/new-delhi-international-arbitration-centre-act-2019",
-          "type": "GoIWebsite",
-          "accessed_date": "2026-05-18"
-        }
-      ],
-      "_detail": {
-        "appointment": {
-          "nominates": "central_government",
-          "formally_appoints": "central_government",
-          "consulted": [
-            "supreme_court_india"
-          ],
-          "consultation_binding": false,
-          "criteria_public": true,
-          "tenure": "3 years, renewable once — NDIAC Act 2019 s.4(5)",
-          "reappointment_possible": true,
-          "removal_authority": "central_government",
-          "removal_requires_parliament": false,
-          "removal_independent_committee": true
-        },
-        "funding": {
-          "primary_source": "Statutory_Fund",
-          "ministry_responsible": "ministry_law_justice"
-        },
-        "audit": {
-          "audited_by": "cag_india",
-          "audit_type": "CAG_Statutory",
-          "audit_report_public": true
-        },
-        "complaint_mechanism": {
-          "lokpal_jurisdiction": "Not_Applicable",
-          "removal_mechanism": "Arbitrator challenge under A&C Act 1996 s.13. Award challenge under A&C Act 1996 s.34 in Delhi High Court.\n"
-        },
-        "training": null,
-        "digital_infrastructure": null,
-        "structural_variations": [],
-        "jurisdiction_scope": {
-          "is_all_india": true,
-          "jurisdiction_types": [
-            "Original"
-          ]
-        },
-        "case_volume": null,
-        "judge_strength": null,
-        "parent_hc": null
-      },
-      "position": {
-        "x": 1594,
-        "y": 480
-      }
-    },
-    {
       "id": "ngt",
       "name": "National Green Tribunal",
       "name_hindi": "राष्ट्रीय हरित अधिकरण",
@@ -3988,6 +4392,117 @@
       "position": {
         "x": 104,
         "y": 480
+      }
+    },
+    {
+      "id": "nhrc",
+      "name": "National Human Rights Commission",
+      "name_hindi": "राष्ट्रीय मानव अधिकार आयोग",
+      "abbreviation": "NHRC",
+      "type": "RegulatoryBodyQJ",
+      "cluster": "regulatory_bodies",
+      "level_of_government": "Central",
+      "created_year": 1993,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Protection of Human Rights Act 1993, s.3",
+      "data_quality": "partial",
+      "data_quality_notes": "Core statutory structure verified from PHRA 1993 ss.3-6. Appointment committee composition per s.4; tenure per s.6; removal per s.5 (inquiry by SC judge on President's reference). consulted IDs are descriptive strings — graph alignment needed during derive step. case_volume not populated; NHRC annual reports are public but not yet extracted. funding.ministry_responsible is ministry_law_justice per Union Budget demand no. 60 (Department of Justice) which provides NHRC grant.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type RegulatoryBodyQJ": 3,
+          "Has removal authority over other entities": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 5,
+        "independence_risk_breakdown": {
+          "No bias complaint mechanism exists": 2,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "moderate",
+        "independence_risk_score": 3,
+        "scores_validated": false
+      },
+      "funding_source": "Consolidated_Fund_India",
+      "funding_ministry": "ministry_law_justice",
+      "audited_by": "cag_india",
+      "audit_report_public": true,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": true,
+      "reappointment_possible": false,
+      "sources": [
+        {
+          "label": "NHRC Official Website",
+          "url": "https://nhrc.nic.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Protection of Human Rights Act 1993 — Ministry of Law & Justice",
+          "url": "https://legislative.dept.gov.in/sites/default/files/A1994-10.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ],
+      "_detail": {
+        "appointment": {
+          "formally_appoints": "president_of_india",
+          "recommends": "recommendation_committee_phra_s4",
+          "consulted": [
+            "prime_minister",
+            "speaker_lok_sabha",
+            "minister_home_affairs",
+            "leader_opposition_lok_sabha",
+            "leader_opposition_rajya_sabha",
+            "deputy_chairman_rajya_sabha"
+          ],
+          "consultation_binding": true,
+          "criteria_public": true,
+          "tenure": "5 years or age 70, whichever earlier; PHRA 1993 s.6",
+          "reappointment_possible": false,
+          "removal_authority": "president_of_india",
+          "removal_requires_parliament": false,
+          "removal_independent_committee": true
+        },
+        "funding": {
+          "primary_source": "Consolidated_Fund_India",
+          "ministry_responsible": "ministry_law_justice"
+        },
+        "audit": {
+          "audited_by": "cag_india",
+          "audit_type": "CAG_Statutory",
+          "audit_report_public": true
+        },
+        "complaint_mechanism": {
+          "lokpal_jurisdiction": "Not_Applicable",
+          "lokpal_jurisdiction_note": "Chairperson is a retired Chief Justice of India; members are retired SC/HC judges. Lokpal Act 2013 s.14 does not cover the higher judiciary. Confirmed Not_Applicable; review if future amendment alters scope.\n"
+        },
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "human_rights_inquiry",
+            "complaints_investigation"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": {
+          "data_as_of": null,
+          "allotted": 5,
+          "appointed": null,
+          "vacancy_count": null,
+          "source_type": "DoJ_Report",
+          "source_url": "https://nhrc.nic.in/",
+          "notes": "PHRA 1993 s.3(2): Chairperson (retired CJI) + 4 Members (1 retired SC judge, 1 retired HC Chief Justice, 2 persons with human-rights experience). Working strength not verified from current DoJ quarterly data.\n"
+        },
+        "parent_hc": null
+      },
+      "position": {
+        "x": 513,
+        "y": 444
       }
     },
     {
@@ -4168,7 +4683,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 509,
+        "x": 518,
         "y": 480
       }
     },
@@ -4567,7 +5082,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 514,
+        "x": 523,
         "y": 444
       }
     },
@@ -4930,7 +5445,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 519,
+        "x": 528,
         "y": 480
       }
     },
@@ -7562,7 +8077,7 @@
         "parent_hc": "hc_bombay"
       },
       "position": {
-        "x": 982,
+        "x": 983,
         "y": 156
       }
     },
@@ -7696,7 +8211,7 @@
         "parent_hc": "hc_bombay"
       },
       "position": {
-        "x": 990,
+        "x": 992,
         "y": 192
       }
     },
@@ -7830,7 +8345,7 @@
         "parent_hc": "hc_bombay"
       },
       "position": {
-        "x": 998,
+        "x": 1000,
         "y": 156
       }
     },
@@ -7962,7 +8477,7 @@
         "parent_hc": "hc_calcutta"
       },
       "position": {
-        "x": 1007,
+        "x": 1008,
         "y": 192
       }
     },
@@ -8094,7 +8609,7 @@
         "parent_hc": "hc_calcutta"
       },
       "position": {
-        "x": 1015,
+        "x": 1017,
         "y": 156
       }
     },
@@ -8227,7 +8742,7 @@
         "parent_hc": "hc_gauhati"
       },
       "position": {
-        "x": 1023,
+        "x": 1026,
         "y": 192
       }
     },
@@ -8360,7 +8875,7 @@
         "parent_hc": "hc_gauhati"
       },
       "position": {
-        "x": 1032,
+        "x": 1034,
         "y": 156
       }
     },
@@ -8493,7 +9008,7 @@
         "parent_hc": "hc_gauhati"
       },
       "position": {
-        "x": 1040,
+        "x": 1042,
         "y": 192
       }
     },
@@ -8623,7 +9138,7 @@
         "parent_hc": "hc_karnataka"
       },
       "position": {
-        "x": 1048,
+        "x": 1051,
         "y": 156
       }
     },
@@ -8635,13 +9150,13 @@
       "type": "HighCourtBench",
       "cluster": "constitutional_courts",
       "level_of_government": "State",
-      "created_year": 1948,
+      "created_year": 2004,
       "abolished_year": null,
       "operational_status": "Active",
       "constitutional_basis": "Constitution of India, Article 214",
-      "statutory_basis": "High Courts Act 1861 — bench constituted by CJ administrative order under Letters Patent 1865",
-      "data_quality": "partial",
-      "data_quality_notes": "judge_strength source_type corrected to HC_Report (DoJ reports show only parent HC totals, not bench breakdown). allotted null by design. created_year 1948 unverified — requires Madras HC gazette / admin order.\n",
+      "statutory_basis": "Madras High Court (Establishment of a Permanent Bench at Madurai) Order, 2004, issued under States Re-organisation Act, 1956, s.51(2); notified 06.07.2004, brought into force 24.07.2004. Inaugurated 24 Jul 2004 by CJI R.C. Lahoti, presided by CJ B. Subashan Reddy. Original jurisdiction: 14 districts (Nagapattinam and Perambalur restored to principal seat by Madras HC Permanent Bench Madurai Amendment Order, 2009).",
+      "data_quality": "verified",
+      "data_quality_notes": "Stub year 1948 referred to pre-independence circuit sittings — corrected to 2004 (permanent bench). Presidential Order notified 06 Jul 2004; bench operational from 24 Jul 2004. allotted null by design (parent HC pool).",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type HighCourtBench": 4,
@@ -8672,10 +9187,16 @@
       "reappointment_possible": false,
       "sources": [
         {
-          "label": "India Code — Constitution & Acts",
-          "url": "https://india-code.nic.in/",
+          "label": "Madras HC Official History Page",
+          "url": "https://hcmadras.tn.nic.in/mashist.html",
           "type": "GoIWebsite",
-          "accessed_date": "2026-05-13"
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "e-Committee Supreme Court — High Court of Madras profile",
+          "url": "https://ecommitteesci.gov.in/division/high-court-of-madras/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
         },
         {
           "label": "Madras High Court — Official Website",
@@ -8756,135 +9277,8 @@
         "parent_hc": "hc_madras"
       },
       "position": {
-        "x": 1057,
+        "x": 1060,
         "y": 192
-      }
-    },
-    {
-      "id": "hc_madras_bench_tiruchirappalli",
-      "name": "Tiruchirappalli Bench of Madras High Court",
-      "name_hindi": null,
-      "abbreviation": null,
-      "type": "HighCourtBench",
-      "cluster": "constitutional_courts",
-      "level_of_government": "State",
-      "created_year": 1948,
-      "abolished_year": null,
-      "operational_status": "Active",
-      "constitutional_basis": "Constitution of India, Article 214",
-      "statutory_basis": "High Courts Act 1861 — bench constituted by CJ administrative order under Letters Patent 1865",
-      "data_quality": "partial",
-      "data_quality_notes": "Created to fix dangling reference in tn_relationships.yaml. created_year 1948 is an UNVERIFIED placeholder — locate Madras HC gazette notification / admin order before merging to main. BenchOf → hc_madras relationship in tn_relationships.yaml (appended via tn_relationships_APPEND.yaml in this zip).\n",
-      "derived": {
-        "discretionary_power_breakdown": {
-          "Base discretionary power for type HighCourtBench": 4,
-          "Controls own case listing and bench composition (no statutory rule)": 2,
-          "Has removal authority over other entities": 1,
-          "No public criteria for key decisions": 1,
-          "No universal mandatory timeline for all decisions": 1
-        },
-        "discretionary_power_score": 9,
-        "independence_risk_breakdown": {
-          "Appointed directly by executive body": 3,
-          "Constitutional basis (harder to politicise) (deduction)": -2,
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1,
-          "No publicly stated appointment criteria": 1,
-          "Removal requires Parliamentary process (deduction)": -1
-        },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 4,
-        "scores_validated": false
-      },
-      "funding_source": "State_Consolidated_Fund",
-      "funding_ministry": null,
-      "audited_by": "cag_india",
-      "audit_report_public": true,
-      "complaint_external_exists": false,
-      "appointment_criteria_public": false,
-      "reappointment_possible": false,
-      "sources": [
-        {
-          "label": "Madras High Court — Official Website",
-          "url": "https://www.hcmadras.tn.nic.in/",
-          "type": "GoIWebsite",
-          "accessed_date": "2026-05-18"
-        }
-      ],
-      "_detail": {
-        "appointment": {
-          "nominates": "collegium_hc_appointment",
-          "recommends": "collegium_hc_appointment",
-          "consulted": [
-            "governor_state"
-          ],
-          "consultation_binding": true,
-          "formally_appoints": "president_india",
-          "criteria_public": false,
-          "tenure": "Until age 62 (Article 217)",
-          "reappointment_possible": false,
-          "removal_authority": "president_india",
-          "removal_requires_parliament": true,
-          "removal_independent_committee": false
-        },
-        "funding": {
-          "primary_source": "State_Consolidated_Fund",
-          "ministry_responsible": null,
-          "budget_figure_crore": null,
-          "budget_year": null
-        },
-        "audit": {
-          "audited_by": "cag_india",
-          "audit_type": "CAG_Statutory",
-          "audit_report_public": true,
-          "conduct_oversight_body": null
-        },
-        "complaint_mechanism": {
-          "bias_complaint_to": [],
-          "lokpal_jurisdiction": "Not_Applicable"
-        },
-        "training": {
-          "trained_by": [],
-          "induction_training": false,
-          "continuing_education": true,
-          "training_mandatory": false
-        },
-        "digital_infrastructure": {
-          "system_used": [
-            "eCourts_Portal",
-            "NJDG"
-          ],
-          "digital_variant": "NIC_Standard",
-          "integrated_with_njdg": true
-        },
-        "structural_variations": [],
-        "jurisdiction_scope": {
-          "states_covered": [
-            "TN"
-          ],
-          "uts_covered": [],
-          "is_all_india": false,
-          "jurisdiction_types": [
-            "Original",
-            "Appellate",
-            "Writ"
-          ]
-        },
-        "case_volume": null,
-        "judge_strength": {
-          "data_as_of": null,
-          "allotted": null,
-          "appointed": null,
-          "vacancy_count": null,
-          "source_type": "HC_Report",
-          "source_url": "https://www.hcmadras.tn.nic.in/",
-          "notes": "Judges drawn from parent HC pool (hc_madras). allotted null — no per-bench sanctioned allocation. appointed = CJ roster count for Tiruchirappalli Bench at snapshot date.\n"
-        },
-        "parent_hc": "hc_madras"
-      },
-      "position": {
-        "x": 1065,
-        "y": 156
       }
     },
     {
@@ -9016,8 +9410,8 @@
         "parent_hc": "hc_punjab_haryana"
       },
       "position": {
-        "x": 1073,
-        "y": 192
+        "x": 1068,
+        "y": 156
       }
     },
     {
@@ -9146,8 +9540,8 @@
         "parent_hc": "hc_rajasthan"
       },
       "position": {
-        "x": 1082,
-        "y": 156
+        "x": 1076,
+        "y": 192
       }
     },
     {
@@ -9278,8 +9672,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1090,
-        "y": 192
+        "x": 1085,
+        "y": 156
       }
     },
     {
@@ -9410,8 +9804,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1098,
-        "y": 156
+        "x": 1094,
+        "y": 192
       }
     },
     {
@@ -9546,8 +9940,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1107,
-        "y": 192
+        "x": 1102,
+        "y": 156
       }
     },
     {
@@ -9680,8 +10074,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1115,
-        "y": 156
+        "x": 1110,
+        "y": 192
       }
     },
     {
@@ -9812,8 +10206,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1123,
-        "y": 192
+        "x": 1119,
+        "y": 156
       }
     },
     {
@@ -9944,8 +10338,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1131,
-        "y": 156
+        "x": 1128,
+        "y": 192
       }
     },
     {
@@ -10079,8 +10473,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1140,
-        "y": 192
+        "x": 1136,
+        "y": 156
       }
     },
     {
@@ -10211,8 +10605,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1148,
-        "y": 156
+        "x": 1144,
+        "y": 192
       }
     },
     {
@@ -10343,8 +10737,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1156,
-        "y": 192
+        "x": 1153,
+        "y": 156
       }
     },
     {
@@ -10477,8 +10871,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1165,
-        "y": 156
+        "x": 1162,
+        "y": 192
       }
     },
     {
@@ -10609,8 +11003,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1173,
-        "y": 192
+        "x": 1170,
+        "y": 156
       }
     },
     {
@@ -10741,8 +11135,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1181,
-        "y": 156
+        "x": 1178,
+        "y": 192
       }
     },
     {
@@ -10875,8 +11269,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1190,
-        "y": 192
+        "x": 1187,
+        "y": 156
       }
     },
     {
@@ -11007,8 +11401,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1198,
-        "y": 156
+        "x": 1196,
+        "y": 192
       }
     },
     {
@@ -11154,8 +11548,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1206,
-        "y": 192
+        "x": 1204,
+        "y": 156
       }
     },
     {
@@ -11286,8 +11680,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1215,
-        "y": 156
+        "x": 1212,
+        "y": 192
       }
     },
     {
@@ -11418,8 +11812,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1223,
-        "y": 192
+        "x": 1221,
+        "y": 156
       }
     },
     {
@@ -11550,8 +11944,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1231,
-        "y": 156
+        "x": 1230,
+        "y": 192
       }
     },
     {
@@ -11682,8 +12076,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1240,
-        "y": 192
+        "x": 1238,
+        "y": 156
       }
     },
     {
@@ -11817,8 +12211,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1248,
-        "y": 156
+        "x": 1246,
+        "y": 192
       }
     },
     {
@@ -11949,8 +12343,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1256,
-        "y": 192
+        "x": 1255,
+        "y": 156
       }
     },
     {
@@ -12082,7 +12476,7 @@
       },
       "position": {
         "x": 1264,
-        "y": 156
+        "y": 192
       }
     },
     {
@@ -12213,8 +12607,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1273,
-        "y": 192
+        "x": 1272,
+        "y": 156
       }
     },
     {
@@ -12345,8 +12739,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 1281,
-        "y": 156
+        "x": 1280,
+        "y": 192
       }
     },
     {
@@ -12478,7 +12872,7 @@
       },
       "position": {
         "x": 1289,
-        "y": 192
+        "y": 156
       }
     },
     {
@@ -12557,7 +12951,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 524,
+        "x": 533,
         "y": 444
       }
     },
@@ -12637,7 +13031,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 529,
+        "x": 538,
         "y": 480
       }
     },
@@ -12717,7 +13111,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 534,
+        "x": 543,
         "y": 444
       }
     },
@@ -12797,7 +13191,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 539,
+        "x": 547,
         "y": 480
       }
     },
@@ -12877,7 +13271,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 544,
+        "x": 552,
         "y": 444
       }
     },
@@ -12957,7 +13351,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 549,
+        "x": 557,
         "y": 480
       }
     },
@@ -13037,7 +13431,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 554,
+        "x": 562,
         "y": 444
       }
     },
@@ -13117,7 +13511,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 559,
+        "x": 567,
         "y": 480
       }
     },
@@ -13197,7 +13591,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 564,
+        "x": 572,
         "y": 444
       }
     },
@@ -13277,7 +13671,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 569,
+        "x": 577,
         "y": 480
       }
     },
@@ -13357,7 +13751,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 574,
+        "x": 581,
         "y": 444
       }
     },
@@ -13437,7 +13831,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 579,
+        "x": 586,
         "y": 480
       }
     },
@@ -13517,7 +13911,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 584,
+        "x": 591,
         "y": 444
       }
     },
@@ -13597,7 +13991,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 589,
+        "x": 596,
         "y": 480
       }
     },
@@ -13677,7 +14071,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 594,
+        "x": 601,
         "y": 444
       }
     },
@@ -13757,7 +14151,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 599,
+        "x": 606,
         "y": 480
       }
     },
@@ -13837,7 +14231,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 604,
+        "x": 611,
         "y": 444
       }
     },
@@ -13917,7 +14311,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 609,
+        "x": 615,
         "y": 480
       }
     },
@@ -13997,7 +14391,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 614,
+        "x": 620,
         "y": 444
       }
     },
@@ -14077,7 +14471,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 619,
+        "x": 625,
         "y": 480
       }
     },
@@ -14157,7 +14551,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 624,
+        "x": 630,
         "y": 444
       }
     },
@@ -14237,7 +14631,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 629,
+        "x": 635,
         "y": 480
       }
     },
@@ -14317,7 +14711,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 634,
+        "x": 640,
         "y": 444
       }
     },
@@ -14397,7 +14791,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 639,
+        "x": 645,
         "y": 480
       }
     },
@@ -14477,7 +14871,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 644,
+        "x": 649,
         "y": 444
       }
     },
@@ -14557,7 +14951,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 649,
+        "x": 654,
         "y": 480
       }
     },
@@ -14637,7 +15031,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 654,
+        "x": 659,
         "y": 444
       }
     },
@@ -14717,7 +15111,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 659,
+        "x": 664,
         "y": 480
       }
     },
@@ -14797,7 +15191,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 664,
+        "x": 669,
         "y": 444
       }
     },
@@ -14877,7 +15271,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 669,
+        "x": 674,
         "y": 480
       }
     },
@@ -14957,7 +15351,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 674,
+        "x": 679,
         "y": 444
       }
     },
@@ -15037,7 +15431,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 679,
+        "x": 683,
         "y": 480
       }
     },
@@ -15117,7 +15511,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 683,
+        "x": 688,
         "y": 444
       }
     },
@@ -15197,7 +15591,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 688,
+        "x": 693,
         "y": 480
       }
     },
@@ -15277,7 +15671,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 693,
+        "x": 698,
         "y": 444
       }
     },
@@ -15357,7 +15751,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 698,
+        "x": 703,
         "y": 480
       }
     },
@@ -15437,7 +15831,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 703,
+        "x": 708,
         "y": 444
       }
     },
@@ -15517,7 +15911,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 708,
+        "x": 713,
         "y": 480
       }
     },
@@ -15597,7 +15991,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 713,
+        "x": 717,
         "y": 444
       }
     },
@@ -15677,7 +16071,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 718,
+        "x": 722,
         "y": 480
       }
     },
@@ -15757,7 +16151,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 723,
+        "x": 727,
         "y": 444
       }
     },
@@ -15837,7 +16231,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 728,
+        "x": 732,
         "y": 480
       }
     },
@@ -15917,7 +16311,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 733,
+        "x": 737,
         "y": 444
       }
     },
@@ -15997,7 +16391,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 738,
+        "x": 742,
         "y": 480
       }
     },
@@ -16077,7 +16471,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 743,
+        "x": 747,
         "y": 444
       }
     },
@@ -16157,7 +16551,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 748,
+        "x": 751,
         "y": 480
       }
     },
@@ -16237,7 +16631,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 753,
+        "x": 756,
         "y": 444
       }
     },
@@ -16317,7 +16711,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 758,
+        "x": 761,
         "y": 480
       }
     },
@@ -16397,7 +16791,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 763,
+        "x": 766,
         "y": 444
       }
     },
@@ -16477,7 +16871,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 768,
+        "x": 771,
         "y": 480
       }
     },
@@ -16557,7 +16951,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 773,
+        "x": 776,
         "y": 444
       }
     },
@@ -16637,7 +17031,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 778,
+        "x": 781,
         "y": 480
       }
     },
@@ -16717,7 +17111,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 783,
+        "x": 785,
         "y": 444
       }
     },
@@ -16797,7 +17191,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 788,
+        "x": 790,
         "y": 480
       }
     },
@@ -16877,7 +17271,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 793,
+        "x": 795,
         "y": 444
       }
     },
@@ -16957,7 +17351,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 798,
+        "x": 800,
         "y": 480
       }
     },
@@ -17037,7 +17431,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 803,
+        "x": 805,
         "y": 444
       }
     },
@@ -17117,7 +17511,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 808,
+        "x": 810,
         "y": 480
       }
     },
@@ -17197,7 +17591,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 813,
+        "x": 815,
         "y": 444
       }
     },
@@ -17277,7 +17671,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 818,
+        "x": 819,
         "y": 480
       }
     },
@@ -17357,7 +17751,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 823,
+        "x": 824,
         "y": 444
       }
     },
@@ -20018,7 +20412,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 828,
+        "x": 829,
         "y": 480
       }
     },
@@ -21403,7 +21797,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 833,
+        "x": 834,
         "y": 444
       }
     },
@@ -27155,7 +27549,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 838,
+        "x": 839,
         "y": 480
       }
     },
@@ -27554,7 +27948,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 843,
+        "x": 844,
         "y": 444
       }
     },
@@ -28715,7 +29109,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 848,
+        "x": 849,
         "y": 480
       }
     },
@@ -40468,13 +40862,13 @@
       "type": "ADRBody",
       "cluster": "tribunals_adr",
       "level_of_government": "State",
-      "created_year": 1995,
+      "created_year": 1997,
       "abolished_year": null,
       "operational_status": "Active",
       "constitutional_basis": null,
-      "statutory_basis": "Legal Services Authorities Act 1987, Section 6",
-      "data_quality": "partial",
-      "data_quality_notes": "created_year 1995 approximate — verify from GoTN Gazette notification. ReportsTo → nalsa in adr_arbitration_relationships.yaml. tn_slsa → lok_adalat_generic Designates already in tn_relationships.yaml (id: tn_slsa_adr) — not duplicated. DLSAs for 38 TN districts Phase-2.\n",
+      "statutory_basis": "Legal Services Authorities Act, 1987 (Central Act 39 of 1987), s.6; constituted via G.O.Ms.No. 1577 Home (Cts.IV) dated 29.10.1997, effective 01.11.1997. Tamil Nadu State Legal Services Authority Rules, 1997 framed under s.28 of the Act.",
+      "data_quality": "verified",
+      "data_quality_notes": "Constituted by G.O.Ms.No. 1577 Home (Cts.IV) dt. 29.10.1997; operational from 01.11.1997. Absorbed staff of erstwhile Tamil Nadu State Legal Aid and Advice Board (notified in TN Govt. Gazette 04.12.1976). Confirmed on official TNSLSA/NALSA pages and corroborated by Madras HC judgment (Indian Kanoon doc/304712, 21 Nov 2006). ReportsTo → nalsa in adr_arbitration_relationships.yaml.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ADRBody": 1,
@@ -40499,15 +40893,21 @@
       "reappointment_possible": null,
       "sources": [
         {
-          "label": "Legal Services Authorities Act 1987 — India Code",
-          "url": "https://india-code.nic.in/acts-detail/NzI2",
-          "type": "CentralAct",
+          "label": "TNSLSA Introduction — NALSA portal",
+          "url": "https://tamilnadu.nalsa.gov.in/introduction/",
+          "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
         },
         {
-          "label": "TN SLSA — Official Website",
-          "url": "https://tnslsa.gov.in",
+          "label": "TNSLSA Constitution — tnlegalservices.tn.gov.in",
+          "url": "https://tnlegalservices.tn.gov.in/state_authority_const.htm",
           "type": "GoIWebsite",
+          "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Legal Services Authorities Act 1987 — India Code",
+          "url": "https://india-code.nic.in/acts-detail/NzI2",
+          "type": "CentralAct",
           "accessed_date": "2026-05-18"
         }
       ],
@@ -43027,7 +43427,7 @@
       },
       "position": {
         "x": 1298,
-        "y": 156
+        "y": 192
       }
     },
     {
@@ -43343,9 +43743,9 @@
   ],
   "relationships": [
     {
-      "id": "moflj_funds_ndiac",
+      "id": "moflj_funds_iiac",
       "source": "ministry_law_justice",
-      "target": "ndiac",
+      "target": "iiac",
       "relationship_type": "PrimaryFunder",
       "relationship_category": "funding",
       "is_binding": true,
@@ -43387,8 +43787,8 @@
       ]
     },
     {
-      "id": "ndiac_award_challenged_hc_delhi",
-      "source": "ndiac",
+      "id": "iiac_award_challenged_hc_delhi",
+      "source": "iiac",
       "target": "hc_delhi",
       "relationship_type": "AwardChallengedIn",
       "relationship_category": "appellate_chain",
@@ -44187,6 +44587,72 @@
           "url": "https://india-code.nic.in/handle/123456789/2126",
           "type": "CentralAct",
           "accessed_date": "2025-01-15"
+        }
+      ]
+    },
+    {
+      "id": "rel_nclat_appellate_sc",
+      "source": "nclat",
+      "target": "supreme_court_india",
+      "relationship_type": "AppealableTo",
+      "relationship_category": "appellate_chain",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": "NCLAT orders are appealable to the Supreme Court of India on a question of law. Final appellate tier for the NCLT → NCLAT → SC corporate-insolvency and company-law chain.\n",
+      "sources": [
+        {
+          "label": "Companies Act 2013 — Section 423 (bare act, IndiaCode)",
+          "url": "https://www.indiacode.nic.in/handle/123456789/2114",
+          "type": "CentralAct",
+          "accessed_date": "2025-01-01"
+        }
+      ]
+    },
+    {
+      "id": "rel_drat_appellate_sc",
+      "source": "drat",
+      "target": "supreme_court_india",
+      "relationship_type": "AppealableTo",
+      "relationship_category": "appellate_chain",
+      "is_binding": false,
+      "is_constitutional": true,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "No statutory appeal lies from DRAT under the Recovery of Debts and Bankruptcy Act 1993. Review is available only through High Court writ jurisdiction under Arts. 226/227 of the Constitution. This edge represents the de facto review path; it is writ-only, not a direct statutory appeal.\n",
+      "sources": [
+        {
+          "label": "Constitution of India — Articles 226 and 227",
+          "url": "https://www.indiacode.nic.in/handle/123456789/1",
+          "type": "Constitution",
+          "accessed_date": "2025-01-01"
+        }
+      ]
+    },
+    {
+      "id": "rel_tdsat_appellate_sc",
+      "source": "tdsat",
+      "target": "supreme_court_india",
+      "relationship_type": "AppealableTo",
+      "relationship_category": "appellate_chain",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": null,
+      "year_abolished": null,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": "TDSAT orders are appealable to the Supreme Court of India on a question of law. Final appellate tier for the TRAI → TDSAT → SC telecom-regulatory chain.\n",
+      "sources": [
+        {
+          "label": "TRAI Act 1997 — Section 18 (bare act, IndiaCode)",
+          "url": "https://www.indiacode.nic.in/handle/123456789/1546",
+          "type": "CentralAct",
+          "accessed_date": "2025-01-01"
         }
       ]
     },
@@ -45146,9 +45612,9 @@
       "is_constitutional": null,
       "year_established": null,
       "year_abolished": null,
-      "data_quality": "partial",
+      "data_quality": "verified",
       "contested_note": null,
-      "notes": "Madurai Bench is a permanent bench of the Madras High Court, constituted under CJ administrative order pursuant to Letters Patent (Madras) 1865 and Article 214 of the Constitution of India. Exercises full HC jurisdiction (Original, Appellate, Writ) for 10 southern TN districts per hc_benches_config.py TN_DISTRICT_TO_BENCH: Dindigul, Kanniyakumari, Madurai, Ramanathapuram, Sivaganga, Tenkasi, Thoothukudi, Theni, Tirunelveli, Virudhunagar. TN district routing in tn_relationships.yaml.\n",
+      "notes": "Madurai Bench is the sole permanent bench of the Madras High Court (est. 2004). Exercises full HC jurisdiction for southern and central TN districts including: Ariyalur, Cuddalore, Dindigul, Kanniyakumari, Karur, Madurai, Mayiladuthurai, Nagapattinam, Perambalur, Pudukkottai, Ramanathapuram, Sivaganga, Tenkasi, Thanjavur, Theni, Thoothukudi, Tiruchirappalli, Tirunelveli, Tiruvarur, Virudhunagar. Former erroneous hc_madras_bench_tiruchirappalli entity removed; districts re-pointed here.\n",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
@@ -45157,37 +45623,9 @@
           "accessed_date": "2026-05-13"
         },
         {
-          "label": "Constitution of India, Article 214",
-          "url": "https://india-code.nic.in/",
-          "type": "Constitution",
-          "accessed_date": "2026-05-18"
-        }
-      ]
-    },
-    {
-      "id": "hc_madras_bench_tiruchirappalli_bench_of_hc_madras",
-      "source": "hc_madras_bench_tiruchirappalli",
-      "target": "hc_madras",
-      "relationship_type": "BenchOf",
-      "relationship_category": "statutory_ref",
-      "is_binding": true,
-      "is_constitutional": null,
-      "year_established": null,
-      "year_abolished": null,
-      "data_quality": "partial",
-      "contested_note": null,
-      "notes": "Tiruchirappalli Bench is a permanent bench of the Madras High Court, constituted under CJ administrative order pursuant to Letters Patent (Madras) 1865 and Article 214 of the Constitution of India. Exercises full HC jurisdiction (Original, Appellate, Writ) for 10 central TN districts per hc_benches_config.py TN_DISTRICT_TO_BENCH: Ariyalur, Cuddalore, Karur, Mayiladuthurai, Nagapattinam, Perambalur, Pudukkottai, Thanjavur, Tiruchirappalli, Tiruvarur. TN district routing in tn_relationships.yaml.\n",
-      "sources": [
-        {
-          "label": "India Code — Constitution & Acts",
-          "url": "https://india-code.nic.in/",
+          "label": "Madras HC Official History — Madurai Bench",
+          "url": "https://hcmadras.tn.nic.in/mashist.html",
           "type": "GoIWebsite",
-          "accessed_date": "2026-05-13"
-        },
-        {
-          "label": "Constitution of India, Article 214",
-          "url": "https://india-code.nic.in/",
-          "type": "Constitution",
           "accessed_date": "2026-05-18"
         }
       ]
@@ -52365,6 +52803,94 @@
       ]
     },
     {
+      "id": "rel_mh_scdrc_ncdrc_appellate",
+      "source": "mh_scdrc",
+      "target": "ncdrc",
+      "relationship_type": "AppealableTo",
+      "relationship_category": "appellate_chain",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2019,
+      "year_abolished": null,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": "Any person aggrieved by an order of the SCDRC in exercise of its pecuniary jurisdiction may appeal to the NCDRC. Limitation: 30 days from date of order (CPA 2019 s.51(2)), condonable for sufficient cause.\n",
+      "sources": [
+        {
+          "label": "Consumer Protection Act 2019, s.51",
+          "url": "https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
+      "id": "rel_dl_scdrc_ncdrc_appellate",
+      "source": "dl_scdrc",
+      "target": "ncdrc",
+      "relationship_type": "AppealableTo",
+      "relationship_category": "appellate_chain",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2019,
+      "year_abolished": null,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": "Same appellate chain as other SCDRCs. DL is UT with legislature.",
+      "sources": [
+        {
+          "label": "Consumer Protection Act 2019, s.51",
+          "url": "https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
+      "id": "rel_ka_scdrc_ncdrc_appellate",
+      "source": "ka_scdrc",
+      "target": "ncdrc",
+      "relationship_type": "AppealableTo",
+      "relationship_category": "appellate_chain",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2019,
+      "year_abolished": null,
+      "data_quality": "verified",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "Consumer Protection Act 2019, s.51",
+          "url": "https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
+      "id": "rel_nhrc_sc_court_access",
+      "source": "nhrc",
+      "target": "supreme_court_india",
+      "relationship_type": "AppealableTo",
+      "relationship_category": "appellate_chain",
+      "is_binding": false,
+      "is_constitutional": false,
+      "year_established": 1993,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": "Court-access / submissions pathway, not a standard appellate step.\n",
+      "notes": "PHRA 1993 s.18: NHRC may approach the Supreme Court or High Court to present submissions in ongoing proceedings involving human rights allegations, or recommend transfer of court proceedings. Not a conventional inter-party statutory appeal; is_binding false reflects advisory nature of NHRC findings.\n",
+      "sources": [
+        {
+          "label": "Protection of Human Rights Act 1993, s.18",
+          "url": "https://nhrc.nic.in/sites/default/files/PHRA.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-18"
+        }
+      ]
+    },
+    {
       "id": "tn_tnerc_aptel",
       "source": "tnerc",
       "target": "aptel",
@@ -52497,9 +53023,9 @@
       ]
     },
     {
-      "id": "tn_district_ariyalur_appealable_hc_madras_bench_tiruchirappalli",
+      "id": "tn_district_ariyalur_appealable_hc_madras_bench_madurai",
       "source": "tn_district_court_ariyalur",
-      "target": "hc_madras_bench_tiruchirappalli",
+      "target": "hc_madras_bench_madurai",
       "relationship_type": "AppealableTo",
       "relationship_category": "appellate_chain",
       "is_binding": true,
@@ -52508,7 +53034,7 @@
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": "District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)",
+      "notes": "District court appeals to hc_madras_bench_madurai (Madras HC / bench)",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
@@ -52519,8 +53045,8 @@
       ]
     },
     {
-      "id": "tn_hc_madras_bench_tiruchirappalli_supervise_ariyalur",
-      "source": "hc_madras_bench_tiruchirappalli",
+      "id": "tn_hc_madras_bench_madurai_supervise_ariyalur",
+      "source": "hc_madras_bench_madurai",
       "target": "tn_district_court_ariyalur",
       "relationship_type": "AdministrativeSupervision",
       "relationship_category": "supervisory",
@@ -52673,9 +53199,9 @@
       ]
     },
     {
-      "id": "tn_district_cuddalore_appealable_hc_madras_bench_tiruchirappalli",
+      "id": "tn_district_cuddalore_appealable_hc_madras_bench_madurai",
       "source": "tn_district_court_cuddalore",
-      "target": "hc_madras_bench_tiruchirappalli",
+      "target": "hc_madras_bench_madurai",
       "relationship_type": "AppealableTo",
       "relationship_category": "appellate_chain",
       "is_binding": true,
@@ -52684,7 +53210,7 @@
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": "District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)",
+      "notes": "District court appeals to hc_madras_bench_madurai (Madras HC / bench)",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
@@ -52695,8 +53221,8 @@
       ]
     },
     {
-      "id": "tn_hc_madras_bench_tiruchirappalli_supervise_cuddalore",
-      "source": "hc_madras_bench_tiruchirappalli",
+      "id": "tn_hc_madras_bench_madurai_supervise_cuddalore",
+      "source": "hc_madras_bench_madurai",
       "target": "tn_district_court_cuddalore",
       "relationship_type": "AdministrativeSupervision",
       "relationship_category": "supervisory",
@@ -52937,9 +53463,9 @@
       ]
     },
     {
-      "id": "tn_district_karur_appealable_hc_madras_bench_tiruchirappalli",
+      "id": "tn_district_karur_appealable_hc_madras_bench_madurai",
       "source": "tn_district_court_karur",
-      "target": "hc_madras_bench_tiruchirappalli",
+      "target": "hc_madras_bench_madurai",
       "relationship_type": "AppealableTo",
       "relationship_category": "appellate_chain",
       "is_binding": true,
@@ -52948,7 +53474,7 @@
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": "District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)",
+      "notes": "District court appeals to hc_madras_bench_madurai (Madras HC / bench)",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
@@ -52959,8 +53485,8 @@
       ]
     },
     {
-      "id": "tn_hc_madras_bench_tiruchirappalli_supervise_karur",
-      "source": "hc_madras_bench_tiruchirappalli",
+      "id": "tn_hc_madras_bench_madurai_supervise_karur",
+      "source": "hc_madras_bench_madurai",
       "target": "tn_district_court_karur",
       "relationship_type": "AdministrativeSupervision",
       "relationship_category": "supervisory",
@@ -53113,9 +53639,9 @@
       ]
     },
     {
-      "id": "tn_district_mayiladuthurai_appealable_hc_madras_bench_tiruchirappalli",
+      "id": "tn_district_mayiladuthurai_appealable_hc_madras_bench_madurai",
       "source": "tn_district_court_mayiladuthurai",
-      "target": "hc_madras_bench_tiruchirappalli",
+      "target": "hc_madras_bench_madurai",
       "relationship_type": "AppealableTo",
       "relationship_category": "appellate_chain",
       "is_binding": true,
@@ -53124,7 +53650,7 @@
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": "District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)",
+      "notes": "District court appeals to hc_madras_bench_madurai (Madras HC / bench)",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
@@ -53135,8 +53661,8 @@
       ]
     },
     {
-      "id": "tn_hc_madras_bench_tiruchirappalli_supervise_mayiladuthurai",
-      "source": "hc_madras_bench_tiruchirappalli",
+      "id": "tn_hc_madras_bench_madurai_supervise_mayiladuthurai",
+      "source": "hc_madras_bench_madurai",
       "target": "tn_district_court_mayiladuthurai",
       "relationship_type": "AdministrativeSupervision",
       "relationship_category": "supervisory",
@@ -53157,9 +53683,9 @@
       ]
     },
     {
-      "id": "tn_district_nagapattinam_appealable_hc_madras_bench_tiruchirappalli",
+      "id": "tn_district_nagapattinam_appealable_hc_madras_bench_madurai",
       "source": "tn_district_court_nagapattinam",
-      "target": "hc_madras_bench_tiruchirappalli",
+      "target": "hc_madras_bench_madurai",
       "relationship_type": "AppealableTo",
       "relationship_category": "appellate_chain",
       "is_binding": true,
@@ -53168,7 +53694,7 @@
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": "District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)",
+      "notes": "District court appeals to hc_madras_bench_madurai (Madras HC / bench)",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
@@ -53179,8 +53705,8 @@
       ]
     },
     {
-      "id": "tn_hc_madras_bench_tiruchirappalli_supervise_nagapattinam",
-      "source": "hc_madras_bench_tiruchirappalli",
+      "id": "tn_hc_madras_bench_madurai_supervise_nagapattinam",
+      "source": "hc_madras_bench_madurai",
       "target": "tn_district_court_nagapattinam",
       "relationship_type": "AdministrativeSupervision",
       "relationship_category": "supervisory",
@@ -53289,9 +53815,9 @@
       ]
     },
     {
-      "id": "tn_district_perambalur_appealable_hc_madras_bench_tiruchirappalli",
+      "id": "tn_district_perambalur_appealable_hc_madras_bench_madurai",
       "source": "tn_district_court_perambalur",
-      "target": "hc_madras_bench_tiruchirappalli",
+      "target": "hc_madras_bench_madurai",
       "relationship_type": "AppealableTo",
       "relationship_category": "appellate_chain",
       "is_binding": true,
@@ -53300,7 +53826,7 @@
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": "District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)",
+      "notes": "District court appeals to hc_madras_bench_madurai (Madras HC / bench)",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
@@ -53311,8 +53837,8 @@
       ]
     },
     {
-      "id": "tn_hc_madras_bench_tiruchirappalli_supervise_perambalur",
-      "source": "hc_madras_bench_tiruchirappalli",
+      "id": "tn_hc_madras_bench_madurai_supervise_perambalur",
+      "source": "hc_madras_bench_madurai",
       "target": "tn_district_court_perambalur",
       "relationship_type": "AdministrativeSupervision",
       "relationship_category": "supervisory",
@@ -53333,9 +53859,9 @@
       ]
     },
     {
-      "id": "tn_district_pudukkottai_appealable_hc_madras_bench_tiruchirappalli",
+      "id": "tn_district_pudukkottai_appealable_hc_madras_bench_madurai",
       "source": "tn_district_court_pudukkottai",
-      "target": "hc_madras_bench_tiruchirappalli",
+      "target": "hc_madras_bench_madurai",
       "relationship_type": "AppealableTo",
       "relationship_category": "appellate_chain",
       "is_binding": true,
@@ -53344,7 +53870,7 @@
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": "District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)",
+      "notes": "District court appeals to hc_madras_bench_madurai (Madras HC / bench)",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
@@ -53355,8 +53881,8 @@
       ]
     },
     {
-      "id": "tn_hc_madras_bench_tiruchirappalli_supervise_pudukkottai",
-      "source": "hc_madras_bench_tiruchirappalli",
+      "id": "tn_hc_madras_bench_madurai_supervise_pudukkottai",
+      "source": "hc_madras_bench_madurai",
       "target": "tn_district_court_pudukkottai",
       "relationship_type": "AdministrativeSupervision",
       "relationship_category": "supervisory",
@@ -53597,9 +54123,9 @@
       ]
     },
     {
-      "id": "tn_district_thanjavur_appealable_hc_madras_bench_tiruchirappalli",
+      "id": "tn_district_thanjavur_appealable_hc_madras_bench_madurai",
       "source": "tn_district_court_thanjavur",
-      "target": "hc_madras_bench_tiruchirappalli",
+      "target": "hc_madras_bench_madurai",
       "relationship_type": "AppealableTo",
       "relationship_category": "appellate_chain",
       "is_binding": true,
@@ -53608,7 +54134,7 @@
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": "District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)",
+      "notes": "District court appeals to hc_madras_bench_madurai (Madras HC / bench)",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
@@ -53619,8 +54145,8 @@
       ]
     },
     {
-      "id": "tn_hc_madras_bench_tiruchirappalli_supervise_thanjavur",
-      "source": "hc_madras_bench_tiruchirappalli",
+      "id": "tn_hc_madras_bench_madurai_supervise_thanjavur",
+      "source": "hc_madras_bench_madurai",
       "target": "tn_district_court_thanjavur",
       "relationship_type": "AdministrativeSupervision",
       "relationship_category": "supervisory",
@@ -53729,9 +54255,9 @@
       ]
     },
     {
-      "id": "tn_district_tiruchirappalli_appealable_hc_madras_bench_tiruchirappalli",
+      "id": "tn_district_tiruchirappalli_appealable_hc_madras_bench_madurai",
       "source": "tn_district_court_tiruchirappalli",
-      "target": "hc_madras_bench_tiruchirappalli",
+      "target": "hc_madras_bench_madurai",
       "relationship_type": "AppealableTo",
       "relationship_category": "appellate_chain",
       "is_binding": true,
@@ -53740,7 +54266,7 @@
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": "District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)",
+      "notes": "District court appeals to hc_madras_bench_madurai (Madras HC / bench)",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
@@ -53751,8 +54277,8 @@
       ]
     },
     {
-      "id": "tn_hc_madras_bench_tiruchirappalli_supervise_tiruchirappalli",
-      "source": "hc_madras_bench_tiruchirappalli",
+      "id": "tn_hc_madras_bench_madurai_supervise_tiruchirappalli",
+      "source": "hc_madras_bench_madurai",
       "target": "tn_district_court_tiruchirappalli",
       "relationship_type": "AdministrativeSupervision",
       "relationship_category": "supervisory",
@@ -53993,9 +54519,9 @@
       ]
     },
     {
-      "id": "tn_district_tiruvarur_appealable_hc_madras_bench_tiruchirappalli",
+      "id": "tn_district_tiruvarur_appealable_hc_madras_bench_madurai",
       "source": "tn_district_court_tiruvarur",
-      "target": "hc_madras_bench_tiruchirappalli",
+      "target": "hc_madras_bench_madurai",
       "relationship_type": "AppealableTo",
       "relationship_category": "appellate_chain",
       "is_binding": true,
@@ -54004,7 +54530,7 @@
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": "District court appeals to hc_madras_bench_tiruchirappalli (Madras HC / bench)",
+      "notes": "District court appeals to hc_madras_bench_madurai (Madras HC / bench)",
       "sources": [
         {
           "label": "India Code — Constitution & Acts",
@@ -54015,8 +54541,8 @@
       ]
     },
     {
-      "id": "tn_hc_madras_bench_tiruchirappalli_supervise_tiruvarur",
-      "source": "hc_madras_bench_tiruchirappalli",
+      "id": "tn_hc_madras_bench_madurai_supervise_tiruvarur",
+      "source": "hc_madras_bench_madurai",
       "target": "tn_district_court_tiruvarur",
       "relationship_type": "AdministrativeSupervision",
       "relationship_category": "supervisory",

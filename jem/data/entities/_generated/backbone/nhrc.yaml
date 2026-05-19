@@ -1,0 +1,86 @@
+id: nhrc
+name: National Human Rights Commission
+name_hindi: राष्ट्रीय मानव अधिकार आयोग
+abbreviation: NHRC
+aliases:
+  - National Human Rights Commission of India
+
+type: RegulatoryBodyQJ
+cluster: regulatory_bodies
+level_of_government: Central
+
+jurisdiction_scope:
+  is_all_india: true
+  jurisdiction_types:
+    - human_rights_inquiry
+    - complaints_investigation
+
+created_year: 1993
+operational_status: Active
+
+statutory_basis: "Protection of Human Rights Act 1993, s.3"
+
+appointment:
+  formally_appoints: president_of_india
+  recommends: recommendation_committee_phra_s4
+  consulted:
+    - prime_minister
+    - speaker_lok_sabha
+    - minister_home_affairs
+    - leader_opposition_lok_sabha
+    - leader_opposition_rajya_sabha
+    - deputy_chairman_rajya_sabha
+  consultation_binding: true
+  criteria_public: true
+  tenure: "5 years or age 70, whichever earlier; PHRA 1993 s.6"
+  reappointment_possible: false
+  removal_authority: president_of_india
+  removal_requires_parliament: false
+  removal_independent_committee: true
+
+funding:
+  primary_source: Consolidated_Fund_India
+  ministry_responsible: ministry_law_justice
+
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+
+complaint_mechanism:
+  lokpal_jurisdiction: Not_Applicable
+  lokpal_jurisdiction_note: >
+    Chairperson is a retired Chief Justice of India; members are retired SC/HC
+    judges. Lokpal Act 2013 s.14 does not cover the higher judiciary. Confirmed
+    Not_Applicable; review if future amendment alters scope.
+
+judge_strength:
+  data_as_of: null
+  allotted: 5
+  appointed: null
+  vacancy_count: null
+  source_type: DoJ_Report
+  source_url: https://nhrc.nic.in/
+  notes: >
+    PHRA 1993 s.3(2): Chairperson (retired CJI) + 4 Members (1 retired SC judge,
+    1 retired HC Chief Justice, 2 persons with human-rights experience).
+    Working strength not verified from current DoJ quarterly data.
+
+data_quality: partial
+data_quality_notes: >
+  Core statutory structure verified from PHRA 1993 ss.3-6. Appointment committee
+  composition per s.4; tenure per s.6; removal per s.5 (inquiry by SC judge on
+  President's reference). consulted IDs are descriptive strings — graph alignment
+  needed during derive step. case_volume not populated; NHRC annual reports are
+  public but not yet extracted. funding.ministry_responsible is ministry_law_justice
+  per Union Budget demand no. 60 (Department of Justice) which provides NHRC grant.
+
+sources:
+  - label: "NHRC Official Website"
+    url: https://nhrc.nic.in/
+    type: GoIWebsite
+    accessed_date: "2026-05-18"
+  - label: "Protection of Human Rights Act 1993 — Ministry of Law & Justice"
+    url: https://legislative.dept.gov.in/sites/default/files/A1994-10.pdf
+    type: CentralAct
+    accessed_date: "2026-05-18"
