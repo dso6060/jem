@@ -3,71 +3,65 @@ name: India International Arbitration Centre
 name_hindi: भारत अंतर्राष्ट्रीय मध्यस्थता केंद्र
 abbreviation: IIAC
 aliases:
-  - NDIAC
-  - New Delhi International Arbitration Centre
-  - ICADR
-
+- NDIAC
+- New Delhi International Arbitration Centre
+- ICADR
 type: ArbitralInstitution
 cluster: arbitration
 level_of_government: Central
-
 jurisdiction_scope:
   is_all_india: true
   jurisdiction_types:
-    - Original
-
+  - Original
 created_year: 2019
 operational_status: Active
-
-statutory_basis: >-
-  New Delhi International Arbitration Centre Act, 2019 (Act No. 17 of 2019),
-  as amended by the New Delhi International Arbitration Centre (Amendment)
-  Act, 2022 (Act No. 23 of 2022); rename to IIAC effective 27 January 2023.
-
+statutory_basis: New Delhi International Arbitration Centre Act, 2019 (Act No. 17 of 2019), as amended by the New Delhi International
+  Arbitration Centre (Amendment) Act, 2022 (Act No. 23 of 2022); rename to IIAC effective 27 January 2023.
 appointment:
   nominates: central_government
   formally_appoints: central_government
   consulted:
-    - supreme_court_india
+  - supreme_court_india
   consultation_binding: false
   criteria_public: true
-  tenure: "3 years, renewable once — NDIAC Act 2019 s.4(5)"
+  tenure: 3 years, renewable once — NDIAC Act 2019 s.4(5)
   reappointment_possible: true
   removal_authority: central_government
   removal_requires_parliament: false
   removal_independent_committee: true
-
 funding:
   primary_source: Statutory_Fund
   ministry_responsible: ministry_law_justice
-
 audit:
   audited_by: cag_india
   audit_type: CAG_Statutory
   audit_report_public: true
-
 complaint_mechanism:
   lokpal_jurisdiction: Not_Applicable
-  removal_mechanism: >
-    Arbitrator challenge under A&C Act 1996 s.13. Award challenge under
-    A&C Act 1996 s.34 in Delhi High Court.
+  removal_mechanism: 'Arbitrator challenge under A&C Act 1996 s.13. Award challenge under A&C Act 1996 s.34 in Delhi High
+    Court.
 
+    '
 data_quality: verified
-data_quality_notes: >-
-  Renamed from NDIAC to IIAC by Act No. 23 of 2022, in force 27 Jan 2023.
-  Former id 'ndiac' retained as alias. File renamed ndiac.yaml → iiac.yaml.
-  AwardChallengedIn → hc_delhi in adr_arbitration_relationships.yaml.
-
+data_quality_notes: Renamed from NDIAC to IIAC by Act No. 23 of 2022, in force 27 Jan 2023. Former id 'ndiac' retained as
+  alias. File renamed ndiac.yaml → iiac.yaml. AwardChallengedIn → hc_delhi in adr_arbitration_relationships.yaml. NJDG snapshot
+  case_volume merged
 sources:
-  - label: "New Delhi International Arbitration Centre Act 2019 — India Code"
-    url: https://india-code.nic.in/acts-detail/MjMyMDM=
-    type: CentralAct
-    accessed_date: '2026-05-18'
-  - label: IIAC Official Statutes Page
-    url: https://indiaiac.org/arbitration/about_act
-    type: GoIWebsite
-    accessed_date: '2026-05-18'
-  - label: "Ministry of Law and Justice — NDIAC"
-    url: https://doj.gov.in/acts-rules/new-delhi-international-arbitration-centre-act-2019
-    type: GoIWebsite
-    accessed_date: '2026-05-18'
+- label: New Delhi International Arbitration Centre Act 2019 — India Code
+  url: https://india-code.nic.in/acts-detail/MjMyMDM=
+  type: CentralAct
+  accessed_date: '2026-05-18'
+- label: IIAC Official Statutes Page
+  url: https://indiaiac.org/arbitration/about_act
+  type: GoIWebsite
+  accessed_date: '2026-05-18'
+- label: Ministry of Law and Justice — NDIAC
+  url: https://doj.gov.in/acts-rules/new-delhi-international-arbitration-centre-act-2019
+  type: GoIWebsite
+  accessed_date: '2026-05-18'
+- label: National Judicial Data Grid (NJDG)
+  url: https://njdg.ecourts.gov.in/
+  type: NJDG
+  accessed_date: '2024-12-01'
+case_volume:
+  clog_severity: unknown

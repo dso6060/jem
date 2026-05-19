@@ -1,4 +1,3 @@
-# JEM generated bundle — data_quality: partial; expand sources per CONTRIBUTING.md
 id: ka_lokayukta
 name: Karnataka Lokayukta
 type: ExecutiveBody
@@ -22,8 +21,7 @@ structural_variations:
   description: 2023 amendment context — verify independence impact from primary materials.
   applicable_to:
   - KA
-  source: Rajamohan Reddy v State of Karnataka (2023) — cite official neutral citation
-    when verified
+  source: Rajamohan Reddy v State of Karnataka (2023) — cite official neutral citation when verified
   independence_risk_note: Policy conflict risk — pending domain review
 funding:
   primary_source: State_Consolidated_Fund
@@ -40,3 +38,10 @@ sources:
   url: https://india-code.nic.in/
   type: GoIWebsite
   accessed_date: '2026-05-13'
+- label: National Judicial Data Grid (NJDG)
+  url: https://njdg.ecourts.gov.in/
+  type: NJDG
+  accessed_date: '2024-12-01'
+case_volume:
+  clog_severity: unknown
+data_quality_notes: NJDG snapshot case_volume merged

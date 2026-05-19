@@ -3,31 +3,24 @@ name: Insurance Regulatory and Development Authority of India
 name_hindi: भारतीय बीमा विनियामक और विकास प्राधिकरण
 abbreviation: IRDAI
 aliases:
-  - Insurance Regulatory and Development Authority
-  - IRDA
-
+- Insurance Regulatory and Development Authority
+- IRDA
 type: RegulatoryBodyQJ
 cluster: regulatory_bodies
 level_of_government: Central
-
 jurisdiction_scope:
   is_all_india: true
   jurisdiction_types:
-    - insurance_regulation
-    - policyholder_protection
-    - insurer_licensing
-    - intermediary_regulation
-
+  - insurance_regulation
+  - policyholder_protection
+  - insurer_licensing
+  - intermediary_regulation
 created_year: 1999
 operational_status: Active
-
 constitutional_basis: null
-statutory_basis: >-
-  Insurance Regulatory and Development Authority Act 1999 (Act 41 of 1999),
-  s.3 (establishment); Insurance Act 1938 (as amended) for licensing
-  and regulatory jurisdiction. IRDAI (Amendment) Act 2015 and Insurance
-  Laws (Amendment) Act 2015 expanded regulatory powers.
-
+statutory_basis: Insurance Regulatory and Development Authority Act 1999 (Act 41 of 1999), s.3 (establishment); Insurance
+  Act 1938 (as amended) for licensing and regulatory jurisdiction. IRDAI (Amendment) Act 2015 and Insurance Laws (Amendment)
+  Act 2015 expanded regulatory powers.
 appointment:
   nominates: ministry_of_finance
   recommends: null
@@ -35,35 +28,25 @@ appointment:
   consultation_binding: null
   formally_appoints: central_government
   criteria_public: true
-  tenure: "Chairperson: 5 years or age 65; Whole-time Members: 5 years or age 62"
+  tenure: 'Chairperson: 5 years or age 65; Whole-time Members: 5 years or age 62'
   reappointment_possible: false
   removal_authority: central_government
   removal_requires_parliament: false
   removal_independent_committee: true
-
 funding:
   primary_source: Statutory_Fund
   ministry_responsible: ministry_of_finance
-
 audit:
   audited_by: cag_india
   audit_type: CAG_Statutory
   audit_report_public: true
   conduct_oversight_body: ministry_of_finance
-
 complaint_mechanism:
-  lokpal_jurisdiction: "No"
+  lokpal_jurisdiction: 'No'
   lokpal_jurisdiction_note: Regulatory body; oversight through MoF and judicial review.
-  removal_mechanism: >-
-    Removal by Central Government on grounds of misbehaviour or
-    incapacity (IRDAI Act 1999, s.5A)
-
+  removal_mechanism: Removal by Central Government on grounds of misbehaviour or incapacity (IRDAI Act 1999, s.5A)
 case_volume:
-  data_as_of: null
-  pending_cases: null
-  source_type: AnnualReport
-  source_url: null
-
+  clog_severity: unknown
 judge_strength:
   data_as_of: null
   allotted: null
@@ -71,20 +54,20 @@ judge_strength:
   source_type: AnnualReport
   source_url: null
   notes: Member count set by IRDAI Act 1999, s.4.
-
 data_quality: partial
-data_quality_notes: >-
-  IRDAI orders are appealable to SAT (Securities Appellate Tribunal)
-  under IRDAI Act 1999, s.18A. Relationship recorded in relationships
-  file. Funding primarily through fees/levies (Statutory_Fund);
-  ministry_of_finance is responsible ministry.
-
+data_quality_notes: IRDAI orders are appealable to SAT (Securities Appellate Tribunal) under IRDAI Act 1999, s.18A. Relationship
+  recorded in relationships file. Funding primarily through fees/levies (Statutory_Fund); ministry_of_finance is responsible
+  ministry. NJDG snapshot case_volume merged
 sources:
-  - label: "IRDAI Act 1999 (Act 41 of 1999)"
-    url: https://india-code.nic.in/handle/123456789/2039
-    type: CentralAct
-    accessed_date: "2025-01-15"
-  - label: "IRDAI official website"
-    url: https://www.irdai.gov.in
-    type: GoIWebsite
-    accessed_date: "2025-01-15"
+- label: IRDAI Act 1999 (Act 41 of 1999)
+  url: https://india-code.nic.in/handle/123456789/2039
+  type: CentralAct
+  accessed_date: '2025-01-15'
+- label: IRDAI official website
+  url: https://www.irdai.gov.in
+  type: GoIWebsite
+  accessed_date: '2025-01-15'
+- label: National Judicial Data Grid (NJDG)
+  url: https://njdg.ecourts.gov.in/
+  type: NJDG
+  accessed_date: '2024-12-01'

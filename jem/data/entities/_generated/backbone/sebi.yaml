@@ -3,31 +3,24 @@ name: Securities and Exchange Board of India
 name_hindi: भारतीय प्रतिभूति और विनिमय बोर्ड
 abbreviation: SEBI
 aliases:
-  - Securities and Exchange Board of India
-  - SEBI Board
-
+- Securities and Exchange Board of India
+- SEBI Board
 type: RegulatoryBodyQJ
 cluster: regulatory_bodies
 level_of_government: Central
-
 jurisdiction_scope:
   is_all_india: true
   jurisdiction_types:
-    - securities_regulation
-    - market_intermediary_regulation
-    - takeover_regulation
-    - insider_trading_enforcement
-
+  - securities_regulation
+  - market_intermediary_regulation
+  - takeover_regulation
+  - insider_trading_enforcement
 created_year: 1992
 operational_status: Active
-
 constitutional_basis: null
-statutory_basis: >-
-  Securities and Exchange Board of India Act 1992 (Act 15 of 1992),
-  s.3 (establishment), s.11 (functions), s.15 (quasi-judicial orders).
-  Originally constituted as a non-statutory body in 1988; given statutory
-  status by SEBI Act 1992.
-
+statutory_basis: Securities and Exchange Board of India Act 1992 (Act 15 of 1992), s.3 (establishment), s.11 (functions),
+  s.15 (quasi-judicial orders). Originally constituted as a non-statutory body in 1988; given statutory status by SEBI Act
+  1992.
 appointment:
   nominates: ministry_of_finance
   recommends: null
@@ -35,38 +28,27 @@ appointment:
   consultation_binding: null
   formally_appoints: central_government
   criteria_public: true
-  tenure: "Chairperson and Whole-time Members: 5 years or age 65"
+  tenure: 'Chairperson and Whole-time Members: 5 years or age 65'
   reappointment_possible: false
   removal_authority: central_government
   removal_requires_parliament: false
   removal_independent_committee: true
-
 funding:
   primary_source: Statutory_Fund
   ministry_responsible: ministry_of_finance
-
 audit:
   audited_by: cag_india
   audit_type: CAG_Statutory
   audit_report_public: true
   conduct_oversight_body: ministry_of_finance
-
 complaint_mechanism:
-  lokpal_jurisdiction: "No"
-  lokpal_jurisdiction_note: >-
-    SEBI is a statutory regulator; its members are not covered by
-    Lokpal Act 2013 Schedule I exclusions in the same way as courts,
-    but the regulatory body is supervised by MoF.
-  removal_mechanism: >-
-    Removal by Central Government on grounds of misbehaviour or
-    incapacity after inquiry (SEBI Act 1992, s.6)
-
+  lokpal_jurisdiction: 'No'
+  lokpal_jurisdiction_note: SEBI is a statutory regulator; its members are not covered by Lokpal Act 2013 Schedule I exclusions
+    in the same way as courts, but the regulatory body is supervised by MoF.
+  removal_mechanism: Removal by Central Government on grounds of misbehaviour or incapacity after inquiry (SEBI Act 1992,
+    s.6)
 case_volume:
-  data_as_of: null
-  pending_cases: null
-  source_type: AnnualReport
-  source_url: null
-
+  clog_severity: unknown
 judge_strength:
   data_as_of: null
   allotted: null
@@ -74,21 +56,20 @@ judge_strength:
   source_type: AnnualReport
   source_url: null
   notes: Regulatory body; Member strength determined by SEBI Act schedule.
-
 data_quality: partial
-data_quality_notes: >-
-  SEBI primarily funds itself via fees and levies (Statutory_Fund) under
-  SEBI Act 1992, s.14; MoF oversight retained for member appointments and
-  appeals. Appeals from SEBI orders go to SAT (Securities Appellate
-  Tribunal — existing entity in graph). Relationship edge recorded in
-  relationships file.
-
+data_quality_notes: SEBI primarily funds itself via fees and levies (Statutory_Fund) under SEBI Act 1992, s.14; MoF oversight
+  retained for member appointments and appeals. Appeals from SEBI orders go to SAT (Securities Appellate Tribunal — existing
+  entity in graph). Relationship edge recorded in relationships file. NJDG snapshot case_volume merged
 sources:
-  - label: "SEBI Act 1992 (Act 15 of 1992)"
-    url: https://india-code.nic.in/handle/123456789/2080
-    type: CentralAct
-    accessed_date: "2025-01-15"
-  - label: "SEBI official website"
-    url: https://www.sebi.gov.in
-    type: GoIWebsite
-    accessed_date: "2025-01-15"
+- label: SEBI Act 1992 (Act 15 of 1992)
+  url: https://india-code.nic.in/handle/123456789/2080
+  type: CentralAct
+  accessed_date: '2025-01-15'
+- label: SEBI official website
+  url: https://www.sebi.gov.in
+  type: GoIWebsite
+  accessed_date: '2025-01-15'
+- label: National Judicial Data Grid (NJDG)
+  url: https://njdg.ecourts.gov.in/
+  type: NJDG
+  accessed_date: '2024-12-01'

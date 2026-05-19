@@ -1,4 +1,3 @@
-# JEM generated bundle — data_quality: partial; expand sources per CONTRIBUTING.md
 id: collegium_sc
 name: Supreme Court Collegium
 type: AppointmentBody
@@ -9,7 +8,7 @@ jurisdiction_scope:
 created_year: 1950
 operational_status: Active
 data_quality: partial
-data_quality_notes: Stub; collegium composition per constitutional practice.
+data_quality_notes: Stub; collegium composition per constitutional practice. NJDG snapshot case_volume merged
 sources:
 - label: India Code — Constitution & Acts
   url: https://india-code.nic.in/
@@ -19,3 +18,9 @@ sources:
   url: https://main.sci.gov.in/
   type: GoIWebsite
   accessed_date: '2026-05-13'
+- label: National Judicial Data Grid (NJDG)
+  url: https://njdg.ecourts.gov.in/
+  type: NJDG
+  accessed_date: '2024-12-01'
+case_volume:
+  clog_severity: unknown

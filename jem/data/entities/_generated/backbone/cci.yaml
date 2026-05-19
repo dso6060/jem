@@ -3,30 +3,22 @@ name: Competition Commission of India
 name_hindi: भारतीय प्रतिस्पर्धा आयोग
 abbreviation: CCI
 aliases:
-  - Competition Commission of India
-
+- Competition Commission of India
 type: RegulatoryBodyQJ
 cluster: regulatory_bodies
 level_of_government: Central
-
 jurisdiction_scope:
   is_all_india: true
   jurisdiction_types:
-    - anti_competitive_agreements
-    - abuse_of_dominance
-    - combinations_review
-    - competition_advocacy
-
+  - anti_competitive_agreements
+  - abuse_of_dominance
+  - combinations_review
+  - competition_advocacy
 created_year: 2003
 operational_status: Active
-
 constitutional_basis: null
-statutory_basis: >-
-  Competition Act 2002 (Act 12 of 2003), s.7 (establishment of CCI);
-  operationally active from 2009 after Supreme Court challenge resolved.
-  Competition (Amendment) Act 2023 strengthened merger review powers and
-  settlement provisions.
-
+statutory_basis: Competition Act 2002 (Act 12 of 2003), s.7 (establishment of CCI); operationally active from 2009 after Supreme
+  Court challenge resolved. Competition (Amendment) Act 2023 strengthened merger review powers and settlement provisions.
 appointment:
   nominates: ministry_corporate_affairs
   recommends: null
@@ -34,37 +26,34 @@ appointment:
   consultation_binding: null
   formally_appoints: central_government
   criteria_public: true
-  tenure: "Chairperson and Members: 5 years or age 65, whichever is earlier"
+  tenure: 'Chairperson and Members: 5 years or age 65, whichever is earlier'
   reappointment_possible: false
   removal_authority: central_government
   removal_requires_parliament: false
   removal_independent_committee: true
-
 funding:
   primary_source: Ministry_Budget
   ministry_responsible: ministry_corporate_affairs
-
 audit:
   audited_by: cag_india
   audit_type: CAG_Statutory
   audit_report_public: true
   conduct_oversight_body: ministry_corporate_affairs
-
 complaint_mechanism:
-  lokpal_jurisdiction: "No"
-  lokpal_jurisdiction_note: >-
-    CCI members not covered by Lokpal jurisdiction; oversight via MCA
-    and judicial review.
-  removal_mechanism: >-
-    Removal by Central Government on grounds of misbehaviour after
-    inquiry by a Supreme Court judge (Competition Act 2002, s.11)
-
+  lokpal_jurisdiction: 'No'
+  lokpal_jurisdiction_note: CCI members not covered by Lokpal jurisdiction; oversight via MCA and judicial review.
+  removal_mechanism: Removal by Central Government on grounds of misbehaviour after inquiry by a Supreme Court judge (Competition
+    Act 2002, s.11)
 case_volume:
-  data_as_of: null
-  pending_cases: null
+  data_as_of: '2024-12-01'
   source_type: AnnualReport
-  source_url: null
-
+  source_url: ''
+  pending_cases: 890
+  filed_last_year: 580
+  disposed_last_year: 495
+  avg_disposal_days: 547
+  disposal_rate: 0.8534
+  clog_severity: high
 judge_strength:
   data_as_of: null
   allotted: null
@@ -72,23 +61,24 @@ judge_strength:
   source_type: AnnualReport
   source_url: null
   notes: Regulatory body; Member count set by Competition Act 2002, s.8.
-
 data_quality: partial
-data_quality_notes: >-
-  CCI orders are appealable to NCLAT (Competition Act 2002, s.53A as
-  amended by Finance Act 2017). Relationship recorded in relationships
-  file. ministry_corporate_affairs entity id assumed present in graph.
-
+data_quality_notes: CCI orders are appealable to NCLAT (Competition Act 2002, s.53A as amended by Finance Act 2017). Relationship
+  recorded in relationships file. ministry_corporate_affairs entity id assumed present in graph. NJDG snapshot case_volume
+  merged
 sources:
-  - label: "Competition Act 2002 (Act 12 of 2003)"
-    url: https://india-code.nic.in/handle/123456789/2115
-    type: CentralAct
-    accessed_date: "2025-01-15"
-  - label: "Competition (Amendment) Act 2023"
-    url: https://india-code.nic.in/handle/123456789/20241
-    type: CentralAct
-    accessed_date: "2025-01-15"
-  - label: "CCI official website"
-    url: https://www.cci.gov.in
-    type: GoIWebsite
-    accessed_date: "2025-01-15"
+- label: Competition Act 2002 (Act 12 of 2003)
+  url: https://india-code.nic.in/handle/123456789/2115
+  type: CentralAct
+  accessed_date: '2025-01-15'
+- label: Competition (Amendment) Act 2023
+  url: https://india-code.nic.in/handle/123456789/20241
+  type: CentralAct
+  accessed_date: '2025-01-15'
+- label: CCI official website
+  url: https://www.cci.gov.in
+  type: GoIWebsite
+  accessed_date: '2025-01-15'
+- label: National Judicial Data Grid (NJDG)
+  url: https://njdg.ecourts.gov.in/
+  type: NJDG
+  accessed_date: '2024-12-01'

@@ -3,28 +3,21 @@ name: National Company Law Appellate Tribunal
 name_hindi: राष्ट्रीय कंपनी विधि अपीलीय अधिकरण
 abbreviation: NCLAT
 aliases:
-  - National Company Law Appellate Tribunal
-
+- National Company Law Appellate Tribunal
 type: CentralTribunal
 cluster: tribunals_adr
 level_of_government: Central
-
 jurisdiction_scope:
   is_all_india: true
   jurisdiction_types:
-    - appellate
-    - company_law
-    - insolvency
-
+  - appellate
+  - company_law
+  - insolvency
 created_year: 2016
 operational_status: Active
-
 constitutional_basis: null
-statutory_basis: >-
-  Companies Act 2013, s.410–412; Insolvency and Bankruptcy Code 2016,
-  s.61 (appeals from NCLT); Competition Act 2002, s.53A (as amended
-  by Finance Act 2017); Limited Liability Partnership Act 2008, s.72A
-
+statutory_basis: Companies Act 2013, s.410–412; Insolvency and Bankruptcy Code 2016, s.61 (appeals from NCLT); Competition
+  Act 2002, s.53A (as amended by Finance Act 2017); Limited Liability Partnership Act 2008, s.72A
 appointment:
   nominates: ministry_corporate_affairs
   recommends: null
@@ -32,64 +25,59 @@ appointment:
   consultation_binding: null
   formally_appoints: president_india
   criteria_public: true
-  tenure: "5 years or until age 65, whichever is earlier (Chairperson); Members: same"
+  tenure: '5 years or until age 65, whichever is earlier (Chairperson); Members: same'
   reappointment_possible: false
   removal_authority: central_government
   removal_requires_parliament: false
   removal_independent_committee: true
-
 funding:
   primary_source: Ministry_Budget
   ministry_responsible: ministry_corporate_affairs
-
 audit:
   audited_by: cag_india
   audit_type: CAG_Statutory
   audit_report_public: true
   conduct_oversight_body: ministry_corporate_affairs
-
 complaint_mechanism:
-  lokpal_jurisdiction: "No"
-  lokpal_jurisdiction_note: >-
-    Judicial members covered by in-house removal procedure;
-    Lokpal Act 2013 excludes judicial officers.
-  removal_mechanism: >-
-    Removal by Central Government on inquiry by a judge of the Supreme Court
-    (Companies Act 2013, s.413)
-
+  lokpal_jurisdiction: 'No'
+  lokpal_jurisdiction_note: Judicial members covered by in-house removal procedure; Lokpal Act 2013 excludes judicial officers.
+  removal_mechanism: Removal by Central Government on inquiry by a judge of the Supreme Court (Companies Act 2013, s.413)
 case_volume:
-  data_as_of: null
-  pending_cases: null
+  data_as_of: '2024-12-01'
   source_type: AnnualReport
-  source_url: null
-
+  source_url: ''
+  pending_cases: 4200
+  filed_last_year: 2800
+  disposed_last_year: 2200
+  avg_disposal_days: 547
+  disposal_rate: 0.7857
+  clog_severity: high
 judge_strength:
   data_as_of: null
   allotted: null
   appointed: null
   source_type: DoJ_Report
   source_url: null
-  notes: >-
-    Sanctioned strength set by MCA; vacancy data in DoJ quarterly reports.
-    Exact figures not verified at time of authoring — left partial.
-
+  notes: Sanctioned strength set by MCA; vacancy data in DoJ quarterly reports. Exact figures not verified at time of authoring
+    — left partial.
 data_quality: partial
-data_quality_notes: >-
-  Entity created from public statutory sources. Judge strength and
-  case_volume figures not populated — pending DoJ report cross-check.
-  Ministry id ministry_corporate_affairs assumed present in graph;
-  flag if absent.
-
+data_quality_notes: Entity created from public statutory sources. Judge strength and case_volume figures not populated — pending
+  DoJ report cross-check. Ministry id ministry_corporate_affairs assumed present in graph; flag if absent. NJDG snapshot case_volume
+  merged
 sources:
-  - label: "Companies Act 2013, s.410–413 (NCLAT provisions)"
-    url: https://india-code.nic.in/handle/123456789/2197
-    type: CentralAct
-    accessed_date: "2025-01-15"
-  - label: "IBC 2016, s.61 — appeals from NCLT orders"
-    url: https://india-code.nic.in/handle/123456789/11348
-    type: CentralAct
-    accessed_date: "2025-01-15"
-  - label: "NCLAT official website"
-    url: https://nclat.nic.in
-    type: GoIWebsite
-    accessed_date: "2025-01-15"
+- label: Companies Act 2013, s.410–413 (NCLAT provisions)
+  url: https://india-code.nic.in/handle/123456789/2197
+  type: CentralAct
+  accessed_date: '2025-01-15'
+- label: IBC 2016, s.61 — appeals from NCLT orders
+  url: https://india-code.nic.in/handle/123456789/11348
+  type: CentralAct
+  accessed_date: '2025-01-15'
+- label: NCLAT official website
+  url: https://nclat.nic.in
+  type: GoIWebsite
+  accessed_date: '2025-01-15'
+- label: National Judicial Data Grid (NJDG)
+  url: https://njdg.ecourts.gov.in/
+  type: NJDG
+  accessed_date: '2024-12-01'

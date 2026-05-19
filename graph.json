@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-05-19T08:02:00.168572+00:00",
+    "generated_at": "2026-05-19T08:05:27.608883+00:00",
     "entity_count": 494,
     "relationship_count": 497,
     "canvas_width": 1800,
@@ -354,7 +354,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Armed Forces Tribunal Act 2007 (Act 55 of 2007); commenced 8 August 2009 via Gazette notification. Jurisdiction covers service matters of Army, Navy, Air Force personnel and appeals from court-martial convictions/sentences under Army Act 1950, Navy Act 1957, Air Force Act 1950.",
       "data_quality": "partial",
-      "data_quality_notes": "Entity created from statutory sources. ministry_defence entity id assumed present in graph — flag if absent. Note: AFT appeals go directly to the Supreme Court (AFT Act 2007, s.30) — NOT to High Courts. Appellate relationship recorded as AppealableTo supreme_court_india.",
+      "data_quality_notes": "Entity created from statutory sources. ministry_defence entity id assumed present in graph — flag if absent. Note: AFT appeals go directly to the Supreme Court (AFT Act 2007, s.30) — NOT to High Courts. Appellate relationship recorded as AppealableTo supreme_court_india. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -391,6 +391,12 @@
           "url": "https://aftdelhi.nic.in",
           "type": "GoIWebsite",
           "accessed_date": "2025-01-15"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -436,10 +442,17 @@
           ]
         },
         "case_volume": {
-          "data_as_of": null,
-          "pending_cases": null,
-          "source_type": "AnnualReport",
-          "source_url": null
+          "data_as_of": "2024-12-01",
+          "sanctioned_strength": 34,
+          "working_strength": 19,
+          "pending_cases": 48000,
+          "avg_disposal_days": 1095,
+          "source_url": "https://aftdelhi.nic.in/",
+          "source_type": "Tribunal_Report",
+          "filed_last_year": 9500,
+          "disposed_last_year": 7800,
+          "disposal_rate": 0.8211,
+          "clog_severity": "critical"
         },
         "judge_strength": {
           "data_as_of": null,
@@ -470,7 +483,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Electricity Act 2003, Sections 110–122",
       "data_quality": "partial",
-      "data_quality_notes": "created_year 2005 (operational constitution); Electricity Act 2003 enacted May 2003 — 2003 also defensible. ministry_responsible entity id 'ministry_of_power' assumed — verify in graph. Confirm against Union Budget DDG (MoP) for budget_figure_crore. case_volume and judge_strength null — populate from APTEL Annual Report or DoJ quarterly vacancy data in §3/§7.\n",
+      "data_quality_notes": "created_year 2005 (operational constitution); Electricity Act 2003 enacted May 2003 — 2003 also defensible. ministry_responsible entity id 'ministry_of_power' assumed — verify in graph. Confirm against Union Budget DDG (MoP) for budget_figure_crore. case_volume and judge_strength null — populate from APTEL Annual Report or DoJ quarterly vacancy data in §3/§7.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -507,6 +520,12 @@
           "url": "https://powermin.gov.in/en/content/attached-subordinate-offices",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -543,7 +562,9 @@
             "Appellate"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -566,7 +587,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -597,6 +618,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -610,7 +637,9 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -633,7 +662,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Administrative Tribunals Act 1985, Section 4",
       "data_quality": "partial",
-      "data_quality_notes": "Appointment block verified against AT Act 1985 and TRA 2021. Pre-2021 tenure was 5 years or age 65/62 — TRA 2021 now governs. ministry_responsible 'ministry_personnel_dopt' assumed — verify in graph. case_volume and judge_strength null — CAT Annual Report or DoJ data in §3/§7.\n",
+      "data_quality_notes": "Appointment block verified against AT Act 1985 and TRA 2021. Pre-2021 tenure was 5 years or age 65/62 — TRA 2021 now governs. ministry_responsible 'ministry_personnel_dopt' assumed — verify in graph. case_volume and judge_strength null — CAT Annual Report or DoJ data in §3/§7.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -676,6 +705,12 @@
           "url": "https://dopt.gov.in/cat",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -713,7 +748,17 @@
             "Appellate"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "source_type": "AnnualReport",
+          "source_url": "",
+          "pending_cases": 42000,
+          "filed_last_year": 18000,
+          "disposed_last_year": 11700,
+          "avg_disposal_days": 912,
+          "disposal_rate": 0.65,
+          "clog_severity": "critical"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -736,7 +781,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Competition Act 2002 (Act 12 of 2003), s.7 (establishment of CCI); operationally active from 2009 after Supreme Court challenge resolved. Competition (Amendment) Act 2023 strengthened merger review powers and settlement provisions.",
       "data_quality": "partial",
-      "data_quality_notes": "CCI orders are appealable to NCLAT (Competition Act 2002, s.53A as amended by Finance Act 2017). Relationship recorded in relationships file. ministry_corporate_affairs entity id assumed present in graph.",
+      "data_quality_notes": "CCI orders are appealable to NCLAT (Competition Act 2002, s.53A as amended by Finance Act 2017). Relationship recorded in relationships file. ministry_corporate_affairs entity id assumed present in graph. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -779,6 +824,12 @@
           "url": "https://www.cci.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2025-01-15"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -823,10 +874,15 @@
           ]
         },
         "case_volume": {
-          "data_as_of": null,
-          "pending_cases": null,
+          "data_as_of": "2024-12-01",
           "source_type": "AnnualReport",
-          "source_url": null
+          "source_url": "",
+          "pending_cases": 890,
+          "filed_last_year": 580,
+          "disposed_last_year": 495,
+          "avg_disposal_days": 547,
+          "disposal_rate": 0.8534,
+          "clog_severity": "high"
         },
         "judge_strength": {
           "data_as_of": null,
@@ -991,7 +1047,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Customs Act 1962, Section 129; Central Excise Act 1944, Section 35B; Finance Act 1994, Section 86 (service tax — now subsumed into GST)\n",
       "data_quality": "partial",
-      "data_quality_notes": "created_year 1982 (CEGAT founding; entity continuity). Service tax jurisdiction added 2003; GST replaced service tax from 1 July 2017 but CESTAT retains jurisdiction over pre-GST disputes. Finance Act 1994 s.86 remains live for legacy service tax appeals. ministry_responsible 'ministry_of_finance' assumed — CBIC demand head; verify in graph. case_volume null — CESTAT Annual Report in §3/§7.\n",
+      "data_quality_notes": "created_year 1982 (CEGAT founding; entity continuity). Service tax jurisdiction added 2003; GST replaced service tax from 1 July 2017 but CESTAT retains jurisdiction over pre-GST disputes. Finance Act 1994 s.86 remains live for legacy service tax appeals. ministry_responsible 'ministry_of_finance' assumed — CBIC demand head; verify in graph. case_volume null — CESTAT Annual Report in §3/§7.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -1034,6 +1090,12 @@
           "url": "https://cestat.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -1070,7 +1132,19 @@
             "Appellate"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "sanctioned_strength": 34,
+          "working_strength": 22,
+          "pending_cases": 120000,
+          "avg_disposal_days": 730,
+          "source_url": "https://cestat.gov.in/",
+          "source_type": "Tribunal_Report",
+          "filed_last_year": 22000,
+          "disposed_last_year": 18000,
+          "disposal_rate": 0.8182,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -1093,7 +1167,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -1125,6 +1199,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -1138,7 +1218,9 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -1234,7 +1316,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub; collegium composition per constitutional practice.",
+      "data_quality_notes": "Stub; collegium composition per constitutional practice. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type AppointmentBody": 4,
@@ -1272,6 +1354,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -1285,7 +1373,9 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -1409,7 +1499,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -1440,6 +1530,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -1453,7 +1549,9 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -1476,7 +1574,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Delhi High Court Administrative Charter (Centre inaugurated 25 Nov 2009 by CJI K.G. Balakrishnan); Delhi International Arbitration Centre (Internal Management) Rules, 2012 (effective 01 Nov 2012, updated 01 Jul 2018). Not constituted by statute — HC-annexed administrative body. Formerly known as Delhi High Court Arbitration Centre (DAC).",
       "data_quality": "verified",
-      "data_quality_notes": "Inaugurated 25 Nov 2009 by CJI K.G. Balakrishnan; established under Delhi HC administrative charter by then CJ Ajit Prakash Shah (CJ May 2008 – Feb 2010). First ever HC-annexed institutional arbitration centre. AwardChallengedIn → hc_delhi in adr_arbitration_relationships.yaml.",
+      "data_quality_notes": "Inaugurated 25 Nov 2009 by CJI K.G. Balakrishnan; established under Delhi HC administrative charter by then CJ Ajit Prakash Shah (CJ May 2008 – Feb 2010). First ever HC-annexed institutional arbitration centre. AwardChallengedIn → hc_delhi in adr_arbitration_relationships.yaml. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ArbitralInstitution": 1,
@@ -1518,6 +1616,12 @@
           "url": "https://india-code.nic.in/acts-detail/MTA4NDE=",
           "type": "CentralAct",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -1563,7 +1667,9 @@
             "Original"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -1748,7 +1854,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Recovery of Debts Due to Banks and Financial Institutions Act 1993 (RDDBFI Act), s.8–18 — hears appeals from DRT orders. Four DRATs: Allahabad, Chennai, Kolkata, Mumbai. Modelled as single central entity.",
       "data_quality": "partial",
-      "data_quality_notes": "Modelled as single central entity covering 4 DRAT benches (Allahabad, Chennai, Kolkata, Mumbai). ministry_of_finance assumed present in graph. Case volume and strength data left partial pending official source confirmation.",
+      "data_quality_notes": "Modelled as single central entity covering 4 DRAT benches (Allahabad, Chennai, Kolkata, Mumbai). ministry_of_finance assumed present in graph. Case volume and strength data left partial pending official source confirmation. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -1786,6 +1892,12 @@
           "url": "https://dfs.gov.in/financial-institutions/drat",
           "type": "GoIWebsite",
           "accessed_date": "2025-01-15"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -1828,10 +1940,7 @@
           ]
         },
         "case_volume": {
-          "data_as_of": null,
-          "pending_cases": null,
-          "source_type": "AnnualReport",
-          "source_url": null
+          "clog_severity": "unknown"
         },
         "judge_strength": {
           "data_as_of": null,
@@ -1862,7 +1971,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Recovery of Debts Due to Banks and Financial Institutions Act 1993 (RDDBFI Act), s.3–8; Securitisation and Reconstruction of Financial Assets and Enforcement of Security Interest Act 2002 (SARFAESI Act), s.17 — borrower/guarantor applications against secured creditors. Modelled as a single central entity; physically operates as 39 benches across India.",
       "data_quality": "partial",
-      "data_quality_notes": "Entity models the DRT system as a single central entity (39 benches); individual bench entities not created — Phase-2 scope if needed. Ministry id ministry_of_finance assumed present in graph. Case volume and strength data left partial.",
+      "data_quality_notes": "Entity models the DRT system as a single central entity (39 benches); individual bench entities not created — Phase-2 scope if needed. Ministry id ministry_of_finance assumed present in graph. Case volume and strength data left partial. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -1906,6 +2015,12 @@
           "url": "https://dfs.gov.in/financial-institutions/drt",
           "type": "GoIWebsite",
           "accessed_date": "2025-01-15"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -1949,10 +2064,11 @@
           ]
         },
         "case_volume": {
-          "data_as_of": null,
-          "pending_cases": null,
-          "source_type": "AnnualReport",
-          "source_url": null
+          "data_as_of": "2024-12-01",
+          "pending_cases": 195000,
+          "source_url": "https://drt.gov.in/",
+          "source_type": "Tribunal_Report",
+          "clog_severity": "unknown"
         },
         "judge_strength": {
           "data_as_of": null,
@@ -2189,7 +2305,7 @@
       "constitutional_basis": null,
       "statutory_basis": "New Delhi International Arbitration Centre Act, 2019 (Act No. 17 of 2019), as amended by the New Delhi International Arbitration Centre (Amendment) Act, 2022 (Act No. 23 of 2022); rename to IIAC effective 27 January 2023.",
       "data_quality": "verified",
-      "data_quality_notes": "Renamed from NDIAC to IIAC by Act No. 23 of 2022, in force 27 Jan 2023. Former id 'ndiac' retained as alias. File renamed ndiac.yaml → iiac.yaml. AwardChallengedIn → hc_delhi in adr_arbitration_relationships.yaml.",
+      "data_quality_notes": "Renamed from NDIAC to IIAC by Act No. 23 of 2022, in force 27 Jan 2023. Former id 'ndiac' retained as alias. File renamed ndiac.yaml → iiac.yaml. AwardChallengedIn → hc_delhi in adr_arbitration_relationships.yaml. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ArbitralInstitution": 1,
@@ -2232,6 +2348,12 @@
           "url": "https://doj.gov.in/acts-rules/new-delhi-international-arbitration-centre-act-2019",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -2271,7 +2393,9 @@
             "Original"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -2472,7 +2596,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Insurance Regulatory and Development Authority Act 1999 (Act 41 of 1999), s.3 (establishment); Insurance Act 1938 (as amended) for licensing and regulatory jurisdiction. IRDAI (Amendment) Act 2015 and Insurance Laws (Amendment) Act 2015 expanded regulatory powers.",
       "data_quality": "partial",
-      "data_quality_notes": "IRDAI orders are appealable to SAT (Securities Appellate Tribunal) under IRDAI Act 1999, s.18A. Relationship recorded in relationships file. Funding primarily through fees/levies (Statutory_Fund); ministry_of_finance is responsible ministry.",
+      "data_quality_notes": "IRDAI orders are appealable to SAT (Securities Appellate Tribunal) under IRDAI Act 1999, s.18A. Relationship recorded in relationships file. Funding primarily through fees/levies (Statutory_Fund); ministry_of_finance is responsible ministry. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -2508,6 +2632,12 @@
           "url": "https://www.irdai.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2025-01-15"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -2552,10 +2682,7 @@
           ]
         },
         "case_volume": {
-          "data_as_of": null,
-          "pending_cases": null,
-          "source_type": "AnnualReport",
-          "source_url": null
+          "clog_severity": "unknown"
         },
         "judge_strength": {
           "data_as_of": null,
@@ -2586,7 +2713,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Income Tax Act 1961, Section 252",
       "data_quality": "partial",
-      "data_quality_notes": "created_year 1941 (founding under IT Act 1922); 1961 (current statute) also defensible — maintainer to decide policy. 63+ benches across India. ministry_responsible 'ministry_of_finance' assumed — verify in graph. case_volume and judge_strength null — ITAT Annual Report in §3/§7.\n",
+      "data_quality_notes": "created_year 1941 (founding under IT Act 1922); 1961 (current statute) also defensible — maintainer to decide policy. 63+ benches across India. ministry_responsible 'ministry_of_finance' assumed — verify in graph. case_volume and judge_strength null — ITAT Annual Report in §3/§7.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -2629,6 +2756,12 @@
           "url": "https://itat.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -2665,7 +2798,16 @@
             "Appellate"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "source_type": "AnnualReport",
+          "source_url": "",
+          "filed_last_year": 55000,
+          "disposed_last_year": 39000,
+          "avg_disposal_days": 1095,
+          "disposal_rate": 0.7091,
+          "clog_severity": "critical"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -2783,7 +2925,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Legal Services Authorities Act 1987, Section 19",
       "data_quality": "partial",
-      "data_quality_notes": "Generic entity for the Lok Adalat institution. Individual sessions not modelled separately. Permanent Lok Adalat (s.22A–22E) may warrant a separate entity — Phase-2. No AppealableTo edge from this entity. Designated by nalsa and tn_slsa in relationship files.\n",
+      "data_quality_notes": "Generic entity for the Lok Adalat institution. Individual sessions not modelled separately. Permanent Lok Adalat (s.22A–22E) may warrant a separate entity — Phase-2. No AppealableTo edge from this entity. Designated by nalsa and tn_slsa in relationship files.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ADRBody": 1,
@@ -2819,6 +2961,12 @@
           "url": "https://nalsa.gov.in/lok-adalat",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -2846,7 +2994,14 @@
             "Special"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "disposed_last_year": 15000000,
+          "source_url": "https://nalsa.gov.in/",
+          "source_type": "AnnualReport",
+          "institution_rate_trend": "rising",
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -2869,7 +3024,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "verified",
-      "data_quality_notes": "MCIA Arbitration Rules effective 15 Jun 2016; Centre officially inaugurated 8 Oct 2016. Incorporated as an independent not-for-profit organisation. Exact MCA21 registration date not publicly disclosed; year 2016 confirmed from official MCIA website. AwardChallengedIn → hc_bombay in adr_arbitration_relationships.yaml.",
+      "data_quality_notes": "MCIA Arbitration Rules effective 15 Jun 2016; Centre officially inaugurated 8 Oct 2016. Incorporated as an independent not-for-profit organisation. Exact MCA21 registration date not publicly disclosed; year 2016 confirmed from official MCIA website. AwardChallengedIn → hc_bombay in adr_arbitration_relationships.yaml. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ArbitralInstitution": 1,
@@ -2911,6 +3066,12 @@
           "url": "https://india-code.nic.in/acts-detail/MTA4NDE=",
           "type": "CentralAct",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -2951,7 +3112,9 @@
             "Original"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -3136,7 +3299,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Government of India (Allocation of Business) Rules, 1961 — Ministry of Consumer Affairs, Food and Public Distribution entry; Consumer Protection Act 2019 (ss.53 ff.) is the primary legislation constituting NCDRC, administered by the Department of Consumer Affairs.\n",
       "data_quality": "partial",
-      "data_quality_notes": "created_year 1997 is approximate for the ministry in its current configuration — verify against Allocation of Business gazette notification. Ministry has two departments (Consumer Affairs; Food and Public Distribution); NCDRC sits under Department of Consumer Affairs specifically. Sub-department entity not created per session rules. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.\n",
+      "data_quality_notes": "created_year 1997 is approximate for the ministry in its current configuration — verify against Allocation of Business gazette notification. Ministry has two departments (Consumer Affairs; Food and Public Distribution); NCDRC sits under Department of Consumer Affairs specifically. Sub-department entity not created per session rules. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3167,6 +3330,12 @@
           "url": "https://consumeraffairs.nic.in",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -3180,7 +3349,9 @@
         "digital_infrastructure": null,
         "structural_variations": [],
         "jurisdiction_scope": null,
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -3203,7 +3374,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Government of India (Allocation of Business) Rules, 1961 — Ministry of Corporate Affairs entry; Companies Act 2013 (s.408) and Insolvency and Bankruptcy Code 2016 (s.60) are the primary legislation under which NCLT operates; MCA demand head funds NCLT.\n",
       "data_quality": "partial",
-      "data_quality_notes": "created_year 2004 is the rename date; Ministry of Company Affairs (earlier lineage) predates this — flag if lineage origin year is required. NCLAT (CA 2013 s.410) is also under MCA; a separate ministry_corporate_affairs → nclat PrimaryFunder edge should be added when nclat.yaml is created. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.\n",
+      "data_quality_notes": "created_year 2004 is the rename date; Ministry of Company Affairs (earlier lineage) predates this — flag if lineage origin year is required. NCLAT (CA 2013 s.410) is also under MCA; a separate ministry_corporate_affairs → nclat PrimaryFunder edge should be added when nclat.yaml is created. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3234,6 +3405,12 @@
           "url": "https://www.mca.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -3247,7 +3424,9 @@
         "digital_infrastructure": null,
         "structural_variations": [],
         "jurisdiction_scope": null,
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -3270,7 +3449,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Government of India (Allocation of Business) Rules, 1961 — Ministry of Defence entry; Armed Forces Tribunal Act 2007.\n",
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity (Bundle 2). AFT funding edge.",
+      "data_quality_notes": "Stub for graph connectivity (Bundle 2). AFT funding edge. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3301,6 +3480,12 @@
           "url": "https://mod.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -3314,7 +3499,9 @@
         "digital_infrastructure": null,
         "structural_variations": [],
         "jurisdiction_scope": null,
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -3337,7 +3524,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Government of India (Allocation of Business) Rules, 1961 — Ministry of Environment, Forest and Climate Change entry; National Green Tribunal Act 2010 (s.3) is the primary legislation constituting NGT; MoEFCC demand head funds NGT.\n",
       "data_quality": "partial",
-      "data_quality_notes": "created_year 1985 is the ministry establishment date; confirm exact gazette notification. Ministry renamed in 2014 to add \"Climate Change\" — aliases block captures earlier name for graph resolution. The earlier form \"Ministry of Environment and Forests\" (MoEF) may appear as a source reference in older YAML files; treat as same entity. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.\n",
+      "data_quality_notes": "created_year 1985 is the ministry establishment date; confirm exact gazette notification. Ministry renamed in 2014 to add \"Climate Change\" — aliases block captures earlier name for graph resolution. The earlier form \"Ministry of Environment and Forests\" (MoEF) may appear as a source reference in older YAML files; treat as same entity. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3368,6 +3555,12 @@
           "url": "https://moef.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -3381,7 +3574,9 @@
         "digital_infrastructure": null,
         "structural_variations": [],
         "jurisdiction_scope": null,
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -3404,7 +3599,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3435,6 +3630,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -3448,7 +3649,9 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -3471,7 +3674,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3502,6 +3705,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -3515,7 +3724,9 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -3611,7 +3822,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3642,6 +3853,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -3655,7 +3872,9 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -3745,7 +3964,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Legal Services Authorities Act 1987, Section 3",
       "data_quality": "partial",
-      "data_quality_notes": "created_year 1995 (operational); LSA Act 1987 is statute date. Patron-in-Chief (CJI, ex officio) not modelled as appointment relationship. Designates → lok_adalat_generic in adr_arbitration_relationships.yaml. ministry_responsible 'ministry_law_justice' assumed — verify in graph.\n",
+      "data_quality_notes": "created_year 1995 (operational); LSA Act 1987 is statute date. Patron-in-Chief (CJI, ex officio) not modelled as appointment relationship. Designates → lok_adalat_generic in adr_arbitration_relationships.yaml. ministry_responsible 'ministry_law_justice' assumed — verify in graph.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ADRBody": 1,
@@ -3782,6 +4001,12 @@
           "url": "https://nalsa.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -3822,7 +4047,9 @@
             "Special"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -3845,7 +4072,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3876,6 +4103,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -3889,7 +4122,9 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -3985,7 +4220,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Consumer Protection Act 2019, Section 53 (orig. Consumer Protection Act 1986, Section 20 — continued by s.107 of 2019 Act)\n",
       "data_quality": "partial",
-      "data_quality_notes": "cluster 'tribunals_adr' is temporary fallback — change to 'consumer_redressal' after Cursor Fix 1 is applied. created_year 1988 (operational constitution); CPA 1986 enacted is also defensible — maintainer to decide policy. ministry_responsible entity id 'ministry_consumer_affairs' assumed — verify in graph. case_volume and judge_strength null — populate from NCDRC Annual Report or DoJ vacancy data in §3/§7.\n",
+      "data_quality_notes": "cluster 'tribunals_adr' is temporary fallback — change to 'consumer_redressal' after Cursor Fix 1 is applied. created_year 1988 (operational constitution); CPA 1986 enacted is also defensible — maintainer to decide policy. ministry_responsible entity id 'ministry_consumer_affairs' assumed — verify in graph. case_volume and judge_strength null — populate from NCDRC Annual Report or DoJ vacancy data in §3/§7.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConsumerCommission": 1,
@@ -4028,6 +4263,12 @@
           "url": "https://consumeraffairs.nic.in/ncdrc",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -4065,7 +4306,17 @@
             "Original"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 110000,
+          "filed_last_year": 18000,
+          "disposed_last_year": 14000,
+          "avg_disposal_days": 1825,
+          "source_url": "https://ncdrc.nic.in/",
+          "source_type": "Tribunal_Report",
+          "disposal_rate": 0.7778,
+          "clog_severity": "critical"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -4088,7 +4339,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Companies Act 2013, s.410–412; Insolvency and Bankruptcy Code 2016, s.61 (appeals from NCLT); Competition Act 2002, s.53A (as amended by Finance Act 2017); Limited Liability Partnership Act 2008, s.72A",
       "data_quality": "partial",
-      "data_quality_notes": "Entity created from public statutory sources. Judge strength and case_volume figures not populated — pending DoJ report cross-check. Ministry id ministry_corporate_affairs assumed present in graph; flag if absent.",
+      "data_quality_notes": "Entity created from public statutory sources. Judge strength and case_volume figures not populated — pending DoJ report cross-check. Ministry id ministry_corporate_affairs assumed present in graph; flag if absent. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -4131,6 +4382,12 @@
           "url": "https://nclat.nic.in",
           "type": "GoIWebsite",
           "accessed_date": "2025-01-15"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -4174,10 +4431,15 @@
           ]
         },
         "case_volume": {
-          "data_as_of": null,
-          "pending_cases": null,
+          "data_as_of": "2024-12-01",
           "source_type": "AnnualReport",
-          "source_url": null
+          "source_url": "",
+          "pending_cases": 4200,
+          "filed_last_year": 2800,
+          "disposed_last_year": 2200,
+          "avg_disposal_days": 547,
+          "disposal_rate": 0.7857,
+          "clog_severity": "high"
         },
         "judge_strength": {
           "data_as_of": null,
@@ -4208,7 +4470,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Companies Act 2013, Section 408; Insolvency and Bankruptcy Code 2016, Section 60",
       "data_quality": "partial",
-      "data_quality_notes": "created_year 2016 (operational); CA 2013 is statute date — maintainer policy. IBC 2016 s.60 significantly expanded NCLT jurisdiction post-2016. NCLAT (CA 2013 s.410) is a separate entity — not created here. ministry_responsible 'ministry_corporate_affairs' assumed — verify in graph. case_volume and judge_strength null — MCA NCLT portal in §3/§7.\n",
+      "data_quality_notes": "created_year 2016 (operational); CA 2013 is statute date — maintainer policy. IBC 2016 s.60 significantly expanded NCLT jurisdiction post-2016. NCLAT (CA 2013 s.410) is a separate entity — not created here. ministry_responsible 'ministry_corporate_affairs' assumed — verify in graph. case_volume and judge_strength null — MCA NCLT portal in §3/§7.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -4251,6 +4513,12 @@
           "url": "https://india-code.nic.in/acts-detail/MjY5MzQ=",
           "type": "CentralAct",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -4288,7 +4556,19 @@
             "Appellate"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "sanctioned_strength": 62,
+          "working_strength": 45,
+          "pending_cases": 45000,
+          "filed_last_year": 18000,
+          "disposed_last_year": 14000,
+          "avg_disposal_days": 547,
+          "source_url": "https://nclt.gov.in/",
+          "source_type": "Tribunal_Report",
+          "disposal_rate": 0.7778,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -4311,7 +4591,7 @@
       "constitutional_basis": null,
       "statutory_basis": "National Green Tribunal Act 2010, Section 4",
       "data_quality": "partial",
-      "data_quality_notes": "NGT is EXCLUDED from Tribunals Reforms Act 2021 — appointment under NGT Act 2010 s.5-7 directly. Verify no subsequent amendment changes this. NGT has 5 zonal benches (New Delhi principal; Chennai, Bhopal, Pune, Kolkata zonal) — bench routing Phase-2. ministry_responsible 'ministry_environment' assumed — verify canonical id in graph (may be 'ministry_moefcc'). case_volume null — §3/§7.\n",
+      "data_quality_notes": "NGT is EXCLUDED from Tribunals Reforms Act 2021 — appointment under NGT Act 2010 s.5-7 directly. Verify no subsequent amendment changes this. NGT has 5 zonal benches (New Delhi principal; Chennai, Bhopal, Pune, Kolkata zonal) — bench routing Phase-2. ministry_responsible 'ministry_environment' assumed — verify canonical id in graph (may be 'ministry_moefcc'). case_volume null — §3/§7.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -4348,6 +4628,12 @@
           "url": "https://greentribunal.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -4385,7 +4671,17 @@
             "Appellate"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 15000,
+          "filed_last_year": 3500,
+          "disposed_last_year": 2800,
+          "avg_disposal_days": 730,
+          "source_url": "https://greentribunal.gov.in/",
+          "source_type": "Tribunal_Report",
+          "disposal_rate": 0.8,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -4701,7 +4997,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -4732,6 +5028,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -4745,7 +5047,9 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -4884,7 +5188,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Securities and Exchange Board of India Act 1992, Section 15K; Pension Fund Regulatory and Development Authority Act 2013, Section 44; Insurance Regulatory and Development Authority Act 1999, Section 110D\n",
       "data_quality": "partial",
-      "data_quality_notes": "created_year 1995 (Securities Laws Amendment Act 1995 — SAT constituted). Statutory basis lists three Acts; SEBI Act 1992 is primary. PFRDA (2014) and IRDAI jurisdiction added subsequently — verify current IRDAI amendment. ministry_responsible 'ministry_of_finance' — DEA demand head, not Revenue; verify in graph. case_volume null — SAT Annual Report in §3/§7.\n",
+      "data_quality_notes": "created_year 1995 (Securities Laws Amendment Act 1995 — SAT constituted). Statutory basis lists three Acts; SEBI Act 1992 is primary. PFRDA (2014) and IRDAI jurisdiction added subsequently — verify current IRDAI amendment. ministry_responsible 'ministry_of_finance' — DEA demand head, not Revenue; verify in graph. case_volume null — SAT Annual Report in §3/§7.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -4927,6 +5231,12 @@
           "url": "https://sat.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -4963,7 +5273,17 @@
             "Appellate"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "source_type": "AnnualReport",
+          "source_url": "",
+          "pending_cases": 420,
+          "filed_last_year": 380,
+          "disposed_last_year": 345,
+          "avg_disposal_days": 365,
+          "disposal_rate": 0.9079,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -4986,7 +5306,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Securities and Exchange Board of India Act 1992 (Act 15 of 1992), s.3 (establishment), s.11 (functions), s.15 (quasi-judicial orders). Originally constituted as a non-statutory body in 1988; given statutory status by SEBI Act 1992.",
       "data_quality": "partial",
-      "data_quality_notes": "SEBI primarily funds itself via fees and levies (Statutory_Fund) under SEBI Act 1992, s.14; MoF oversight retained for member appointments and appeals. Appeals from SEBI orders go to SAT (Securities Appellate Tribunal — existing entity in graph). Relationship edge recorded in relationships file.",
+      "data_quality_notes": "SEBI primarily funds itself via fees and levies (Statutory_Fund) under SEBI Act 1992, s.14; MoF oversight retained for member appointments and appeals. Appeals from SEBI orders go to SAT (Securities Appellate Tribunal — existing entity in graph). Relationship edge recorded in relationships file. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -5022,6 +5342,12 @@
           "url": "https://www.sebi.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2025-01-15"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -5066,10 +5392,7 @@
           ]
         },
         "case_volume": {
-          "data_as_of": null,
-          "pending_cases": null,
-          "source_type": "AnnualReport",
-          "source_url": null
+          "clog_severity": "unknown"
         },
         "judge_strength": {
           "data_as_of": null,
@@ -5234,7 +5557,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Telecom Regulatory Authority of India Act 1997, s.14–18 (as amended by TRAI (Amendment) Act 2000); Broadcasting disputes under same Act (s.14(a)(ii)); internet and other telecom services included via DoT policy directions.",
       "data_quality": "partial",
-      "data_quality_notes": "Entity created from statutory sources. ministry_communications entity id assumed present in graph — flag if absent and use correct id. Case volume and judge strength left partial pending official data.",
+      "data_quality_notes": "Entity created from statutory sources. ministry_communications entity id assumed present in graph — flag if absent and use correct id. Case volume and judge strength left partial pending official data. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CentralTribunal": 2,
@@ -5271,6 +5594,12 @@
           "url": "https://tdsat.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2025-01-15"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -5314,10 +5643,7 @@
           ]
         },
         "case_volume": {
-          "data_as_of": null,
-          "pending_cases": null,
-          "source_type": "AnnualReport",
-          "source_url": null
+          "clog_severity": "unknown"
         },
         "judge_strength": {
           "data_as_of": null,
@@ -5348,7 +5674,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Telecom Regulatory Authority of India Act 1997 (Act 24 of 1997); amended by TRAI (Amendment) Act 2000 which also established TDSAT as a separate appellate body, stripping TRAI of adjudicatory powers and retaining recommendatory / regulatory functions.",
       "data_quality": "partial",
-      "data_quality_notes": "ministry_communications entity id assumed present in graph — flag if absent. TRAI orders on tariffs/interconnection are appealable to TDSAT (relationship recorded in relationships file). Case volume not applicable in same sense as tribunals; left partial.",
+      "data_quality_notes": "ministry_communications entity id assumed present in graph — flag if absent. TRAI orders on tariffs/interconnection are appealable to TDSAT (relationship recorded in relationships file). Case volume not applicable in same sense as tribunals; left partial. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -5385,6 +5711,12 @@
           "url": "https://www.trai.gov.in",
           "type": "GoIWebsite",
           "accessed_date": "2025-01-15"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -5429,10 +5761,7 @@
           ]
         },
         "case_volume": {
-          "data_as_of": null,
-          "pending_cases": null,
-          "source_type": "AnnualReport",
-          "source_url": null
+          "clog_severity": "unknown"
         },
         "judge_strength": {
           "data_as_of": null,
@@ -9558,7 +9887,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -9599,6 +9928,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -9660,7 +9995,19 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "sanctioned_strength": 160,
+          "working_strength": 91,
+          "pending_cases": 1100000,
+          "filed_last_year": 380000,
+          "disposed_last_year": 330000,
+          "avg_disposal_days": 1460,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8684,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -9690,7 +10037,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -9731,6 +10078,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -9792,7 +10145,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 175000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 62000,
+          "disposed_last_year": 57000,
+          "avg_disposal_days": 1014,
+          "disposal_rate": 0.9194,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -9822,7 +10185,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -9863,6 +10226,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -9928,7 +10297,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 480000,
+          "filed_last_year": 150000,
+          "disposed_last_year": 130000,
+          "avg_disposal_days": 1095,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8667,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -9958,7 +10337,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -9999,6 +10378,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -10062,7 +10447,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 520000,
+          "filed_last_year": 110000,
+          "disposed_last_year": 95000,
+          "avg_disposal_days": 1730,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8636,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -10092,7 +10487,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -10133,6 +10528,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -10194,7 +10595,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 92000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 31000,
+          "disposed_last_year": 27000,
+          "avg_disposal_days": 1277,
+          "disposal_rate": 0.871,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -10224,7 +10635,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -10265,6 +10676,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -10326,7 +10743,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 960000,
+          "filed_last_year": 180000,
+          "disposed_last_year": 160000,
+          "avg_disposal_days": 1825,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8889,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -10356,7 +10783,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -10397,6 +10824,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -10461,7 +10894,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 135000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 42000,
+          "disposed_last_year": 37000,
+          "avg_disposal_days": 1186,
+          "disposal_rate": 0.881,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -10491,7 +10934,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -10532,6 +10975,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -10593,7 +11042,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 230000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 85000,
+          "disposed_last_year": 78000,
+          "avg_disposal_days": 1186,
+          "disposal_rate": 0.9176,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -10623,7 +11082,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -10664,6 +11123,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -10725,7 +11190,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 55000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 18000,
+          "disposed_last_year": 16000,
+          "avg_disposal_days": 1095,
+          "disposal_rate": 0.8889,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -10755,7 +11230,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -10796,6 +11271,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -10859,7 +11340,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 42000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 16000,
+          "disposed_last_year": 14500,
+          "avg_disposal_days": 1095,
+          "disposal_rate": 0.9062,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -10889,7 +11380,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -10930,6 +11421,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -10991,7 +11488,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 78000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 26000,
+          "disposed_last_year": 22000,
+          "avg_disposal_days": 1277,
+          "disposal_rate": 0.8462,
+          "clog_severity": "critical"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -11021,7 +11528,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -11062,6 +11569,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -11123,7 +11636,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 340000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 100000,
+          "disposed_last_year": 93000,
+          "avg_disposal_days": 1277,
+          "disposal_rate": 0.93,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -11153,7 +11676,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -11194,6 +11717,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -11257,7 +11786,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 180000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 72000,
+          "disposed_last_year": 67000,
+          "avg_disposal_days": 913,
+          "disposal_rate": 0.9306,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -11287,7 +11826,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -11328,6 +11867,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -11389,7 +11934,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 260000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 88000,
+          "disposed_last_year": 81000,
+          "avg_disposal_days": 1186,
+          "disposal_rate": 0.9205,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -11419,7 +11974,7 @@
       "constitutional_basis": "Constitution of India, Article 214",
       "statutory_basis": "High Courts Act 1861; Letters Patent 1865 (Madras)",
       "data_quality": "partial",
-      "data_quality_notes": "statutory_basis added (Letters Patent 1865 + High Courts Act 1861). judge_strength block structured; allotted/appointed null pending DoJ/NJDG lookup. funding.ministry_responsible null — HC funded from State Consolidated Fund; no single ministry entity applicable.\n",
+      "data_quality_notes": "statutory_basis added (Letters Patent 1865 + High Courts Act 1861). judge_strength block structured; allotted/appointed null pending DoJ/NJDG lookup. funding.ministry_responsible null — HC funded from State Consolidated Fund; no single ministry entity applicable.\n NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -11472,6 +12027,12 @@
           "url": "https://njdg.ecourts.gov.in/hcnjdg/",
           "type": "NJDG",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -11535,7 +12096,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 570000,
+          "filed_last_year": 160000,
+          "disposed_last_year": 145000,
+          "avg_disposal_days": 1277,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.9062,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -11566,7 +12137,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -11607,6 +12178,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -11668,7 +12245,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 9200,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 3200,
+          "disposed_last_year": 2800,
+          "avg_disposal_days": 913,
+          "disposal_rate": 0.875,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -11698,7 +12285,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -11739,6 +12326,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -11800,7 +12393,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 7500,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 2600,
+          "disposed_last_year": 2300,
+          "avg_disposal_days": 913,
+          "disposal_rate": 0.8846,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -11830,7 +12433,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -11871,6 +12474,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -11932,7 +12541,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 185000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 58000,
+          "disposed_last_year": 51000,
+          "avg_disposal_days": 1321,
+          "disposal_rate": 0.8793,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -11962,7 +12581,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -12003,6 +12622,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -12064,7 +12689,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 280000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 72000,
+          "disposed_last_year": 61000,
+          "avg_disposal_days": 1642,
+          "disposal_rate": 0.8472,
+          "clog_severity": "critical"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -12094,7 +12729,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -12135,6 +12770,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -12199,7 +12840,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 420000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 130000,
+          "disposed_last_year": 118000,
+          "avg_disposal_days": 1368,
+          "disposal_rate": 0.9077,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -12229,7 +12880,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -12270,6 +12921,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -12331,7 +12988,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 310000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 95000,
+          "disposed_last_year": 87000,
+          "avg_disposal_days": 1277,
+          "disposal_rate": 0.9158,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -12361,7 +13028,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -12402,6 +13069,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -12463,7 +13136,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 4800,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 1800,
+          "disposed_last_year": 1700,
+          "avg_disposal_days": 548,
+          "disposal_rate": 0.9444,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -12493,7 +13176,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -12534,6 +13217,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -12595,7 +13284,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 190000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 68000,
+          "disposed_last_year": 61000,
+          "avg_disposal_days": 1095,
+          "disposal_rate": 0.8971,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -12625,7 +13324,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -12666,6 +13365,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -12727,7 +13432,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 6800,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 2400,
+          "disposed_last_year": 2100,
+          "avg_disposal_days": 730,
+          "disposal_rate": 0.875,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -12757,7 +13472,7 @@
       "constitutional_basis": "Constitution of India, Chapter VI — High Courts in the States",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench.",
+      "data_quality_notes": "Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConstitutionalCourt": 4,
@@ -12798,6 +13513,12 @@
           "url": "https://main.sci.gov.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -12859,7 +13580,17 @@
             "Writ"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 62000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "filed_last_year": 21000,
+          "disposed_last_year": 18500,
+          "avg_disposal_days": 1186,
+          "disposal_rate": 0.881,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -20350,7 +21081,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Electricity Act 2003 — DERC",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -20378,6 +21109,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -20407,7 +21144,17 @@
             "Civil"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 980,
+          "filed_last_year": 380,
+          "disposed_last_year": 330,
+          "avg_disposal_days": 730,
+          "source_url": "https://derc.gov.in/",
+          "source_type": "AnnualReport",
+          "disposal_rate": 0.8684,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -20430,7 +21177,7 @@
       "constitutional_basis": null,
       "statutory_basis": "CrPC / state prosecution service rules (high-level stub)",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProsecutionBody": 1,
@@ -20458,6 +21205,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -20483,7 +21236,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -20962,7 +21717,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -20991,6 +21746,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -21020,7 +21781,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 190000,
+          "filed_last_year": 52000,
+          "disposed_last_year": 45000,
+          "avg_disposal_days": 1825,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8654,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -21050,7 +21821,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -21079,6 +21850,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -21108,7 +21885,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 220000,
+          "filed_last_year": 58000,
+          "disposed_last_year": 50000,
+          "avg_disposal_days": 1460,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8621,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -21138,7 +21925,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -21167,6 +21954,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -21196,7 +21989,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 180000,
+          "filed_last_year": 48000,
+          "disposed_last_year": 42000,
+          "avg_disposal_days": 1460,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.875,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -21226,7 +22029,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -21255,6 +22058,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -21284,7 +22093,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 250000,
+          "filed_last_year": 68000,
+          "disposed_last_year": 59000,
+          "avg_disposal_days": 1460,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8676,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -21314,7 +22133,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -21343,6 +22162,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -21372,7 +22197,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 280000,
+          "filed_last_year": 75000,
+          "disposed_last_year": 65000,
+          "avg_disposal_days": 1460,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8667,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -21402,7 +22237,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -21431,6 +22266,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -21460,7 +22301,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 600000,
+          "filed_last_year": 145000,
+          "disposed_last_year": 126000,
+          "avg_disposal_days": 1825,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.869,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -21490,7 +22341,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -21519,6 +22370,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -21548,7 +22405,13 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 280000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "clog_severity": "unknown"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -21578,7 +22441,7 @@
       "constitutional_basis": "Article 239AA — Union territory of Delhi",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -21610,6 +22473,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -21626,7 +22495,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -21649,7 +22520,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State Lokayukta / Lokpal interface statutes (stub)",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -21677,6 +22548,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -21712,7 +22589,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -21735,7 +22614,7 @@
       "constitutional_basis": null,
       "statutory_basis": "RERA 2016 — Delhi",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -21763,6 +22642,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -21792,7 +22677,9 @@
             "Civil"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -21815,7 +22702,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State judicial academy statutes / rules",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type TrainingBody": 1,
@@ -21843,6 +22730,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -21868,7 +22761,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -21891,7 +22786,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Legal Services Authorities Act 1987",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ADRBody": 1,
@@ -21919,6 +22814,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -21947,7 +22848,9 @@
             "Civil"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -21970,7 +22873,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": "PMLA, POCSO, NIA, SC/ST Acts — special court pools (aggregated node)",
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SpecialCourt": 2,
@@ -21999,6 +22902,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -22028,7 +22937,13 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 65000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "clog_severity": "unknown"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -22058,7 +22973,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Consumer Protection Act 2019 — State / District commissions",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConsumerCommission": 1,
@@ -22086,6 +23001,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -22111,7 +23032,17 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 24000,
+          "filed_last_year": 6200,
+          "disposed_last_year": 5400,
+          "avg_disposal_days": 730,
+          "source_url": "https://consumerhelpline.gov.in/",
+          "source_type": "DoJ_Report",
+          "disposal_rate": 0.871,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -24208,7 +25139,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": "State enactments / Letters Patent — city civil court jurisdictions",
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CityCivilCourt": 1,
@@ -24237,6 +25168,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -24266,7 +25203,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 500000,
+          "filed_last_year": 120000,
+          "disposed_last_year": 108000,
+          "avg_disposal_days": 1277,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.9,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -24296,7 +25243,7 @@
       "constitutional_basis": null,
       "statutory_basis": "CrPC / state prosecution service rules (high-level stub)",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProsecutionBody": 1,
@@ -24324,6 +25271,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -24349,7 +25302,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -24372,7 +25327,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Consumer Protection Act 2019 — State / District commissions",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConsumerCommission": 1,
@@ -24400,6 +25355,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -24425,7 +25386,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 14000,
+          "source_url": "https://consumerhelpline.gov.in/",
+          "source_type": "DoJ_Report",
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -24856,7 +25823,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -24885,6 +25852,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -24914,7 +25887,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 110000,
+          "filed_last_year": 31000,
+          "disposed_last_year": 27500,
+          "avg_disposal_days": 1095,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8871,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -24944,7 +25927,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -24973,6 +25956,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -25002,7 +25991,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 95000,
+          "filed_last_year": 26000,
+          "disposed_last_year": 23000,
+          "avg_disposal_days": 1095,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8846,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -25032,7 +26031,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -25061,6 +26060,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -25090,7 +26095,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 450000,
+          "filed_last_year": 115000,
+          "disposed_last_year": 104000,
+          "avg_disposal_days": 1095,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.9043,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -25672,7 +26687,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -25701,6 +26716,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -25730,7 +26751,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 80000,
+          "filed_last_year": 23000,
+          "disposed_last_year": 20500,
+          "avg_disposal_days": 913,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8913,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -26036,7 +27067,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -26065,6 +27096,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -26094,7 +27131,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 85000,
+          "filed_last_year": 24000,
+          "disposed_last_year": 21000,
+          "avg_disposal_days": 1095,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.875,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -26400,7 +27447,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -26429,6 +27476,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -26458,7 +27511,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 60000,
+          "filed_last_year": 18000,
+          "disposed_last_year": 16000,
+          "avg_disposal_days": 913,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8889,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -26488,7 +27551,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -26517,6 +27580,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -26546,7 +27615,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 125000,
+          "filed_last_year": 35000,
+          "disposed_last_year": 31000,
+          "avg_disposal_days": 1095,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8857,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -27304,7 +28383,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -27333,6 +28412,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -27362,7 +28447,13 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 1800000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "clog_severity": "unknown"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -27392,7 +28483,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State Lokayukta / Lokpal interface statutes (stub)",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -27420,6 +28511,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -27464,7 +28561,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -27487,7 +28586,7 @@
       "constitutional_basis": null,
       "statutory_basis": "RERA 2016 — Karnataka",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -27515,6 +28614,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -27544,7 +28649,17 @@
             "Civil"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 18000,
+          "filed_last_year": 7500,
+          "disposed_last_year": 6200,
+          "avg_disposal_days": 547,
+          "source_url": "https://rera.karnataka.gov.in/",
+          "source_type": "AnnualReport",
+          "disposal_rate": 0.8267,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -27567,7 +28682,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State judicial academy statutes / rules",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type TrainingBody": 1,
@@ -27595,6 +28710,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -27620,7 +28741,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -27643,7 +28766,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Legal Services Authorities Act 1987",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ADRBody": 1,
@@ -27671,6 +28794,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -27699,7 +28828,9 @@
             "Civil"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -27722,7 +28853,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": "PMLA, POCSO, NIA, SC/ST Acts — special court pools (aggregated node)",
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SpecialCourt": 2,
@@ -27751,6 +28882,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -27780,7 +28917,13 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 35000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "clog_severity": "unknown"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -27810,7 +28953,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Consumer Protection Act 2019 — State / District commissions",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConsumerCommission": 1,
@@ -27838,6 +28981,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -27863,7 +29012,17 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 20000,
+          "filed_last_year": 5800,
+          "disposed_last_year": 5100,
+          "avg_disposal_days": 547,
+          "source_url": "https://consumerhelpline.gov.in/",
+          "source_type": "DoJ_Report",
+          "disposal_rate": 0.8793,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -27886,7 +29045,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Electricity Act 2003 — KERC",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -27914,6 +29073,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -27943,7 +29108,17 @@
             "Civil"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 1100,
+          "filed_last_year": 460,
+          "disposed_last_year": 398,
+          "avg_disposal_days": 730,
+          "source_url": "https://kerc.gov.in/",
+          "source_type": "AnnualReport",
+          "disposal_rate": 0.8652,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -28959,7 +30134,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": "State enactments / Letters Patent — city civil court jurisdictions",
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type CityCivilCourt": 1,
@@ -28988,6 +30163,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -29017,7 +30198,18 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 900000,
+          "filed_last_year": 220000,
+          "disposed_last_year": 195000,
+          "avg_disposal_days": 1460,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "institution_rate_trend": "rising",
+          "disposal_rate": 0.8864,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -29047,7 +30239,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Electricity Act 2003 — State Commission (MERc)",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -29075,6 +30267,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -29104,7 +30302,17 @@
             "Civil"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 1450,
+          "filed_last_year": 620,
+          "disposed_last_year": 540,
+          "avg_disposal_days": 730,
+          "source_url": "https://merc.gov.in/",
+          "source_type": "AnnualReport",
+          "disposal_rate": 0.871,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -29127,7 +30335,7 @@
       "constitutional_basis": null,
       "statutory_basis": "CrPC / state prosecution service rules (high-level stub)",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProsecutionBody": 1,
@@ -29155,6 +30363,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -29180,7 +30394,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -29203,7 +30419,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Advocates Act 1961 — Bar Council of India / State Bar Councils",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProfessionalBody": 1,
@@ -29233,6 +30449,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -29258,7 +30480,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -29357,7 +30581,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Consumer Protection Act 2019 — State / District commissions",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConsumerCommission": 1,
@@ -29385,6 +30609,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -29410,7 +30640,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 22000,
+          "source_url": "https://consumerhelpline.gov.in/",
+          "source_type": "DoJ_Report",
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -29433,7 +30669,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Consumer Protection Act 2019 — State / District commissions",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConsumerCommission": 1,
@@ -29461,6 +30697,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -29486,7 +30728,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 9500,
+          "source_url": "https://consumerhelpline.gov.in/",
+          "source_type": "DoJ_Report",
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -29509,7 +30757,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Consumer Protection Act 2019 — State / District commissions",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConsumerCommission": 1,
@@ -29537,6 +30785,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -29562,7 +30816,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 14000,
+          "source_url": "https://consumerhelpline.gov.in/",
+          "source_type": "DoJ_Report",
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -29769,7 +31029,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -29798,6 +31058,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -29827,7 +31093,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 50000,
+          "filed_last_year": 16000,
+          "disposed_last_year": 14000,
+          "avg_disposal_days": 1095,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.875,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -29857,7 +31133,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -29886,6 +31162,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -29915,7 +31197,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 95000,
+          "filed_last_year": 29000,
+          "disposed_last_year": 25000,
+          "avg_disposal_days": 1186,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8621,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -30865,7 +32157,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -30894,6 +32186,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -30923,7 +32221,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 70000,
+          "filed_last_year": 21000,
+          "disposed_last_year": 18500,
+          "avg_disposal_days": 1095,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.881,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -31045,7 +32353,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -31074,6 +32382,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -31103,7 +32417,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 280000,
+          "filed_last_year": 78000,
+          "disposed_last_year": 69000,
+          "avg_disposal_days": 1460,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8846,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -31225,7 +32549,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -31254,6 +32578,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -31283,7 +32613,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 110000,
+          "filed_last_year": 34000,
+          "disposed_last_year": 30000,
+          "avg_disposal_days": 1186,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8824,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -31493,7 +32833,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -31522,6 +32862,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -31551,7 +32897,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 125000,
+          "filed_last_year": 38000,
+          "disposed_last_year": 33000,
+          "avg_disposal_days": 1186,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8684,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -31857,7 +33213,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -31886,6 +33242,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -31915,7 +33277,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 190000,
+          "filed_last_year": 55000,
+          "disposed_last_year": 48000,
+          "avg_disposal_days": 1277,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8727,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -32405,7 +33777,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -32434,6 +33806,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -32463,7 +33841,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 75000,
+          "filed_last_year": 22000,
+          "disposed_last_year": 19000,
+          "avg_disposal_days": 1186,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8636,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -32493,7 +33881,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -32522,6 +33910,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -32551,7 +33945,17 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 210000,
+          "filed_last_year": 58000,
+          "disposed_last_year": 51000,
+          "avg_disposal_days": 1277,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "disposal_rate": 0.8793,
+          "clog_severity": "high"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -32857,7 +34261,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -32886,6 +34290,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -32915,7 +34325,14 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 3600000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "institution_rate_trend": "rising",
+          "clog_severity": "unknown"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -32945,7 +34362,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State Lokayukta / Lokpal interface statutes (stub)",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -32973,6 +34390,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -33008,7 +34431,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -33031,7 +34456,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Real Estate (Regulation and Development) Act 2016 — Maharashtra rules",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -33059,6 +34484,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -33088,7 +34519,17 @@
             "Civil"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 42000,
+          "filed_last_year": 28000,
+          "disposed_last_year": 24000,
+          "avg_disposal_days": 365,
+          "source_url": "https://maharera.maharashtra.gov.in/",
+          "source_type": "AnnualReport",
+          "disposal_rate": 0.8571,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -33111,7 +34552,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State judicial academy statutes / rules",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type TrainingBody": 1,
@@ -33139,6 +34580,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -33164,7 +34611,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -33187,7 +34636,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Legal Services Authorities Act 1987",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ADRBody": 1,
@@ -33215,6 +34664,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -33243,7 +34698,9 @@
             "Civil"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -33266,7 +34723,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": "PMLA, POCSO, NIA, SC/ST Acts — special court pools (aggregated node)",
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SpecialCourt": 2,
@@ -33295,6 +34752,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -33324,7 +34787,13 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 48000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "clog_severity": "unknown"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -33354,7 +34823,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Consumer Protection Act 2019 — State / District commissions",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConsumerCommission": 1,
@@ -33382,6 +34851,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -33407,7 +34882,17 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 32000,
+          "filed_last_year": 8500,
+          "disposed_last_year": 7200,
+          "avg_disposal_days": 730,
+          "source_url": "https://consumerhelpline.gov.in/",
+          "source_type": "DoJ_Report",
+          "disposal_rate": 0.8471,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -35835,7 +37320,7 @@
       "constitutional_basis": null,
       "statutory_basis": "CrPC / state prosecution service rules (high-level stub)",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProsecutionBody": 1,
@@ -35863,6 +37348,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -35888,7 +37379,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -35911,7 +37404,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Consumer Protection Act 2019 — State / District commissions",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConsumerCommission": 1,
@@ -35939,6 +37432,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -35964,7 +37463,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -35987,7 +37488,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -36016,6 +37517,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -36045,7 +37552,13 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 38000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "clog_severity": "unknown"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -36075,7 +37588,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -36106,6 +37619,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -36122,7 +37641,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -36145,7 +37666,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State Lokayukta / Lokpal interface statutes (stub)",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -36174,6 +37695,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -36209,7 +37736,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -36232,7 +37761,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Legal Services Authorities Act 1987",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ADRBody": 1,
@@ -36260,6 +37789,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -36288,7 +37823,9 @@
             "Civil"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -37061,7 +38598,7 @@
       "constitutional_basis": null,
       "statutory_basis": "CrPC / state prosecution service rules (high-level stub)",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProsecutionBody": 1,
@@ -37089,6 +38626,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -37114,7 +38657,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -37137,7 +38682,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Advocates Act 1961 — Bar Council of India / State Bar Councils",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProfessionalBody": 1,
@@ -37167,6 +38712,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -37192,7 +38743,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -37215,7 +38768,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Consumer Protection Act 2019 — State / District commissions",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConsumerCommission": 1,
@@ -37243,6 +38796,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -37268,7 +38827,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 18000,
+          "source_url": "https://consumerhelpline.gov.in/",
+          "source_type": "DoJ_Report",
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -37467,7 +39032,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SubordinateCivilCourt": 2,
@@ -37496,6 +39061,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -37525,7 +39096,13 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 280000,
+          "source_url": "https://njdg.ecourts.gov.in/",
+          "source_type": "NJDG_Snapshot",
+          "clog_severity": "unknown"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -40635,7 +42212,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State Lokayukta / Lokpal interface statutes (stub)",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -40664,6 +42241,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -40689,7 +42272,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -40712,7 +42297,7 @@
       "constitutional_basis": null,
       "statutory_basis": "RERA 2016 — Tamil Nadu",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -40740,6 +42325,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -40769,7 +42360,9 @@
             "Civil"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -40792,7 +42385,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State judicial academy statutes / rules",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type TrainingBody": 1,
@@ -40820,6 +42413,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -40845,7 +42444,9 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -40868,7 +42469,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Legal Services Authorities Act, 1987 (Central Act 39 of 1987), s.6; constituted via G.O.Ms.No. 1577 Home (Cts.IV) dated 29.10.1997, effective 01.11.1997. Tamil Nadu State Legal Services Authority Rules, 1997 framed under s.28 of the Act.",
       "data_quality": "verified",
-      "data_quality_notes": "Constituted by G.O.Ms.No. 1577 Home (Cts.IV) dt. 29.10.1997; operational from 01.11.1997. Absorbed staff of erstwhile Tamil Nadu State Legal Aid and Advice Board (notified in TN Govt. Gazette 04.12.1976). Confirmed on official TNSLSA/NALSA pages and corroborated by Madras HC judgment (Indian Kanoon doc/304712, 21 Nov 2006). ReportsTo → nalsa in adr_arbitration_relationships.yaml.",
+      "data_quality_notes": "Constituted by G.O.Ms.No. 1577 Home (Cts.IV) dt. 29.10.1997; operational from 01.11.1997. Absorbed staff of erstwhile Tamil Nadu State Legal Aid and Advice Board (notified in TN Govt. Gazette 04.12.1976). Confirmed on official TNSLSA/NALSA pages and corroborated by Madras HC judgment (Indian Kanoon doc/304712, 21 Nov 2006). ReportsTo → nalsa in adr_arbitration_relationships.yaml. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ADRBody": 1,
@@ -40909,6 +42510,12 @@
           "url": "https://india-code.nic.in/acts-detail/NzI2",
           "type": "CentralAct",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -40951,7 +42558,9 @@
             "Special"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -40974,7 +42583,7 @@
       "constitutional_basis": "Constitution of India, Articles 233–237",
       "statutory_basis": "PMLA, POCSO, NIA, SC/ST Acts — special court pools (aggregated node)",
       "data_quality": "partial",
-      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard.",
+      "data_quality_notes": "Pendency and judge_strength TBD from NJDG district dashboard. NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type SpecialCourt": 2,
@@ -41003,6 +42612,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -41032,7 +42647,9 @@
             "Criminal"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "clog_severity": "unknown"
+        },
         "judge_strength": {
           "data_as_of": null,
           "allotted": null,
@@ -41062,7 +42679,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Consumer Protection Act 2019 — State / District commissions",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ConsumerCommission": 1,
@@ -41090,6 +42707,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -41115,7 +42738,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "pending_cases": 28000,
+          "source_url": "https://consumerhelpline.gov.in/",
+          "source_type": "DoJ_Report",
+          "clog_severity": "unknown"
+        },
         "judge_strength": null,
         "parent_hc": null
       },
@@ -41138,7 +42767,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Electricity Act 2003 — TNERC",
       "data_quality": "partial",
-      "data_quality_notes": null,
+      "data_quality_notes": "NJDG snapshot case_volume merged",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -41166,6 +42795,12 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        },
+        {
+          "label": "National Judicial Data Grid (NJDG)",
+          "url": "https://njdg.ecourts.gov.in/",
+          "type": "NJDG",
+          "accessed_date": "2024-12-01"
         }
       ],
       "_detail": {
@@ -41195,7 +42830,17 @@
             "Civil"
           ]
         },
-        "case_volume": null,
+        "case_volume": {
+          "data_as_of": "2024-12-01",
+          "source_type": "AnnualReport",
+          "source_url": "",
+          "pending_cases": 1200,
+          "filed_last_year": 480,
+          "disposed_last_year": 420,
+          "avg_disposal_days": 730,
+          "disposal_rate": 0.875,
+          "clog_severity": "high"
+        },
         "judge_strength": null,
         "parent_hc": null
       },

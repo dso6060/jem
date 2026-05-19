@@ -2,36 +2,29 @@ id: diac
 name: Delhi International Arbitration Centre
 abbreviation: DIAC
 aliases:
-  - Delhi International Arbitration Centre
-  - DHCAC
-
+- Delhi International Arbitration Centre
+- DHCAC
 type: ArbitralInstitution
 cluster: arbitration
 level_of_government: State
-
 jurisdiction_scope:
   states_covered:
-    - DL
+  - DL
   uts_covered:
-    - DL
+  - DL
   is_all_india: false
   jurisdiction_types:
-    - Original
-
+  - Original
 created_year: 2009
 operational_status: Active
-statutory_basis: >-
-  Delhi High Court Administrative Charter (Centre inaugurated 25 Nov 2009
-  by CJI K.G. Balakrishnan); Delhi International Arbitration Centre
-  (Internal Management) Rules, 2012 (effective 01 Nov 2012, updated
-  01 Jul 2018). Not constituted by statute — HC-annexed administrative body.
-  Formerly known as Delhi High Court Arbitration Centre (DAC).
-
+statutory_basis: Delhi High Court Administrative Charter (Centre inaugurated 25 Nov 2009 by CJI K.G. Balakrishnan); Delhi
+  International Arbitration Centre (Internal Management) Rules, 2012 (effective 01 Nov 2012, updated 01 Jul 2018). Not constituted
+  by statute — HC-annexed administrative body. Formerly known as Delhi High Court Arbitration Centre (DAC).
 appointment:
   nominates: null
   formally_appoints: null
   consulted:
-    - hc_delhi
+  - hc_delhi
   consultation_binding: true
   criteria_public: true
   tenure: null
@@ -39,39 +32,38 @@ appointment:
   removal_authority: hc_delhi
   removal_requires_parliament: false
   removal_independent_committee: false
-
 funding:
   primary_source: Mixed
   ministry_responsible: null
-
 audit:
   audited_by: null
   audit_type: Internal
   audit_report_public: false
-
 complaint_mechanism:
   lokpal_jurisdiction: Not_Applicable
-  removal_mechanism: >
-    Arbitrator challenge under DIAC Rules 2023. Award challenge under
-    A&C Act 1996 s.34 in Delhi High Court.
+  removal_mechanism: 'Arbitrator challenge under DIAC Rules 2023. Award challenge under A&C Act 1996 s.34 in Delhi High Court.
 
+    '
 data_quality: verified
-data_quality_notes: >-
-  Inaugurated 25 Nov 2009 by CJI K.G. Balakrishnan; established under
-  Delhi HC administrative charter by then CJ Ajit Prakash Shah (CJ May
-  2008 – Feb 2010). First ever HC-annexed institutional arbitration centre.
-  AwardChallengedIn → hc_delhi in adr_arbitration_relationships.yaml.
-
+data_quality_notes: Inaugurated 25 Nov 2009 by CJI K.G. Balakrishnan; established under Delhi HC administrative charter by
+  then CJ Ajit Prakash Shah (CJ May 2008 – Feb 2010). First ever HC-annexed institutional arbitration centre. AwardChallengedIn
+  → hc_delhi in adr_arbitration_relationships.yaml. NJDG snapshot case_volume merged
 sources:
-  - label: DIAC About Page (inauguration date and founding CJ)
-    url: https://dhcdiac.nic.in/about-diac/
-    type: GoIWebsite
-    accessed_date: '2026-05-18'
-  - label: DIAC Why DIAC (establishment details)
-    url: https://dhcdiac.nic.in/why_diac/
-    type: GoIWebsite
-    accessed_date: '2026-05-18'
-  - label: "Arbitration and Conciliation Act 1996 — India Code"
-    url: https://india-code.nic.in/acts-detail/MTA4NDE=
-    type: CentralAct
-    accessed_date: '2026-05-18'
+- label: DIAC About Page (inauguration date and founding CJ)
+  url: https://dhcdiac.nic.in/about-diac/
+  type: GoIWebsite
+  accessed_date: '2026-05-18'
+- label: DIAC Why DIAC (establishment details)
+  url: https://dhcdiac.nic.in/why_diac/
+  type: GoIWebsite
+  accessed_date: '2026-05-18'
+- label: Arbitration and Conciliation Act 1996 — India Code
+  url: https://india-code.nic.in/acts-detail/MTA4NDE=
+  type: CentralAct
+  accessed_date: '2026-05-18'
+- label: National Judicial Data Grid (NJDG)
+  url: https://njdg.ecourts.gov.in/
+  type: NJDG
+  accessed_date: '2024-12-01'
+case_volume:
+  clog_severity: unknown
