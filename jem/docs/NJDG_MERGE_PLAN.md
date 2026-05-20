@@ -223,4 +223,5 @@
 | `trai` | `trai` | `data/entities/_generated/backbone/trai.yaml` | merge case_volume |
 
 ## Summary
-- Mergeable (YAML exists): **139**
+- Mergeable (YAML exists): **139** *(applied May 19 2026)*
+- **PARKED:** per-district TN / MH / KA dashboard metrics — see [`MASTER_CHECKLIST.md`](../../MASTER_CHECKLIST.md) Part 3.5.2

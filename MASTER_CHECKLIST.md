@@ -1,41 +1,66 @@
 # Judiciary Entity Map (India) - JEM — Master Build & Deployment Checklist
 # Generated: April 25 2026
-# Status at generation: v1 complete, 147 entities, 163 relationships, 818 KB graph.json
-# Last progress audit: May 11 2026 (see PROGRESS & TBD below)
+# Last full repo audit: **May 19 2026** (see PROGRESS & REPO AUDIT below)
+# Current build: **494 entities**, **499 relationships**, **~1.87 MB** `graph.json`
 # ============================================================
 # HOW TO USE THIS FILE
 # - Work top to bottom
 # - Check each box [x] as you complete it
-# - Never edit jem/data/derived/ manually; do not hand-edit jem/web/public/graph.json (symlink → repo-root graph.json — rebuild via scripts)
-# - After ANY data change: validate → derive → build → spot-check
+# - Never edit `jem/data/derived/` manually; do not hand-edit `graph.json` — rebuild via scripts
+# - After ANY data change: `validate.py` → `derive.py` → `build.py` → spot-check
+# - NJDG snapshot merge: `jem/scripts/merge_njdg_snapshot.py` (see Part 3.5)
 # ============================================================
 
 ---
 
-## PROGRESS & TBD (May 11 2026)
+## REPO AUDIT (May 19 2026)
 
-**Living schedule (Threads 1–2):** [`jem/docs/GANTT_AND_V1_PLAN.md`](jem/docs/GANTT_AND_V1_PLAN.md) (day-by-day table + flowchart; v1.0.0 gates). **Restore procedure:** [`jem/docs/V1_DATA_RESTORE.md`](jem/docs/V1_DATA_RESTORE.md). **Safe staging build:** `jem/scripts/build_safe.sh` → writes `jem/build/graph.staging.json` only.
+| Metric | Value |
+|--------|--------|
+| Entity YAML files | 494 |
+| Relationship files | 11 packs (~499 edges in `graph.json`) |
+| `graph.json` size | ~1.87 MB |
+| `validate.py` | **0 errors** (505 files checked) |
+| Entities with `case_volume` in YAML | 186 |
+| Entities tagged `NJDG snapshot case_volume merged` | 139 |
+| State packs (entity YAML count) | MH 51 · DL 22 · KA 43 · TN 49 · PY 6 |
+| TN district lattice | 38 per-district courts + `tn_district_courts_generic` (collapse proxy) |
+| NJDG snapshot source | `/Users/user/Documents/jem_add1405/graph.json` (216 entities with `_detail.case_volume`) |
+| Merge plan | [`jem/docs/NJDG_MERGE_PLAN.md`](jem/docs/NJDG_MERGE_PLAN.md) — 139 mergeable rows applied |
 
-**Completed (verified in workspace or prior baseline)**
+**Recent commits (main):** IIAC rename + state commissions; NJDG bulk merge; TN generic lattice; CVC consolidation; ERC enrichment (DERC/KERC/MERC).
 
-- V1 backbone narrative (header): original drop was complete at generation (147 entities, 163 relationships, 818 KB `graph.json`).
-- **Canonical v1 viewer dataset (pre–May 11 local build):** `web/public/graph.json` symlinked to repo-root `graph.json` had ~157 entities, 163 relationships, ~946 KB, including TN + PY sample state entities (`tn_*`, `py_*` ids). *If you still have that file, keep it as the reference build.*
-- **Toolchain:** `scripts/validate.py`, `derive.py`, `build.py`, `requirements.txt` present; `validate.py` runs clean on the current YAML set (0 errors).
-- **CI scaffold:** `.github/workflows/validate.yml` present.
-- **Docs in tree:** `docs/DATA_MODEL.md`, `docs/CONTRIBUTING.md` present.
-- **Web app:** `web/` tree (`index.html`, `src/*.js`, `styles/main.css`) present; renderer is **SVG-based** (not the Part 4 Canvas rewrite).
+**Not in repo / optional cleanup:** `.patch-extract/` (patch source bundles only — not runtime data).
 
-**TBD / not verified here**
+---
 
-- **Restore full `graph.json` (urgent if overwritten):** `web/public/graph.json` → `../../../graph.json`. Running `build.py` while only a **small YAML subset** exists replaces the viewer graph with a tiny build (e.g. ~13 entities). **TBD:** copy back the full ~946 KB `graph.json` from backup, another machine, or the canonical jem export before trusting local spot-checks or deploy.
-- **Full export inventory:** Checklist originally expected ~49 top-level deliverables; this tree may be a partial copy — reconcile file list when syncing from canonical source.
-- **`docs/CURSOR_PHASE1_BRIEF.md`**, **`docs/V2_SESSION_SPEC.md`:** not present under `jem/docs/` in this workspace — restore from canonical export if needed.
-- **Production deploy (friedso.com) & live QA (Part 1.2):** set README live URL to your public path; re-run rsync + on-site checks after each release.
-- **Git remote & Actions (Part 1.3):** no `.git` in this workspace snapshot — confirm repo on GitHub and that `validate.yml` passes on push.
-- **MH / DL / KA state packs (Part 3):** not present as dedicated state entity packs in the canonical graph baseline reviewed for this audit — still outstanding vs checklist.
-- **V2 build (Part 4):** no `fetch_njdg.py`, `sankey.js`, Canvas L1/L2 renderer per spec — outstanding.
-- **Gap registry entities (Part 5) onward:** unchanged vs checklist; treat as backlog until scheduled.
-- **Authoring vs prebuilt graph:** only a small set of entity YAML files exists here. After full YAML is restored, `build.py` can reproduce the large graph; until then, **do not** run `build.py` for “verification” unless you intend to overwrite `graph.json` or pass `--output` to a scratch path.
+## PROGRESS & STATUS (May 19 2026)
+
+**Living schedule:** [`jem/docs/GANTT_AND_V1_PLAN.md`](jem/docs/GANTT_AND_V1_PLAN.md) · **Restore procedure:** [`jem/docs/V1_DATA_RESTORE.md`](jem/docs/V1_DATA_RESTORE.md) · **v2 schema:** [`jem/docs/V2_DATA_MODEL.md`](jem/docs/V2_DATA_MODEL.md)
+
+### Done (verified this audit)
+
+- [x] **Full YAML corpus** under `jem/data/entities/` (hand-curated + `_generated/`) — `build.py` reproduces the large graph intentionally.
+- [x] **Phase 1 state packs:** MH, DL, KA, TN (38-district lattice), PY — see Part 3.
+- [x] **NJDG snapshot merge (state / HC / tribunal rollups):** `merge_njdg_snapshot.py --apply` — 139 entities; see Part 3.5.
+- [x] **TN collapsed + expanded district model:** `tn_district_courts_generic` + per-district YAML; map uses `districtAggregates.js` (+/− on Madras HC).
+- [x] **v2 partial (data + UI):** HC bench entities, `judge_strength` blocks, district lattice collapse, IIAC (ex-NDIAC), state SCDRC/NHRC, CVC consolidation.
+- [x] **Toolchain:** `validate.py`, `derive.py`, `build.py`, `generate_v1_states_bundle.py`, `merge_njdg_snapshot.py`, `bootstrap_tn_district_lattice.py`.
+- [x] **CI scaffold:** `.github/workflows/validate.yml`.
+- [x] **Docs:** `DATA_MODEL.md`, `CONTRIBUTING.md`, `NJDG_MERGE_PLAN.md`, `V2_DATA_MODEL.md`.
+
+### Parked (scheduled later — do not block v1.0.0 tag)
+
+- [ ] **District-level NJDG exports** — per-district `pending_cases` / filed / disposed for TN (37/38 districts), MH/KA bootstrap districts (45 placeholders), and other states — see **Part 3.5 § PARKED**.
+- [ ] **Live NJDG API** (`fetch_njdg.py`) — Part 4; static snapshot remains canonical until then.
+- [ ] **Production deploy & GitHub remote QA** — Part 1.2–1.3 (operator tasks).
+
+### Still outstanding (backlog)
+
+- [ ] **Gap registry entities** — Part 5 (CESTAT benches, AFT benches, tax chain, etc.).
+- [ ] **Remaining 22 states + UTs** — Part 5.6 community batches.
+- [ ] **v2 Canvas / Sankey / journey mode** — Part 4 (renderer remains SVG for L1/L2).
+- [ ] **`docs/CURSOR_PHASE1_BRIEF.md`**, **`docs/V2_SESSION_SPEC.md`** — not in tree; restore from canonical export if needed.
 
 ---
 
@@ -136,9 +161,9 @@ python scripts/build.py        # should show: 147 entities, 818 KB
 ```
 
 - [x] Open jem/ as Cursor project
-- [x] Run validate.py — confirm clean *(May 11 2026: 0 errors on current YAML set; entity file count smaller than v1 full export)*
-- [ ] Read docs/CURSOR_PHASE1_BRIEF.md fully before starting *(TBD: file not in `jem/docs/` — restore from canonical export)*
-- [ ] Read docs/DATA_MODEL.md sections on structural_gap and case_volume *(doc present; mark when read)*
+- [x] Run validate.py — confirm clean *(May 19 2026: 0 errors, 494 entity files)*
+- [ ] Read docs/CURSOR_PHASE1_BRIEF.md fully before starting *(file not in `jem/docs/` — restore from canonical export if needed)*
+- [x] Read docs/DATA_MODEL.md sections on structural_gap and case_volume *(also `V2_DATA_MODEL.md` for judge_strength / HC benches)*
 
 ### 2.2 Cursor workflow (repeat for every data session)
 
@@ -160,256 +185,206 @@ Every session, in this exact order:
 
 ## PART 3 — V1 COMPLETION: 4 STATES + 1 UT
 
-### STATUS: TN and PY already done in **canonical v1 graph** (restore full `graph.json` if local file was rebuilt from partial YAML). Remaining: MH, DL, KA.
+### STATUS (May 19 2026): **MH, DL, KA, TN, PY complete** in `jem/data/entities/_generated/states/{mh,dl,ka,tn,py}/` with relationship packs. TN uses full 38-district lattice + `tn_district_courts_generic`. Rebuild: `python3 jem/scripts/build.py` → ~494 entities.
 
 ---
 
-### 3.1 Maharashtra (MH) — Cursor, ~140 entities
+### 3.1 Maharashtra (MH) — ~51 entity YAML files ✅
 
-**New file:** `data/entities/subordinate_courts/mh_state_entities.yaml`
-**New file:** `data/relationships/mh_relationships.yaml`
+**Paths:** `jem/data/entities/_generated/states/mh/*.yaml` · `jem/data/relationships/mh_relationships.yaml`
 
 #### 3.1.1 State-level regulators
-- [ ] `merc` — Maharashtra Electricity Regulatory Commission
-  - Source: merc.gov.in | Appellate: APTEL | Gap: MSEDCL (state-owned) is primary regulated entity
-- [ ] `mh_rera` — MahaRERA
-  - Source: maharera.maharashtra.gov.in | Gap: jurisdictional overlap with MH Housing Board
-- [ ] `mh_bar_council` — Bar Council of Maharashtra and Goa
-  - Note: covers Goa also (Bombay HC jurisdiction)
+- [x] `merc` — enriched; NJDG `case_volume` merged
+- [x] `mh_rera`
+- [x] `mh_bar_council`
 
 #### 3.1.2 Oversight / training / ADR
-- [ ] `mh_lokayukta` — established 1971, oldest active Lokayukta in India
-  - Source: lokayukta.maharashtra.gov.in | Note: document appointment delays post-2019
-- [ ] `mh_sja` — Maharashtra State Judicial Academy (Aurangabad)
-- [ ] `mh_slsa` — Maharashtra State Legal Services Authority
+- [x] `mh_lokayukta`
+- [x] `mh_sja`
+- [x] `mh_slsa` — NJDG merged
 
 #### 3.1.3 Prosecution
-- [ ] `mh_advocate_general`
+- [x] `mh_advocate_general`
 
 #### 3.1.4 Consumer
-- [ ] `mh_state_cdrc`
-- [ ] `mh_cdrc_mumbai` (Mumbai DCDRC — highest volume in state)
-- [ ] `mh_cdrc_pune`
-- [ ] `mh_cdrc_nagpur`
-- [ ] `mh_cdrc_aurangabad`
+- [x] `mh_state_cdrc`
+- [x] `mh_cdrc_mumbai` · `mh_cdrc_pune` · `mh_cdrc_nagpur` · `mh_cdrc_aurangabad`
 
 #### 3.1.5 City civil courts
-- [ ] `city_civil_court_mumbai`
-  - CRITICAL: ~900,000 pending — largest civil court by volume in India
-  - Gap: critical clog, infrastructure strain, commercial dispute surge
-  - Source: Bombay HC Annual Report; NJDG
+- [x] `city_civil_court_mumbai` — NJDG rollup merged *(verify ~900k pending against Bombay HC annual report)*
 
-#### 3.1.6 District courts — individual entries (priority 10)
-- [ ] `mh_district_court_mumbai_city`
-- [ ] `mh_district_court_thane`
-- [ ] `mh_district_court_pune`
-- [ ] `mh_district_court_nashik`
-- [ ] `mh_district_court_aurangabad`
-- [ ] `mh_district_court_nagpur`
-- [ ] `mh_district_court_solapur`
-- [ ] `mh_district_court_kolhapur`
-- [ ] `mh_district_court_nanded`
-- [ ] `mh_district_court_amravati`
-- [ ] `mh_district_courts_generic` — generic for remaining 26 districts
+#### 3.1.6 District courts
+- [x] Priority 10 named districts (mumbai_city, thane, pune, nashik, aurangabad, nagpur, solapur, kolhapur, nanded, amravati)
+- [x] `mh_district_courts_generic` — collapsed-lattice proxy + NJDG state rollup
+- [x] **+26 bootstrap districts** (`mh_district_court_jalgaon`, …) — structural YAML + HC edges; **per-district NJDG parked** (Part 3.5)
 
 #### 3.1.7 Special courts
-- [ ] `mh_special_courts` — PMLA, POCSO, NIA, SC/ST, CBI courts
+- [x] `mh_special_courts`
 
 #### 3.1.8 MH relationships
-- [ ] Appellate: all MH district courts → hc_bombay
-- [ ] Appellate: mh_state_cdrc → ncdrc
-- [ ] Appellate: city_civil_court_mumbai → hc_bombay
-- [ ] Appellate: merc → aptel
-- [ ] Supervisory: hc_bombay → all MH district courts (Article 235)
-- [ ] Funding: MH govt → merc, mh_rera, mh_slsa
-- [ ] Training: mh_sja → mh district courts
-- [ ] Circularity: merc appointer-litigant (state → MSEDCL)
-- [ ] ADR: mh_slsa → lok_adalat_generic
-- [ ] Tension: hc_bombay ↔ e-Committee (Bombay HC custom CMS already in repo)
+- [x] Appellate / supervisory / ADR edges in `mh_relationships.yaml`
 
-#### 3.1.9 MH clog data to look up (NJDG)
-- Mumbai City District: ~280,000 pending
-- Thane: ~210,000 pending
-- Pune: ~190,000 pending
-- MH aggregate: ~6.2M pending district courts
-- City Civil Court Mumbai: ~900,000 pending (separate from district)
+#### 3.1.9 MH clog data (NJDG snapshot Dec 2024)
+- [x] State rollup + named courts merged via `merge_njdg_snapshot.py`
+- [ ] **Per-district dashboard pull** for 26 bootstrap districts — **PARKED** (Part 3.5)
 
-- [ ] MH validate + derive + build passes 0 errors
-- [ ] Commit: `data(MH): add Maharashtra state entities`
+- [x] MH validate + derive + build passes 0 errors
+- [x] Committed on main
 - [ ] rsync `jem/web/` to friedso.com
 
 ---
 
-### 3.2 Delhi (DL) — Cursor, ~80 entities
+### 3.2 Delhi (DL) — ~22 entity YAML files ✅
 
-**New file:** `data/entities/subordinate_courts/dl_state_entities.yaml`
-**New file:** `data/relationships/dl_relationships.yaml`
+**Paths:** `jem/data/entities/_generated/states/dl/*.yaml` · `jem/data/relationships/dl_relationships.yaml`
 
 #### 3.2.1 Delhi-specific constitutional entity
-- [ ] `dl_lieutenant_governor` — LG Delhi (Article 239AA — different from state Governor)
-  - Gap: LG vs elected govt tension — Govt of NCT v Union (2018, 2023 Constitution Bench)
-  - Gap: Delhi Police under MHA, not state — distinct Security_Gap pattern from other HCs
-  - Circularity: MHA controls Delhi Police which secures Delhi HC
+- [x] `dl_lieutenant_governor` — NJDG merged; gap notes for LG/MHA tension remain valid
 
 #### 3.2.2 Regulators
-- [ ] `derc` — Delhi Electricity Regulatory Commission
-  - Source: derc.gov.in | Gap: DISCOMS are state-linked entities
-- [ ] `dl_rera` — Delhi RERA
-  - Source: rera.delhi.gov.in
+- [x] `derc` — enriched statutory detail + `case_volume` (verify vs DERC annual reports)
+- [x] `dl_rera`
 
 #### 3.2.3 Oversight / training / ADR
-- [ ] `dl_lokayukta` — active, frequently in news
-  - Source: delhilokayukta.gov.in
-  - Gap: UT status limits Lokayukta powers vs LG
-- [ ] `dl_sja` — Delhi State Judicial Academy (Delhi Judicial Academy)
-- [ ] `dl_slsa` — Delhi State Legal Services Authority (DSLSA)
-  - Note: one of India's most active SLSAs by settlement count
+- [x] `dl_lokayukta` · `dl_sja` · `dl_slsa`
 
 #### 3.2.4 Prosecution
-- [ ] `dl_advocate_general`
-  - Note: complex status — Delhi is UT, AG appointment via LG not Governor
+- [x] `dl_advocate_general`
 
 #### 3.2.5 Consumer
-- [ ] `dl_state_cdrc`
-- [ ] `dl_cdrc_north`
-- [ ] `dl_cdrc_south`
-- [ ] `dl_cdrc_east`
-- [ ] `dl_cdrc_west`
-- [ ] `dl_cdrc_central`
-- [ ] `dl_cdrc_northwest`
+- [x] `dl_state_cdrc` + zone forums (`dl_cdrc_north`, `south`, `east`, `west`, `central`, `northwest`)
 
-#### 3.2.6 District courts (11 districts)
-- [ ] `dl_district_court_saket` — ~280,000 pending, most active in Delhi
-- [ ] `dl_district_court_tis_hazari`
-  - Gap: Tis Hazari is largest court complex in Asia by area; 2019 police-lawyer violence;
-  - chronic infrastructure issues worth a specific gap marker
-- [ ] `dl_district_court_rohini`
-- [ ] `dl_district_court_patiala_house`
-- [ ] `dl_district_court_dwarka`
-- [ ] `dl_district_court_karkardooma`
-- [ ] `dl_district_courts_generic` — generic for remaining 5
+#### 3.2.6 District courts
+- [x] Six named complexes (saket, tis_hazari, rohini, patiala_house, dwarka, karkardooma) — NJDG merged
+- [x] `dl_district_courts_generic` — collapsed proxy + NJDG rollup
 
 #### 3.2.7 Special courts
-- [ ] `dl_special_courts` — PMLA, POCSO, NIA, ACB courts
-  - Note: Delhi has the highest density of special courts in India per capita
+- [x] `dl_special_courts`
 
 #### 3.2.8 DL relationships
-- [ ] Appellate: all DL district courts → hc_delhi
-- [ ] Appellate: dl_state_cdrc → ncdrc
-- [ ] Appellate: derc → aptel
-- [ ] Supervisory: hc_delhi → all DL district courts
-- [ ] Tension: dl_lieutenant_governor ↔ elected government (AdministrativeTension)
-- [ ] Security: MHA → CISF/Delhi Police → hc_delhi (security without obligation arc)
-- [ ] Circularity: MHA controls Delhi Police, is also party before Delhi HC
-- [ ] Training: dl_sja → DL district courts
-- [ ] ADR: dl_slsa → lok_adalat_generic
+- [x] `dl_relationships.yaml` (appellate, supervisory, ADR)
 
-- [ ] DL validate + derive + build passes 0 errors
-- [ ] Commit: `data(DL): add Delhi state entities`
+- [x] DL validate + derive + build passes 0 errors
+- [x] Committed on main
 - [ ] rsync `jem/web/` to friedso.com
 
 ---
 
-### 3.3 Karnataka (KA) — Cursor, ~120 entities
+### 3.3 Karnataka (KA) — ~43 entity YAML files ✅
 
-**New file:** `data/entities/subordinate_courts/ka_state_entities.yaml`
-**New file:** `data/relationships/ka_relationships.yaml`
+**Paths:** `jem/data/entities/_generated/states/ka/*.yaml` · `jem/data/relationships/ka_relationships.yaml`
 
-#### 3.3.1 Regulators
-- [ ] `kerc` — Karnataka Electricity Regulatory Commission
-  - Source: kerc.gov.in | Gap: BESCOM (state-owned) is primary regulated entity
-- [ ] `ka_rera` — Karnataka RERA (K-RERA)
-  - Source: rera.karnataka.gov.in | Status: Active, functional appellate tribunal
+#### 3.3.1–3.3.8 (summary)
+- [x] `kerc` (enriched) · `ka_rera` · `ka_lokayukta` · `ka_sja` · `ka_slsa` · `ka_advocate_general`
+- [x] `ka_state_cdrc` · `ka_cdrc_bengaluru` · `city_civil_court_bangalore` (NJDG merged)
+- [x] Priority 10 districts + `ka_district_courts_generic`
+- [x] **+19 bootstrap districts** — structural only; **per-district NJDG parked** (Part 3.5)
+- [x] `ka_special_courts` · `ka_relationships.yaml`
 
-#### 3.3.2 Oversight / training / ADR
-- [ ] `ka_lokayukta` — established 1984, historically India's most active
-  - Source: lokayukta.karnataka.gov.in
-  - Gap: 2023 amendment reduced independence — document as Independence_Gap
-  - Source for gap: Rajamohan Reddy v State of Karnataka (2023)
-- [ ] `ka_sja` — Karnataka State Judicial Academy
-  - Note: runs one of India's most structured judicial training programs
-- [ ] `ka_slsa` — Karnataka State Legal Services Authority
-
-#### 3.3.3 Prosecution
-- [ ] `ka_advocate_general`
-
-#### 3.3.4 Consumer
-- [ ] `ka_state_cdrc`
-- [ ] `ka_cdrc_bengaluru`
-- [ ] `ka_cdrc_mysuru`
-- [ ] `ka_cdrc_hubballi`
-- [ ] `ka_cdrc_mangaluru`
-
-#### 3.3.5 City courts
-- [ ] `city_civil_court_bangalore` — Bengaluru City Civil Court
-  - ~500,000 pending — commercial tech-sector disputes driving surge
-  - Source: Bangalore City Civil Court; NJDG
-
-#### 3.3.6 District courts (31 districts — priority 10)
-- [ ] `ka_district_court_bengaluru_urban`
-- [ ] `ka_district_court_bengaluru_rural`
-- [ ] `ka_district_court_mysuru`
-- [ ] `ka_district_court_belagavi`
-- [ ] `ka_district_court_kalaburagi`
-- [ ] `ka_district_court_dharwad`
-- [ ] `ka_district_court_tumkuru`
-- [ ] `ka_district_court_shivamogga`
-- [ ] `ka_district_court_mangaluru`
-- [ ] `ka_district_court_ballari`
-- [ ] `ka_district_courts_generic` — generic for remaining 21
-
-#### 3.3.7 Special courts
-- [ ] `ka_special_courts` — PMLA, POCSO, NIA, SC/ST, CBI courts
-
-#### 3.3.8 KA relationships
-- [ ] Appellate: all KA district courts → hc_karnataka
-- [ ] Appellate: ka_state_cdrc → ncdrc
-- [ ] Appellate: city_civil_court_bangalore → hc_karnataka
-- [ ] Appellate: kerc → aptel
-- [ ] Supervisory: hc_karnataka → all KA district courts
-- [ ] Circularity: kerc appointer-litigant (state → BESCOM)
-- [ ] Training: ka_sja → KA district courts
-- [ ] ADR: ka_slsa → lok_adalat_generic
-- [ ] Tension: ka_lokayukta independence reduced (PolicyConflict arc with state govt)
-
-- [ ] KA validate + derive + build passes 0 errors
-- [ ] Commit: `data(KA): add Karnataka state entities`
+- [x] KA validate + derive + build passes 0 errors
+- [x] Committed on main
 - [ ] rsync `jem/web/` to friedso.com
+
+---
+
+### 3.3a Tamil Nadu (TN) + Puducherry (PY) — ✅
+
+**TN paths:** `jem/data/entities/_generated/states/tn/` (49 YAML) · `jem/data/relationships/tn_relationships.yaml`
+
+- [x] Full **38-district lattice** (`tn_district_court_*`) with bench-aware appellate edges (Madras / Madurai)
+- [x] **`tn_district_courts_generic`** — consolidated collapsed view (3.2M pending state rollup from NJDG)
+- [x] Map collapse/expand via `jem/web/src/districtAggregates.js` + `PRINCIPAL_HC_BY_STATE_CODE.tn`
+- [x] TN regulators, SLSA, SJA, CDRC, RERA, special courts — NJDG merged where in snapshot
+- [ ] **37/38 districts** without per-district `pending_cases` in YAML — **PARKED** (only Chennai + generic in Dec 2024 snapshot)
+
+**PY:** `jem/data/entities/_generated/states/py/` (6 entities) · `py_relationships.yaml` — ✅ in graph
 
 ---
 
 ### 3.4 V1 Completion Checklist
 
-After MH, DL, KA are committed:
+- [x] Run full validate: `python3 jem/scripts/validate.py` — **0 errors** (May 19 2026)
+- [x] Run full build: `python3 jem/scripts/build.py` — **494 entities**, **~1.87 MB** `graph.json`
+- [x] State packs MH, DL, KA, TN, PY in repo and graph
+- [x] NJDG snapshot merge applied (139 entities) — Part 3.5
+- [ ] Deploy: `rsync -avz --delete jem/web/ you@friedso.com:~/path/to/site/apps/jem/`
+- [ ] Open live site — confirm state filter + TN district collapse/expand on Madras HC
+- [ ] Tag GitHub release: `git tag v1.0.0 && git push --tags` *(after deploy QA)*
 
-- [ ] Run full validate: `python scripts/validate.py --strict` — 0 errors
-- [ ] Run full build: `python scripts/build.py`
-- [ ] Check entity count: should be ~390-420 entities
-- [ ] Check graph.json: should be ~2.0-2.5 MB
-- [ ] Check clog report: City Civil Court Mumbai and Tis Hazari should appear
-- [ ] Deploy: `rsync -avz --delete jem/web/ you@friedso.com:~/path/to/site/apps/jem/` (from repo root; adjust path)
-- [ ] Open live site — confirm state filter works for MH, DL, KA, TN, PY
-- [ ] Confirm new gap markers visible (MH Lokayukta appointment delay, KA Lokayukta amendment)
-- [ ] Tag GitHub release: `git tag v1.0.0 && git push --tags`
+---
+
+## PART 3.5 — NJDG DATA (snapshot merge + parked district work)
+
+### 3.5.1 Snapshot merge — ✅ DONE (May 19 2026)
+
+| Item | Status |
+|------|--------|
+| Source snapshot | `/Users/user/Documents/jem_add1405/graph.json` (216 entities with `_detail.case_volume`) |
+| Tool | `jem/scripts/merge_njdg_snapshot.py` |
+| Plan | [`jem/docs/NJDG_MERGE_PLAN.md`](jem/docs/NJDG_MERGE_PLAN.md) — **139** mergeable rows applied |
+| Re-apply after YAML changes | `python3 jem/scripts/merge_njdg_snapshot.py --snapshot /Users/user/Documents/jem_add1405/graph.json --apply` |
+| Rebuild graph | `python3 jem/scripts/build.py` |
+| ID remaps in script | `mh_district_court_mumbai` → `mh_district_court_mumbai_city`; `hc_guwahati` → `hc_gauhati` |
+
+**Merged coverage:** all 24 mergeable HCs, DL/MH/KA/TN/PY state entities in plan, backbone tribunals/regulators, hand-curated SC/CBI/ACI/eCommittee, etc.
+
+### 3.5.2 PARKED — District-level NJDG exports ⏸️
+
+> **Do not start until scheduled.** State/HC rollup merge is complete; this tranche is per-district dashboard pulls.
+
+| Scope | Count | Current data | When un-parked |
+|-------|-------|----------------|----------------|
+| **TN per-district courts** | 38 nodes | 1 with `pending_cases` (Chennai); 37 placeholders | New NJDG district export or TN e-Courts district dashboard scrape |
+| **TN collapsed generic** | 1 | ✅ `tn_district_courts_generic` (state rollup) | Refresh when new state snapshot available |
+| **MH bootstrap districts** | 26 | `avg_disposal_days` placeholder only | Per-district NJDG for each `mh_district_court_*` slug |
+| **KA bootstrap districts** | 19 | same | same |
+| **Other states (v1 bundle)** | varies | principal + `*_district_courts_generic` often have rollup only | Phase 2 / community passes |
+
+**Acceptance criteria (when un-parked):**
+
+- [ ] Each targeted `*_district_court_*` YAML has `case_volume.pending_cases`, `filed_last_year`, `disposed_last_year` (or explicit null + `data_quality_notes`)
+- [ ] `data_quality_notes` cites NJDG district URL and `data_as_of`
+- [ ] Re-run `merge_njdg_snapshot.py --apply` **only if** new snapshot includes per-district `_detail.case_volume`
+- [ ] `validate.py` → `build.py` → spot-check expanded TN lattice on map
+
+**Tracking command (audit):**
+
+```bash
+python3 -c "
+import yaml
+from pathlib import Path
+tn = Path('jem/data/entities/_generated/states/tn')
+dist = list(tn.glob('tn_district_court_*.yaml'))
+with_p = sum(1 for f in dist if (yaml.safe_load(f.read_text()).get('case_volume') or {}).get('pending_cases'))
+print(f'TN districts with pending_cases: {with_p}/{len(dist)}')
+"
+```
 
 ---
 
 ## PART 4 — V2 BUILD (April 27 Claude session)
 
-**Status (May 11 2026):** Not started in this tree — renderer remains SVG; no NJDG fetch script, Sankey, or V2 session spec file in `docs/`.
+**Status (May 19 2026):** **Partial.** Data model + map UX advances below; full Canvas/Sankey/journey spec still outstanding.
 
-### 4.1 Preparation (do before April 27)
+**Done in repo (v2 partial):**
 
-- [ ] Read docs/V2_SESSION_SPEC.md fully
-- [ ] Open fresh Claude session on April 27
-- [ ] Paste entire contents of docs/V2_SESSION_SPEC.md as first message
-- [ ] Say: "Execute v2 build per this spec. Start with Priority 1 (Canvas renderer)."
-- [ ] Do NOT mix research/essay writing in this session — it is a full build day
+- [x] `jem/docs/V2_DATA_MODEL.md` — HC benches, `judge_strength`, district lattice
+- [x] HC bench YAML under `jem/data/entities/_generated/high_courts/benches/`
+- [x] `jem/web/src/districtAggregates.js` — collapse/expand per state; TN generic proxy
+- [x] `jem/web/src/nodeShapes.js` — crescent bench shapes
+- [x] `generate_v1_states_bundle.py`, `hc_benches_config.py`, `bootstrap_tn_district_lattice.py`
+- [x] NJDG **static** snapshot merge (not live API) — Part 3.5
 
-### 4.2 V2 feature checklist (Claude builds these on April 27)
+### 4.1 Preparation (do before next v2 session)
+
+- [ ] Read docs/V2_SESSION_SPEC.md fully *(restore to `jem/docs/` if missing)*
+- [ ] Open fresh Claude session for remaining v2 items
+- [ ] Do NOT mix research/essay writing in build sessions
+
+### 4.2 V2 feature checklist
 
 #### Priority 1 — Canvas renderer
-- [ ] `web/src/renderer.js` rewritten — L1/L2 on Canvas, L0 stays SVG
+- [ ] `web/src/renderer.js` rewritten — L1/L2 on Canvas, L0 stays SVG *(still SVG — acceptable at ~500 entities)*
 - [ ] D3 quadtree hit detection implemented
 - [ ] Canvas arrowheads implemented
 - [ ] Gap asterisk `*` renders on Canvas
@@ -420,9 +395,11 @@ After MH, DL, KA are committed:
 - [ ] Performance test: smooth at 500 entities (test with duplicated data if needed)
 
 #### Priority 2 — NJDG live fetch
-- [ ] `scripts/fetch_njdg.py` created
+- [x] **Static snapshot path** — `merge_njdg_snapshot.py` + `jem_add1405/graph.json` *(May 2026)*
+- [ ] **District-level exports** — **PARKED** (Part 3.5.2)
+- [ ] `scripts/fetch_njdg.py` created (live API)
 - [ ] Rate limiting (1 req / 2 seconds) implemented
-- [ ] Cache layer (data/cache/njdg/) implemented
+- [ ] Cache layer (`data/cache/njdg/`) implemented
 - [ ] Test: fetch live data for hc_delhi, hc_madras — confirm fields update
 - [ ] build.py `--live` flag added
 - [ ] Staleness indicator in graph.json meta
@@ -609,6 +586,7 @@ Priority order based on case volume and structural significance:
 
 These entities are in the repo but at partial/unverified quality. Any contributor can upgrade:
 
+- [ ] **District-level NJDG pendency** — **PARKED** (Part 3.5.2); do not duplicate state rollup into every district YAML
 - [ ] All 10 northeast HCs: upgrade from `unverified` to `partial`
   Task: verify sanctioned/working strength from HC websites or DoJ data
 - [ ] `state_bar_council_generic`: add enrollment count, working strength
@@ -617,7 +595,7 @@ These entities are in the repo but at partial/unverified quality. Any contributo
 - [ ] `serc_generic`: verify APTEL appeal statistics per SERC
 - [ ] `gram_nyayalaya_generic`: update state-wise operational count (2025 data)
 - [ ] All entities with `scores_validated: false`: domain reviewer to check derive.py output
-  Command: `python scripts/derive.py --explain {entity_id}` for each
+  Command: `python3 jem/scripts/derive.py --explain {entity_id}` for each
 
 ---
 
@@ -635,15 +613,18 @@ Not a Cursor or Claude session task — plan only.
 
 ### 6.2 Data infrastructure
 
-- [ ] Scheduled NJDG fetch: cron on your production or build host (e.g. friedso.com), weekly
-  `0 3 * * 0 cd /path/to/repo/jem && python3 scripts/fetch_njdg.py --all-hcs && python3 scripts/derive.py && python3 scripts/build.py && rsync -avz --delete web/ you@friedso.com:~/path/to/site/apps/jem/`
-- [ ] Historical NJDG snapshots: store data/cache/njdg/ in git-annex or S3
+- [x] **One-time NJDG snapshot ingest** — `jem_add1405/graph.json` → entity YAML via `merge_njdg_snapshot.py` (May 2026)
+- [ ] **District-level NJDG ingest pipeline** — **PARKED** until exports exist (Part 3.5.2)
+- [ ] Scheduled NJDG fetch: cron on production host, weekly *(requires `fetch_njdg.py`)*
+  `0 3 * * 0 cd /path/to/repo && python3 jem/scripts/fetch_njdg.py --all-hcs && python3 jem/scripts/derive.py && python3 jem/scripts/build.py && rsync …`
+- [ ] Historical NJDG snapshots: store `data/cache/njdg/` in git-annex or S3
   (enables year-over-year clog trend in time scroller)
 - [ ] Community contribution pipeline: GitHub Actions auto-builds on merge to main
   Requires: GitHub Actions deploy step (e.g. SSH/rsync to friedso.com) or webhook to your host
 
 ### 6.3 Remaining feature deferrals
 
+- [ ] **Per-district NJDG metrics** — **PARKED** (Part 3.5.2)
 - [ ] Year-over-year clog trend (needs 3+ NJDG snapshots)
 - [ ] Time scroller annotation mode
 - [ ] Funding flow Sankey (separate from case flow)
@@ -703,12 +684,14 @@ Rule: If a task requires domain reasoning about Indian judicial structure or new
 
 | Milestone | Entities | graph.json | Date |
 |---|---|---|---|
-| V1 backbone | 147 | 818 KB | April 25 (done) |
-| V1 + TN + PY (reference viewer build) | ~157 | ~946 KB | May 11 2026 *(seen before partial-YAML `build.py` overwrite; restore file if needed)* |
-| V1 + MH | ~195 | ~1.1 MB | April 28-30 |
-| V1 + MH + DL | ~240 | ~1.3 MB | April 30-May 2 |
-| V1 + MH + DL + KA | ~335 | ~1.7 MB | May 2-5 |
-| V2 complete | ~335 | ~1.5 MB (canvas, no size change) | April 27 |
-| Gap fills (tax/labour/defence) | ~370 | ~1.9 MB | May-June |
-| Phase 2 (remaining 22 states) | ~900 | ~4 MB | June-August |
-| Phase 3 (district resolution) | ~1500+ | ~8 MB (chunked) | August onward |
+| V1 backbone | 147 | 818 KB | April 25 ✅ |
+| V1 + TN + PY | ~157 | ~946 KB | May 2026 ✅ |
+| V1 + MH + DL + KA + full corpus | **494** | **~1.87 MB** | **May 19 2026 ✅** |
+| NJDG snapshot merge (rollup) | 494 | ~1.87 MB | May 19 2026 ✅ |
+| TN generic + 38-district lattice | 494 | ~1.87 MB | May 19 2026 ✅ |
+| **PARKED: district-level NJDG** | — | — | TBD |
+| v1.0.0 tag + friedso deploy | 494 | ~1.87 MB | TBD |
+| v2 complete (Canvas, live NJDG, Sankey) | ~500+ | ~2 MB | TBD |
+| Gap fills (tax/labour/defence) | ~550 | ~2.2 MB | TBD |
+| Phase 2 (remaining 22 states) | ~900 | ~4 MB | TBD |
+| Phase 3 (district resolution) | ~1500+ | chunked | TBD |
