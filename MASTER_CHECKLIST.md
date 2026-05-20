@@ -1,7 +1,7 @@
 # Judiciary Entity Map (India) - JEM — Master Build & Deployment Checklist
 # Generated: April 25 2026
-# Last full repo audit: **May 20 2026** (see PROGRESS & REPO AUDIT below)
-# Current build: **494 entities**, **499 relationships**, **~1.87 MB** `graph.json`
+# Last full repo audit: **May 20 2026 (post parallel-agent pass)** — see PROGRESS & REPO AUDIT below
+# Current build: **506 entities**, **525 relationships**, **~1.86 MB** `graph.json` (`validate.py` 0 errors)
 # ============================================================
 # HOW TO USE THIS FILE
 # - Work top to bottom
@@ -13,14 +13,21 @@
 
 ---
 
-## REPO AUDIT (May 19 2026)
+## REPO AUDIT (May 20 2026 — post parallel-agent pass)
 
 | Metric | Value |
 |--------|--------|
-| Entity YAML files | 494 |
-| Relationship files | 11 packs (~499 edges in `graph.json`) |
-| `graph.json` size | ~1.87 MB |
-| `validate.py` | **0 errors** (505 files checked) |
+| Entity YAML files | **506** |
+| Relationship files | 12+ packs (**525** edges in `graph.json`) |
+| `graph.json` size | **~1.86 MB** (1,904,005 bytes after `build.py`) |
+| `validate.py` | **0 errors** (518 files checked) |
+| Relationship orphans (no source/target edge) | **~139** — see “Still outstanding” below |
+| `CentralTribunal` entities | **14** (aptel, cat, cestat, itat, nclt, ngt, sat, nclat, tdsat, aft, drt, drat, rct, ipab) |
+| `RegulatoryBodyQJ` (backbone) | trai, sebi, cci, irdai, pfrda |
+| Funding ministry stubs | ministry_of_power, ministry_consumer_affairs, ministry_corporate_affairs, ministry_environment — **present** |
+| `judge_strength` populated (allotted/appointed) | **2 / 506** |
+| `case_volume.pending_cases` populated | **84 / 506** |
+| HC permanent benches in graph | **13 / 14** in `hc_benches_config.py` — Trichy consolidated into Madurai (see Part 3.6) |
 | Entities with `case_volume` in YAML | 186 |
 | Entities tagged `NJDG snapshot case_volume merged` | 139 |
 | State packs (entity YAML count) | MH 51 · DL 22 · KA 43 · TN 49 · PY 6 |
@@ -28,7 +35,7 @@
 | NJDG snapshot source | `/Users/user/Documents/jem_add1405/graph.json` (216 entities with `_detail.case_volume`) |
 | Merge plan | [`jem/docs/NJDG_MERGE_PLAN.md`](jem/docs/NJDG_MERGE_PLAN.md) — 139 mergeable rows applied |
 
-**Recent commits (main):** IIAC rename + state commissions; NJDG bulk merge; TN generic lattice; CVC consolidation; ERC enrichment (DERC/KERC/MERC).
+**Recent work (May 20):** Central tribunal + regulator + ministry batch; IIAC rename; DIAC/MCIA/tn_slsa primary-source fields; governance nodes + CBI/Lokpal appointment model; Phase 6 central governance wiring.
 
 **May 20 doc housekeeping:** Retired `jem/docs/GANTT_AND_V1_PLAN.md` (day-by-day schedule not in use). Removed local `.patch-extract/` patch bundles (applied; never tracked in git). Operator docs: [`V1_DATA_RESTORE.md`](jem/docs/V1_DATA_RESTORE.md) · [`V1_RELEASE_RUNBOOK.md`](jem/docs/V1_RELEASE_RUNBOOK.md).
 
@@ -49,6 +56,30 @@
 - [x] **CI scaffold:** `.github/workflows/validate.yml`.
 - [x] **Docs:** `DATA_MODEL.md`, `CONTRIBUTING.md`, `NJDG_MERGE_PLAN.md`, `V2_DATA_MODEL.md`, `V1_DATA_RESTORE.md`, `V1_RELEASE_RUNBOOK.md`, `SESSION_WORKFLOW.md`.
 - [x] **Doc cleanup (May 20):** GANTT schedule doc removed; patch-extract bundles deleted from workspace.
+- [x] **Governance graph (May 20):** Central officeholders + appointment committees; NHRC/CVC/CBI consultation edges; minister vs ministry distinction; `validate_graph_refs.py` in pipeline.
+- [x] **Governance score exclusions:** `derive.py` + [`jem/docs/DATA_MODEL.md`](jem/docs/DATA_MODEL.md) — PM/ministers/ministries excluded from IR/DP; `AppointmentBody` committees still scored.
+- [x] **CBI Director appointment:** Lokpal Act 2013 s.4A selection committee (`selection_committee_cbi_director`); retired `dopt_dpc` entity.
+- [x] **Coverage-gap session (May 20 parallel agents):** §1 central tribunals/regulators + §2 funding ministries; ExecutiveBody audit clean; §6 HC benches (Bombay–Shimla); IIAC rename; Madurai/DIAC/MCIA/tn_slsa primary-source fields.
+
+### Coverage-gap thread — complete for deploy; deferred to next build (Part 3.6)
+
+> **Deploy decision (May 20):** Ship current graph (`validate.py` 0 errors, `build.py` → 506 entities). Do **not** block v1.0.0 deploy on items below.
+
+| Thread action | Status |
+|---------------|--------|
+| ExecutiveBody audit (mis-typed tribunal stubs) | ✅ **Done** — 0 tribunal stubs |
+| Create NCLAT, TDSAT, AFT, DRT, DRAT, RCT, IPAB | ✅ **Done** |
+| Create TRAI, SEBI, CCI, IRDAI, PFRDA | ✅ **Done** |
+| Create ministry_of_power, ministry_consumer_affairs, ministry_corporate_affairs, ministry_environment | ✅ **Done** |
+| §6 HC bench YAML batch (non-Madras) | ✅ **Done** |
+| IIAC rename (ex-NDIAC) | ✅ **Done** |
+| Primary source: Madurai `created_year`, DIAC `statutory_basis`, MCIA/tn_slsa `created_year` | ✅ **Done** |
+| §3 `case_volume` bulk fill | ⏸️ **Partial** (84/506) |
+| §7 `judge_strength` bulk fill | ⏸️ **Deferred** (2/506) |
+| §5 full state district lattices (non-TN) | ⏸️ **Deferred** — Part 5.6 |
+| Reconcile `hc_madras_bench_tiruchirappalli` vs §6 spec | ⏸️ **Deferred** — Part 3.6.1 |
+| Bench routing: UP / WB / RJ relationship packs | ⏸️ **Deferred** — Part 3.6.2 |
+| Per-district NJDG (TN 37/38, MH/KA bootstrap) | ⏸️ **PARKED** — Part 3.5.2 |
 
 ### v1.0.0 release (operator — prepared, not yet run)
 
@@ -69,6 +100,8 @@
 
 ### Still outstanding (post-v1 backlog)
 
+- [ ] **Next build update (Part 3.6)** — coverage-gap thread remainder (config sync, judge_strength, UP/WB/RJ bench routing)
+- [ ] **Relationship graph — orphan entity wiring (~139)** — **Deferred (not a v1.0.0 blocker).** Central governance cluster is wired (PM, Speakers, LoP, ministers, NHRC/CVC/CBI appointment chains; 0 governance-cluster orphans as of May 20 2026). Remaining orphans are mostly **district courts and state bodies** without any `source`/`target` relationship edge. Wire **incrementally by state/cluster** (e.g. TN district lattice → Madras HC bench); do not mass-generate edges in one pass. Check count: `python3 jem/scripts/validate_graph_refs.py --strict` (informational orphan list). Mass district wiring aligns with Part 3 state-pack expansion and Part 5 gap work.
 - [ ] **Gap registry entities** — Part 5
 - [ ] **Remaining 22 states + UTs** — Part 5.6
 - [ ] **v2 Canvas / Sankey / journey mode** — Part 4.2
@@ -274,10 +307,59 @@ Shortcut: `cd jem && ./scripts/safe_pipeline.sh` (does not run bundle generator)
 
 ---
 
+### 3.6 NEXT BUILD UPDATE — coverage-gap thread (deferred May 20; do not block deploy)
+
+Work in this order after v1.0.0 deploy smoke pass:
+
+#### 3.6.1 Config / generator sync (§6 Madras)
+
+- [ ] Align `jem/scripts/hc_benches_config.py` with graph: either restore `hc_madras_bench_tiruchirappalli` + TN routing per §6, **or** document single-bench model and remove Trichy from `HC_BENCHES_DEF` / `TN_DISTRICT_TO_BENCH`
+- [ ] Update `generate_v1_states_bundle.py` (still references `ndiac`, `hc_madras_bench_tiruchirappalli`)
+- [ ] Re-run `validate.py` → `build.py` after sync
+
+#### 3.6.2 Bench district routing (§6 remainder)
+
+- [ ] Create `up_relationships.yaml`, `wb_relationships.yaml`, `rj_relationships.yaml` bench appellate edges per `hc_benches_config.py` (Lucknow, Jalpaiguri, Jaipur slugs)
+- [ ] Verify KA Dharwad edges cover all configured districts (currently 2 bench edges)
+
+#### 3.6.3 Numeric fields (§3 + §7)
+
+- [ ] Bulk `judge_strength` from DoJ vacancy report index: https://doj.gov.in/report-and-committees/judicial-vacancy-reports
+- [ ] Extend `case_volume` beyond 84/506 — re-run or refresh `merge_njdg_snapshot.py` when new snapshot available
+- [ ] Target: all court-like entities have `judge_strength` block with `data_as_of` + `source_type` (nulls OK with `data_quality_notes`)
+
+#### 3.6.4 Audit commands (re-run each session)
+
+```bash
+cd jem
+python3 scripts/validate.py
+python3 scripts/build.py
+python3 -c "
+import yaml; from pathlib import Path
+ids=set()
+for f in Path('data/entities').rglob('*.yaml'):
+    d=yaml.safe_load(f.read_text()) or {}
+    if d.get('id'): ids.add(d['id'])
+for x in ['nclat','iiac','hc_madras_bench_tiruchirappalli']:
+    print(x, 'OK' if x in ids else 'MISS')
+js=cv=tot=0
+for f in Path('data/entities').rglob('*.yaml'):
+    d=yaml.safe_load(f.read_text()) or {}
+    if not d.get('id'): continue
+    tot+=1
+    j=d.get('judge_strength') or {}
+    if j.get('allotted') is not None or j.get('appointed') is not None: js+=1
+    if (d.get('case_volume') or {}).get('pending_cases') is not None: cv+=1
+print(f'entities={tot} judge_strength={js}/{tot} pending_cases={cv}/{tot}')
+"
+```
+
+---
+
 ### 3.4 V1 Completion Checklist
 
-- [x] Run full validate: `python3 jem/scripts/validate.py` — **0 errors** (May 19 2026)
-- [x] Run full build: `python3 jem/scripts/build.py` — **494 entities**, **~1.87 MB** `graph.json`
+- [x] Run full validate: `python3 jem/scripts/validate.py` — **0 errors** (May 20 2026)
+- [x] Run full build: `python3 jem/scripts/build.py` — **506 entities**, **~1.86 MB** `graph.json`
 - [x] State packs MH, DL, KA, TN, PY in repo and graph
 - [x] NJDG snapshot merge applied (139 entities) — Part 3.5
 - [ ] **§1 Deploy** — [`V1_RELEASE_RUNBOOK.md`](jem/docs/V1_RELEASE_RUNBOOK.md) + `deploy_prep.sh`
@@ -675,8 +757,10 @@ Rule: If a task requires domain reasoning about Indian judicial structure or new
 | V1 + MH + DL + KA + full corpus | **494** | **~1.87 MB** | **May 19 2026 ✅** |
 | NJDG snapshot merge (rollup) | 494 | ~1.87 MB | May 19 2026 ✅ |
 | TN generic + 38-district lattice | 494 | ~1.87 MB | May 19 2026 ✅ |
+| Central tribunal + ministry batch | **506** | **~1.86 MB** | **May 20 2026 ✅** |
 | **PARKED: district-level NJDG** | — | — | TBD |
-| v1.0.0 tag + friedso deploy | 494 | ~1.87 MB | TBD |
+| **NEXT BUILD: Part 3.6** (config sync, judge_strength, UP/WB/RJ routing) | 506+ | ~1.9 MB | TBD |
+| v1.0.0 tag + friedso deploy | **506** | **~1.86 MB** | **Ready — run runbook** |
 | v2 complete (Canvas, live NJDG, Sankey) | ~500+ | ~2 MB | TBD |
 | Gap fills (tax/labour/defence) | ~550 | ~2.2 MB | TBD |
 | Phase 2 (remaining 22 states) | ~900 | ~4 MB | TBD |
