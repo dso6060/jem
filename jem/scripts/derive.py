@@ -22,6 +22,51 @@ from pathlib import Path
 from typing import Dict, Any, Optional, Tuple
 
 
+GOVERNANCE_EXCLUDED_MESSAGE = (
+    "Scores excluded: governance officeholder or administrative body"
+)
+
+OFFICEHOLDER_IDS = frozenset({
+    "president_india",
+    "chief_justice_india",
+    "governor_state",
+    "prime_minister",
+    "speaker_lok_sabha",
+    "deputy_chairman_rajya_sabha",
+    "leader_opposition_lok_sabha",
+    "leader_opposition_rajya_sabha",
+})
+
+OFFICEHOLDER_ID_SUFFIXES = ("_lieutenant_governor", "_advocate_general")
+
+
+def is_governance_scores_excluded(entity: Dict[str, Any]) -> bool:
+    """Governance nodes are graph anchors, not scored adjudicatory/regulatory bodies."""
+    entity_type = entity.get("type", "")
+    if entity_type == "AppointmentBody":
+        return False
+
+    entity_id = entity.get("id", "") or ""
+    cluster = entity.get("cluster", "")
+
+    if entity_id.startswith("ministry_") or entity_id.startswith("minister_"):
+        return True
+    if entity_id in OFFICEHOLDER_IDS:
+        return True
+    if any(entity_id.endswith(suffix) for suffix in OFFICEHOLDER_ID_SUFFIXES):
+        return True
+    if entity_type == "ExecutiveBody" and cluster in (
+        "legislative_executive",
+        "executive_interface",
+    ):
+        return True
+    return False
+
+
+def excluded_score_result() -> Tuple[int, Dict[str, int]]:
+    return 0, {GOVERNANCE_EXCLUDED_MESSAGE: 0}
+
+
 # ── Independence Risk Formula ─────────────────────────────────────────────────
 #
 # Higher score = higher structural independence risk.
@@ -36,6 +81,9 @@ def compute_independence_risk(entity: Dict[str, Any]) -> Tuple[int, Dict[str, in
     Returns (total_score, breakdown_dict).
     Each key in breakdown_dict is a human-readable reason → point value.
     """
+    if is_governance_scores_excluded(entity):
+        return excluded_score_result()
+
     score = 0
     breakdown = {}
 
@@ -60,7 +108,7 @@ def compute_independence_risk(entity: Dict[str, Any]) -> Tuple[int, Dict[str, in
     EXECUTIVE_BODIES = [
         'central_government', 'president_india', 'governor_state',
         'ministry_law_justice', 'ministry_of_finance', 'ministry_personnel_dopt',
-        'dopt_dpc', 'state_government', 'state_home_department'
+        'state_government', 'state_home_department'
     ]
 
     if formally_appoints in EXECUTIVE_BODIES:
@@ -207,6 +255,9 @@ EXTRA_DISCRETION_ENTITIES = {
 }
 
 def compute_discretionary_power(entity: Dict[str, Any]) -> Tuple[int, Dict[str, int]]:
+    if is_governance_scores_excluded(entity):
+        return excluded_score_result()
+
     score = 0
     breakdown = {}
 

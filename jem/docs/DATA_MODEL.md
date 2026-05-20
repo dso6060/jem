@@ -87,6 +87,31 @@ is a structural concern. Discretionary power alone is not problematic.
 
 ---
 
+## Governance nodes — score exclusions
+
+Structural IR and DP scores apply to **adjudicatory, regulatory, and investigative**
+entities whose independence and discretion matter for judicial governance analysis.
+**Governance nodes** (officeholders, ministries, and abstract executive bodies) are
+included in the relationship graph for appointment chains but are **not scored**.
+
+`scripts/derive.py` sets both scores to **0** with breakdown key
+`Scores excluded: governance officeholder or administrative body` when any of:
+
+| Rule | Examples |
+|---|---|
+| `type == AppointmentBody` | **Not excluded** — committees remain scored |
+| `id` starts with `ministry_` or `minister_` | `ministry_home_affairs`, `minister_home_affairs` |
+| Fixed officeholder IDs | `president_india`, `prime_minister`, `chief_justice_india`, `governor_state`, Speakers, LoP, Deputy Chairman Rajya Sabha |
+| `id` ends with `_lieutenant_governor` or `_advocate_general` | `dl_lieutenant_governor`, state AGs |
+| `type == ExecutiveBody` and `cluster` in `legislative_executive` or `executive_interface` | `central_government`, Union ministries |
+
+**Rationale:** Minister vs ministry (PHRA 1993 s.4, CVC Act 2003 s.4) and Lokpal Act
+CBI Director committee are **appointment topology**, not bodies whose case volume or
+bench composition is modeled. Appointment committees (`AppointmentBody`) retain scores
+because they concentrate statutory appointment discretion.
+
+---
+
 ## Scores & Community Validation
 
 Scores are computed automatically but require human review to confirm that:

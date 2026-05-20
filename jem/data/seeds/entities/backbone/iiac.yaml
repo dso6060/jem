@@ -1,0 +1,13 @@
+id: iiac
+name: India International Arbitration Centre
+abbreviation: IIAC
+aliases:
+  - NDIAC
+  - New Delhi International Arbitration Centre
+
+type: ArbitralInstitution
+cluster: arbitration
+level_of_government: Central
+
+# Seed stub — canonical record: entities/_generated/backbone/iiac.yaml
+# Retired seed id: ndiac (renamed per Amendment Act 2022)

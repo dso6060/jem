@@ -19,10 +19,11 @@ statutory_basis: 'Delhi Special Police Establishment Act 1946 (DSPE Act). CBI co
 
   '
 appointment:
-  nominates: dopt_dpc
-  recommends: central_vigilance_commission
-  consulted: []
-  consultation_binding: false
+  nominates: null
+  recommends: selection_committee_cbi_director
+  consulted:
+    - central_vigilance_commission
+  consultation_binding: true
   formally_appoints: central_government
   criteria_public: false
   tenure: Minimum 2 years fixed tenure (post-Prakash Singh SC direction)
@@ -84,7 +85,14 @@ structural_variations:
 
     '
 data_quality: verified
-data_quality_notes: '"Caged parrot" characterisation from SC in Vineet Narain (1997) is well-documented. State consent withdrawal figures should be verified against latest state government notifications — list may have changed since the entries above.'
+data_quality_notes: >
+  Director appointed by Central Government on recommendation of the Lokpal Act
+  2013 s.4A committee (PM, LoP Lok Sabha, CJI or nominee). DoPT
+  (ministry_personnel_dopt) administers the search panel; CVC may provide
+  integrity inputs on candidates but is not a statutory member of the selection
+  committee post-2014. Vineet Narain (1997) directions informed earlier procedure.
+  "Caged parrot" characterisation is well-documented. State consent withdrawal
+  list should be verified against latest state notifications.
 sources:
 - label: Delhi Special Police Establishment Act 1946
   url: https://india-code.nic.in/DocsPdfData/1946/194643.pdf

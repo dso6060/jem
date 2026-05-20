@@ -59,13 +59,15 @@ data_quality_notes: >
   recommendation of the Santhanam Committee on Prevention of Corruption.
   Given statutory footing by CVC Act 2003 (Act 45 of 2003). created_year is
   1964 (original establishment); statutory_basis reflects the operative 2003 Act.
-  ministry_responsible is null — CVC is an independent statutory body reporting
-  to Parliament (annual report laid before each House under CVC Act 2003 s.25);
-  it is not under the administrative control of any ministry.
-  case_volume not populated. consulted IDs are descriptive strings — see handoff
-  report §5. No AppealableTo edge — CVC is a supervisory/investigative body with
-  no appellate hierarchy above it; judicial review lies via Article 226/32.
-  Former duplicate entity id 'cvc' retired; merged into this record.
+  CVC Act 2003 s.4 appointment committee consults minister_home_affairs (Union
+  Minister of Home Affairs), not ministry_home_affairs — same distinction as PHRA
+  1993 s.4 for NHRC. ministry_responsible is null — CVC is an independent
+  statutory body reporting to Parliament (annual report laid before each House
+  under CVC Act 2003 s.25); it is not under the administrative control of any
+  ministry. case_volume not populated. No AppealableTo edge — CVC is a
+  supervisory/investigative body with no appellate hierarchy above it; judicial
+  review lies via Article 226/32. Former duplicate entity id 'cvc' retired;
+  merged into this record.
 
 sources:
   - label: "CVC Official Website"
@@ -76,3 +78,7 @@ sources:
     url: https://cvc.gov.in/sites/default/files/cvcact.pdf
     type: CentralAct
     accessed_date: "2026-05-18"
+  - label: "Central Vigilance Commission Act 2003 — s.4 (appointment committee)"
+    url: https://cvc.gov.in/sites/default/files/cvcact.pdf
+    type: CentralAct
+    accessed_date: "2026-05-19"

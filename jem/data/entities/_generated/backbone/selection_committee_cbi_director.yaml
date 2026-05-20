@@ -1,0 +1,45 @@
+id: selection_committee_cbi_director
+name: CBI Director Selection Committee (Lokpal Act 2013 s.4A)
+abbreviation: CBI Director Committee
+
+type: AppointmentBody
+cluster: appointment_bodies
+level_of_government: Central
+
+jurisdiction_scope:
+  is_all_india: true
+  jurisdiction_types:
+    - statutory_appointment_committee
+
+created_year: 2014
+operational_status: Active
+
+statutory_basis: >
+  Lokpal and Lokayuktas Act 2013, s.4A; Delhi Special Police Establishment
+  (Amendment) Act 2014. Central Government appoints the Director of CBI on the
+  recommendation of a committee comprising the Prime Minister (Chairperson),
+  Leader of Opposition in Lok Sabha (or leader of largest Opposition party),
+  and the Chief Justice of India or a Supreme Court judge nominated by the CJI.
+
+data_quality: partial
+data_quality_notes: >
+  Governance node — statutory selection committee; not an adjudicatory body.
+  DoPT (ministry_personnel_dopt) administers the search and prepares the panel
+  of eligible senior IPS officers for the committee; that administrative step
+  is not a separate AppointmentBody. Post-Vineet Narain (1997), CVC integrity
+  inputs may inform the panel but CVC is not a member of this committee under
+  the Lokpal Act procedure. No case_volume or judge_strength.
+
+sources:
+  - label: Lokpal and Lokayuktas Act 2013 — s.4A
+    url: https://www.indiacode.nic.in/
+    type: CentralAct
+    accessed_date: "2026-05-19"
+  - label: Vineet Narain v Union of India (1997) 6 SCC 767
+    url: https://main.sci.gov.in/
+    type: SCJudgment
+    accessed_date: "2026-05-19"
+  - label: Department of Personnel and Training — Official Website
+    url: https://dopt.gov.in/
+    type: GoIWebsite
+    accessed_date: "2026-05-19"

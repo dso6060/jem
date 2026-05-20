@@ -69,9 +69,10 @@ judge_strength:
 data_quality: partial
 data_quality_notes: >
   Core statutory structure verified from PHRA 1993 ss.3-6. Appointment committee
-  composition per s.4; tenure per s.6; removal per s.5 (inquiry by SC judge on
-  President's reference). Consulted members are governance nodes (PM, Speaker,
-  Home Minister, LoP, etc.) — not ministries. case_volume not populated; NHRC annual reports are
+  composition per s.4 consults minister_home_affairs (Union Minister of Home
+  Affairs), not ministry_home_affairs. Tenure per s.6; removal per s.5 (inquiry
+  by SC judge on President's reference). Consulted members are governance nodes
+  (PM, Speaker, Home Minister, LoP, etc.) — not ministries. case_volume not populated; NHRC annual reports are
   public but not yet extracted. funding.ministry_responsible is ministry_law_justice
   per Union Budget demand no. 60 (Department of Justice) which provides NHRC grant.
 

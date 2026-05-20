@@ -1,6 +1,6 @@
 # Judiciary Entity Map (India) - JEM — Master Build & Deployment Checklist
 # Generated: April 25 2026
-# Last full repo audit: **May 19 2026** (see PROGRESS & REPO AUDIT below)
+# Last full repo audit: **May 20 2026** (see PROGRESS & REPO AUDIT below)
 # Current build: **494 entities**, **499 relationships**, **~1.87 MB** `graph.json`
 # ============================================================
 # HOW TO USE THIS FILE
@@ -30,13 +30,13 @@
 
 **Recent commits (main):** IIAC rename + state commissions; NJDG bulk merge; TN generic lattice; CVC consolidation; ERC enrichment (DERC/KERC/MERC).
 
-**Not in repo / optional cleanup:** `.patch-extract/` (patch source bundles only — not runtime data).
+**May 20 doc housekeeping:** Retired `jem/docs/GANTT_AND_V1_PLAN.md` (day-by-day schedule not in use). Removed local `.patch-extract/` patch bundles (applied; never tracked in git). Operator docs: [`V1_DATA_RESTORE.md`](jem/docs/V1_DATA_RESTORE.md) · [`V1_RELEASE_RUNBOOK.md`](jem/docs/V1_RELEASE_RUNBOOK.md).
 
 ---
 
-## PROGRESS & STATUS (May 19 2026)
+## PROGRESS & STATUS (May 20 2026)
 
-**Living schedule:** [`jem/docs/GANTT_AND_V1_PLAN.md`](jem/docs/GANTT_AND_V1_PLAN.md) · **Restore procedure:** [`jem/docs/V1_DATA_RESTORE.md`](jem/docs/V1_DATA_RESTORE.md) · **v2 schema:** [`jem/docs/V2_DATA_MODEL.md`](jem/docs/V2_DATA_MODEL.md)
+**Restore procedure:** [`jem/docs/V1_DATA_RESTORE.md`](jem/docs/V1_DATA_RESTORE.md) · **v1 release:** [`jem/docs/V1_RELEASE_RUNBOOK.md`](jem/docs/V1_RELEASE_RUNBOOK.md) · **v2 schema:** [`jem/docs/V2_DATA_MODEL.md`](jem/docs/V2_DATA_MODEL.md)
 
 ### Done (verified this audit)
 
@@ -47,7 +47,8 @@
 - [x] **v2 partial (data + UI):** HC bench entities, `judge_strength` blocks, district lattice collapse, IIAC (ex-NDIAC), state SCDRC/NHRC, CVC consolidation.
 - [x] **Toolchain:** `validate.py`, `derive.py`, `build.py`, `generate_v1_states_bundle.py`, `merge_njdg_snapshot.py`, `bootstrap_tn_district_lattice.py`.
 - [x] **CI scaffold:** `.github/workflows/validate.yml`.
-- [x] **Docs:** `DATA_MODEL.md`, `CONTRIBUTING.md`, `NJDG_MERGE_PLAN.md`, `V2_DATA_MODEL.md`.
+- [x] **Docs:** `DATA_MODEL.md`, `CONTRIBUTING.md`, `NJDG_MERGE_PLAN.md`, `V2_DATA_MODEL.md`, `V1_DATA_RESTORE.md`, `V1_RELEASE_RUNBOOK.md`, `SESSION_WORKFLOW.md`.
+- [x] **Doc cleanup (May 20):** GANTT schedule doc removed; patch-extract bundles deleted from workspace.
 
 ### v1.0.0 release (operator — prepared, not yet run)
 

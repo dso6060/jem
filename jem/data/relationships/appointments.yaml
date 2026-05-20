@@ -330,38 +330,54 @@ relationships:
         type: CentralAct
         accessed_date: "2026-05-19"
 
-  # ── CBI Director (DoPT / CVC procedure) ───────────────────
+  # ── CBI Director (Lokpal Act 2013 s.4A) ───────────────────
 
-  - id: rel_dopt_dpc_nominates_cbi_director
-    source: dopt_dpc
+  - id: rel_cbi_committee_recommends_cbi_director
+    source: selection_committee_cbi_director
     target: cbi
-    relationship_type: Nominates
+    relationship_type: Recommends
     relationship_category: appointment
     is_binding: true
     is_constitutional: false
-    statutory_basis: "DSPE Act 1946; Vineet Narain v Union of India (1997)"
+    statutory_basis: "Lokpal and Lokayuktas Act 2013, s.4A"
+    year_established: 2014
+    data_quality: partial
+    sources:
+      - label: Lokpal and Lokayuktas Act 2013 — s.4A
+        url: https://www.indiacode.nic.in/
+        type: CentralAct
+        accessed_date: "2026-05-19"
+
+  - id: rel_central_government_appoints_cbi_director
+    source: central_government
+    target: cbi
+    relationship_type: FormallyAppoints
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Lokpal and Lokayuktas Act 2013, s.4A"
+    year_established: 2014
+    data_quality: partial
+    sources:
+      - label: Lokpal and Lokayuktas Act 2013 — s.4A
+        url: https://www.indiacode.nic.in/
+        type: CentralAct
+        accessed_date: "2026-05-19"
+
+  - id: rel_cvc_consulted_cbi_director
+    source: central_vigilance_commission
+    target: cbi
+    relationship_type: ConsultedOn_Appointment
+    relationship_category: appointment
+    is_binding: false
+    is_constitutional: false
+    statutory_basis: "Vineet Narain v Union of India (1997); integrity inputs on panel"
     year_established: 1997
     data_quality: partial
     sources:
       - label: Vineet Narain v Union of India (1997) 6 SCC 767
         url: https://main.sci.gov.in/
         type: SCJudgment
-        accessed_date: "2026-05-19"
-
-  - id: rel_cvc_recommends_cbi_director
-    source: central_vigilance_commission
-    target: cbi
-    relationship_type: Recommends
-    relationship_category: appointment
-    is_binding: true
-    is_constitutional: false
-    statutory_basis: "CVC Act 2003; Vineet Narain directions"
-    year_established: 2003
-    data_quality: partial
-    sources:
-      - label: CVC Act 2003
-        url: https://cvc.gov.in/sites/default/files/cvcact.pdf
-        type: CentralAct
         accessed_date: "2026-05-19"
 
   # ── State ERC / SCDRC appointments ────────────────────────
