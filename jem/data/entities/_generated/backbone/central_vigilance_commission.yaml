@@ -1,18 +1,78 @@
-# JEM generated bundle — data_quality: partial; expand sources per CONTRIBUTING.md
 id: central_vigilance_commission
 name: Central Vigilance Commission
-type: ExecutiveBody
-cluster: executive_interface
+name_hindi: केन्द्रीय सतर्कता आयोग
+abbreviation: CVC
+aliases:
+  - CVC
+  - Central Vigilance Commission of India
+
+type: RegulatoryBodyQJ
+cluster: regulatory_bodies
 level_of_government: Central
+
 jurisdiction_scope:
   is_all_india: true
-created_year: 1950
+  jurisdiction_types:
+    - anti_corruption_oversight
+    - vigilance_supervision
+    - inquiry_referral
+
+created_year: 1964
 operational_status: Active
+
+statutory_basis: "Central Vigilance Commission Act 2003, s.3"
+
+appointment:
+  formally_appoints: president_of_india
+  recommends: recommendation_committee_cvc_s4
+  consulted:
+    - prime_minister
+    - minister_home_affairs
+    - leader_opposition_lok_sabha
+  consultation_binding: true
+  criteria_public: true
+  tenure: "4 years from date of assumption of office, or age 65, whichever earlier; CVC Act 2003 s.6"
+  reappointment_possible: false
+  removal_authority: president_of_india
+  removal_requires_parliament: false
+  removal_independent_committee: true
+
+funding:
+  primary_source: Consolidated_Fund_India
+  ministry_responsible: null
+
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+
+complaint_mechanism:
+  lokpal_jurisdiction: Not_Applicable
+  lokpal_jurisdiction_note: >
+    CVC is itself an anti-corruption oversight body; CVC Commissioner is not a
+    public servant within Lokpal Act 2013 s.14 in the executive sense.
+    Flag as Contested if a contrary position is formally argued.
+
 data_quality: partial
-data_quality_notes: Stub for graph connectivity; verify appointment/funding against
-  primary sources.
+data_quality_notes: >
+  CVC originally established 11 February 1964 by executive resolution on the
+  recommendation of the Santhanam Committee on Prevention of Corruption.
+  Given statutory footing by CVC Act 2003 (Act 45 of 2003). created_year is
+  1964 (original establishment); statutory_basis reflects the operative 2003 Act.
+  ministry_responsible is null — CVC is an independent statutory body reporting
+  to Parliament (annual report laid before each House under CVC Act 2003 s.25);
+  it is not under the administrative control of any ministry.
+  case_volume not populated. consulted IDs are descriptive strings — see handoff
+  report §5. No AppealableTo edge — CVC is a supervisory/investigative body with
+  no appellate hierarchy above it; judicial review lies via Article 226/32.
+  Former duplicate entity id 'cvc' retired; merged into this record.
+
 sources:
-- label: India Code — Constitution & Acts
-  url: https://india-code.nic.in/
-  type: GoIWebsite
-  accessed_date: '2026-05-13'
+  - label: "CVC Official Website"
+    url: https://cvc.gov.in/
+    type: GoIWebsite
+    accessed_date: "2026-05-18"
+  - label: "Central Vigilance Commission Act 2003"
+    url: https://cvc.gov.in/sites/default/files/cvcact.pdf
+    type: CentralAct
+    accessed_date: "2026-05-18"
