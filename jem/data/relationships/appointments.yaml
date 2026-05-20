@@ -279,6 +279,54 @@ relationships:
         type: CentralAct
         accessed_date: "2026-05-19"
 
+  - id: rel_lop_ls_consulted_nhrc_appointment
+    source: leader_opposition_lok_sabha
+    target: nhrc
+    relationship_type: ConsultedOn_Appointment
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Protection of Human Rights Act 1993, s.4"
+    year_established: 1993
+    data_quality: partial
+    sources:
+      - label: PHRA 1993 s.4
+        url: https://nhrc.nic.in/sites/default/files/PHRA.pdf
+        type: CentralAct
+        accessed_date: "2026-05-19"
+
+  - id: rel_lop_rs_consulted_nhrc_appointment
+    source: leader_opposition_rajya_sabha
+    target: nhrc
+    relationship_type: ConsultedOn_Appointment
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Protection of Human Rights Act 1993, s.4"
+    year_established: 1993
+    data_quality: partial
+    sources:
+      - label: PHRA 1993 s.4
+        url: https://nhrc.nic.in/sites/default/files/PHRA.pdf
+        type: CentralAct
+        accessed_date: "2026-05-19"
+
+  - id: rel_deputy_chair_rs_consulted_nhrc_appointment
+    source: deputy_chairman_rajya_sabha
+    target: nhrc
+    relationship_type: ConsultedOn_Appointment
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Protection of Human Rights Act 1993, s.4"
+    year_established: 1993
+    data_quality: partial
+    sources:
+      - label: PHRA 1993 s.4
+        url: https://nhrc.nic.in/sites/default/files/PHRA.pdf
+        type: CentralAct
+        accessed_date: "2026-05-19"
+
   - id: rel_minister_home_consulted_cvc_appointment
     source: minister_home_affairs
     target: central_vigilance_commission
@@ -326,6 +374,38 @@ relationships:
     data_quality: partial
     sources:
       - label: CVC Act 2003
+        url: https://cvc.gov.in/sites/default/files/cvcact.pdf
+        type: CentralAct
+        accessed_date: "2026-05-19"
+
+  - id: rel_pm_consulted_cvc_appointment
+    source: prime_minister
+    target: central_vigilance_commission
+    relationship_type: ConsultedOn_Appointment
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Central Vigilance Commission Act 2003, s.4"
+    year_established: 2003
+    data_quality: partial
+    sources:
+      - label: CVC Act 2003 s.4
+        url: https://cvc.gov.in/sites/default/files/cvcact.pdf
+        type: CentralAct
+        accessed_date: "2026-05-19"
+
+  - id: rel_lop_ls_consulted_cvc_appointment
+    source: leader_opposition_lok_sabha
+    target: central_vigilance_commission
+    relationship_type: ConsultedOn_Appointment
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Central Vigilance Commission Act 2003, s.4"
+    year_established: 2003
+    data_quality: partial
+    sources:
+      - label: CVC Act 2003 s.4
         url: https://cvc.gov.in/sites/default/files/cvcact.pdf
         type: CentralAct
         accessed_date: "2026-05-19"
@@ -378,6 +458,61 @@ relationships:
       - label: Vineet Narain v Union of India (1997) 6 SCC 767
         url: https://main.sci.gov.in/
         type: SCJudgment
+        accessed_date: "2026-05-19"
+
+  - id: rel_pm_cbi_selection_committee_member
+    source: prime_minister
+    target: cbi
+    relationship_type: ConsultedOn_Appointment
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Lokpal and Lokayuktas Act 2013, s.4A"
+    year_established: 2014
+    notes: >
+      Prime Minister chairs the CBI Director selection committee under Lokpal Act
+      s.4A; edge models committee membership for CBI Director appointment.
+    data_quality: partial
+    sources:
+      - label: Lokpal and Lokayuktas Act 2013 — s.4A
+        url: https://www.indiacode.nic.in/
+        type: CentralAct
+        accessed_date: "2026-05-19"
+
+  - id: rel_lop_ls_cbi_selection_committee_member
+    source: leader_opposition_lok_sabha
+    target: cbi
+    relationship_type: ConsultedOn_Appointment
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Lokpal and Lokayuktas Act 2013, s.4A"
+    year_established: 2014
+    notes: LoP Lok Sabha (or leader of largest Opposition party) is a statutory member.
+    data_quality: partial
+    sources:
+      - label: Lokpal and Lokayuktas Act 2013 — s.4A
+        url: https://www.indiacode.nic.in/
+        type: CentralAct
+        accessed_date: "2026-05-19"
+
+  - id: rel_cji_cbi_selection_committee_member
+    source: chief_justice_india
+    target: cbi
+    relationship_type: ConsultedOn_Appointment
+    relationship_category: appointment
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Lokpal and Lokayuktas Act 2013, s.4A"
+    year_established: 2014
+    notes: >
+      CJI or a Supreme Court judge nominated by the CJI is a statutory member
+      of the CBI Director selection committee.
+    data_quality: partial
+    sources:
+      - label: Lokpal and Lokayuktas Act 2013 — s.4A
+        url: https://www.indiacode.nic.in/
+        type: CentralAct
         accessed_date: "2026-05-19"
 
   # ── State ERC / SCDRC appointments ────────────────────────

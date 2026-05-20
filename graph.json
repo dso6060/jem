@@ -1,9 +1,9 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-05-20T05:09:28.179706+00:00",
-    "entity_count": 505,
-    "relationship_count": 512,
+    "generated_at": "2026-05-20T05:59:47.964317+00:00",
+    "entity_count": 506,
+    "relationship_count": 525,
     "canvas_width": 1800,
     "canvas_height": 1200,
     "year_range": [
@@ -12,11 +12,11 @@
     ]
   },
   "impact_metrics": {
-    "high_independence_risk_count": 102,
+    "high_independence_risk_count": 43,
     "appointer_equals_funder_removal_count": 0,
     "no_public_appointment_criteria_count": 42,
     "not_constituted_count": 3,
-    "no_external_complaint_mechanism_count": 504
+    "no_external_complaint_mechanism_count": 505
   },
   "timeline_events": [
     {
@@ -167,7 +167,7 @@
       "name": "Financing Audit",
       "color": "#1a3a2a",
       "entity_count": 2,
-      "avg_independence_risk": 6.0,
+      "avg_independence_risk": 3.0,
       "not_constituted_count": 0,
       "position": {
         "x": 1342,
@@ -198,8 +198,8 @@
       "id": "legislative_executive",
       "name": "Legislative Executive",
       "color": "#1f2d3d",
-      "entity_count": 55,
-      "avg_independence_risk": 6.0,
+      "entity_count": 56,
+      "avg_independence_risk": 0.0,
       "not_constituted_count": 0,
       "position": {
         "x": 28,
@@ -215,7 +215,7 @@
       "name": "Constitutional Courts",
       "color": "#1a365d",
       "entity_count": 43,
-      "avg_independence_risk": 4.2,
+      "avg_independence_risk": 4.1,
       "not_constituted_count": 0,
       "position": {
         "x": 904,
@@ -295,7 +295,7 @@
       "name": "Executive Interface",
       "color": "#742a2a",
       "entity_count": 12,
-      "avg_independence_risk": 4.3,
+      "avg_independence_risk": 0.8,
       "not_constituted_count": 2,
       "position": {
         "x": 466,
@@ -914,19 +914,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -978,7 +973,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Central Vigilance Commission Act 2003, s.3",
       "data_quality": "partial",
-      "data_quality_notes": "CVC originally established 11 February 1964 by executive resolution on the recommendation of the Santhanam Committee on Prevention of Corruption. Given statutory footing by CVC Act 2003 (Act 45 of 2003). created_year is 1964 (original establishment); statutory_basis reflects the operative 2003 Act. ministry_responsible is null — CVC is an independent statutory body reporting to Parliament (annual report laid before each House under CVC Act 2003 s.25); it is not under the administrative control of any ministry. case_volume not populated. consulted IDs are descriptive strings — see handoff report §5. No AppealableTo edge — CVC is a supervisory/investigative body with no appellate hierarchy above it; judicial review lies via Article 226/32. Former duplicate entity id 'cvc' retired; merged into this record.\n",
+      "data_quality_notes": "CVC originally established 11 February 1964 by executive resolution on the recommendation of the Santhanam Committee on Prevention of Corruption. Given statutory footing by CVC Act 2003 (Act 45 of 2003). created_year is 1964 (original establishment); statutory_basis reflects the operative 2003 Act. CVC Act 2003 s.4 appointment committee consults minister_home_affairs (Union Minister of Home Affairs), not ministry_home_affairs — same distinction as PHRA 1993 s.4 for NHRC. ministry_responsible is null — CVC is an independent statutory body reporting to Parliament (annual report laid before each House under CVC Act 2003 s.25); it is not under the administrative control of any ministry. case_volume not populated. No AppealableTo edge — CVC is a supervisory/investigative body with no appellate hierarchy above it; judicial review lies via Article 226/32. Former duplicate entity id 'cvc' retired; merged into this record.\n",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -1014,6 +1009,12 @@
           "url": "https://cvc.gov.in/sites/default/files/cvcact.pdf",
           "type": "CentralAct",
           "accessed_date": "2026-05-18"
+        },
+        {
+          "label": "Central Vigilance Commission Act 2003 — s.4 (appointment committee)",
+          "url": "https://cvc.gov.in/sites/default/files/cvcact.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
         }
       ],
       "_detail": {
@@ -1022,7 +1023,7 @@
           "recommends": "recommendation_committee_cvc_s4",
           "consulted": [
             "prime_minister",
-            "ministry_home_affairs",
+            "minister_home_affairs",
             "leader_opposition_lok_sabha"
           ],
           "consultation_binding": true,
@@ -1203,20 +1204,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "Entity-specific documented extra-statutory discretion": 5,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 7,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -1430,19 +1425,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -1503,19 +1493,14 @@
       "data_quality_notes": "Governance node — not an adjudicatory body. No case_volume or judge_strength. Consulted on NHRC appointments per PHRA 1993 s.4.\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -1837,76 +1822,6 @@
       }
     },
     {
-      "id": "dopt_dpc",
-      "name": "Department of Personnel and Training — Appointment Committee (CBI Director)",
-      "name_hindi": null,
-      "abbreviation": "DoPT DPC",
-      "type": "AppointmentBody",
-      "cluster": "appointment_bodies",
-      "level_of_government": "Central",
-      "created_year": 1963,
-      "abolished_year": null,
-      "operational_status": "Active",
-      "constitutional_basis": null,
-      "statutory_basis": "DSPE Act 1946; CVC Act 2003; Vineet Narain directions — CBI Director appointment procedure",
-      "data_quality": "partial",
-      "data_quality_notes": "Governance node — nominates/recommends CBI Director per post-Vineet Narain procedure involving DoPT, CVC, and PM. Not an adjudicatory body; no case_volume or judge_strength. Related ministry entity: ministry_personnel_dopt.\n",
-      "derived": {
-        "discretionary_power_breakdown": {
-          "Base discretionary power for type AppointmentBody": 4,
-          "No universal mandatory timeline for all decisions": 1
-        },
-        "discretionary_power_score": 5,
-        "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
-        },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
-        "scores_validated": false
-      },
-      "funding_source": null,
-      "funding_ministry": null,
-      "audited_by": null,
-      "audit_report_public": null,
-      "complaint_external_exists": false,
-      "appointment_criteria_public": null,
-      "reappointment_possible": null,
-      "sources": [
-        {
-          "label": "Department of Personnel and Training — Official Website",
-          "url": "https://dopt.gov.in/",
-          "type": "GoIWebsite",
-          "accessed_date": "2026-05-19"
-        }
-      ],
-      "_detail": {
-        "appointment": null,
-        "funding": null,
-        "audit": null,
-        "complaint_mechanism": null,
-        "training": null,
-        "digital_infrastructure": null,
-        "structural_variations": [],
-        "jurisdiction_scope": {
-          "is_all_india": true,
-          "jurisdiction_types": [
-            "administrative_appointment_committee"
-          ]
-        },
-        "case_volume": null,
-        "judge_strength": null,
-        "parent_hc": null
-      },
-      "position": {
-        "x": 606,
-        "y": 192
-      }
-    },
-    {
       "id": "drat",
       "name": "Debt Recovery Appellate Tribunal",
       "name_hindi": "ऋण वसूली अपीलीय अधिकरण",
@@ -2168,19 +2083,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -2214,7 +2124,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 83,
+        "x": 82,
         "y": 156
       }
     },
@@ -2994,19 +2904,14 @@
       "data_quality_notes": "Governance node — not an adjudicatory body. No case_volume or judge_strength. Consulted on NHRC and CVC appointments where the Leader of the largest opposition party in Lok Sabha is specified.\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -3064,19 +2969,14 @@
       "data_quality_notes": "Governance node — not an adjudicatory body. No case_volume or judge_strength. Consulted on NHRC appointments per PHRA 1993 s.4.\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -3113,7 +3013,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 96,
+        "x": 95,
         "y": 156
       }
     },
@@ -3425,6 +3325,77 @@
       }
     },
     {
+      "id": "minister_home_affairs",
+      "name": "Union Minister of Home Affairs",
+      "name_hindi": null,
+      "abbreviation": "Home Minister",
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1947,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Constitution of India, Articles 74–75; portfolio allocated under Government of India (Allocation of Business) Rules — Ministry of Home Affairs.\n",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — individual ministerial office (officeholder), not the Ministry department. PHRA 1993 s.4 and CVC Act 2003 s.4 consult the Minister in charge of Home Affairs, not the Ministry as an abstract body. No case_volume or judge_strength. Heads ministry_home_affairs (see governance_relationships.yaml).\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Scores excluded: governance officeholder or administrative body": 0
+        },
+        "discretionary_power_score": 0,
+        "independence_risk_breakdown": {
+          "Scores excluded: governance officeholder or administrative body": 0
+        },
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Ministry of Home Affairs — Official Website",
+          "url": "https://www.mha.gov.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-19"
+        },
+        {
+          "label": "Protection of Human Rights Act 1993 — s.4",
+          "url": "https://nhrc.nic.in/sites/default/files/PHRA.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "union_council_of_ministers"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 102,
+        "y": 192
+      }
+    },
+    {
       "id": "ministry_communications",
       "name": "Ministry of Communications",
       "name_hindi": "संचार मंत्रालय",
@@ -3441,19 +3412,14 @@
       "data_quality_notes": "Stub for graph connectivity (Bundle 2). TRAI/TDSAT funding edges. Confirm gazette notification date for current ministry configuration.\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "Consolidated_Fund_India",
@@ -3487,8 +3453,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 103,
-        "y": 192
+        "x": 108,
+        "y": 156
       }
     },
     {
@@ -3508,19 +3474,14 @@
       "data_quality_notes": "created_year 1997 is approximate for the ministry in its current configuration — verify against Allocation of Business gazette notification. Ministry has two departments (Consumer Affairs; Food and Public Distribution); NCDRC sits under Department of Consumer Affairs specifically. Sub-department entity not created per session rules. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "Consolidated_Fund_India",
@@ -3560,8 +3521,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 109,
-        "y": 156
+        "x": 115,
+        "y": 192
       }
     },
     {
@@ -3581,19 +3542,14 @@
       "data_quality_notes": "created_year 2004 is the rename date; Ministry of Company Affairs (earlier lineage) predates this — flag if lineage origin year is required. NCLAT (CA 2013 s.410) is also under MCA; a separate ministry_corporate_affairs → nclat PrimaryFunder edge should be added when nclat.yaml is created. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "Consolidated_Fund_India",
@@ -3633,8 +3589,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 116,
-        "y": 192
+        "x": 122,
+        "y": 156
       }
     },
     {
@@ -3654,19 +3610,14 @@
       "data_quality_notes": "Stub for graph connectivity (Bundle 2). AFT funding edge.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "Consolidated_Fund_India",
@@ -3706,8 +3657,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 123,
-        "y": 156
+        "x": 128,
+        "y": 192
       }
     },
     {
@@ -3727,19 +3678,14 @@
       "data_quality_notes": "created_year 1985 is the ministry establishment date; confirm exact gazette notification. Ministry renamed in 2014 to add \"Climate Change\" — aliases block captures earlier name for graph resolution. The earlier form \"Ministry of Environment and Forests\" (MoEF) may appear as a source reference in older YAML files; treat as same entity. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "Consolidated_Fund_India",
@@ -3779,8 +3725,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 129,
-        "y": 192
+        "x": 135,
+        "y": 156
       }
     },
     {
@@ -3797,22 +3743,17 @@
       "constitutional_basis": null,
       "statutory_basis": "Government of India (Allocation of Business) Rules — Ministry of Home Affairs",
       "data_quality": "partial",
-      "data_quality_notes": "Governance node — not an adjudicatory body. No case_volume or judge_strength. Consulted on NHRC and CVC appointments per respective Acts. Distinct from the Union Home Minister as an individual officeholder.\n",
+      "data_quality_notes": "Governance node — administrative ministry (department), not an adjudicatory body and not a PHRA/CVC consultation member. Statutes consult the Union Minister of Home Affairs (minister_home_affairs), who heads this ministry. No case_volume or judge_strength. Budget/administration distinct from ministry_law_justice (NHRC grant-in-aid line).\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -3870,19 +3811,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -3922,8 +3858,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 136,
-        "y": 156
+        "x": 141,
+        "y": 192
       }
     },
     {
@@ -3943,19 +3879,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -4016,19 +3947,14 @@
       "data_quality_notes": "created_year 1992 is the trifurcation date of Ministry of Energy; confirm exact gazette notification date if ISO-8601 full date is required by schema. name_hindi unverified against official letterhead — flag if Hindi nomenclature policy requires cross-check. funding block is ministry-level only; budget_figure_crore and budget_year not populated — add from Union Budget Detailed Demands for Grants (MoP demand head) in a separate pass.\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "Consolidated_Fund_India",
@@ -4068,8 +3994,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 143,
-        "y": 192
+        "x": 148,
+        "y": 156
       }
     },
     {
@@ -4089,19 +4015,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -4141,8 +4062,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 150,
-        "y": 156
+        "x": 154,
+        "y": 192
       }
     },
     {
@@ -4162,19 +4083,14 @@
       "data_quality_notes": "Stub for graph connectivity (Bundle 2). RCT funding edge.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "Consolidated_Fund_India",
@@ -4208,8 +4124,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 156,
-        "y": 192
+        "x": 161,
+        "y": 156
       }
     },
     {
@@ -4462,8 +4378,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 644,
-        "y": 156
+        "x": 606,
+        "y": 192
       }
     },
     {
@@ -4964,7 +4880,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Protection of Human Rights Act 1993, s.3",
       "data_quality": "partial",
-      "data_quality_notes": "Core statutory structure verified from PHRA 1993 ss.3-6. Appointment committee composition per s.4; tenure per s.6; removal per s.5 (inquiry by SC judge on President's reference). consulted IDs are descriptive strings — graph alignment needed during derive step. case_volume not populated; NHRC annual reports are public but not yet extracted. funding.ministry_responsible is ministry_law_justice per Union Budget demand no. 60 (Department of Justice) which provides NHRC grant.\n",
+      "data_quality_notes": "Core statutory structure verified from PHRA 1993 ss.3-6. Appointment committee composition per s.4 consults minister_home_affairs (Union Minister of Home Affairs), not ministry_home_affairs. Tenure per s.6; removal per s.5 (inquiry by SC judge on President's reference). Consulted members are governance nodes (PM, Speaker, Home Minister, LoP, etc.) — not ministries. case_volume not populated; NHRC annual reports are public but not yet extracted. funding.ministry_responsible is ministry_law_justice per Union Budget demand no. 60 (Department of Justice) which provides NHRC grant.\n",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type RegulatoryBodyQJ": 3,
@@ -5009,7 +4925,7 @@
           "consulted": [
             "prime_minister",
             "speaker_lok_sabha",
-            "ministry_home_affairs",
+            "minister_home_affairs",
             "leader_opposition_lok_sabha",
             "leader_opposition_rajya_sabha",
             "deputy_chairman_rajya_sabha"
@@ -5079,19 +4995,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -5125,8 +5036,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 163,
-        "y": 156
+        "x": 168,
+        "y": 192
       }
     },
     {
@@ -5261,19 +5172,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -5313,8 +5219,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 170,
-        "y": 192
+        "x": 174,
+        "y": 156
       }
     },
     {
@@ -5334,19 +5240,14 @@
       "data_quality_notes": "Governance node — not an adjudicatory body. No case_volume or judge_strength. Consulted on appointments to NHRC, CVC, and similar statutory bodies per respective Acts. Placeholder until full appointment edges are verified.\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -5383,8 +5284,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 176,
-        "y": 156
+        "x": 181,
+        "y": 192
       }
     },
     {
@@ -5569,8 +5470,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 681,
-        "y": 192
+        "x": 644,
+        "y": 156
       }
     },
     {
@@ -5639,8 +5540,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 718,
-        "y": 156
+        "x": 681,
+        "y": 192
       }
     },
     {
@@ -5879,6 +5780,88 @@
       }
     },
     {
+      "id": "selection_committee_cbi_director",
+      "name": "CBI Director Selection Committee (Lokpal Act 2013 s.4A)",
+      "name_hindi": null,
+      "abbreviation": "CBI Director Committee",
+      "type": "AppointmentBody",
+      "cluster": "appointment_bodies",
+      "level_of_government": "Central",
+      "created_year": 2014,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Lokpal and Lokayuktas Act 2013, s.4A; Delhi Special Police Establishment (Amendment) Act 2014. Central Government appoints the Director of CBI on the recommendation of a committee comprising the Prime Minister (Chairperson), Leader of Opposition in Lok Sabha (or leader of largest Opposition party), and the Chief Justice of India or a Supreme Court judge nominated by the CJI.\n",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — statutory selection committee; not an adjudicatory body. DoPT (ministry_personnel_dopt) administers the search and prepares the panel of eligible senior IPS officers for the committee; that administrative step is not a separate AppointmentBody. Post-Vineet Narain (1997), CVC integrity inputs may inform the panel but CVC is not a member of this committee under the Lokpal Act procedure. No case_volume or judge_strength.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type AppointmentBody": 4,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 5,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Lokpal and Lokayuktas Act 2013 — s.4A",
+          "url": "https://www.indiacode.nic.in/",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        },
+        {
+          "label": "Vineet Narain v Union of India (1997) 6 SCC 767",
+          "url": "https://main.sci.gov.in/",
+          "type": "SCJudgment",
+          "accessed_date": "2026-05-19"
+        },
+        {
+          "label": "Department of Personnel and Training — Official Website",
+          "url": "https://dopt.gov.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "statutory_appointment_committee"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 718,
+        "y": 156
+      }
+    },
+    {
       "id": "selection_committee_cpa2019_s54",
       "name": "Consumer Protection Act 2019 Section 54 Selection Committee",
       "name_hindi": null,
@@ -6035,19 +6018,14 @@
       "data_quality_notes": "Governance node — not an adjudicatory body. No case_volume or judge_strength. Consulted on NHRC Chairperson and Member appointments (PHRA 1993 s.4).\n",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -6084,8 +6062,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 183,
-        "y": 192
+        "x": 187,
+        "y": 156
       }
     },
     {
@@ -6474,19 +6452,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -6523,8 +6496,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 190,
-        "y": 156
+        "x": 194,
+        "y": 192
       }
     },
     {
@@ -6544,19 +6517,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -6593,8 +6561,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 196,
-        "y": 192
+        "x": 200,
+        "y": 156
       }
     },
     {
@@ -6614,19 +6582,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -6663,8 +6626,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 203,
-        "y": 156
+        "x": 207,
+        "y": 192
       }
     },
     {
@@ -6684,19 +6647,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -6733,8 +6691,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 210,
-        "y": 192
+        "x": 213,
+        "y": 156
       }
     },
     {
@@ -6754,19 +6712,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -6803,8 +6756,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 216,
-        "y": 156
+        "x": 220,
+        "y": 192
       }
     },
     {
@@ -6824,19 +6777,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -6873,8 +6821,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 223,
-        "y": 192
+        "x": 227,
+        "y": 156
       }
     },
     {
@@ -6894,19 +6842,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -6943,8 +6886,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 230,
-        "y": 156
+        "x": 233,
+        "y": 192
       }
     },
     {
@@ -6964,19 +6907,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7013,8 +6951,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 236,
-        "y": 192
+        "x": 240,
+        "y": 156
       }
     },
     {
@@ -7034,19 +6972,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7083,8 +7016,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 243,
-        "y": 156
+        "x": 246,
+        "y": 192
       }
     },
     {
@@ -7104,19 +7037,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7153,8 +7081,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 250,
-        "y": 192
+        "x": 253,
+        "y": 156
       }
     },
     {
@@ -7174,19 +7102,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7223,8 +7146,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 256,
-        "y": 156
+        "x": 259,
+        "y": 192
       }
     },
     {
@@ -7244,19 +7167,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7293,8 +7211,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 263,
-        "y": 192
+        "x": 266,
+        "y": 156
       }
     },
     {
@@ -7314,19 +7232,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7363,8 +7276,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 270,
-        "y": 156
+        "x": 273,
+        "y": 192
       }
     },
     {
@@ -7384,19 +7297,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7430,8 +7338,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 276,
-        "y": 192
+        "x": 279,
+        "y": 156
       }
     },
     {
@@ -7451,19 +7359,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7500,8 +7403,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 283,
-        "y": 156
+        "x": 286,
+        "y": 192
       }
     },
     {
@@ -7521,19 +7424,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7570,8 +7468,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 290,
-        "y": 192
+        "x": 292,
+        "y": 156
       }
     },
     {
@@ -7591,19 +7489,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7640,8 +7533,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 296,
-        "y": 156
+        "x": 299,
+        "y": 192
       }
     },
     {
@@ -7661,19 +7554,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7707,8 +7595,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 303,
-        "y": 192
+        "x": 305,
+        "y": 156
       }
     },
     {
@@ -7728,19 +7616,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7777,8 +7660,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 310,
-        "y": 156
+        "x": 312,
+        "y": 192
       }
     },
     {
@@ -7798,19 +7681,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7847,8 +7725,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 316,
-        "y": 192
+        "x": 318,
+        "y": 156
       }
     },
     {
@@ -7868,19 +7746,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7917,8 +7790,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 323,
-        "y": 156
+        "x": 325,
+        "y": 192
       }
     },
     {
@@ -7938,19 +7811,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -7987,8 +7855,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 330,
-        "y": 192
+        "x": 332,
+        "y": 156
       }
     },
     {
@@ -8008,19 +7876,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -8054,8 +7917,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 336,
-        "y": 156
+        "x": 338,
+        "y": 192
       }
     },
     {
@@ -8075,19 +7938,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -8124,8 +7982,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 343,
-        "y": 192
+        "x": 345,
+        "y": 156
       }
     },
     {
@@ -8145,19 +8003,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -8194,8 +8047,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 350,
-        "y": 156
+        "x": 351,
+        "y": 192
       }
     },
     {
@@ -8215,19 +8068,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -8264,8 +8112,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 357,
-        "y": 192
+        "x": 358,
+        "y": 156
       }
     },
     {
@@ -8285,19 +8133,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -8334,8 +8177,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 363,
-        "y": 156
+        "x": 364,
+        "y": 192
       }
     },
     {
@@ -8355,19 +8198,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -8404,8 +8242,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 370,
-        "y": 192
+        "x": 371,
+        "y": 156
       }
     },
     {
@@ -8425,19 +8263,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -8471,8 +8304,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 377,
-        "y": 156
+        "x": 378,
+        "y": 192
       }
     },
     {
@@ -8492,19 +8325,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -8541,8 +8369,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 383,
-        "y": 192
+        "x": 384,
+        "y": 156
       }
     },
     {
@@ -8562,19 +8390,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -8611,8 +8434,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 390,
-        "y": 156
+        "x": 391,
+        "y": 192
       }
     },
     {
@@ -8632,19 +8455,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -8682,7 +8500,7 @@
       },
       "position": {
         "x": 397,
-        "y": 192
+        "y": 156
       }
     },
     {
@@ -8702,19 +8520,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -8751,8 +8564,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 403,
-        "y": 156
+        "x": 404,
+        "y": 192
       }
     },
     {
@@ -8772,19 +8585,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -8822,7 +8630,7 @@
       },
       "position": {
         "x": 410,
-        "y": 192
+        "y": 156
       }
     },
     {
@@ -21879,16 +21687,14 @@
       "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ProsecutionBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 3,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "State_Consolidated_Fund",
@@ -23141,20 +22947,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Constitutional basis (harder to politicise) (deduction)": -2,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 4,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -23198,7 +22998,7 @@
       },
       "position": {
         "x": 417,
-        "y": 156
+        "y": 192
       }
     },
     {
@@ -23218,16 +23018,14 @@
       "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 3,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "State_Consolidated_Fund",
@@ -25937,16 +25735,14 @@
       "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ProsecutionBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 3,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "State_Consolidated_Fund",
@@ -29175,16 +28971,14 @@
       "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 3,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "State_Consolidated_Fund",
@@ -31051,16 +30845,14 @@
       "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ProsecutionBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 3,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "State_Consolidated_Fund",
@@ -35074,16 +34866,14 @@
       "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 3,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "State_Consolidated_Fund",
@@ -38028,16 +37818,14 @@
       "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ProsecutionBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 3,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "State_Consolidated_Fund",
@@ -38294,19 +38082,14 @@
       "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "Audit reports not public": 1,
-          "Lokpal has no jurisdiction": 1,
-          "No bias complaint mechanism exists": 2,
-          "No external financial audit": 1,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": null,
@@ -38350,7 +38133,7 @@
       },
       "position": {
         "x": 423,
-        "y": 192
+        "y": 156
       }
     },
     {
@@ -38370,17 +38153,14 @@
       "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1,
-          "Statutory body not constituted — regulatory vacuum": 3
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "State_Consolidated_Fund",
@@ -39300,16 +39080,14 @@
       "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ProsecutionBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 3,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "State_Consolidated_Fund",
@@ -43015,17 +42793,14 @@
       "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
-          "Base discretionary power for type ExecutiveBody": 1,
-          "No universal mandatory timeline for all decisions": 1
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "discretionary_power_score": 2,
+        "discretionary_power_score": 0,
         "independence_risk_breakdown": {
-          "No bias complaint mechanism exists": 2,
-          "No independent conduct oversight body": 1,
-          "Statutory body not constituted — regulatory vacuum": 3
+          "Scores excluded: governance officeholder or administrative body": 0
         },
-        "independence_risk_level": "high",
-        "independence_risk_score": 6,
+        "independence_risk_level": "low",
+        "independence_risk_score": 0,
         "scores_validated": false
       },
       "funding_source": "State_Consolidated_Fund",
@@ -46029,7 +45804,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Delhi Special Police Establishment Act 1946 (DSPE Act). CBI constituted by Ministry of Home Affairs Resolution 1963.\n",
       "data_quality": "verified",
-      "data_quality_notes": "\"Caged parrot\" characterisation from SC in Vineet Narain (1997) is well-documented. State consent withdrawal figures should be verified against latest state government notifications — list may have changed since the entries above.",
+      "data_quality_notes": "Director appointed by Central Government on recommendation of the Lokpal Act 2013 s.4A committee (PM, LoP Lok Sabha, CJI or nominee). DoPT (ministry_personnel_dopt) administers the search panel; CVC may provide integrity inputs on candidates but is not a statutory member of the selection committee post-2014. Vineet Narain (1997) directions informed earlier procedure. \"Caged parrot\" characterisation is well-documented. State consent withdrawal list should be verified against latest state notifications.\n",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type InvestigativeAgency": 3,
@@ -46085,10 +45860,12 @@
       ],
       "_detail": {
         "appointment": {
-          "nominates": "dopt_dpc",
-          "recommends": "central_vigilance_commission",
-          "consulted": [],
-          "consultation_binding": false,
+          "nominates": null,
+          "recommends": "selection_committee_cbi_director",
+          "consulted": [
+            "central_vigilance_commission"
+          ],
+          "consultation_binding": true,
           "formally_appoints": "central_government",
           "criteria_public": false,
           "tenure": "Minimum 2 years fixed tenure (post-Prakash Singh SC direction)",
@@ -46608,8 +46385,30 @@
       ]
     },
     {
-      "id": "rel_mha_consulted_nhrc_appointment",
-      "source": "ministry_home_affairs",
+      "id": "rel_minister_home_consulted_nhrc_appointment",
+      "source": "minister_home_affairs",
+      "target": "nhrc",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 1993,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "PHRA s.4 consults the Minister in charge of the Ministry of Home Affairs (officeholder), not the Ministry department as such.\n",
+      "sources": [
+        {
+          "label": "PHRA 1993 s.4",
+          "url": "https://nhrc.nic.in/sites/default/files/PHRA.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_lop_ls_consulted_nhrc_appointment",
+      "source": "leader_opposition_lok_sabha",
       "target": "nhrc",
       "relationship_type": "ConsultedOn_Appointment",
       "relationship_category": "appointment",
@@ -46624,6 +46423,72 @@
         {
           "label": "PHRA 1993 s.4",
           "url": "https://nhrc.nic.in/sites/default/files/PHRA.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_lop_rs_consulted_nhrc_appointment",
+      "source": "leader_opposition_rajya_sabha",
+      "target": "nhrc",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 1993,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "PHRA 1993 s.4",
+          "url": "https://nhrc.nic.in/sites/default/files/PHRA.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_deputy_chair_rs_consulted_nhrc_appointment",
+      "source": "deputy_chairman_rajya_sabha",
+      "target": "nhrc",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 1993,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "PHRA 1993 s.4",
+          "url": "https://nhrc.nic.in/sites/default/files/PHRA.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_minister_home_consulted_cvc_appointment",
+      "source": "minister_home_affairs",
+      "target": "central_vigilance_commission",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2003,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "CVC Act s.4 selection committee includes the Minister of Home Affairs.",
+      "sources": [
+        {
+          "label": "CVC Act 2003 s.4",
+          "url": "https://cvc.gov.in/sites/default/files/cvcact.pdf",
           "type": "CentralAct",
           "accessed_date": "2026-05-19"
         }
@@ -46674,12 +46539,100 @@
       ]
     },
     {
-      "id": "rel_dopt_dpc_nominates_cbi_director",
-      "source": "dopt_dpc",
-      "target": "cbi",
-      "relationship_type": "Nominates",
+      "id": "rel_pm_consulted_cvc_appointment",
+      "source": "prime_minister",
+      "target": "central_vigilance_commission",
+      "relationship_type": "ConsultedOn_Appointment",
       "relationship_category": "appointment",
       "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2003,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "CVC Act 2003 s.4",
+          "url": "https://cvc.gov.in/sites/default/files/cvcact.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_lop_ls_consulted_cvc_appointment",
+      "source": "leader_opposition_lok_sabha",
+      "target": "central_vigilance_commission",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2003,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "CVC Act 2003 s.4",
+          "url": "https://cvc.gov.in/sites/default/files/cvcact.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_cbi_committee_recommends_cbi_director",
+      "source": "selection_committee_cbi_director",
+      "target": "cbi",
+      "relationship_type": "Recommends",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2014,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "Lokpal and Lokayuktas Act 2013 — s.4A",
+          "url": "https://www.indiacode.nic.in/",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_central_government_appoints_cbi_director",
+      "source": "central_government",
+      "target": "cbi",
+      "relationship_type": "FormallyAppoints",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2014,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "Lokpal and Lokayuktas Act 2013 — s.4A",
+          "url": "https://www.indiacode.nic.in/",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_cvc_consulted_cbi_director",
+      "source": "central_vigilance_commission",
+      "target": "cbi",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": false,
       "is_constitutional": false,
       "year_established": 1997,
       "year_abolished": null,
@@ -46696,22 +46649,66 @@
       ]
     },
     {
-      "id": "rel_cvc_recommends_cbi_director",
-      "source": "central_vigilance_commission",
+      "id": "rel_pm_cbi_selection_committee_member",
+      "source": "prime_minister",
       "target": "cbi",
-      "relationship_type": "Recommends",
+      "relationship_type": "ConsultedOn_Appointment",
       "relationship_category": "appointment",
       "is_binding": true,
       "is_constitutional": false,
-      "year_established": 2003,
+      "year_established": 2014,
       "year_abolished": null,
       "data_quality": "partial",
       "contested_note": null,
-      "notes": null,
+      "notes": "Prime Minister chairs the CBI Director selection committee under Lokpal Act s.4A; edge models committee membership for CBI Director appointment.\n",
       "sources": [
         {
-          "label": "CVC Act 2003",
-          "url": "https://cvc.gov.in/sites/default/files/cvcact.pdf",
+          "label": "Lokpal and Lokayuktas Act 2013 — s.4A",
+          "url": "https://www.indiacode.nic.in/",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_lop_ls_cbi_selection_committee_member",
+      "source": "leader_opposition_lok_sabha",
+      "target": "cbi",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2014,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "LoP Lok Sabha (or leader of largest Opposition party) is a statutory member.",
+      "sources": [
+        {
+          "label": "Lokpal and Lokayuktas Act 2013 — s.4A",
+          "url": "https://www.indiacode.nic.in/",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_cji_cbi_selection_committee_member",
+      "source": "chief_justice_india",
+      "target": "cbi",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2014,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "CJI or a Supreme Court judge nominated by the CJI is a statutory member of the CBI Director selection committee.\n",
+      "sources": [
+        {
+          "label": "Lokpal and Lokayuktas Act 2013 — s.4A",
+          "url": "https://www.indiacode.nic.in/",
           "type": "CentralAct",
           "accessed_date": "2026-05-19"
         }
@@ -47572,6 +47569,72 @@
           "url": "https://india-code.nic.in/",
           "type": "GoIWebsite",
           "accessed_date": "2026-05-13"
+        }
+      ]
+    },
+    {
+      "id": "rel_minister_home_heads_mha",
+      "source": "minister_home_affairs",
+      "target": "ministry_home_affairs",
+      "relationship_type": "PolicyOversight",
+      "relationship_category": "statutory_ref",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 1947,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "Union Minister of Home Affairs heads and is responsible for the Ministry of Home Affairs. Distinct from PHRA/CVC consultation role (minister as committee member, not ministry as member).\n",
+      "sources": [
+        {
+          "label": "Constitution of India — Articles 74–75",
+          "url": "https://www.indiacode.nic.in/handle/123456789/1",
+          "type": "Constitution",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_pm_cabinet_oversees_mha_minister",
+      "source": "prime_minister",
+      "target": "minister_home_affairs",
+      "relationship_type": "PolicyOversight",
+      "relationship_category": "statutory_ref",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 1950,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "Prime Minister chairs the Union Cabinet; Home Minister holds portfolio at PM's pleasure. Cabinet allocates business to ministries.\n",
+      "sources": [
+        {
+          "label": "Constitution of India — Articles 74–75",
+          "url": "https://www.indiacode.nic.in/handle/123456789/1",
+          "type": "Constitution",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_dopt_administers_cbi_director_search",
+      "source": "ministry_personnel_dopt",
+      "target": "selection_committee_cbi_director",
+      "relationship_type": "PolicyOversight",
+      "relationship_category": "statutory_ref",
+      "is_binding": false,
+      "is_constitutional": false,
+      "year_established": 2014,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "DoPT (Ministry of Personnel) administers the search and prepares the panel of eligible senior IPS officers for the statutory selection committee; the Ministry is not a member of the committee itself.\n",
+      "sources": [
+        {
+          "label": "Department of Personnel and Training — Official Website",
+          "url": "https://dopt.gov.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-19"
         }
       ]
     },

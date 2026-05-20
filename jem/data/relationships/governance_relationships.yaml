@@ -41,3 +41,23 @@ relationships:
         url: https://www.indiacode.nic.in/handle/123456789/1
         type: Constitution
         accessed_date: "2026-05-19"
+
+  - id: rel_dopt_administers_cbi_director_search
+    source: ministry_personnel_dopt
+    target: selection_committee_cbi_director
+    relationship_type: PolicyOversight
+    relationship_category: statutory_ref
+    is_binding: false
+    is_constitutional: false
+    statutory_basis: "Lokpal and Lokayuktas Act 2013, s.4A; DoPT administrative procedure"
+    year_established: 2014
+    notes: >
+      DoPT (Ministry of Personnel) administers the search and prepares the panel
+      of eligible senior IPS officers for the statutory selection committee; the
+      Ministry is not a member of the committee itself.
+    data_quality: partial
+    sources:
+      - label: Department of Personnel and Training — Official Website
+        url: https://dopt.gov.in/
+        type: GoIWebsite
+        accessed_date: "2026-05-19"
