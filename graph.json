@@ -1,9 +1,9 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generated_at": "2026-05-20T04:44:15.418280+00:00",
-    "entity_count": 494,
-    "relationship_count": 499,
+    "generated_at": "2026-05-20T05:09:28.179706+00:00",
+    "entity_count": 505,
+    "relationship_count": 512,
     "canvas_width": 1800,
     "canvas_height": 1200,
     "year_range": [
@@ -12,11 +12,11 @@
     ]
   },
   "impact_metrics": {
-    "high_independence_risk_count": 89,
+    "high_independence_risk_count": 102,
     "appointer_equals_funder_removal_count": 0,
     "no_public_appointment_criteria_count": 42,
     "not_constituted_count": 3,
-    "no_external_complaint_mechanism_count": 493
+    "no_external_complaint_mechanism_count": 504
   },
   "timeline_events": [
     {
@@ -183,7 +183,7 @@
       "name": "Regulatory Bodies",
       "color": "#4a235a",
       "entity_count": 76,
-      "avg_independence_risk": 3.3,
+      "avg_independence_risk": 3.4,
       "not_constituted_count": 0,
       "position": {
         "x": 466,
@@ -198,7 +198,7 @@
       "id": "legislative_executive",
       "name": "Legislative Executive",
       "color": "#1f2d3d",
-      "entity_count": 50,
+      "entity_count": 55,
       "avg_independence_risk": 6.0,
       "not_constituted_count": 0,
       "position": {
@@ -230,7 +230,7 @@
       "id": "appointment_bodies",
       "name": "Appointment Bodies",
       "color": "#3d2b1f",
-      "entity_count": 4,
+      "entity_count": 9,
       "avg_independence_risk": 6.0,
       "not_constituted_count": 0,
       "position": {
@@ -291,6 +291,22 @@
       }
     },
     {
+      "id": "executive_interface",
+      "name": "Executive Interface",
+      "color": "#742a2a",
+      "entity_count": 12,
+      "avg_independence_risk": 4.3,
+      "not_constituted_count": 2,
+      "position": {
+        "x": 466,
+        "y": 604,
+        "width": 430,
+        "height": 280,
+        "cluster_col": 1,
+        "cluster_row": 2
+      }
+    },
+    {
       "id": "training_professional",
       "name": "Training Professional",
       "color": "#1a2a3a",
@@ -304,22 +320,6 @@
         "height": 280,
         "cluster_col": 0,
         "cluster_row": 3
-      }
-    },
-    {
-      "id": "executive_interface",
-      "name": "Executive Interface",
-      "color": "#742a2a",
-      "entity_count": 11,
-      "avg_independence_risk": 4.2,
-      "not_constituted_count": 2,
-      "position": {
-        "x": 466,
-        "y": 604,
-        "width": 430,
-        "height": 280,
-        "cluster_col": 1,
-        "cluster_row": 2
       }
     },
     {
@@ -404,7 +404,7 @@
           "nominates": "ministry_defence",
           "recommends": null,
           "consulted": [
-            "chief_justice_of_india"
+            "chief_justice_india"
           ],
           "consultation_binding": false,
           "formally_appoints": "president_india",
@@ -587,7 +587,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -637,9 +637,7 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
@@ -989,11 +987,12 @@
         },
         "discretionary_power_score": 5,
         "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
           "No bias complaint mechanism exists": 2,
           "No independent conduct oversight body": 1
         },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 3,
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
         "scores_validated": false
       },
       "funding_source": "Consolidated_Fund_India",
@@ -1019,18 +1018,18 @@
       ],
       "_detail": {
         "appointment": {
-          "formally_appoints": "president_of_india",
+          "formally_appoints": "president_india",
           "recommends": "recommendation_committee_cvc_s4",
           "consulted": [
             "prime_minister",
-            "minister_home_affairs",
+            "ministry_home_affairs",
             "leader_opposition_lok_sabha"
           ],
           "consultation_binding": true,
           "criteria_public": true,
           "tenure": "4 years from date of assumption of office, or age 65, whichever earlier; CVC Act 2003 s.6",
           "reappointment_possible": false,
-          "removal_authority": "president_of_india",
+          "removal_authority": "president_india",
           "removal_requires_parliament": false,
           "removal_independent_committee": true
         },
@@ -1201,7 +1200,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -1252,9 +1251,7 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
@@ -1332,7 +1329,7 @@
         "parent_hc": null
       },
       "position": {
-        "x": 569,
+        "x": 531,
         "y": 192
       }
     },
@@ -1350,7 +1347,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub; collegium composition per constitutional practice. NJDG snapshot case_volume merged",
+      "data_quality_notes": "Stub; collegium composition per constitutional practice.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type AppointmentBody": 4,
@@ -1407,14 +1404,12 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 644,
+        "x": 569,
         "y": 156
       }
     },
@@ -1432,7 +1427,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -1482,15 +1477,83 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 71,
+        "x": 69,
         "y": 156
+      }
+    },
+    {
+      "id": "deputy_chairman_rajya_sabha",
+      "name": "Deputy Chairman of the Rajya Sabha",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Constitution of India, Article 89",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — not an adjudicatory body. No case_volume or judge_strength. Consulted on NHRC appointments per PHRA 1993 s.4.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ExecutiveBody": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Constitution of India — Article 89",
+          "url": "https://www.indiacode.nic.in/handle/123456789/1",
+          "type": "Constitution",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "constitutional_office"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 76,
+        "y": 192
       }
     },
     {
@@ -1731,7 +1794,7 @@
       ],
       "_detail": {
         "appointment": {
-          "formally_appoints": "lt_governor_delhi",
+          "formally_appoints": "dl_lieutenant_governor",
           "recommends": "selection_committee_cpa2019_s54",
           "criteria_public": true,
           "tenure": "5 years or age 67, whichever earlier; CPA 2019 s.54(3)",
@@ -1771,6 +1834,76 @@
       "position": {
         "x": 1007,
         "y": 480
+      }
+    },
+    {
+      "id": "dopt_dpc",
+      "name": "Department of Personnel and Training — Appointment Committee (CBI Director)",
+      "name_hindi": null,
+      "abbreviation": "DoPT DPC",
+      "type": "AppointmentBody",
+      "cluster": "appointment_bodies",
+      "level_of_government": "Central",
+      "created_year": 1963,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "DSPE Act 1946; CVC Act 2003; Vineet Narain directions — CBI Director appointment procedure",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — nominates/recommends CBI Director per post-Vineet Narain procedure involving DoPT, CVC, and PM. Not an adjudicatory body; no case_volume or judge_strength. Related ministry entity: ministry_personnel_dopt.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type AppointmentBody": 4,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 5,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Department of Personnel and Training — Official Website",
+          "url": "https://dopt.gov.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "administrative_appointment_committee"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 606,
+        "y": 192
       }
     },
     {
@@ -2081,8 +2214,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 78,
-        "y": 192
+        "x": 83,
+        "y": 156
       }
     },
     {
@@ -2802,7 +2935,7 @@
       ],
       "_detail": {
         "appointment": {
-          "formally_appoints": "state_government_karnataka",
+          "formally_appoints": "government_karnataka",
           "recommends": "selection_committee_cpa2019_s54",
           "criteria_public": true,
           "tenure": "5 years or age 67, whichever earlier; CPA 2019 s.54(3)",
@@ -2842,6 +2975,146 @@
       "position": {
         "x": 1082,
         "y": 444
+      }
+    },
+    {
+      "id": "leader_opposition_lok_sabha",
+      "name": "Leader of Opposition in the Lok Sabha",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1977,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Leaders and Chief Whips of Recognised Parties and Groups in Parliament (Facilities) Act 1998; convention for statutory consultation roles",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — not an adjudicatory body. No case_volume or judge_strength. Consulted on NHRC and CVC appointments where the Leader of the largest opposition party in Lok Sabha is specified.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ExecutiveBody": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Leaders and Chief Whips Act 1998 — India Code",
+          "url": "https://www.indiacode.nic.in/",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "parliamentary_office"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 89,
+        "y": 192
+      }
+    },
+    {
+      "id": "leader_opposition_rajya_sabha",
+      "name": "Leader of Opposition in the Rajya Sabha",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1961,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "PHRA 1993 s.4 — consultation where recognised Leader of Opposition in Rajya Sabha",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — not an adjudicatory body. No case_volume or judge_strength. Consulted on NHRC appointments per PHRA 1993 s.4.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ExecutiveBody": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Protection of Human Rights Act 1993 — India Code",
+          "url": "https://www.indiacode.nic.in/",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "parliamentary_office"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 96,
+        "y": 156
       }
     },
     {
@@ -3109,7 +3382,7 @@
       ],
       "_detail": {
         "appointment": {
-          "formally_appoints": "state_government_maharashtra",
+          "formally_appoints": "government_maharashtra",
           "recommends": "selection_committee_cpa2019_s54",
           "criteria_public": true,
           "tenure": "5 years or age 67, whichever earlier; CPA 2019 s.54(3)",
@@ -3214,8 +3487,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 85,
-        "y": 156
+        "x": 103,
+        "y": 192
       }
     },
     {
@@ -3232,7 +3505,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Government of India (Allocation of Business) Rules, 1961 — Ministry of Consumer Affairs, Food and Public Distribution entry; Consumer Protection Act 2019 (ss.53 ff.) is the primary legislation constituting NCDRC, administered by the Department of Consumer Affairs.\n",
       "data_quality": "partial",
-      "data_quality_notes": "created_year 1997 is approximate for the ministry in its current configuration — verify against Allocation of Business gazette notification. Ministry has two departments (Consumer Affairs; Food and Public Distribution); NCDRC sits under Department of Consumer Affairs specifically. Sub-department entity not created per session rules. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.\n NJDG snapshot case_volume merged",
+      "data_quality_notes": "created_year 1997 is approximate for the ministry in its current configuration — verify against Allocation of Business gazette notification. Ministry has two departments (Consumer Affairs; Food and Public Distribution); NCDRC sits under Department of Consumer Affairs specifically. Sub-department entity not created per session rules. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3282,15 +3555,13 @@
         "digital_infrastructure": null,
         "structural_variations": [],
         "jurisdiction_scope": null,
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 93,
-        "y": 192
+        "x": 109,
+        "y": 156
       }
     },
     {
@@ -3307,7 +3578,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Government of India (Allocation of Business) Rules, 1961 — Ministry of Corporate Affairs entry; Companies Act 2013 (s.408) and Insolvency and Bankruptcy Code 2016 (s.60) are the primary legislation under which NCLT operates; MCA demand head funds NCLT.\n",
       "data_quality": "partial",
-      "data_quality_notes": "created_year 2004 is the rename date; Ministry of Company Affairs (earlier lineage) predates this — flag if lineage origin year is required. NCLAT (CA 2013 s.410) is also under MCA; a separate ministry_corporate_affairs → nclat PrimaryFunder edge should be added when nclat.yaml is created. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.\n NJDG snapshot case_volume merged",
+      "data_quality_notes": "created_year 2004 is the rename date; Ministry of Company Affairs (earlier lineage) predates this — flag if lineage origin year is required. NCLAT (CA 2013 s.410) is also under MCA; a separate ministry_corporate_affairs → nclat PrimaryFunder edge should be added when nclat.yaml is created. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3357,15 +3628,13 @@
         "digital_infrastructure": null,
         "structural_variations": [],
         "jurisdiction_scope": null,
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 100,
-        "y": 156
+        "x": 116,
+        "y": 192
       }
     },
     {
@@ -3382,7 +3651,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Government of India (Allocation of Business) Rules, 1961 — Ministry of Defence entry; Armed Forces Tribunal Act 2007.\n",
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity (Bundle 2). AFT funding edge. NJDG snapshot case_volume merged",
+      "data_quality_notes": "Stub for graph connectivity (Bundle 2). AFT funding edge.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3432,15 +3701,13 @@
         "digital_infrastructure": null,
         "structural_variations": [],
         "jurisdiction_scope": null,
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 107,
-        "y": 192
+        "x": 123,
+        "y": 156
       }
     },
     {
@@ -3457,7 +3724,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Government of India (Allocation of Business) Rules, 1961 — Ministry of Environment, Forest and Climate Change entry; National Green Tribunal Act 2010 (s.3) is the primary legislation constituting NGT; MoEFCC demand head funds NGT.\n",
       "data_quality": "partial",
-      "data_quality_notes": "created_year 1985 is the ministry establishment date; confirm exact gazette notification. Ministry renamed in 2014 to add \"Climate Change\" — aliases block captures earlier name for graph resolution. The earlier form \"Ministry of Environment and Forests\" (MoEF) may appear as a source reference in older YAML files; treat as same entity. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.\n NJDG snapshot case_volume merged",
+      "data_quality_notes": "created_year 1985 is the ministry establishment date; confirm exact gazette notification. Ministry renamed in 2014 to add \"Climate Change\" — aliases block captures earlier name for graph resolution. The earlier form \"Ministry of Environment and Forests\" (MoEF) may appear as a source reference in older YAML files; treat as same entity. name_hindi unverified against official letterhead. funding block is ministry-level only; budget_figure_crore not populated.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3507,15 +3774,83 @@
         "digital_infrastructure": null,
         "structural_variations": [],
         "jurisdiction_scope": null,
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 115,
-        "y": 156
+        "x": 129,
+        "y": 192
+      }
+    },
+    {
+      "id": "ministry_home_affairs",
+      "name": "Ministry of Home Affairs",
+      "name_hindi": null,
+      "abbreviation": "MHA",
+      "type": "ExecutiveBody",
+      "cluster": "executive_interface",
+      "level_of_government": "Central",
+      "created_year": 1947,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Government of India (Allocation of Business) Rules — Ministry of Home Affairs",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — not an adjudicatory body. No case_volume or judge_strength. Consulted on NHRC and CVC appointments per respective Acts. Distinct from the Union Home Minister as an individual officeholder.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ExecutiveBody": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Ministry of Home Affairs — Official Website",
+          "url": "https://www.mha.gov.in/",
+          "type": "GoIWebsite",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "administrative_ministry"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 523,
+        "y": 768
       }
     },
     {
@@ -3532,7 +3867,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3582,15 +3917,13 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 122,
-        "y": 192
+        "x": 136,
+        "y": 156
       }
     },
     {
@@ -3607,7 +3940,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3657,9 +3990,7 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
@@ -3737,8 +4068,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 129,
-        "y": 156
+        "x": 143,
+        "y": 192
       }
     },
     {
@@ -3755,7 +4086,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -3805,15 +4136,13 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 137,
-        "y": 192
+        "x": 150,
+        "y": 156
       }
     },
     {
@@ -3879,8 +4208,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 144,
-        "y": 156
+        "x": 156,
+        "y": 192
       }
     },
     {
@@ -4005,7 +4334,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -4055,9 +4384,7 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
@@ -4135,8 +4462,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 718,
-        "y": 192
+        "x": 644,
+        "y": 156
       }
     },
     {
@@ -4646,11 +4973,12 @@
         },
         "discretionary_power_score": 5,
         "independence_risk_breakdown": {
+          "Appointed directly by executive body": 3,
           "No bias complaint mechanism exists": 2,
           "No independent conduct oversight body": 1
         },
-        "independence_risk_level": "moderate",
-        "independence_risk_score": 3,
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
         "scores_validated": false
       },
       "funding_source": "Consolidated_Fund_India",
@@ -4676,12 +5004,12 @@
       ],
       "_detail": {
         "appointment": {
-          "formally_appoints": "president_of_india",
+          "formally_appoints": "president_india",
           "recommends": "recommendation_committee_phra_s4",
           "consulted": [
             "prime_minister",
             "speaker_lok_sabha",
-            "minister_home_affairs",
+            "ministry_home_affairs",
             "leader_opposition_lok_sabha",
             "leader_opposition_rajya_sabha",
             "deputy_chairman_rajya_sabha"
@@ -4690,7 +5018,7 @@
           "criteria_public": true,
           "tenure": "5 years or age 70, whichever earlier; PHRA 1993 s.6",
           "reappointment_possible": false,
-          "removal_authority": "president_of_india",
+          "removal_authority": "president_india",
           "removal_requires_parliament": false,
           "removal_independent_committee": true
         },
@@ -4797,8 +5125,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 151,
-        "y": 192
+        "x": 163,
+        "y": 156
       }
     },
     {
@@ -4930,7 +5258,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -4980,14 +5308,82 @@
         "jurisdiction_scope": {
           "is_all_india": true
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 159,
+        "x": 170,
+        "y": 192
+      }
+    },
+    {
+      "id": "prime_minister",
+      "name": "Prime Minister of India",
+      "name_hindi": null,
+      "abbreviation": "PM",
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Constitution of India, Articles 74–75",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — not an adjudicatory body. No case_volume or judge_strength. Consulted on appointments to NHRC, CVC, and similar statutory bodies per respective Acts. Placeholder until full appointment edges are verified.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ExecutiveBody": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Constitution of India — Articles 74 and 75",
+          "url": "https://www.indiacode.nic.in/handle/123456789/1",
+          "type": "Constitution",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "constitutional_office"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 176,
         "y": 156
       }
     },
@@ -5105,6 +5501,146 @@
       "position": {
         "x": 107,
         "y": 444
+      }
+    },
+    {
+      "id": "recommendation_committee_cvc_s4",
+      "name": "CVC Act 2003 Section 4 Selection Committee",
+      "name_hindi": null,
+      "abbreviation": "CVC s.4 Committee",
+      "type": "AppointmentBody",
+      "cluster": "appointment_bodies",
+      "level_of_government": "Central",
+      "created_year": 2003,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Central Vigilance Commission Act 2003, s.4",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — recommends Central Vigilance Commissioner and Vigilance Commissioners to the President. Not an adjudicatory body; no case_volume or judge_strength.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type AppointmentBody": 4,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 5,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Central Vigilance Commission Act 2003",
+          "url": "https://cvc.gov.in/sites/default/files/cvcact.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "statutory_appointment_committee"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 681,
+        "y": 192
+      }
+    },
+    {
+      "id": "recommendation_committee_phra_s4",
+      "name": "PHRA 1993 Section 4 Recommendation Committee",
+      "name_hindi": null,
+      "abbreviation": "PHRA s.4 Committee",
+      "type": "AppointmentBody",
+      "cluster": "appointment_bodies",
+      "level_of_government": "Central",
+      "created_year": 1993,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Protection of Human Rights Act 1993, s.4",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — recommends NHRC Chairperson and Members to the President. Not an adjudicatory body; no case_volume or judge_strength.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type AppointmentBody": 4,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 5,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Protection of Human Rights Act 1993 — s.4",
+          "url": "https://nhrc.nic.in/sites/default/files/PHRA.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "statutory_appointment_committee"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 718,
+        "y": 156
       }
     },
     {
@@ -5343,6 +5879,216 @@
       }
     },
     {
+      "id": "selection_committee_cpa2019_s54",
+      "name": "Consumer Protection Act 2019 Section 54 Selection Committee",
+      "name_hindi": null,
+      "abbreviation": "CPA 2019 s.54 Committee",
+      "type": "AppointmentBody",
+      "cluster": "appointment_bodies",
+      "level_of_government": "Central",
+      "created_year": 2019,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Consumer Protection Act 2019, s.54",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — recommends State Commission (SCDRC) members to the State Government / UT administrator. Not an adjudicatory body; no case_volume or judge_strength.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type AppointmentBody": 4,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 5,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Consumer Protection Act 2019",
+          "url": "https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "statutory_appointment_committee"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 756,
+        "y": 192
+      }
+    },
+    {
+      "id": "selection_committee_electricity_act_s85",
+      "name": "Electricity Act 2003 Section 85 Selection Committee",
+      "name_hindi": null,
+      "abbreviation": "EA 2003 s.85 Committee",
+      "type": "AppointmentBody",
+      "cluster": "appointment_bodies",
+      "level_of_government": "Central",
+      "created_year": 2003,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Electricity Act 2003, s.85",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — recommends State Electricity Regulatory Commission members to the State Government. Not an adjudicatory body; no case_volume or judge_strength at committee level.\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type AppointmentBody": 4,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 5,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Electricity Act 2003 — Ministry of Power",
+          "url": "https://powermin.gov.in/en/content/electricity-act-2003",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "statutory_appointment_committee"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 793,
+        "y": 156
+      }
+    },
+    {
+      "id": "speaker_lok_sabha",
+      "name": "Speaker of the Lok Sabha",
+      "name_hindi": null,
+      "abbreviation": null,
+      "type": "ExecutiveBody",
+      "cluster": "legislative_executive",
+      "level_of_government": "Central",
+      "created_year": 1950,
+      "abolished_year": null,
+      "operational_status": "Active",
+      "constitutional_basis": null,
+      "statutory_basis": "Constitution of India, Article 93",
+      "data_quality": "partial",
+      "data_quality_notes": "Governance node — not an adjudicatory body. No case_volume or judge_strength. Consulted on NHRC Chairperson and Member appointments (PHRA 1993 s.4).\n",
+      "derived": {
+        "discretionary_power_breakdown": {
+          "Base discretionary power for type ExecutiveBody": 1,
+          "No universal mandatory timeline for all decisions": 1
+        },
+        "discretionary_power_score": 2,
+        "independence_risk_breakdown": {
+          "Audit reports not public": 1,
+          "Lokpal has no jurisdiction": 1,
+          "No bias complaint mechanism exists": 2,
+          "No external financial audit": 1,
+          "No independent conduct oversight body": 1
+        },
+        "independence_risk_level": "high",
+        "independence_risk_score": 6,
+        "scores_validated": false
+      },
+      "funding_source": null,
+      "funding_ministry": null,
+      "audited_by": null,
+      "audit_report_public": null,
+      "complaint_external_exists": false,
+      "appointment_criteria_public": null,
+      "reappointment_possible": null,
+      "sources": [
+        {
+          "label": "Constitution of India — Article 93",
+          "url": "https://www.indiacode.nic.in/handle/123456789/1",
+          "type": "Constitution",
+          "accessed_date": "2026-05-19"
+        }
+      ],
+      "_detail": {
+        "appointment": null,
+        "funding": null,
+        "audit": null,
+        "complaint_mechanism": null,
+        "training": null,
+        "digital_infrastructure": null,
+        "structural_variations": [],
+        "jurisdiction_scope": {
+          "is_all_india": true,
+          "jurisdiction_types": [
+            "constitutional_office"
+          ]
+        },
+        "case_volume": null,
+        "judge_strength": null,
+        "parent_hc": null
+      },
+      "position": {
+        "x": 183,
+        "y": 192
+      }
+    },
+    {
       "id": "state_public_service_commission",
       "name": "State Public Service Commissions (aggregate)",
       "name_hindi": null,
@@ -5405,8 +6151,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 793,
-        "y": 156
+        "x": 831,
+        "y": 192
       }
     },
     {
@@ -5777,8 +6523,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 166,
-        "y": 192
+        "x": 190,
+        "y": 156
       }
     },
     {
@@ -5847,8 +6593,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 173,
-        "y": 156
+        "x": 196,
+        "y": 192
       }
     },
     {
@@ -5917,8 +6663,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 181,
-        "y": 192
+        "x": 203,
+        "y": 156
       }
     },
     {
@@ -5987,8 +6733,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 188,
-        "y": 156
+        "x": 210,
+        "y": 192
       }
     },
     {
@@ -6057,8 +6803,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 195,
-        "y": 192
+        "x": 216,
+        "y": 156
       }
     },
     {
@@ -6127,8 +6873,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 203,
-        "y": 156
+        "x": 223,
+        "y": 192
       }
     },
     {
@@ -6197,8 +6943,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 210,
-        "y": 192
+        "x": 230,
+        "y": 156
       }
     },
     {
@@ -6267,8 +7013,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 217,
-        "y": 156
+        "x": 236,
+        "y": 192
       }
     },
     {
@@ -6337,8 +7083,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 225,
-        "y": 192
+        "x": 243,
+        "y": 156
       }
     },
     {
@@ -6407,8 +7153,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 232,
-        "y": 156
+        "x": 250,
+        "y": 192
       }
     },
     {
@@ -6477,8 +7223,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 239,
-        "y": 192
+        "x": 256,
+        "y": 156
       }
     },
     {
@@ -6547,8 +7293,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 247,
-        "y": 156
+        "x": 263,
+        "y": 192
       }
     },
     {
@@ -6617,8 +7363,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 254,
-        "y": 192
+        "x": 270,
+        "y": 156
       }
     },
     {
@@ -6684,8 +7430,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 261,
-        "y": 156
+        "x": 276,
+        "y": 192
       }
     },
     {
@@ -6754,8 +7500,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 269,
-        "y": 192
+        "x": 283,
+        "y": 156
       }
     },
     {
@@ -6824,8 +7570,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 276,
-        "y": 156
+        "x": 290,
+        "y": 192
       }
     },
     {
@@ -6894,8 +7640,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 283,
-        "y": 192
+        "x": 296,
+        "y": 156
       }
     },
     {
@@ -6961,8 +7707,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 291,
-        "y": 156
+        "x": 303,
+        "y": 192
       }
     },
     {
@@ -7031,8 +7777,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 298,
-        "y": 192
+        "x": 310,
+        "y": 156
       }
     },
     {
@@ -7101,8 +7847,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 305,
-        "y": 156
+        "x": 316,
+        "y": 192
       }
     },
     {
@@ -7171,8 +7917,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 313,
-        "y": 192
+        "x": 323,
+        "y": 156
       }
     },
     {
@@ -7241,8 +7987,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 320,
-        "y": 156
+        "x": 330,
+        "y": 192
       }
     },
     {
@@ -7308,8 +8054,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 327,
-        "y": 192
+        "x": 336,
+        "y": 156
       }
     },
     {
@@ -7378,8 +8124,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 335,
-        "y": 156
+        "x": 343,
+        "y": 192
       }
     },
     {
@@ -7448,8 +8194,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 342,
-        "y": 192
+        "x": 350,
+        "y": 156
       }
     },
     {
@@ -7518,8 +8264,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 349,
-        "y": 156
+        "x": 357,
+        "y": 192
       }
     },
     {
@@ -7588,8 +8334,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 357,
-        "y": 192
+        "x": 363,
+        "y": 156
       }
     },
     {
@@ -7658,8 +8404,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 364,
-        "y": 156
+        "x": 370,
+        "y": 192
       }
     },
     {
@@ -7725,8 +8471,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 371,
-        "y": 192
+        "x": 377,
+        "y": 156
       }
     },
     {
@@ -7795,8 +8541,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 379,
-        "y": 156
+        "x": 383,
+        "y": 192
       }
     },
     {
@@ -7865,8 +8611,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 386,
-        "y": 192
+        "x": 390,
+        "y": 156
       }
     },
     {
@@ -7935,8 +8681,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 393,
-        "y": 156
+        "x": 397,
+        "y": 192
       }
     },
     {
@@ -8005,8 +8751,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 401,
-        "y": 192
+        "x": 403,
+        "y": 156
       }
     },
     {
@@ -8075,8 +8821,8 @@
         "parent_hc": null
       },
       "position": {
-        "x": 408,
-        "y": 156
+        "x": 410,
+        "y": 192
       }
     },
     {
@@ -21064,7 +21810,7 @@
       ],
       "_detail": {
         "appointment": {
-          "formally_appoints": "lt_governor_delhi",
+          "formally_appoints": "dl_lieutenant_governor",
           "recommends": "selection_committee_electricity_act_s85",
           "criteria_public": true,
           "tenure": "5 years or age 65, whichever earlier; Electricity Act 2003 s.89",
@@ -21130,7 +21876,7 @@
       "constitutional_basis": null,
       "statutory_basis": "CrPC / state prosecution service rules (high-level stub)",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProsecutionBody": 1,
@@ -21189,15 +21935,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 525,
-        "y": 768
+        "x": 552,
+        "y": 732
       }
     },
     {
@@ -22394,7 +23138,7 @@
       "constitutional_basis": "Article 239AA — Union territory of Delhi",
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -22448,15 +23192,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 415,
-        "y": 192
+        "x": 417,
+        "y": 156
       }
     },
     {
@@ -22473,7 +23215,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State Lokayukta / Lokpal interface statutes (stub)",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -22542,15 +23284,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 556,
-        "y": 732
+        "x": 580,
+        "y": 768
       }
     },
     {
@@ -22655,7 +23395,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State judicial academy statutes / rules",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type TrainingBody": 1,
@@ -22714,9 +23454,7 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
@@ -25196,7 +25934,7 @@
       "constitutional_basis": null,
       "statutory_basis": "CrPC / state prosecution service rules (high-level stub)",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProsecutionBody": 1,
@@ -25255,15 +25993,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 588,
-        "y": 768
+        "x": 609,
+        "y": 732
       }
     },
     {
@@ -28436,7 +29172,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State Lokayukta / Lokpal interface statutes (stub)",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -28514,15 +29250,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 619,
-        "y": 732
+        "x": 638,
+        "y": 768
       }
     },
     {
@@ -28635,7 +29369,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State judicial academy statutes / rules",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type TrainingBody": 1,
@@ -28694,9 +29428,7 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
@@ -29042,7 +29774,7 @@
       ],
       "_detail": {
         "appointment": {
-          "formally_appoints": "state_government_karnataka",
+          "formally_appoints": "government_karnataka",
           "recommends": "selection_committee_electricity_act_s85",
           "criteria_public": true,
           "tenure": "5 years or age 65, whichever earlier; Electricity Act 2003 s.89",
@@ -30250,7 +30982,7 @@
       ],
       "_detail": {
         "appointment": {
-          "formally_appoints": "state_government_maharashtra",
+          "formally_appoints": "government_maharashtra",
           "recommends": "selection_committee_electricity_act_s85",
           "criteria_public": true,
           "tenure": "5 years or age 65, whichever earlier; Electricity Act 2003 s.89",
@@ -30316,7 +31048,7 @@
       "constitutional_basis": null,
       "statutory_basis": "CrPC / state prosecution service rules (high-level stub)",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProsecutionBody": 1,
@@ -30375,15 +31107,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 650,
-        "y": 768
+        "x": 667,
+        "y": 732
       }
     },
     {
@@ -30400,7 +31130,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Advocates Act 1961 — Bar Council of India / State Bar Councils",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProfessionalBody": 1,
@@ -30461,9 +31191,7 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
@@ -34343,7 +35071,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State Lokayukta / Lokpal interface statutes (stub)",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -34412,15 +35140,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 681,
-        "y": 732
+        "x": 695,
+        "y": 768
       }
     },
     {
@@ -34533,7 +35259,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State judicial academy statutes / rules",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type TrainingBody": 1,
@@ -34592,9 +35318,7 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
@@ -37301,7 +38025,7 @@
       "constitutional_basis": null,
       "statutory_basis": "CrPC / state prosecution service rules (high-level stub)",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProsecutionBody": 1,
@@ -37360,15 +38084,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 712,
-        "y": 768
+        "x": 724,
+        "y": 732
       }
     },
     {
@@ -37569,7 +38291,7 @@
       "constitutional_basis": null,
       "statutory_basis": null,
       "data_quality": "partial",
-      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources. NJDG snapshot case_volume merged",
+      "data_quality_notes": "Stub for graph connectivity; verify appointment/funding against primary sources.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -37622,15 +38344,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
         "x": 423,
-        "y": 156
+        "y": 192
       }
     },
     {
@@ -37647,7 +38367,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State Lokayukta / Lokpal interface statutes (stub)",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -37717,15 +38437,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 743,
-        "y": 732
+        "x": 753,
+        "y": 768
       }
     },
     {
@@ -38579,7 +39297,7 @@
       "constitutional_basis": null,
       "statutory_basis": "CrPC / state prosecution service rules (high-level stub)",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProsecutionBody": 1,
@@ -38638,15 +39356,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 774,
-        "y": 768
+        "x": 782,
+        "y": 732
       }
     },
     {
@@ -38663,7 +39379,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Advocates Act 1961 — Bar Council of India / State Bar Councils",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ProfessionalBody": 1,
@@ -38724,9 +39440,7 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
@@ -42298,7 +43012,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State Lokayukta / Lokpal interface statutes (stub)",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type ExecutiveBody": 1,
@@ -42358,15 +43072,13 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 806,
-        "y": 732
+        "x": 810,
+        "y": 768
       }
     },
     {
@@ -42471,7 +43183,7 @@
       "constitutional_basis": null,
       "statutory_basis": "State judicial academy statutes / rules",
       "data_quality": "partial",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type TrainingBody": 1,
@@ -42530,9 +43242,7 @@
           ],
           "is_all_india": false
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
@@ -44868,7 +45578,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Arbitration and Conciliation (Amendment) Act 2019, Part IA, Sections 43A–43M (inserted into Arbitration and Conciliation Act 1996).\n",
       "data_quality": "verified",
-      "data_quality_notes": "ACI's non-constitution is confirmed by GoI press release (Feb 2026) and SC notice to Union government to respond to petition seeking its establishment. The Draft Arbitration and Conciliation (Amendment) Bill 2024 proposes revised powers. Status as of April 2025: Bill in public consultation; ACI not constituted.\n NJDG snapshot case_volume merged",
+      "data_quality_notes": "ACI's non-constitution is confirmed by GoI press release (Feb 2026) and SC notice to Union government to respond to petition seeking its establishment. The Draft Arbitration and Conciliation (Amendment) Bill 2024 proposes revised powers. Status as of April 2025: Bill in public consultation; ACI not constituted.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type StatutoryBodyNotConstituted": 1,
@@ -44972,9 +45682,7 @@
           "is_all_india": true,
           "jurisdiction_types": []
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
@@ -45175,7 +45883,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Constituted by Government of India in pursuance of proposal from Chief Justice of India. No separate statutory basis — functions under the administrative authority of the SC and DoJ MMP framework.\n",
       "data_quality": "verified",
-      "data_quality_notes": "NJDG snapshot case_volume merged",
+      "data_quality_notes": null,
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type DigitalInfraBody": 1,
@@ -45298,9 +46006,7 @@
             "PolicyOversight"
           ]
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
@@ -45323,7 +46029,7 @@
       "constitutional_basis": null,
       "statutory_basis": "Delhi Special Police Establishment Act 1946 (DSPE Act). CBI constituted by Ministry of Home Affairs Resolution 1963.\n",
       "data_quality": "verified",
-      "data_quality_notes": "\"Caged parrot\" characterisation from SC in Vineet Narain (1997) is well-documented. State consent withdrawal figures should be verified against latest state government notifications — list may have changed since the entries above.\n NJDG snapshot case_volume merged",
+      "data_quality_notes": "\"Caged parrot\" characterisation from SC in Vineet Narain (1997) is well-documented. State consent withdrawal figures should be verified against latest state government notifications — list may have changed since the entries above.",
       "derived": {
         "discretionary_power_breakdown": {
           "Base discretionary power for type InvestigativeAgency": 3,
@@ -45460,15 +46166,13 @@
             "Special"
           ]
         },
-        "case_volume": {
-          "clog_severity": "unknown"
-        },
+        "case_volume": null,
         "judge_strength": null,
         "parent_hc": null
       },
       "position": {
-        "x": 837,
-        "y": 768
+        "x": 839,
+        "y": 732
       }
     }
   ],
@@ -45812,6 +46516,292 @@
           "url": "https://india-code.nic.in/DocsPdfData/1949/1949100000_Unamended.pdf",
           "type": "Constitution",
           "accessed_date": "2025-04-01"
+        }
+      ]
+    },
+    {
+      "id": "rel_phra_committee_recommends_nhrc_chair",
+      "source": "recommendation_committee_phra_s4",
+      "target": "nhrc",
+      "relationship_type": "Recommends",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 1993,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": "Committee recommends NHRC Chairperson and Members to the President.",
+      "sources": [
+        {
+          "label": "PHRA 1993 s.4",
+          "url": "https://nhrc.nic.in/sites/default/files/PHRA.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_president_formally_appoints_nhrc",
+      "source": "president_india",
+      "target": "nhrc",
+      "relationship_type": "FormallyAppoints",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 1993,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "PHRA 1993",
+          "url": "https://nhrc.nic.in/sites/default/files/PHRA.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_pm_consulted_nhrc_appointment",
+      "source": "prime_minister",
+      "target": "nhrc",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 1993,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "PHRA 1993 s.4",
+          "url": "https://nhrc.nic.in/sites/default/files/PHRA.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_speaker_ls_consulted_nhrc_appointment",
+      "source": "speaker_lok_sabha",
+      "target": "nhrc",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 1993,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "PHRA 1993 s.4",
+          "url": "https://nhrc.nic.in/sites/default/files/PHRA.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_mha_consulted_nhrc_appointment",
+      "source": "ministry_home_affairs",
+      "target": "nhrc",
+      "relationship_type": "ConsultedOn_Appointment",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 1993,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "PHRA 1993 s.4",
+          "url": "https://nhrc.nic.in/sites/default/files/PHRA.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_cvc_committee_recommends_cvc",
+      "source": "recommendation_committee_cvc_s4",
+      "target": "central_vigilance_commission",
+      "relationship_type": "Recommends",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2003,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "CVC Act 2003 s.4",
+          "url": "https://cvc.gov.in/sites/default/files/cvcact.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_president_formally_appoints_cvc",
+      "source": "president_india",
+      "target": "central_vigilance_commission",
+      "relationship_type": "FormallyAppoints",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2003,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "CVC Act 2003",
+          "url": "https://cvc.gov.in/sites/default/files/cvcact.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_dopt_dpc_nominates_cbi_director",
+      "source": "dopt_dpc",
+      "target": "cbi",
+      "relationship_type": "Nominates",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 1997,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "Vineet Narain v Union of India (1997) 6 SCC 767",
+          "url": "https://main.sci.gov.in/",
+          "type": "SCJudgment",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_cvc_recommends_cbi_director",
+      "source": "central_vigilance_commission",
+      "target": "cbi",
+      "relationship_type": "Recommends",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2003,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "CVC Act 2003",
+          "url": "https://cvc.gov.in/sites/default/files/cvcact.pdf",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_ea85_committee_recommends_merc",
+      "source": "selection_committee_electricity_act_s85",
+      "target": "merc",
+      "relationship_type": "Recommends",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2003,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "Electricity Act 2003 s.85",
+          "url": "https://powermin.gov.in/en/content/electricity-act-2003",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_mh_gov_appoints_merc_members",
+      "source": "government_maharashtra",
+      "target": "merc",
+      "relationship_type": "FormallyAppoints",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2003,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "Electricity Act 2003 s.85",
+          "url": "https://powermin.gov.in/en/content/electricity-act-2003",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_cpa54_committee_recommends_mh_scdrc",
+      "source": "selection_committee_cpa2019_s54",
+      "target": "mh_scdrc",
+      "relationship_type": "Recommends",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2019,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "Consumer Protection Act 2019 s.54",
+          "url": "https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
+        }
+      ]
+    },
+    {
+      "id": "rel_mh_gov_appoints_mh_scdrc",
+      "source": "government_maharashtra",
+      "target": "mh_scdrc",
+      "relationship_type": "FormallyAppoints",
+      "relationship_category": "appointment",
+      "is_binding": true,
+      "is_constitutional": false,
+      "year_established": 2019,
+      "year_abolished": null,
+      "data_quality": "partial",
+      "contested_note": null,
+      "notes": null,
+      "sources": [
+        {
+          "label": "Consumer Protection Act 2019",
+          "url": "https://consumeraffairs.nic.in/acts-and-rules/consumer-protection-act-2019",
+          "type": "CentralAct",
+          "accessed_date": "2026-05-19"
         }
       ]
     },
