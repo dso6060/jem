@@ -34,6 +34,12 @@
   --jem-cluster-cols: 4;
   --jem-cluster-rows: 4;
   --jem-cluster-gap: 8px;
+
+  /* Fixed chrome (toolbar 64px + KPI strip 96px; status bar + timeline below map) */
+  --jem-chrome-top: 160px;
+  --jem-timeline-height: 54px;
+  --jem-status-bar-height: 28px;
+  --jem-chrome-bottom: calc(var(--jem-timeline-height) + var(--jem-status-bar-height));
 }
 
 html, body {
@@ -433,8 +439,10 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
 /* ── Canvas ───────────────────────────────────────────────────────────────── */
 #canvas-container {
   position: fixed;
-  top: 160px; left: 0; right: 0;
-  bottom: 54px;
+  top: var(--jem-chrome-top);
+  left: 0;
+  right: 0;
+  bottom: var(--jem-chrome-bottom);
   overflow: hidden;
   background: var(--bg);
   touch-action: none;
@@ -469,6 +477,56 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
 @keyframes spin { to { transform: rotate(360deg); } }
 .loading-text { margin-top: 16px; color: var(--text-secondary); font-size: 12px; }
 .loading-error { color: #e74c3c; text-align: center; padding: 20px; line-height: 1.7; }
+
+/* ── Map status bar (one line, below canvas — not over the map) ───────────── */
+#map-status-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: var(--jem-timeline-height);
+  height: var(--jem-status-bar-height);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  z-index: 495;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#map-status-bar .view-status-text {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.2;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+.search-empty {
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.detail-empty-hint {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.detail-gap-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.detail-gap-list li { margin-bottom: 4px; }
 
 /* ── Timeline ─────────────────────────────────────────────────────────────── */
 #timeline-container {
@@ -555,12 +613,14 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
 /* ── Detail Panel ─────────────────────────────────────────────────────────── */
 #detail-panel {
   position: fixed;
-  top: 160px; right: 0;
-  bottom: 54px;
+  top: var(--jem-chrome-top);
+  right: 0;
+  bottom: var(--jem-chrome-bottom);
   width: 380px;
   background: var(--bg-panel);
   border-left: 1px solid var(--border);
   overflow-y: auto;
+  scroll-padding-top: 8px;
   z-index: 400;
   transition: transform 0.2s ease;
 }
@@ -575,7 +635,8 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
   position: sticky;
   top: 0;
   background: var(--bg-panel);
-  z-index: 1;
+  z-index: 2;
+  flex-shrink: 0;
 }
 #detail-entity-name {
   font-size: 14px;
@@ -877,6 +938,11 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
   inset: 0;
   z-index: 380;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--jem-chrome-top) + 10px) 12px calc(var(--jem-chrome-bottom) + 10px);
+  box-sizing: border-box;
 }
 #neighborhood-panel:not(.hidden) {
   pointer-events: auto;
@@ -893,12 +959,11 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
 }
 
 .neighborhood-card {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(calc(-50% - 85px), -50%);
-  width: min(620px, calc(100vw - 400px));
-  max-height: min(88vh, calc(100vh - 120px));
+  position: relative;
+  flex: 0 1 auto;
+  width: min(620px, calc(100vw - 420px));
+  max-height: 100%;
+  margin-right: clamp(0px, 18vw, 200px);
   background: var(--bg-panel);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -906,6 +971,13 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .neighborhood-card {
+    width: min(620px, calc(100vw - 24px));
+    margin-right: 0;
+  }
 }
 
 .neighborhood-body {
@@ -1008,20 +1080,62 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
 .nb-leg-supervised { background: #8e44ad; }
 .nb-leg-other { background: #95a5a6; }
 
+.neighborhood-graph-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 220px;
+  max-height: min(42vh, 380px);
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--border);
+}
+
+.neighborhood-graph-zoom {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 3;
+  display: flex;
+  gap: 4px;
+  pointer-events: auto;
+}
+
+.nb-zoom-btn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-panel);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(17, 24, 39, 0.12);
+}
+.nb-zoom-btn:hover {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
 .neighborhood-graph-scroll {
+  position: relative;
+  z-index: 0;
   flex: 1 1 auto;
   min-height: 200px;
-  max-height: min(42vh, 380px);
-  overflow: auto;
+  overflow: hidden;
   background: rgba(17, 24, 39, 0.06);
-  border-bottom: 1px solid var(--border);
   cursor: grab;
+  touch-action: none;
 }
 .neighborhood-graph-scroll:active { cursor: grabbing; }
 
 .neighborhood-svg {
   display: block;
-  min-width: 100%;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
   touch-action: none;
 }
 
@@ -1170,6 +1284,20 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
 .l0-cluster-card:hover .l0-card-shape { filter: brightness(1.06); }
 .node { transition: opacity 0.3s; }
 .node-label { pointer-events: none; }
+
+/* Progressive explorer +/− on nodes (counter-scaled in renderer) */
+.node-explorer-toggle {
+  pointer-events: all;
+}
+.node-explorer-toggle .node-toggle-hit {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+.node-explorer-toggle:hover .node-toggle-hit {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+  stroke-width: 2.25;
+}
+.node-explorer-toggle--appellate .node-toggle-hit { fill: #2563eb; }
+.node-explorer-toggle--district .node-toggle-hit { fill: #0d9488; }
 .edge-path { transition: opacity 0.2s, stroke-width 0.1s; }
 
 /* Node / risk hover card — scrollable list, thin scrollbar */

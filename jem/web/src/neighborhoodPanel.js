@@ -8,6 +8,8 @@ import { crescentPathD, isHighCourtBenchEntity } from './nodeShapes.js';
 let sim = null;
 let resizeObs = null;
 let nbZoom = null;
+let nbZoomTransform = d3.zoomIdentity;
+let lastNbNodes = null;
 let currentFocusId = null;
 let renderGeneration = 0;
 let activeLinkFilter = 'all';
@@ -66,37 +68,96 @@ function edgePath(x1, y1, x2, y2) {
   return `M${x1},${y1} Q${mx + dy * 0.15},${my - dx * 0.12} ${x2},${y2}`;
 }
 
-function fitSvgToContent(svgEl, nodes, pad = 48) {
+function getNeighborhoodViewSize() {
+  const scrollEl = document.getElementById('neighborhood-graph-scroll');
+  return {
+    w: Math.max(280, scrollEl?.clientWidth || 480),
+    h: Math.max(200, scrollEl?.clientHeight || 320),
+  };
+}
+
+function computeNodeContentBounds(nodes, focusId, pad = 56) {
   let minX = Infinity;
   let minY = Infinity;
   let maxX = -Infinity;
   let maxY = -Infinity;
   for (const n of nodes) {
-    const r = n.id === currentFocusId ? 28 : 20;
+    const r = n.id === focusId ? 28 : 22;
     const lines = labelLines(n.entity);
-    const labelH = 12 * lines.length + 8;
-    minX = Math.min(minX, n.x - r - 8);
-    maxX = Math.max(maxX, n.x + r + 8);
-    minY = Math.min(minY, n.y - r - 4);
-    maxY = Math.max(maxY, n.y + r + labelH);
+    const labelH = 12 * lines.length + 10;
+    const labelBelow = n.id === focusId ? 38 : 28;
+    minX = Math.min(minX, n.x - r - 12);
+    maxX = Math.max(maxX, n.x + r + 12);
+    minY = Math.min(minY, n.y - r - 12);
+    maxY = Math.max(maxY, n.y + r + labelBelow + labelH);
   }
-  if (!Number.isFinite(minX)) return;
-  const w = Math.max(320, maxX - minX + pad * 2);
-  const h = Math.max(260, maxY - minY + pad * 2);
-  svgEl.setAttribute('viewBox', `${minX - pad} ${minY - pad} ${w} ${h}`);
-  svgEl.setAttribute('width', String(Math.ceil(w)));
-  svgEl.setAttribute('height', String(Math.ceil(h)));
+  if (!Number.isFinite(minX)) return null;
+  return {
+    minX: minX - pad,
+    minY: minY - pad,
+    maxX: maxX + pad,
+    maxY: maxY + pad,
+    cx: (minX + maxX) / 2,
+    cy: (minY + maxY) / 2,
+    width: Math.max(120, maxX - minX + pad * 2),
+    height: Math.max(120, maxY - minY + pad * 2),
+  };
 }
 
-function runLayout(svgEl, entities, rels, focusId, filter) {
+function fitNeighborhoodTransform(nodes, focusId, viewW, viewH) {
+  const b = computeNodeContentBounds(nodes, focusId);
+  if (!b) return d3.zoomIdentity;
+  const k = 0.9 * Math.min(viewW / b.width, viewH / b.height);
+  const tx = viewW / 2 - k * b.cx;
+  const ty = viewH / 2 - k * b.cy;
+  return d3.zoomIdentity.translate(tx, ty).scale(k);
+}
+
+function applyNeighborhoodZoomTransform(svgEl, _root, transform, animate = false) {
+  const svgNode = d3.select(svgEl);
+  const liveRoot = d3.select(svgEl).select('.nb-root');
+  nbZoomTransform = transform;
+  if (!nbZoom) {
+    if (!liveRoot.empty()) liveRoot.attr('transform', transform);
+    return;
+  }
+  if (animate) {
+    svgNode.transition().duration(220).call(nbZoom.transform, transform);
+  } else {
+    svgNode.call(nbZoom.transform, transform);
+  }
+  if (!liveRoot.empty()) liveRoot.attr('transform', transform);
+}
+
+function resetNeighborhoodZoomFit() {
+  const svg = document.getElementById('neighborhood-svg');
+  if (!svg || !lastNbNodes?.length || !currentFocusId) return;
+  const { w, h } = getNeighborhoodViewSize();
+  const t = fitNeighborhoodTransform(lastNbNodes, currentFocusId, w, h);
+  const root = d3.select(svg).select('.nb-root');
+  applyNeighborhoodZoomTransform(svg, root, t, true);
+}
+
+function neighborhoodZoomBy(factor) {
+  const svg = document.getElementById('neighborhood-svg');
+  if (!svg || !nbZoom) return;
+  d3.select(svg).transition().duration(180).call(nbZoom.scaleBy, factor);
+}
+
+function runLayout(svgEl, entities, rels, focusId, filter, { resetZoom = false } = {}) {
   if (sim) {
     sim.stop();
     sim = null;
   }
   d3.select(svgEl).selectAll('*').remove();
 
-  const W = 480;
-  const H = 360;
+  const { w: viewW, h: viewH } = getNeighborhoodViewSize();
+  svgEl.setAttribute('width', String(viewW));
+  svgEl.setAttribute('height', String(viewH));
+  svgEl.removeAttribute('viewBox');
+
+  const W = viewW;
+  const H = viewH;
   const cx = W / 2;
   const cy = H / 2;
 
@@ -238,18 +299,30 @@ function runLayout(svgEl, entities, rels, focusId, filter) {
   sim.stop();
   sim = null;
 
-  fitSvgToContent(svgEl, nodes);
+  lastNbNodes = nodes;
 
   const svgNode = d3.select(svgEl);
   if (!nbZoom) {
     nbZoom = d3.zoom()
-      .scaleExtent([0.35, 3])
+      .scaleExtent([0.15, 6])
+      .filter((event) => {
+        if (event.type === 'wheel') return true;
+        if (event.type === 'mousedown') return event.button === 0;
+        if (event.type === 'touchstart') return true;
+        return false;
+      })
       .on('zoom', (event) => {
-        root.attr('transform', event.transform);
+        const liveRoot = d3.select(svgEl).select('.nb-root');
+        if (!liveRoot.empty()) liveRoot.attr('transform', event.transform);
+        nbZoomTransform = event.transform;
       });
-    svgNode.call(nbZoom).on('dblclick.zoom', null);
+    svgNode.call(nbZoom).on('dblclick.zoom', resetNeighborhoodZoomFit);
   }
-  svgNode.call(nbZoom.transform, d3.zoomIdentity);
+
+  const t = resetZoom
+    ? fitNeighborhoodTransform(nodes, focusId, viewW, viewH)
+    : nbZoomTransform;
+  applyNeighborhoodZoomTransform(svgEl, root, t, false);
 }
 
 function showLinkDetail(rel) {
@@ -360,7 +433,7 @@ function updateLegend(summary) {
       e.preventDefault();
       e.stopPropagation();
       activeLinkFilter = btn.getAttribute('data-filter') || 'all';
-      scheduleNeighborhoodRender();
+      scheduleNeighborhoodRender({ resetZoom: true });
     });
   });
 }
@@ -381,13 +454,17 @@ function updateNeighborhoodChrome(entity, summary) {
   const sub = document.getElementById('neighborhood-subtitle');
   if (title) title.textContent = 'Neighborhood';
   if (sub) {
-    sub.textContent = `${entity.name || entity.id} — direct links only. Scroll the graph, click a node or row, or use legend filters.`;
+    if (!summary.all.length) {
+      sub.textContent = `${entity.name || entity.id} — no direct neighbors in graph data yet; only this entity appears in the mini-map. Links will show here as relationships are added.`;
+    } else {
+      sub.textContent = `${entity.name || entity.id} — direct links only. Drag to pan; scroll wheel or +/− to zoom; click a node or row, or use legend filters.`;
+    }
   }
   updateLegend(summary);
   renderLinksList(summary, entity);
 }
 
-function renderNeighborhoodGraph(generation) {
+function renderNeighborhoodGraph(generation, options = {}) {
   const panel = document.getElementById('neighborhood-panel');
   const svg = document.getElementById('neighborhood-svg');
   const focusId = currentFocusId;
@@ -400,15 +477,17 @@ function renderNeighborhoodGraph(generation) {
     r => entities.some(e => e.id === r.source) && entities.some(e => e.id === r.target)
   );
 
-  runLayout(svg, entities, rels, focusId, activeLinkFilter);
+  runLayout(svg, entities, rels, focusId, activeLinkFilter, {
+    resetZoom: options.resetZoom === true,
+  });
   updateLegend(summary);
   return true;
 }
 
-function scheduleNeighborhoodRender() {
+function scheduleNeighborhoodRender(options = {}) {
   const gen = renderGeneration;
   requestAnimationFrame(() => {
-    renderNeighborhoodGraph(gen);
+    renderNeighborhoodGraph(gen, options);
   });
 }
 
@@ -424,7 +503,7 @@ function attachResizeObserver() {
 
   resizeObs = new ResizeObserver(() => {
     if (panel.classList.contains('hidden') || !currentFocusId) return;
-    renderNeighborhoodGraph();
+    renderNeighborhoodGraph(renderGeneration, { resetZoom: false });
   });
   resizeObs.observe(scrollEl);
 }
@@ -438,6 +517,7 @@ export function openNeighborhoodPanel(entity) {
 
   currentFocusId = entity.id;
   activeLinkFilter = 'all';
+  nbZoomTransform = d3.zoomIdentity;
   renderGeneration += 1;
 
   const summary = buildEntityConnectionSummary(entity.id);
@@ -447,7 +527,7 @@ export function openNeighborhoodPanel(entity) {
   document.body.classList.add('neighborhood-open');
 
   attachResizeObserver();
-  scheduleNeighborhoodRender();
+  scheduleNeighborhoodRender({ resetZoom: true });
 }
 
 export function closeNeighborhoodPanel() {
@@ -466,6 +546,8 @@ export function closeNeighborhoodPanel() {
     resizeObs = null;
   }
   nbZoom = null;
+  nbZoomTransform = d3.zoomIdentity;
+  lastNbNodes = null;
   if (panel) panel.classList.add('hidden');
   document.body.classList.remove('neighborhood-open');
   if (svg) {
@@ -479,6 +561,23 @@ export function initNeighborhoodPanel() {
   const panel = document.getElementById('neighborhood-panel');
   const closeBtn = document.getElementById('neighborhood-close');
   const backdrop = panel?.querySelector('.neighborhood-backdrop');
+
+  const stopBubble = (e) => {
+    e.preventDefault?.();
+    e.stopPropagation?.();
+  };
+
+  const bindZoomBtn = (id, handler) => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    btn.addEventListener('click', (e) => {
+      stopBubble(e);
+      handler();
+    });
+  };
+  bindZoomBtn('nb-zoom-in', () => neighborhoodZoomBy(1.35));
+  bindZoomBtn('nb-zoom-out', () => neighborhoodZoomBy(1 / 1.35));
+  bindZoomBtn('nb-zoom-reset', resetNeighborhoodZoomFit);
 
   const onClose = (e) => {
     e?.preventDefault?.();

@@ -86,9 +86,6 @@ function buildPanelHTML(e) {
     `);
   }
 
-  // ── Direct structural links (graph) ───────────────────
-  html += buildConnectionsSectionHTML(e.id);
-
   // ── Judge strength (v2.0) ─────────────────────────────
   html += buildJudgeStrengthSectionHTML(e, d);
 
@@ -213,8 +210,14 @@ function buildPanelHTML(e) {
     html += section('Complaint Mechanism (Bias / Misconduct)', complaintHtml);
   }
 
+  html += buildStructuralGapsSectionHTML(e);
+
   // ── Derived Scores ─────────────────────────────────────
-  if (irScore !== undefined || dpScore !== undefined) {
+  if (State.viewMode === 'risk' && irScore === undefined && dpScore === undefined) {
+    html += section('Structural Risk Indicators', `
+      <p class="detail-empty-hint">Independence risk and discretionary power scores are not computed for this entity yet. When derived fields are present, rings on the map and bars here will reflect structural vulnerability to executive influence.</p>
+    `);
+  } else if (irScore !== undefined || dpScore !== undefined) {
     const validated = derived.scores_validated;
     html += `<div class="detail-section">
       <div class="detail-section-title">
@@ -249,6 +252,9 @@ function buildPanelHTML(e) {
     </div>`;
   }
 
+  // ── Structural links (graph) — bottom of panel, above sources ──
+  html += buildConnectionsSectionHTML(e.id);
+
   // ── Sources ────────────────────────────────────────────
   if (e.sources && e.sources.length > 0) {
     let sourceHtml = e.sources.map(s =>
@@ -265,6 +271,42 @@ function buildPanelHTML(e) {
 }
 
 // ── HTML Helpers ──────────────────────────────────────────────────────────────
+
+function buildStructuralGapsSectionHTML(e) {
+  const gapList = e.gaps || [];
+  const gapCount = Number(e.gap_count) || 0;
+  const hasRecorded =
+    e.gap_flag
+    || gapCount > 0
+    || gapList.length > 0
+    || e.structural_exception
+    || (e.circularity_score ?? e.derived?.circularity_score ?? 0) > 0;
+
+  if (hasRecorded) {
+    let inner = '';
+    if (gapList.length) {
+      inner += '<ul class="detail-gap-list">';
+      for (const g of gapList) {
+        const type = (g && typeof g === 'object' ? g.gap_type : g) || 'gap';
+        const note = g?.note || g?.description || '';
+        inner += `<li><strong>${String(type).replace(/_/g, ' ')}</strong>${note ? ` — ${note}` : ''}</li>`;
+      }
+      inner += '</ul>';
+    } else if (gapCount > 0 || e.gap_flag) {
+      inner += `<p>${gapCount || 1} documented gap(s) — see map markers (*) in Gaps mode.</p>`;
+    }
+    if (e.structural_exception) {
+      inner += '<p class="detail-empty-hint">Marked as structural exception (deviates from statutory template).</p>';
+    }
+    return section('Structural gaps', inner);
+  }
+
+  if (State.viewMode !== 'gaps') return '';
+
+  return section('Structural gaps', `
+    <p class="detail-empty-hint">No gap annotations for this entity in the current dataset. When the build adds gap fields, documented issues (appellate vacuum, missing oversight, statutory mismatch, etc.) will appear here and on the map as <strong>*</strong>, <strong>EX</strong>, or <strong>⟳</strong> markers.</p>
+  `);
+}
 
 function buildConnectionsSectionHTML(entityId) {
   const summary = buildEntityConnectionSummary(entityId);

@@ -62,7 +62,7 @@
             <button type="button" class="explorer-tree-btn" id="explorer-expand-districts" title="Show every district court row in each state lattice">Expand all districts</button>
             <button type="button" class="explorer-tree-btn" id="explorer-collapse-districts" title="One row per state (uses generic row or a summary node)">Collapse districts</button>
           </div>
-          <p class="explorer-tree-hint">Use the buttons above to expand or collapse the appellate tree and district benches. Keys: <kbd>−</kbd> collapse all district lattices, <kbd>=</kbd> or <kbd>+</kbd> expand them.</p>
+          <p class="explorer-tree-hint">Use <strong>blue +/−</strong> on nodes for the appellate tree and <strong>teal +/−</strong> for district benches (also bulk actions below). Keys: <kbd>−</kbd> collapse all district lattices, <kbd>=</kbd> or <kbd>+</kbd> expand them.</p>
         </div>
         <div id="derived-toggles">
           <button type="button" class="toggle-btn" id="toggle-ir" title="Toggle independence risk heat rings">
@@ -172,6 +172,7 @@
     <div class="loading-spinner"></div>
     <div class="loading-text">Loading Judiciary Entity Map (India) - JEM…</div>
   </div>
+
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
@@ -205,8 +206,15 @@
     </div>
     <div id="neighborhood-legend" class="neighborhood-legend" role="toolbar" aria-label="Filter neighborhood links"></div>
     <div class="neighborhood-body">
-      <div id="neighborhood-graph-scroll" class="neighborhood-graph-scroll" tabindex="0" aria-label="Neighborhood graph — scroll to see all nodes">
-        <svg id="neighborhood-svg" class="neighborhood-svg" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="neighborhood-graph-wrap">
+        <div class="neighborhood-graph-zoom" aria-label="Neighborhood graph zoom">
+          <button type="button" id="nb-zoom-in" class="nb-zoom-btn" title="Zoom in">+</button>
+          <button type="button" id="nb-zoom-reset" class="nb-zoom-btn" title="Fit graph to view">⌂</button>
+          <button type="button" id="nb-zoom-out" class="nb-zoom-btn" title="Zoom out">−</button>
+        </div>
+        <div id="neighborhood-graph-scroll" class="neighborhood-graph-scroll" tabindex="0" aria-label="Neighborhood graph — drag to pan, scroll or use +/− to zoom">
+          <svg id="neighborhood-svg" class="neighborhood-svg"></svg>
+        </div>
       </div>
       <div id="neighborhood-links" class="neighborhood-links" aria-label="Direct connections list"></div>
     </div>
@@ -233,6 +241,11 @@
   <div class="ql-row"><span class="ql-sample contested">Text⚑</span> Contested</div>
   <div class="ql-row"><span class="ql-node-sample not-constituted"></span> Not constituted</div>
   <div class="ql-row"><span class="ql-node-sample abolished"></span> Abolished</div>
+</div>
+
+<!-- Map status (one line, not over the canvas) -->
+<div id="map-status-bar" class="map-status-bar" aria-live="polite">
+  <span id="view-status-text" class="view-status-text"></span>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════

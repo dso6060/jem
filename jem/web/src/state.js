@@ -300,6 +300,50 @@ export const State = {
     return true;
   },
 
+  hasAppellateChildren(entityId) {
+    return ((this._childrenByParent?.[entityId]) || []).length > 0;
+  },
+
+  /** Per-node +/− specs for map controls (appellate tree + district lattice). */
+  getExplorerToggleSpecs(entity) {
+    const id = entity?.id;
+    if (!id) return [];
+    const specs = [];
+
+    if (this.useProgressiveExplorer && this.hasAppellateChildren(id)) {
+      const n = (this._childrenByParent[id] || []).length;
+      const expanded = this.expandedEntityIds.has(id);
+      specs.push({
+        role: 'appellate',
+        expanded,
+        title: expanded
+          ? `Collapse ${n} direct appellate child${n === 1 ? '' : 'ren'}`
+          : `Expand ${n} direct appellate child${n === 1 ? '' : 'ren'}`,
+        activate: () => this.toggleExpand(id),
+      });
+    }
+
+    const dist = this.getDistrictAggregateToggleForEntityId(id);
+    if (dist) {
+      const group = this._districtAggregateIndex?.groups?.find(g => g.groupId === dist.groupId);
+      const hcId = group?.hcTargetId;
+      const onPrincipalHc = Boolean(hcId && id === hcId);
+      if (this.useProgressiveExplorer && onPrincipalHc && !this.expandedEntityIds.has(id)) {
+        return specs;
+      }
+      const stateLabel = (dist.stateCode || group?.stateCode || '').toUpperCase();
+      specs.push({
+        role: 'district',
+        expanded: dist.expanded,
+        title: dist.expanded
+          ? `Collapse ${stateLabel} district courts to one row`
+          : `Expand ${stateLabel} district court benches`,
+        activate: () => this.toggleDistrictAggregate(dist.groupId),
+      });
+    }
+    return specs;
+  },
+
   toggleExpand(entityId) {
     if (!entityId) return;
     if (!this.useProgressiveExplorer) return;
@@ -471,16 +515,16 @@ export const State = {
   getVisibleEntities() {
     if (!this.graph) return [];
     const list = this.graph.entities.filter(e => {
-      if (this.hiddenEntityIds.has(e.id)) return false;
       // Time filter
       const created = e.created_year || 1950;
       if (created > this.currentYear) return false;
 
-      // Impact filter
+      // Impact filter — show matches even when progressive explorer collapsed them
       if (this.activeImpactFilter) {
         return this._matchesImpactFilter(e, this.activeImpactFilter);
       }
 
+      if (this.hiddenEntityIds.has(e.id)) return false;
       return true;
     });
     const out = this._applyDistrictAggregateToList(list);
@@ -526,10 +570,15 @@ export const State = {
         return entity.operational_status === 'Not_Constituted';
       case 'no_external_complaint':
         return entity.complaint_external_exists === false;
-      case 'blocked_or_absent':
+      case 'blocked_or_absent': {
         // KPI card 3 — appellate vacuums + bodies legislated but never set up.
+        const gapTypes = (entity.gaps || [])
+          .map(g => (g && typeof g === 'object' ? g.gap_type : null))
+          .filter(Boolean);
         return entity.operational_status === 'De_Facto_Blocked'
-            || entity.operational_status === 'Not_Constituted';
+            || entity.operational_status === 'Not_Constituted'
+            || gapTypes.includes('appellate_vacuum');
+      }
       default:
         return true;
     }

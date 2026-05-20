@@ -6,6 +6,7 @@ import { initRenderer, render, fitGraphToViewport } from './renderer.js';
 import { initTimeline } from './timeline.js';
 import { initPanel, openDetailPanel } from './panel.js';
 import { initNeighborhoodPanel } from './neighborhoodPanel.js';
+import { initViewStatus, getGapStats, primeGapStats } from './viewStatus.js';
 
 const GRAPH_URL = './public/graph.json';
 
@@ -46,9 +47,16 @@ function populateKpiCards(metrics) {
   };
 
   setNum('kpi-num-ir',      metrics.high_independence_risk_count);
-  setNum('kpi-num-gaps',    metrics.structural_gaps_entity_count);
+  const gapMetrics = metrics.structural_gaps_entity_count;
+  const gapFallback = getGapStats().gapEntityCount;
+  setNum('kpi-num-gaps', gapMetrics != null ? gapMetrics : (gapFallback > 0 ? gapFallback : 0));
   setNum('kpi-num-blocked', (metrics.appellate_vacuum_count || 0) + (metrics.not_constituted_count || 0));
   setNum('kpi-num-clog',    metrics.critical_high_clog_count);
+
+  const gapsCard = document.getElementById('kpi-card-gaps');
+  if (gapsCard && gapMetrics == null && !getGapStats().hasGapAnnotations) {
+    gapsCard.title = 'Structural gap counts are not in this graph build yet — switches to Gaps mode to preview markers when data is added';
+  }
 
   if (!kpiCardsWired) {
     kpiCardsWired = true;
@@ -117,11 +125,10 @@ async function boot() {
       document.documentElement.style.setProperty('--jem-canvas-height', `${ch}px`);
     }
     State.initExplorerDefaults();
+    primeGapStats(graph);
 
-    // 2. Populate KPI strip
-    populateKpiCards(graph.impact_metrics || {});
-
-    // 3. Initialise modules
+    // 2. Initialise modules (view status before KPI so gap stats are ready)
+    initViewStatus();
     initRenderer();
     initTimeline();
     initPanel();
@@ -131,6 +138,8 @@ async function boot() {
     initSearch();
     initAboutModal();
     initDistrictLatticeHotkeys();
+
+    populateKpiCards(graph.impact_metrics || {});
 
     State.emit('graphLoaded', graph);
 
@@ -438,7 +447,8 @@ function initSearch() {
     }
     const hits = fuse.search(q).slice(0, 8);
     if (!hits.length) {
-      results.classList.add('hidden');
+      results.innerHTML = `<div class="search-empty">No matches for “${q}”. Try an abbreviation (e.g. SC, ITAT), statute name, or constitutional article.</div>`;
+      results.classList.remove('hidden');
       return;
     }
     results.innerHTML = hits.map(h => {

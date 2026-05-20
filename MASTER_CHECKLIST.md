@@ -27,7 +27,7 @@
 | Funding ministry stubs | ministry_of_power, ministry_consumer_affairs, ministry_corporate_affairs, ministry_environment — **present** |
 | `judge_strength` populated (allotted/appointed) | **2 / 506** |
 | `case_volume.pending_cases` populated | **84 / 506** |
-| HC permanent benches in graph | **13 / 14** in `hc_benches_config.py` — Trichy consolidated into Madurai (see Part 3.6) |
+| HC permanent benches in graph | **13 / 14** in `hc_benches_config.py` — Trichy consolidated into Madurai (see **v1.1**) |
 | Entities with `case_volume` in YAML | 186 |
 | Entities tagged `NJDG snapshot case_volume merged` | 139 |
 | State packs (entity YAML count) | MH 51 · DL 22 · KA 43 · TN 49 · PY 6 |
@@ -61,25 +61,27 @@
 - [x] **CBI Director appointment:** Lokpal Act 2013 s.4A selection committee (`selection_committee_cbi_director`); retired `dopt_dpc` entity.
 - [x] **Coverage-gap session (May 20 parallel agents):** §1 central tribunals/regulators + §2 funding ministries; ExecutiveBody audit clean; §6 HC benches (Bombay–Shimla); IIAC rename; Madurai/DIAC/MCIA/tn_slsa primary-source fields.
 
-### Coverage-gap thread — complete for deploy; deferred to next build (Part 3.6)
+### Coverage-gap thread — complete for v1.0.0 deploy; remainder → **VERSION ROADMAP** below
 
-> **Deploy decision (May 20):** Ship current graph (`validate.py` 0 errors, `build.py` → 506 entities). Do **not** block v1.0.0 deploy on items below.
+> **Deploy decision (May 20):** Ship **v1.0.0** as-is (`validate.py` 0 errors, 506 entities). All incomplete items below are scheduled for **v1.1+** — do not block the v1.0.0 tag.
 
-| Thread action | Status |
-|---------------|--------|
-| ExecutiveBody audit (mis-typed tribunal stubs) | ✅ **Done** — 0 tribunal stubs |
-| Create NCLAT, TDSAT, AFT, DRT, DRAT, RCT, IPAB | ✅ **Done** |
-| Create TRAI, SEBI, CCI, IRDAI, PFRDA | ✅ **Done** |
-| Create ministry_of_power, ministry_consumer_affairs, ministry_corporate_affairs, ministry_environment | ✅ **Done** |
-| §6 HC bench YAML batch (non-Madras) | ✅ **Done** |
-| IIAC rename (ex-NDIAC) | ✅ **Done** |
-| Primary source: Madurai `created_year`, DIAC `statutory_basis`, MCIA/tn_slsa `created_year` | ✅ **Done** |
-| §3 `case_volume` bulk fill | ⏸️ **Partial** (84/506) |
-| §7 `judge_strength` bulk fill | ⏸️ **Deferred** (2/506) |
-| §5 full state district lattices (non-TN) | ⏸️ **Deferred** — Part 5.6 |
-| Reconcile `hc_madras_bench_tiruchirappalli` vs §6 spec | ⏸️ **Deferred** — Part 3.6.1 |
-| Bench routing: UP / WB / RJ relationship packs | ⏸️ **Deferred** — Part 3.6.2 |
-| Per-district NJDG (TN 37/38, MH/KA bootstrap) | ⏸️ **PARKED** — Part 3.5.2 |
+| Thread action | Status | Target release |
+|---------------|--------|----------------|
+| ExecutiveBody audit (mis-typed tribunal stubs) | ✅ **Done** | v1.0.0 |
+| Create NCLAT, TDSAT, AFT, DRT, DRAT, RCT, IPAB | ✅ **Done** | v1.0.0 |
+| Create TRAI, SEBI, CCI, IRDAI, PFRDA | ✅ **Done** | v1.0.0 |
+| Create ministry_of_power, ministry_consumer_affairs, ministry_corporate_affairs, ministry_environment | ✅ **Done** | v1.0.0 |
+| §6 HC bench YAML batch (non-Madras) | ✅ **Done** | v1.0.0 |
+| IIAC rename (ex-NDIAC) | ✅ **Done** | v1.0.0 |
+| Primary source: Madurai `created_year`, DIAC `statutory_basis`, MCIA/tn_slsa `created_year` | ✅ **Done** | v1.0.0 |
+| Reconcile `hc_madras_bench_tiruchirappalli` vs §6 / config drift | ⏸️ Deferred | **v1.1** |
+| Bench routing: UP / WB / RJ (+ KA Dharwad verify) | ⏸️ Deferred | **v1.1** |
+| Relationship orphans (~139) — incremental wiring | ⏸️ Deferred | **v1.1** (start) · **v1.4** (bulk with state packs) |
+| §7 `judge_strength` bulk fill | ⏸️ Deferred (2/506) | **v1.2** |
+| §3 `case_volume` bulk fill | ⏸️ Partial (84/506) | **v1.2** |
+| Per-district NJDG (TN 37/38, MH/KA bootstrap) | ⏸️ Parked | **v1.3** |
+| §5 full state district lattices (31 states generic-only) | ⏸️ Deferred | **v1.4** |
+| Gap registry entities (tax/labour/defence benches) | ⏸️ Deferred | **v1.5** (Part 5) |
 
 ### v1.0.0 release (operator — prepared, not yet run)
 
@@ -91,20 +93,115 @@
 
 ### Parked (scheduled later — do not block v1.0.0 tag)
 
-- [ ] **District-level NJDG exports** — Part 3.5.2
+- [ ] **District-level NJDG exports** — **v1.3** (Part 3.5.2)
 
-### Deferred to v2 (not v1 blockers)
+### Deferred to v2.0 (product / infra — not v1.x data releases)
+
+> **Naming:** **v1.x** = data/graph semver tags on friedso.com. **v2.0** = UI + live API + GitHub (Part 4) — separate from v1.1–v1.5 below.
 
 - [ ] **GitHub remote + CI QA** — Part 4.3 (push repo, Actions on PR, topics/description)
 - [ ] **Live NJDG API** (`fetch_njdg.py`) — Part 4.2
 
-### Still outstanding (post-v1 backlog)
+### Still outstanding (scheduled releases — see VERSION ROADMAP)
 
-- [ ] **Next build update (Part 3.6)** — coverage-gap thread remainder (config sync, judge_strength, UP/WB/RJ bench routing)
-- [ ] **Relationship graph — orphan entity wiring (~139)** — **Deferred (not a v1.0.0 blocker).** Central governance cluster is wired (PM, Speakers, LoP, ministers, NHRC/CVC/CBI appointment chains; 0 governance-cluster orphans as of May 20 2026). Remaining orphans are mostly **district courts and state bodies** without any `source`/`target` relationship edge. Wire **incrementally by state/cluster** (e.g. TN district lattice → Madras HC bench); do not mass-generate edges in one pass. Check count: `python3 jem/scripts/validate_graph_refs.py --strict` (informational orphan list). Mass district wiring aligns with Part 3 state-pack expansion and Part 5 gap work.
-- [ ] **Gap registry entities** — Part 5
-- [ ] **Remaining 22 states + UTs** — Part 5.6
-- [ ] **v2 Canvas / Sankey / journey mode** — Part 4.2
+- [ ] **v1.1** — config sync, bench routing, orphan wiring (start)
+- [ ] **v1.2** — `judge_strength` + `case_volume` numeric bulk fill
+- [ ] **v1.3** — per-district NJDG (when exports exist)
+- [ ] **v1.4** — non-TN state district lattices (Part 5.6)
+- [ ] **v1.5** — gap registry entities (Part 5.1–5.5)
+- [ ] **v2.0** — Canvas / Sankey / live NJDG / GitHub (Part 4.2–4.3)
+
+---
+
+## VERSION ROADMAP (v1.0.0 → v1.5)
+
+Semantic data releases after **v1.0.0** deploy. Tag with `git tag -a v1.x.y` after validate + build + smoke on friedso.com.
+
+| Release | Scope | Acceptance |
+|---------|--------|------------|
+| **v1.0.0** | Ship current graph (506 entities, 525 rels). Structural coverage from May 20 parallel-agent pass. | `validate.py` 0 errors; runbook deploy + smoke; local tag |
+| **v1.1** | **Structural integrity** — no new external datasets required | Config matches graph; UP/WB/RJ bench edges; orphan count trending down |
+| **v1.2** | **Numeric coverage** — DoJ + NJDG rollups | `judge_strength` on all court-like entities; `case_volume` >> 84/506 |
+| **v1.3** | **Per-district NJDG** — blocked on district exports | TN 38/38 + MH/KA bootstrap districts with district URLs |
+| **v1.4** | **State pack expansion** | Replace 31 `*_district_courts_generic`-only states with MH/DL/KA-style packs |
+| **v1.5** | **Gap registry** | Part 5.1–5.5 high-priority missing entities (CESTAT benches, CIT(A), AFT benches, etc.) |
+| **v2.0** | **Product** (not data-only) | Part 4 — Canvas, `fetch_njdg.py`, Sankey, GitHub remote |
+
+### v1.1 — structural integrity (target: first post-deploy data release)
+
+- [ ] **Madras bench / config drift** — align `hc_benches_config.py`, `generate_v1_states_bundle.py`, and graph: either restore `hc_madras_bench_tiruchirappalli` + TN routing per §6, **or** document single-bench (Madurai-only) model and remove Trichy from `HC_BENCHES_DEF` / `TN_DISTRICT_TO_BENCH`
+- [ ] **Bench district routing** — create `up_relationships.yaml`, `wb_relationships.yaml`, `rj_relationships.yaml` with `AppealableTo` / supervisory edges per `hc_benches_config.py` (Lucknow, Jalpaiguri, Jaipur)
+- [ ] **KA Dharwad** — verify all districts in `KA_DISTRICT_TO_BENCH` have bench edges (currently 2)
+- [ ] **Orphan wiring (incremental)** — wire district courts → HC/bench for states touched above; check: `python3 jem/scripts/validate_graph_refs.py --strict`
+- [ ] Re-run: `validate.py` → `derive.py` → `build.py` → deploy → tag `v1.1.0`
+
+### v1.2 — numeric coverage (§3 + §7)
+
+- [ ] Bulk **`judge_strength`** (allotted/appointed) from DoJ vacancy reports: https://doj.gov.in/report-and-committees/judicial-vacancy-reports
+- [ ] Extend **`case_volume.pending_cases`** beyond 84/506 — refresh `merge_njdg_snapshot.py` when new snapshot path available
+- [ ] All court-like entities: `judge_strength` block with `data_as_of` + `source_type` (nulls OK + `data_quality_notes`)
+- [ ] **Audit baseline:** `judge_strength` 2/506 → target majority of courts; `pending_cases` 84/506 → target all HCs + state rollups + named districts
+- [ ] Tag `v1.2.0` after smoke
+
+### v1.3 — per-district NJDG (Part 3.5.2 — blocked on exports)
+
+> **Do not start until district-level NJDG exports exist.** State/HC rollup merge is complete in v1.0.0.
+
+| Scope | Count | Current | Unblock |
+|-------|-------|---------|---------|
+| TN per-district courts | 38 | 1 with `pending_cases` (Chennai) | TN e-Courts / NJDG district export |
+| MH bootstrap districts | 26 | structural only | Per-district NJDG per `mh_district_court_*` |
+| KA bootstrap districts | 19 | structural only | same |
+| Other states | varies | generic rollup only | Phase with v1.4 |
+
+- [ ] Each targeted court YAML: `pending_cases`, `filed_last_year`, `disposed_last_year` (or null + notes)
+- [ ] `data_quality_notes` cites NJDG district URL + `data_as_of`
+- [ ] Tag `v1.3.0`
+
+### v1.4 — state district lattices (§5 / Part 5.6)
+
+- [ ] **31 states** still `*_district_courts_generic` only → expand using `bootstrap_tn_district_lattice.py` pattern + NJDG per state
+- [ ] Priority batches: UP, WB, RJ, AP, TS, GJ, KL, PB, HR (Part 5.6 Batch A–B)
+- [ ] Per state template: SERC/RERA ref, bar council, SJA, SLSA, lokayukta, AG, CDRC, 5–10 named districts, special courts
+- [ ] **Orphan wiring (bulk)** — complete remaining ~139 orphans as packs land
+- [ ] Tag `v1.4.0`
+
+### v1.5 — gap registry (Part 5)
+
+- [ ] §5.1 Tax/revenue stack (CESTAT benches, CIT(A), GSTAT, etc.)
+- [ ] §5.2 Labour (CGIT benches, EPFO, ESI courts)
+- [ ] §5.3 Defence (AFT regional benches, court martial generic)
+- [ ] §5.4 Regulators (PFRDA entity if distinct from QJ node, FSSAI, AERA, ICADR, etc.)
+- [ ] §5.5 IP (IPAB historical — may overlap v1.0 `ipab` abolished node)
+- [ ] Tag `v1.5.0`
+
+### v1.x audit commands (run before every tag)
+
+```bash
+cd jem
+python3 scripts/validate.py
+python3 scripts/derive.py
+python3 scripts/build.py
+python3 -c "
+import yaml; from pathlib import Path
+ids=set()
+for f in Path('data/entities').rglob('*.yaml'):
+    d=yaml.safe_load(f.read_text()) or {}
+    if d.get('id'): ids.add(d['id'])
+for x in ['nclat','iiac','hc_madras_bench_tiruchirappalli']:
+    print(x, 'OK' if x in ids else 'MISS')
+js=cv=tot=0
+for f in Path('data/entities').rglob('*.yaml'):
+    d=yaml.safe_load(f.read_text()) or {}
+    if not d.get('id'): continue
+    tot+=1
+    j=d.get('judge_strength') or {}
+    if j.get('allotted') is not None or j.get('appointed') is not None: js+=1
+    if (d.get('case_volume') or {}).get('pending_cases') is not None: cv+=1
+print(f'entities={tot} judge_strength={js}/{tot} pending_cases={cv}/{tot}')
+"
+python3 scripts/validate_graph_refs.py --strict   # orphan count
+```
 
 ---
 
@@ -222,7 +319,7 @@ Shortcut: `cd jem && ./scripts/safe_pipeline.sh` (does not run bundle generator)
 #### 3.1.6 District courts
 - [x] Priority 10 named districts (mumbai_city, thane, pune, nashik, aurangabad, nagpur, solapur, kolhapur, nanded, amravati)
 - [x] `mh_district_courts_generic` — collapsed-lattice proxy + NJDG state rollup
-- [x] **+26 bootstrap districts** (`mh_district_court_jalgaon`, …) — structural YAML + HC edges; **per-district NJDG parked** (Part 3.5)
+- [x] **+26 bootstrap districts** (`mh_district_court_jalgaon`, …) — structural YAML + HC edges; **per-district NJDG → v1.3** (Part 3.5.2)
 
 #### 3.1.7 Special courts
 - [x] `mh_special_courts`
@@ -232,7 +329,7 @@ Shortcut: `cd jem && ./scripts/safe_pipeline.sh` (does not run bundle generator)
 
 #### 3.1.9 MH clog data (NJDG snapshot Dec 2024)
 - [x] State rollup + named courts merged via `merge_njdg_snapshot.py`
-- [ ] **Per-district dashboard pull** for 26 bootstrap districts — **PARKED** (Part 3.5)
+- [ ] **Per-district dashboard pull** for 26 bootstrap districts — **v1.3** (Part 3.5.2)
 
 - [x] MH validate + derive + build passes 0 errors
 - [x] Committed on main
@@ -284,7 +381,7 @@ Shortcut: `cd jem && ./scripts/safe_pipeline.sh` (does not run bundle generator)
 - [x] `kerc` (enriched) · `ka_rera` · `ka_lokayukta` · `ka_sja` · `ka_slsa` · `ka_advocate_general`
 - [x] `ka_state_cdrc` · `ka_cdrc_bengaluru` · `city_civil_court_bangalore` (NJDG merged)
 - [x] Priority 10 districts + `ka_district_courts_generic`
-- [x] **+19 bootstrap districts** — structural only; **per-district NJDG parked** (Part 3.5)
+- [x] **+19 bootstrap districts** — structural only; **per-district NJDG → v1.3** (Part 3.5.2)
 - [x] `ka_special_courts` · `ka_relationships.yaml`
 
 - [x] KA validate + derive + build passes 0 errors
@@ -301,58 +398,24 @@ Shortcut: `cd jem && ./scripts/safe_pipeline.sh` (does not run bundle generator)
 - [x] **`tn_district_courts_generic`** — consolidated collapsed view (3.2M pending state rollup from NJDG)
 - [x] Map collapse/expand via `jem/web/src/districtAggregates.js` + `PRINCIPAL_HC_BY_STATE_CODE.tn`
 - [x] TN regulators, SLSA, SJA, CDRC, RERA, special courts — NJDG merged where in snapshot
-- [ ] **37/38 districts** without per-district `pending_cases` in YAML — **PARKED** (only Chennai + generic in Dec 2024 snapshot)
+- [ ] **37/38 districts** without per-district `pending_cases` in YAML — **v1.3** (only Chennai + generic in Dec 2024 snapshot)
 
 **PY:** `jem/data/entities/_generated/states/py/` (6 entities) · `py_relationships.yaml` — ✅ in graph
 
 ---
 
-### 3.6 NEXT BUILD UPDATE — coverage-gap thread (deferred May 20; do not block deploy)
+### 3.6 Post–v1.0.0 data releases → **VERSION ROADMAP** (v1.1–v1.5)
 
-Work in this order after v1.0.0 deploy smoke pass:
-
-#### 3.6.1 Config / generator sync (§6 Madras)
-
-- [ ] Align `jem/scripts/hc_benches_config.py` with graph: either restore `hc_madras_bench_tiruchirappalli` + TN routing per §6, **or** document single-bench model and remove Trichy from `HC_BENCHES_DEF` / `TN_DISTRICT_TO_BENCH`
-- [ ] Update `generate_v1_states_bundle.py` (still references `ndiac`, `hc_madras_bench_tiruchirappalli`)
-- [ ] Re-run `validate.py` → `build.py` after sync
-
-#### 3.6.2 Bench district routing (§6 remainder)
-
-- [ ] Create `up_relationships.yaml`, `wb_relationships.yaml`, `rj_relationships.yaml` bench appellate edges per `hc_benches_config.py` (Lucknow, Jalpaiguri, Jaipur slugs)
-- [ ] Verify KA Dharwad edges cover all configured districts (currently 2 bench edges)
-
-#### 3.6.3 Numeric fields (§3 + §7)
-
-- [ ] Bulk `judge_strength` from DoJ vacancy report index: https://doj.gov.in/report-and-committees/judicial-vacancy-reports
-- [ ] Extend `case_volume` beyond 84/506 — re-run or refresh `merge_njdg_snapshot.py` when new snapshot available
-- [ ] Target: all court-like entities have `judge_strength` block with `data_as_of` + `source_type` (nulls OK with `data_quality_notes`)
-
-#### 3.6.4 Audit commands (re-run each session)
-
-```bash
-cd jem
-python3 scripts/validate.py
-python3 scripts/build.py
-python3 -c "
-import yaml; from pathlib import Path
-ids=set()
-for f in Path('data/entities').rglob('*.yaml'):
-    d=yaml.safe_load(f.read_text()) or {}
-    if d.get('id'): ids.add(d['id'])
-for x in ['nclat','iiac','hc_madras_bench_tiruchirappalli']:
-    print(x, 'OK' if x in ids else 'MISS')
-js=cv=tot=0
-for f in Path('data/entities').rglob('*.yaml'):
-    d=yaml.safe_load(f.read_text()) or {}
-    if not d.get('id'): continue
-    tot+=1
-    j=d.get('judge_strength') or {}
-    if j.get('allotted') is not None or j.get('appointed') is not None: js+=1
-    if (d.get('case_volume') or {}).get('pending_cases') is not None: cv+=1
-print(f'entities={tot} judge_strength={js}/{tot} pending_cases={cv}/{tot}')
-"
-```
+> Supersedes the May 20 “Part 3.6 next build” scratch list. All deferred coverage-gap items are versioned there:
+>
+> | Was Part 3.6 | Now |
+> |--------------|-----|
+> | 3.6.1 Madras bench / config sync | **v1.1** |
+> | 3.6.2 UP/WB/RJ bench routing | **v1.1** |
+> | 3.6.3 `judge_strength` + `case_volume` | **v1.2** |
+> | Part 3.5.2 per-district NJDG | **v1.3** |
+> | §5 non-TN state lattices | **v1.4** |
+> | Part 5 gap registry | **v1.5** |
 
 ---
 
@@ -383,9 +446,9 @@ print(f'entities={tot} judge_strength={js}/{tot} pending_cases={cv}/{tot}')
 
 **Merged coverage:** all 24 mergeable HCs, DL/MH/KA/TN/PY state entities in plan, backbone tribunals/regulators, hand-curated SC/CBI/ACI/eCommittee, etc.
 
-### 3.5.2 PARKED — District-level NJDG exports ⏸️
+### 3.5.2 PARKED — District-level NJDG exports → **v1.3** ⏸️
 
-> **Do not start until scheduled.** State/HC rollup merge is complete; this tranche is per-district dashboard pulls.
+> **Do not start until district exports exist.** State/HC rollup merge shipped in **v1.0.0**; per-district work is **v1.3**.
 
 | Scope | Count | Current data | When un-parked |
 |-------|-------|----------------|----------------|
@@ -451,7 +514,7 @@ print(f'TN districts with pending_cases: {with_p}/{len(dist)}')
 
 #### Priority 2 — NJDG live fetch
 - [x] **Static snapshot path** — `merge_njdg_snapshot.py` + `jem_add1405/graph.json` *(May 2026)*
-- [ ] **District-level exports** — **PARKED** (Part 3.5.2)
+- [ ] **District-level exports** — **v1.3** (Part 3.5.2)
 - [ ] `scripts/fetch_njdg.py` created (live API)
 - [ ] Rate limiting (1 req / 2 seconds) implemented
 - [ ] Cache layer (`data/cache/njdg/`) implemented
@@ -654,7 +717,7 @@ Priority order based on case volume and structural significance:
 
 These entities are in the repo but at partial/unverified quality. Any contributor can upgrade:
 
-- [ ] **District-level NJDG pendency** — **PARKED** (Part 3.5.2); do not duplicate state rollup into every district YAML
+- [ ] **District-level NJDG pendency** — **v1.3** (Part 3.5.2); do not duplicate state rollup into every district YAML
 - [ ] All 10 northeast HCs: upgrade from `unverified` to `partial`
   Task: verify sanctioned/working strength from HC websites or DoJ data
 - [ ] `state_bar_council_generic`: add enrollment count, working strength
@@ -682,7 +745,7 @@ Not a Cursor or Claude session task — plan only.
 ### 6.2 Data infrastructure
 
 - [x] **One-time NJDG snapshot ingest** — `jem_add1405/graph.json` → entity YAML via `merge_njdg_snapshot.py` (May 2026)
-- [ ] **District-level NJDG ingest pipeline** — **PARKED** until exports exist (Part 3.5.2)
+- [ ] **District-level NJDG ingest pipeline** — **v1.3** until exports exist (Part 3.5.2)
 - [ ] Scheduled NJDG fetch: cron on production host, weekly *(requires `fetch_njdg.py`)*
   `0 3 * * 0 cd /path/to/repo && python3 jem/scripts/fetch_njdg.py --all-hcs && python3 jem/scripts/derive.py && python3 jem/scripts/build.py && rsync …`
 - [ ] Historical NJDG snapshots: store `data/cache/njdg/` in git-annex or S3
@@ -692,7 +755,7 @@ Not a Cursor or Claude session task — plan only.
 
 ### 6.3 Remaining feature deferrals
 
-- [ ] **Per-district NJDG metrics** — **PARKED** (Part 3.5.2)
+- [ ] **Per-district NJDG metrics** — **v1.3** (Part 3.5.2)
 - [ ] Year-over-year clog trend (needs 3+ NJDG snapshots)
 - [ ] Time scroller annotation mode
 - [ ] Funding flow Sankey (separate from case flow)
@@ -758,10 +821,13 @@ Rule: If a task requires domain reasoning about Indian judicial structure or new
 | NJDG snapshot merge (rollup) | 494 | ~1.87 MB | May 19 2026 ✅ |
 | TN generic + 38-district lattice | 494 | ~1.87 MB | May 19 2026 ✅ |
 | Central tribunal + ministry batch | **506** | **~1.86 MB** | **May 20 2026 ✅** |
-| **PARKED: district-level NJDG** | — | — | TBD |
-| **NEXT BUILD: Part 3.6** (config sync, judge_strength, UP/WB/RJ routing) | 506+ | ~1.9 MB | TBD |
-| v1.0.0 tag + friedso deploy | **506** | **~1.86 MB** | **Ready — run runbook** |
-| v2 complete (Canvas, live NJDG, Sankey) | ~500+ | ~2 MB | TBD |
+| **v1.0.0** tag + friedso deploy | **506** | **~1.86 MB** | **Ready — run runbook** |
+| **v1.1** structural (config sync, UP/WB/RJ routing, orphans start) | 506+ | ~1.9 MB | TBD |
+| **v1.2** numerics (`judge_strength`, `case_volume` bulk) | 506+ | ~2.0 MB | TBD |
+| **v1.3** per-district NJDG (TN/MH/KA) | 506+ | ~2.0 MB | TBD (blocked on exports) |
+| **v1.4** state lattices (31 generic states) | ~700+ | ~3 MB | TBD |
+| **v1.5** gap registry (Part 5) | ~550+ | ~2.2 MB | TBD |
+| **v2.0** product (Canvas, live NJDG, Sankey, GitHub) | ~500+ | ~2 MB | TBD |
 | Gap fills (tax/labour/defence) | ~550 | ~2.2 MB | TBD |
 | Phase 2 (remaining 22 states) | ~900 | ~4 MB | TBD |
 | Phase 3 (district resolution) | ~1500+ | chunked | TBD |

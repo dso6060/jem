@@ -4,6 +4,7 @@
 
 import { State } from './state.js';
 import { openDetailPanel } from './panel.js';
+import { refreshViewStatus } from './viewStatus.js';
 import {
   entityNodeShape,
   nodeShapePathForEntity,
@@ -52,6 +53,8 @@ const ORG_LABEL_VERTICAL_CLEARANCE = 52;
 const BAND_VERTICAL_GAP = 110;
 /** Clear vertical gap between apex row (SC / President) and the HC cluster below. */
 const APEX_TO_HC_GAP_MULT = 3.2;
+const NODE_TOGGLE_RADIUS = 11;
+const NODE_TOGGLE_STACK_GAP = 26;
 
 /** Tier 0 = apex (SC / President); higher tiers = further down the tree / lower bands. */
 const HIERARCHY_TIER_BASE_RADIUS = [52, 36, 28, 20, 14];
@@ -166,6 +169,85 @@ function maxDrawableNodeRadius(entities) {
   return m;
 }
 
+/** Bottom-right anchor for explorer +/− (graph coordinates, before counter-scale). */
+function nodeExplorerToggleAnchor(entity, index, total) {
+  let x;
+  let y;
+  if (entityVisualKind(entity) === 'stakeholder') {
+    x = drawableRectHalfWidth(entity) - 2;
+    y = drawableRectHalfHeight(entity) - 2;
+  } else {
+    const r = shapeLayoutRadius(entity, drawableNodeRadiusForEntity(entity));
+    x = r * 0.72;
+    y = r * 0.72;
+  }
+  if (total > 1) {
+    y -= index * NODE_TOGGLE_STACK_GAP;
+  }
+  return { x, y };
+}
+
+function renderNodeExplorerToggles(merged, zoomScale) {
+  const invK = 1 / Math.max(0.18, Math.min(8, zoomScale || 1));
+
+  merged.each(function onNode(entity) {
+    const gNode = d3.select(this);
+    const specs = State.getExplorerToggleSpecs(entity);
+    const tg = gNode.selectAll('g.node-explorer-toggle')
+      .data(specs, s => s.role);
+
+    tg.exit().remove();
+
+    const enter = tg.enter()
+      .append('g')
+      .attr('class', d => `node-explorer-toggle node-explorer-toggle--${d.role}`)
+      .style('cursor', 'pointer')
+      .on('pointerdown', (event, spec) => {
+        event.stopPropagation();
+        event.preventDefault();
+        cancelTooltipShow();
+        hideTooltip();
+        spec.activate();
+      })
+      .on('pointerenter', () => {
+        cancelTooltipShow();
+        hideTooltip();
+      })
+      .on('click', (event) => {
+        event.stopPropagation();
+      });
+
+    enter.append('circle').attr('class', 'node-toggle-hit');
+    enter.append('text').attr('class', 'node-toggle-label');
+
+    const all = enter.merge(tg);
+
+    all.attr('transform', (spec, i) => {
+      const { x, y } = nodeExplorerToggleAnchor(entity, i, specs.length);
+      return `translate(${x},${y}) scale(${invK})`;
+    });
+
+    all.select('circle.node-toggle-hit')
+      .attr('r', NODE_TOGGLE_RADIUS)
+      .attr('fill', d => (d.role === 'district' ? '#0d9488' : '#2563eb'))
+      .attr('stroke', '#fff')
+      .attr('stroke-width', 1.75)
+      .attr('opacity', 0.96);
+
+    all.select('text.node-toggle-label')
+      .attr('text-anchor', 'middle')
+      .attr('dominant-baseline', 'central')
+      .attr('font-size', '15px')
+      .attr('font-weight', '700')
+      .attr('fill', '#fff')
+      .attr('pointer-events', 'none')
+      .text(d => (d.expanded ? '−' : '+'));
+
+    all.select('title').remove();
+    all.append('title').text(d => d.title);
+  });
+}
+
 /** Hot-reload / legacy DOM: stakeholder groups need rect + in-box label children. */
 function ensureUpgradedNodeShapes(mergedSelection) {
   const ns = 'http://www.w3.org/2000/svg';
@@ -225,16 +307,29 @@ export function initRenderer() {
   State.subscribe('yearChanged', () => { setupLayout(); render(); });
   State.subscribe('lensChanged', () => { setupLayout(); render(); });
   State.subscribe('viewModeChanged', () => { setupLayout(); render(); });
-  State.subscribe('filterChanged', () => { setupLayout(); render(); });
+  State.subscribe('filterChanged', (filterKey) => {
+    setupLayout();
+    render();
+    requestAnimationFrame(() => {
+      if (filterKey) {
+        fitGraphToVisibleEntities({ duration: 320, margin: 0.88 });
+      } else {
+        fitGraphToViewport({ duration: 0 });
+      }
+    });
+  });
   State.subscribe('collapseChanged', (entityId) => {
     setupLayout();
     render();
     requestAnimationFrame(() => {
-      if (
+      const focusExpand =
         entityId
-        && State.isPrincipalHighCourt(entityId)
         && State.expandedEntityIds?.has(entityId)
-      ) {
+        && (
+          entityId === 'supreme_court_india'
+          || State.isPrincipalHighCourt(entityId)
+        );
+      if (focusExpand) {
         fitGraphToEntityFocus(entityId, { duration: 280, margin: 0.9 });
       } else {
         fitGraphToViewport({ duration: 0 });
@@ -271,6 +366,7 @@ export function render() {
     layerNodes.style('display', 'none');
     layerLabels.style('display', 'none');
     _renderL0();
+    refreshViewStatus();
     return;
   }
 
@@ -285,6 +381,7 @@ export function render() {
   renderEdges();
   renderNodes();
   renderLabels();
+  refreshViewStatus();
 }
 
 function setupLayout() {
@@ -671,11 +768,12 @@ export function renderNodes() {
       hoveredNodeId = d.id;
       cancelTooltipHide();
       render(); // re-render with neighbor dimming + tooltips
-      showNodeRelationshipsTooltip(event, d, rels);
+      scheduleShowNodeRelationshipsTooltip(event, d, rels);
     })
-    .on('mouseleave', function(event, d) {
+    .on('mouseleave', function() {
       d3.select(this).selectAll('.node-shape, .node-circle, .node-rect').attr('filter', null);
       hoveredNodeId = null;
+      cancelTooltipShow();
       scheduleHideTooltip(300);
       render();
     });
@@ -926,6 +1024,8 @@ export function renderNodes() {
       const c = d.circularity_score ?? d.derived?.circularity_score ?? 0;
       return (State.showCircularity && c > 0) ? '⟳' : '';
     });
+
+  renderNodeExplorerToggles(merged, kz);
 
   nodes.exit().remove();
 }
@@ -1928,6 +2028,57 @@ export function fitGraphToEntityFocus(entityId, opts = {}) {
   }
 }
 
+/** Pan/zoom to fit all entities currently visible (e.g. KPI impact filters). */
+export function fitGraphToVisibleEntities(opts = {}) {
+  if (!State._zoomSvg?.node || !State._zoom) return;
+  const entities = State.getVisibleEntities();
+  if (!entities.length) {
+    fitGraphToViewport(opts);
+    return;
+  }
+  const posMap = buildPositionMap();
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  for (const e of entities) {
+    const p = posMap[e.id];
+    if (!p) continue;
+    const pad = effectiveNodeLayoutRadius(e) + ORG_LABEL_VERTICAL_CLEARANCE + 28;
+    minX = Math.min(minX, p.x - pad);
+    maxX = Math.max(maxX, p.x + pad);
+    minY = Math.min(minY, p.y - pad);
+    maxY = Math.max(maxY, p.y + pad);
+  }
+  if (!Number.isFinite(minX)) {
+    fitGraphToViewport(opts);
+    return;
+  }
+  const dur = opts.duration ?? 280;
+  const margin = opts.margin ?? 0.88;
+  const container = document.getElementById('canvas-container');
+  const vw = container?.clientWidth || width || 800;
+  const vh = container?.clientHeight || height || 600;
+  const bw = Math.max(180, maxX - minX);
+  const bh = Math.max(180, maxY - minY);
+  const cx = (minX + maxX) / 2;
+  const cy = (minY + maxY) / 2;
+  const scale0 = margin * Math.min(vw / bw, vh / bh);
+  const ext = State._zoom.scaleExtent();
+  const k = Math.max(ext[0], Math.min(ext[1], scale0));
+  const tx = vw / 2 - k * cx;
+  const ty = vh / 2 - k * cy;
+  const t = d3.zoomIdentity.translate(tx, ty).scale(k);
+  const svgNode = State._zoomSvg.node();
+  if (dur <= 0) {
+    State._zoomSvg.call(State._zoom.transform, t);
+    State.setTransform(d3.zoomTransform(svgNode));
+  } else {
+    State._zoomSvg.transition().duration(dur).call(State._zoom.transform, t)
+      .on('end', () => State.setTransform(d3.zoomTransform(svgNode)));
+  }
+}
+
 export function fitGraphToViewport(opts = {}) {
   if (!lastGraphContentBounds || !State._zoomSvg?.node || !State._zoom) return;
   const dur = opts.duration ?? 0;
@@ -2066,11 +2217,22 @@ function showEdgeTooltip(event, d) {
 }
 
 let tooltipHideTimer = null;
+let tooltipShowTimer = null;
+const TOOLTIP_SHOW_DELAY_MS = 480;
+/** Screen padding reserved for explorer +/− (bottom-right of node). */
+const TOOLTIP_TOGGLE_RESERVE_PX = 56;
 
 function cancelTooltipHide() {
   if (tooltipHideTimer) {
     clearTimeout(tooltipHideTimer);
     tooltipHideTimer = null;
+  }
+}
+
+function cancelTooltipShow() {
+  if (tooltipShowTimer) {
+    clearTimeout(tooltipShowTimer);
+    tooltipShowTimer = null;
   }
 }
 
@@ -2081,6 +2243,10 @@ function scheduleHideTooltip(ms = 220) {
     tooltipHideTimer = null;
     hideTooltip();
   }, ms);
+}
+
+function rectsOverlap(a, b) {
+  return !(a.right <= b.left || a.left >= b.right || a.bottom <= b.top || a.top >= b.bottom);
 }
 
 function clampTooltipToViewport(el, event) {
@@ -2097,6 +2263,88 @@ function clampTooltipToViewport(el, event) {
   el.style.top = `${top}px`;
 }
 
+/** Place tooltip away from the node and its bottom-right +/− controls. */
+function placeTooltipNearNode(el, event) {
+  const margin = 10;
+  const gap = 16;
+  const w = el.offsetWidth || 300;
+  const h = el.offsetHeight || 180;
+  const nodeEl = event.currentTarget;
+  const nodeRect = nodeEl?.getBoundingClientRect?.();
+  const hasToggles = nodeEl
+    && State.getExplorerToggleSpecs?.(d3.select(nodeEl).datum())?.length > 0;
+
+  const avoid = nodeRect && hasToggles
+    ? {
+      left: nodeRect.left,
+      top: nodeRect.top,
+      right: nodeRect.right + TOOLTIP_TOGGLE_RESERVE_PX,
+      bottom: nodeRect.bottom + TOOLTIP_TOGGLE_RESERVE_PX,
+    }
+    : nodeRect
+      ? {
+        left: nodeRect.left,
+        top: nodeRect.top,
+        right: nodeRect.right,
+        bottom: nodeRect.bottom,
+      }
+      : null;
+
+  const candidates = [];
+  if (nodeRect) {
+    candidates.push({
+      left: nodeRect.left - w - gap,
+      top: nodeRect.top + (nodeRect.height - h) / 2,
+    });
+    candidates.push({
+      left: nodeRect.left + (nodeRect.width - w) / 2,
+      top: nodeRect.top - h - gap,
+    });
+    candidates.push({
+      left: nodeRect.right + gap,
+      top: nodeRect.top + (nodeRect.height - h) / 2,
+    });
+    candidates.push({
+      left: nodeRect.left,
+      top: nodeRect.bottom + gap,
+    });
+  }
+  candidates.push({
+    left: event.clientX - w - 28,
+    top: event.clientY - h - 32,
+  });
+
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+
+  for (const pos of candidates) {
+    let left = pos.left;
+    let top = pos.top;
+    if (left + w > vw - margin) left = vw - w - margin;
+    if (left < margin) left = margin;
+    if (top + h > vh - margin) top = vh - h - margin;
+    if (top < margin) top = margin;
+    const tip = { left, top, right: left + w, bottom: top + h };
+    if (!avoid || !rectsOverlap(avoid, tip)) {
+      el.style.left = `${left}px`;
+      el.style.top = `${top}px`;
+      return;
+    }
+  }
+  clampTooltipToViewport(el, event);
+}
+
+function scheduleShowNodeRelationshipsTooltip(event, node, rels) {
+  cancelTooltipShow();
+  const target = event.currentTarget;
+  const cx = event.clientX;
+  const cy = event.clientY;
+  tooltipShowTimer = setTimeout(() => {
+    tooltipShowTimer = null;
+    showNodeRelationshipsTooltip({ clientX: cx, clientY: cy, currentTarget: target }, node, rels);
+  }, TOOLTIP_SHOW_DELAY_MS);
+}
+
 function wireTooltipPointerHold(el) {
   el.addEventListener('mouseenter', cancelTooltipHide);
   el.addEventListener('mouseleave', () => scheduleHideTooltip(200));
@@ -2104,6 +2352,7 @@ function wireTooltipPointerHold(el) {
 
 function hideTooltip() {
   cancelTooltipHide();
+  cancelTooltipShow();
   const t = document.getElementById('edge-tooltip');
   if (t) t.remove();
 }
@@ -2169,8 +2418,8 @@ function showNodeRelationshipsTooltip(event, node, rels) {
     document.body.appendChild(t);
     wireTooltipPointerHold(t);
     requestAnimationFrame(() => {
-      clampTooltipToViewport(t, event);
-      requestAnimationFrame(() => clampTooltipToViewport(t, event));
+      placeTooltipNearNode(t, event);
+      requestAnimationFrame(() => placeTooltipNearNode(t, event));
     });
     return;
   }
@@ -2206,8 +2455,8 @@ function showNodeRelationshipsTooltip(event, node, rels) {
   document.body.appendChild(t);
   wireTooltipPointerHold(t);
   requestAnimationFrame(() => {
-    clampTooltipToViewport(t, event);
-    requestAnimationFrame(() => clampTooltipToViewport(t, event));
+    placeTooltipNearNode(t, event);
+    requestAnimationFrame(() => placeTooltipNearNode(t, event));
   });
 }
 
