@@ -2,7 +2,9 @@
 
 Copy everything inside the **prompt box** below into **Claude**, **Cursor Agent**, or **ChatGPT** (with the JEM repo open as context). One prompt for co-maintainers and contributors; your **role** and **task** lines control what the assistant may do.
 
-**Canonical file:** share this link after the GitHub repo is published: `jem/docs/AI_DATA_ENTRY_PROMPT.md`
+**Phased build tasks (→ 1,500+ entities):** pick a `TASK` from [`ENTITY_BUILD_ROADMAP.md`](ENTITY_BUILD_ROADMAP.md) — use only prompts listed under **Active prompts**; done categories are archived there.
+
+**Canonical file:** `jem/docs/AI_DATA_ENTRY_PROMPT.md`
 
 ---
 
@@ -10,10 +12,14 @@ Copy everything inside the **prompt box** below into **Claude**, **Cursor Agent*
 
 | Role | What you do | What maintainers do |
 |------|-------------|---------------------|
-| **Contributor** | Use the prompt to produce or fix YAML **drafts** with primary sources; share files (GitHub issue, PR, or email) | Run `validate.py`, merge into `jem/data/`, run full pipeline, release |
-| **Co-maintainer** | Same prompt with `ROLE: co-maintainer`; may open PRs after local validation | Review contributor drafts; merge; coordinate with `@dso6060` on deploy |
+| **Contributor** | Use the prompt + a roadmap `TASK` → produce YAML **drafts** → **[GitHub issue only](https://github.com/dso6060/REPO_NAME/issues/new?template=data_correction.yml)** with attachments | `validate.py`, merge, relationships, release |
+| **Co-maintainer** | `ROLE: co-maintainer` → validate locally → PR | Review issues; merge; wire relationships |
 
-**v0.9 default:** community **data-quality upgrades** on existing entities. New entities and new relationships are **maintainer-approved** — contributors still may submit **draft** YAML for review.
+| Rule | Detail |
+|------|--------|
+| **Submissions** | **GitHub issues only** (no email) |
+| **New entities** | Contributors may submit **proposed** YAML; maintainers merge after validation |
+| **Relationships** | **Maintainer-only** — contributors must not submit relationship YAML |
 
 ---
 
@@ -29,45 +35,46 @@ You are helping with Judiciary Entity Map (India) — JEM, an open CC0 structura
 • Primary sources (in order): india-code.nic.in, egazette.gov.in, main.sci.gov.in, official ministry/HC sites, doj.gov.in, NJDG/e-Courts URLs, PIB, law commission. Avoid Wikipedia and news-only citations.
 • Schema: read jem/data/schema/entity_schema.yaml and jem/data/schema/relationship_schema.yaml before writing YAML.
 • Templates: copy the closest existing file under jem/data/entities/ (same type/cluster/state). Match field names and nesting exactly.
-• Paths: new state entities usually go under jem/data/entities/_generated/states/{state_code}/. Relationships go in jem/data/relationships/ (existing pack or new file only if maintainer-approved).
+• Paths: new state entities usually go under jem/data/entities/_generated/states/{state_code}/. Relationships: MAINTAINER-ONLY — do not output relationship YAML unless ROLE is co-maintainer and TASK explicitly says to wire edges.
 • Do NOT run generate_v1_states_bundle.py unless the user explicitly asks (high overwrite risk).
 • Do NOT hand-edit jem/data/derived/ or commit graph.json unless the user is a maintainer running a release build.
+• Phased work: read jem/docs/ENTITY_BUILD_ROADMAP.md — only execute TASKs for categories still marked pending or updated.
 
 === YOUR SESSION ===
 ROLE: [contributor | co-maintainer]
-TASK: [one sentence — e.g. "Upgrade sources for hc_allahabad" OR "Draft YAML for Kerala SERC" OR "Fix case_volume on tn_district_court_chennai from NJDG"]
+TASK: [from ENTITY_BUILD_ROADMAP.md Active prompts, or custom one sentence]
+CATEGORY_ID: [e.g. C15 UP pack — for issue title]
 ENTITY_ID (if editing existing): [id or none]
 STATE / CLUSTER (if relevant): [e.g. KL, regulatory_bodies, backbone]
 PRIMARY SOURCES I HAVE: [paste URLs and access dates]
 
 === IF ROLE = contributor ===
 1. Read the relevant existing YAML if ENTITY_ID is set; otherwise find the closest template entity.
-2. Produce ONLY the YAML file(s) as deliverables — complete, valid-looking content with sources[] on every factual claim you add or change.
-3. At the top of your reply, list: files to create/update (paths), entity ids touched, and a table of field | new value | source URL.
-4. Tell the user to submit via GitHub "Data correction" issue or PR (data-quality scope) OR send the YAML to maintainers for validation and merge. Do NOT claim the data is merged or verified.
-5. Do not add new relationship topology or new entity ids unless TASK explicitly says "draft for maintainer review" and user provided maintainer approval in chat.
+2. Produce ONLY entity YAML file(s) as deliverables — sources[] on every factual claim you add or change.
+3. At the top of your reply, list: CATEGORY_ID, files to create/update (paths), entity ids touched, table field | new value | source URL.
+4. Tell the user to open a GitHub issue only (data correction template or new issue titled [data] CATEGORY_ID …) and attach YAML. Do NOT claim merged or verified.
+5. New entity ids: allowed only as proposed drafts for maintainer review (per TASK). Never submit relationship YAML or rel_* files.
 
 === IF ROLE = co-maintainer ===
 1. Same quality rules as contributor.
-2. After editing, run these commands from jem/ and report full output:
+2. Relationships: only when TASK says maintainer wiring; then edit jem/data/relationships/ and run validate_graph_refs.py.
+3. After editing, run from jem/ and report output:
    python3 scripts/validate.py --strict
-   python3 scripts/validate.py --entity <path>   # for single-file edits
+   python3 scripts/validate.py --entity <path>
    python3 scripts/validate_graph_refs.py
    python3 scripts/derive.py
-   # build.py only if user wants to refresh graph.json for local preview
-3. Suggest a commit message: data(scope): short description
-4. Remind: friedso.com deploy is founder-only; PR needs CI green + CODEOWNERS review.
+4. Suggest commit: data(scope): description. If category complete, remind user to update ENTITY_BUILD_ROADMAP.md + README entity table to done and archive prompt.
+5. friedso.com deploy is founder-only; PR needs CI + CODEOWNERS.
 
 === OUTPUT FORMAT ===
-• Show complete YAML file contents in fenced blocks with path comment on first line: # jem/data/entities/...
-• For relationship changes, show relationship YAML snippets with rel_* ids following rel_{source}_{type}_{target} pattern.
-• If information is missing, leave fields null and explain in data_quality_notes — do not invent facts.
-• If two primary sources conflict, set data_quality: contested and cite both; do not pick a winner.
+• Complete YAML in fenced blocks; first line: # jem/data/entities/...
+• Missing facts: null + data_quality_notes; do not invent.
+• Conflicts: data_quality contested + both sources.
+• End with: suggested GitHub issue title and checklist for contributor.
 
-=== TASK-SPECIFIC INSTRUCTIONS (user fills in) ===
-[Paste any extra instructions, pasted statute text, NJDG export rows, or field-level corrections here.]
+=== TASK-SPECIFIC INSTRUCTIONS (paste from ENTITY_BUILD_ROADMAP.md or custom) ===
 
-Begin by stating ROLE and TASK, listing files you will read, then produce deliverables.
+Begin by stating ROLE, CATEGORY_ID, and TASK; list files you will read; then deliver.
 ```
 
 ---
@@ -76,9 +83,9 @@ Begin by stating ROLE and TASK, listing files you will read, then produce delive
 
 **Contributors**
 
-1. Save YAML from the chat into file(s) with the paths the model named.
-2. Open a [data correction issue](https://github.com/dso6060/REPO_NAME/issues/new?template=data_correction.yml) or email maintainers (Divya Sornaraja / Prajna Prayas — see `TEAM.md`).
-3. Maintainers run validation and merge.
+1. Save YAML from the chat.
+2. Open a **[GitHub issue only](https://github.com/dso6060/REPO_NAME/issues/new?template=data_correction.yml)** — title `[data] C15 UP pack` (example), attach files, include the field/source table.
+3. Maintainers validate: `python3 scripts/validate.py --entity path/to/file.yaml`
 
 **Co-maintainers**
 
@@ -88,17 +95,16 @@ pip install -r scripts/requirements.txt
 python3 scripts/validate.py --strict
 python3 scripts/validate_graph_refs.py
 python3 scripts/derive.py
-# optional preview: python3 scripts/build.py
 ```
+
+When a **category is complete:** set status **done** in `ENTITY_BUILD_ROADMAP.md`, archive the prompt, sync [README entity build progress](../../README.md#entity-build-progress).
 
 ---
 
 ## Optional one-liner (Cursor)
 
-Add to Cursor rules or paste at start of a Composer session:
-
-> Follow `jem/docs/AI_DATA_ENTRY_PROMPT.md` prompt box; my ROLE is co-maintainer; TASK is: [your task].
+> Follow `jem/docs/AI_DATA_ENTRY_PROMPT.md`; ROLE co-maintainer; TASK from `ENTITY_BUILD_ROADMAP.md` P1-A.
 
 ---
 
-*Regenerate Word export including this section: from repo root, `pandoc jem/docs/KNOWLEDGE_TRANSFER.md -o jem/docs/JEM_Knowledge_Transfer.docx`*
+*Regenerate Word export: `pandoc jem/docs/KNOWLEDGE_TRANSFER.md -o jem/docs/JEM_Knowledge_Transfer.docx`*

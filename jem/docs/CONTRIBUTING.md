@@ -12,7 +12,7 @@
 
 Governance: [`.github/GOVERNANCE.md`](../../.github/GOVERNANCE.md) · Team: [`TEAM.md`](TEAM.md)
 
-**Using AI (Claude / Cursor):** copy the uniform prompt from [`AI_DATA_ENTRY_PROMPT.md`](AI_DATA_ENTRY_PROMPT.md). Contributors submit generated YAML for maintainer review; co-maintainers validate locally before PR.
+**Using AI (Claude / Cursor):** [`AI_DATA_ENTRY_PROMPT.md`](AI_DATA_ENTRY_PROMPT.md) + phased `TASK`s in [`ENTITY_BUILD_ROADMAP.md`](ENTITY_BUILD_ROADMAP.md). Submit via **GitHub issues only**. Proposed new entities OK; **relationships are maintainer-only**.
 
 ---
 

@@ -13,6 +13,7 @@
 | **Current release label** | **v0.9** (pre-stabilisation; UI/data fixes in progress) |
 | **Licences** | Data CC0 · Code MIT |
 | **AI data-entry prompt** | [`AI_DATA_ENTRY_PROMPT.md`](AI_DATA_ENTRY_PROMPT.md) · also §20 below |
+| **Entity build roadmap** | [`ENTITY_BUILD_ROADMAP.md`](ENTITY_BUILD_ROADMAP.md) · README [entity progress](../../README.md#entity-build-progress) |
 
 ---
 
@@ -384,10 +385,14 @@ Everyone adding or correcting data should use the **same prompt** so YAML stays 
 
 | Role | Workflow |
 |------|----------|
-| **Contributor** | `ROLE: contributor` → AI produces YAML drafts → you share files with maintainers (issue, PR, or email) → they validate & merge |
-| **Co-maintainer** | `ROLE: co-maintainer` → AI edits repo → you run `validate.py` / `derive.py` → open PR |
+| **Contributor** | `ROLE: contributor` + roadmap `TASK` → YAML drafts → **GitHub issue only** → maintainers validate & merge |
+| **Co-maintainer** | `ROLE: co-maintainer` → validate locally → PR; wire **relationships** when category needs edges |
 
-**Contributors without git:** attach `.yaml` to a GitHub data-correction issue or email maintainers (Divya Sornaraja / Prajna Prayas). Do not set `verified` or `scores_validated`.
+| Rule | Detail |
+|------|--------|
+| Submissions | **GitHub issues only** (no email) |
+| New entities | Proposed drafts OK when roadmap TASK allows |
+| Relationships | **Maintainer-only** |
 
 **Maintainers validating a contributor file:**
 
@@ -397,60 +402,20 @@ cd jem && python3 scripts/validate.py --entity path/to/submitted_file.yaml
 
 ### Copy-paste prompt (full)
 
-Also maintained at [`AI_DATA_ENTRY_PROMPT.md`](AI_DATA_ENTRY_PROMPT.md). Copy from the opening ` ``` ` below through the closing fence.
+Use [`AI_DATA_ENTRY_PROMPT.md`](AI_DATA_ENTRY_PROMPT.md) — single source for the prompt box (do not duplicate here).
 
-```
-You are helping with Judiciary Entity Map (India) — JEM, an open CC0 structural dataset of Indian courts, tribunals, regulators, and related bodies. You are working in a clone of the JEM repository.
+Pick a phased **TASK** from [`ENTITY_BUILD_ROADMAP.md`](ENTITY_BUILD_ROADMAP.md) **Active prompts** only; when a category is **done**, its prompt moves to the roadmap archive and is removed from the active list.
 
-=== REPO CONVENTIONS (do not violate) ===
-• Map STRUCTURE only: appointment chains, funding, oversight, appellate paths, complaint mechanisms, operational status, case-volume fields when sourced — NOT case outcomes, NOT individual judge names, NOT editorial opinions.
-• Entity IDs: permanent snake_case (e.g. hc_madras, mh_district_court_pune). Never rename an existing id.
-• data_quality: use partial unless every changed fact has a primary GoI source URL; never set verified without official sources; never set derived.scores_validated (maintainers only).
-• Primary sources (in order): india-code.nic.in, egazette.gov.in, main.sci.gov.in, official ministry/HC sites, doj.gov.in, NJDG/e-Courts URLs, PIB, law commission. Avoid Wikipedia and news-only citations.
-• Schema: read jem/data/schema/entity_schema.yaml and jem/data/schema/relationship_schema.yaml before writing YAML.
-• Templates: copy the closest existing file under jem/data/entities/ (same type/cluster/state). Match field names and nesting exactly.
-• Paths: new state entities usually go under jem/data/entities/_generated/states/{state_code}/. Relationships go in jem/data/relationships/ (existing pack or new file only if maintainer-approved).
-• Do NOT run generate_v1_states_bundle.py unless the user explicitly asks (high overwrite risk).
-• Do NOT hand-edit jem/data/derived/ or commit graph.json unless the user is a maintainer running a release build.
+**One-liner (Cursor):** `Follow jem/docs/AI_DATA_ENTRY_PROMPT.md; ROLE: co-maintainer; TASK from ENTITY_BUILD_ROADMAP.md P1-A`
 
-=== YOUR SESSION ===
-ROLE: [contributor | co-maintainer]
-TASK: [one sentence — e.g. "Upgrade sources for hc_allahabad" OR "Draft YAML for Kerala SERC" OR "Fix case_volume on tn_district_court_chennai from NJDG"]
-ENTITY_ID (if editing existing): [id or none]
-STATE / CLUSTER (if relevant): [e.g. KL, regulatory_bodies, backbone]
-PRIMARY SOURCES I HAVE: [paste URLs and access dates]
+### Phased prompts toward 1,500+ entities
 
-=== IF ROLE = contributor ===
-1. Read the relevant existing YAML if ENTITY_ID is set; otherwise find the closest template entity.
-2. Produce ONLY the YAML file(s) as deliverables — complete, valid-looking content with sources[] on every factual claim you add or change.
-3. At the top of your reply, list: files to create/update (paths), entity ids touched, and a table of field | new value | source URL.
-4. Tell the user to submit via GitHub "Data correction" issue or PR (data-quality scope) OR send the YAML to maintainers for validation and merge. Do NOT claim the data is merged or verified.
-5. Do not add new relationship topology or new entity ids unless TASK explicitly says "draft for maintainer review" and user provided maintainer approval in chat.
+| Resource | Use |
+|----------|-----|
+| [`ENTITY_BUILD_ROADMAP.md`](ENTITY_BUILD_ROADMAP.md) | Category tracker (pending / updated / done), Phase 1–3 **active prompts**, archive when done |
+| [README § Entity build progress](../../README.md#entity-build-progress) | Public status table — **sync when a category is marked done** |
 
-=== IF ROLE = co-maintainer ===
-1. Same quality rules as contributor.
-2. After editing, run these commands from jem/ and report full output:
-   python3 scripts/validate.py --strict
-   python3 scripts/validate.py --entity <path>   # for single-file edits
-   python3 scripts/validate_graph_refs.py
-   python3 scripts/derive.py
-   # build.py only if user wants to refresh graph.json for local preview
-3. Suggest a commit message: data(scope): short description
-4. Remind: friedso.com deploy is founder-only; PR needs CI green + CODEOWNERS review.
-
-=== OUTPUT FORMAT ===
-• Show complete YAML file contents in fenced blocks with path comment on first line: # jem/data/entities/...
-• For relationship changes, show relationship YAML snippets with rel_* ids following rel_{source}_{type}_{target} pattern.
-• If information is missing, leave fields null and explain in data_quality_notes — do not invent facts.
-• If two primary sources conflict, set data_quality: contested and cite both; do not pick a winner.
-
-=== TASK-SPECIFIC INSTRUCTIONS (user fills in) ===
-[Paste any extra instructions, pasted statute text, NJDG export rows, or field-level corrections here.]
-
-Begin by stating ROLE and TASK, listing files you will read, then produce deliverables.
-```
-
-**One-liner (Cursor):** `Follow jem/docs/AI_DATA_ENTRY_PROMPT.md; ROLE: co-maintainer; TASK: […]`
+**Maintainer closure:** (1) merge data → (2) wire relationships in separate session → (3) set category **done** → (4) move prompt to archive → (5) update README table.
 
 ---
 
