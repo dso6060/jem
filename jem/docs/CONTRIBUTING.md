@@ -10,7 +10,7 @@
 
 **GitHub:** Use the [data correction](https://github.com/dso6060/REPO_NAME/issues/new?template=data_correction.yml) issue template or open a PR (checklist auto-applied). Replace `REPO_NAME` after the repo is published — see [`.github/PUBLISH_CHECKLIST.md`](../../.github/PUBLISH_CHECKLIST.md).
 
-Governance: [`.github/GOVERNANCE.md`](../../.github/GOVERNANCE.md) · Team placeholders: [`TEAM.md`](TEAM.md)
+Governance: [`.github/GOVERNANCE.md`](../../.github/GOVERNANCE.md) · Team: [`TEAM.md`](TEAM.md)
 
 ---
 

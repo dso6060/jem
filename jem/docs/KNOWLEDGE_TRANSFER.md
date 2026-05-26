@@ -7,8 +7,8 @@
 |-------|--------|
 | **Document version** | 1.0 (May 2026) |
 | **Audience** | Co-maintainer (technical background); executive overview — use Cursor/Claude for deep dives |
-| **Primary author** | Project founder (data, deploy, process design) |
-| **Co-maintainer role** | Equal co-maintainer on GitHub; friedso.com deploy stays with founder |
+| **Primary author** | Divya Sornaraja ([@dso6060](https://github.com/dso6060)) — data, deploy, process design |
+| **Co-maintainer** | Prajna Prayas — equal on GitHub; friedso.com deploy stays with founder |
 | **Live demo** | https://friedso.com/apps/jem/ (May 2026 build, ~506 entities) |
 | **Current release label** | **v0.9** (pre-stabilisation; UI/data fixes in progress) |
 | **Licences** | Data CC0 · Code MIT |
@@ -219,7 +219,7 @@ CI does **not** run `build.py` or deploy.
 
 ## 9. GitHub & community launch plan
 
-**Founder:** `@dso6060` · **Co-maintainer:** add to `CODEOWNERS` when username known.
+**Founder:** Divya Sornaraja · `@dso6060` · **Co-maintainer:** Prajna Prayas (add GitHub username to `CODEOWNERS` when known).
 
 Scaffolding is in **`.github/`** (ready before first push):
 
@@ -371,9 +371,9 @@ python3 scripts/derive.py --explain nclt
 
 | Role | Contact |
 |------|---------|
-| Project founder / deploy | *[founder name — fill in]* |
-| Co-maintainer | *[co-maintainer name — fill in]* |
-| Domain reviewers | TBD |
+| Project founder / deploy | **Divya Sornaraja** · GitHub [@dso6060](https://github.com/dso6060) |
+| Co-maintainer | **Prajna Prayas** · GitHub username TBD (add to `CODEOWNERS` when confirmed) |
+| Domain reviewers (institutional) | [TrustBridge Rule of Law Foundation](https://trustbridge.in/) — *partnership / advisory role to be officially confirmed* |
 
 ---
 
