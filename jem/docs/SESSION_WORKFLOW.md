@@ -33,6 +33,15 @@ Shortcut (validate + derive + build, no generator):
 cd jem && ./scripts/safe_pipeline.sh
 ```
 
+### Production bundle vs public GitHub (two scripts)
+
+| Goal | Script (from repo root) |
+|------|-------------------------|
+| **friedso.com / production static deploy** | `./jem/scripts/build_friedso_deploy_bundle.sh` → `_deploy_bundle/jem-web-*` (gitignored). Optional: `JEM_REMOTE=… ./jem/scripts/build_friedso_deploy_bundle.sh --deploy` |
+| **Public GitHub** (`dso6060/jem_prototype`) | `./jem/scripts/publish_github.sh -m "…" [--branch NAME] [--push]` |
+
+Do not commit `_deploy_bundle/`. Run `build_friedso_deploy_bundle.sh` before production; run `publish_github.sh` when YAML/docs should reach GitHub.
+
 ---
 
 ## ⚠ Graph / bundle overwrite risks

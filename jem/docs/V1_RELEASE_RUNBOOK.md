@@ -9,10 +9,16 @@
 
 ## 0. Preflight (run locally)
 
+**Recommended:** build a self-contained bundle (validates, builds graph, copies web + materialized `public/graph.json`):
+
 ```bash
 cd /path/to/jem/repo
-./jem/scripts/deploy_prep.sh
+./jem/scripts/build_friedso_deploy_bundle.sh
+# Optional upload:
+# JEM_REMOTE='user@host:~/path/to/apps/jem' ./jem/scripts/build_friedso_deploy_bundle.sh --deploy
 ```
+
+Or checks only: `./jem/scripts/deploy_prep.sh`
 
 Fix any errors before upload/rsync. See [`SESSION_WORKFLOW.md`](SESSION_WORKFLOW.md) for the daily pipeline and **graph overwrite** risks.
 
