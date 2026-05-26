@@ -33,14 +33,11 @@ Shortcut (validate + derive + build, no generator):
 cd jem && ./scripts/safe_pipeline.sh
 ```
 
-### Production bundle vs public GitHub (two scripts)
+### Maintainer-only scripts (not on GitHub)
 
-| Goal | Script (from repo root) |
-|------|-------------------------|
-| **friedso.com / production static deploy** | `./jem/scripts/build_friedso_deploy_bundle.sh` → `_deploy_bundle/jem-web-*` (gitignored). Optional: `JEM_REMOTE=… ./jem/scripts/build_friedso_deploy_bundle.sh --deploy` |
-| **Public GitHub** (`dso6060/jem_prototype`) | `./jem/scripts/publish_github.sh -m "…" [--branch NAME] [--push]` |
+`build_friedso_deploy_bundle.sh` and `publish_github.sh` are **gitignored** — see [`../scripts/MAINTAINER_SCRIPTS.md`](../scripts/MAINTAINER_SCRIPTS.md). Use `deploy_prep.sh` + manual rsync (runbook) or your local copy of those helpers.
 
-Do not commit `_deploy_bundle/`. Run `build_friedso_deploy_bundle.sh` before production; run `publish_github.sh` when YAML/docs should reach GitHub.
+Do not commit `_deploy_bundle/`.
 
 ---
 

@@ -320,20 +320,9 @@ cd ..
    - **Local preview:** `cd jem/web && python3 -m http.server 8080` (ensure `public/graph.json` resolves).
    - **Static hosts:** upload `jem/web/` plus `graph.json` as `public/graph.json` (Netlify, S3, GitHub Pages, nginx, etc.).
 
-Production deploy is **maintainer-only**:
+Production deploy is **maintainer-only** (local helpers not in this repo — see [`jem/scripts/MAINTAINER_SCRIPTS.md`](jem/scripts/MAINTAINER_SCRIPTS.md)). Public workflow: [`jem/docs/SESSION_WORKFLOW.md`](jem/docs/SESSION_WORKFLOW.md) · [`deploy_prep.sh`](jem/scripts/deploy_prep.sh).
 
-```bash
-./jem/scripts/build_friedso_deploy_bundle.sh          # → _deploy_bundle/ (local)
-JEM_REMOTE='user@host:~/path/to/apps/jem' ./jem/scripts/build_friedso_deploy_bundle.sh --deploy
-```
-
-Public GitHub (`dso6060/jem_prototype`):
-
-```bash
-./jem/scripts/publish_github.sh -m "data(scope): …" --branch your/branch --push
-```
-
-See [`jem/docs/SESSION_WORKFLOW.md`](jem/docs/SESSION_WORKFLOW.md). GitHub Actions validates PRs — **does not auto-deploy**.
+GitHub: https://github.com/dso6060/jem_prototype — Actions validates PRs; **does not auto-deploy**.
 
 **Mirrors:** You may host copies elsewhere; courtesy attribution: *Structural data from [Judiciary Entity Map (JEM)](https://friedso.com/apps/jem/).*
 
