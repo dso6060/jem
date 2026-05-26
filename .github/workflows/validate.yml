@@ -5,6 +5,12 @@ on:
     paths:
       - 'jem/data/**'
       - 'jem/scripts/**'
+      - '.github/workflows/validate.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'jem/data/**'
+      - 'jem/scripts/**'
 
 jobs:
   validate:
@@ -28,3 +34,6 @@ jobs:
 
       - name: Derive scores (dry run)
         run: python scripts/derive.py
+
+      - name: Validate graph relationship references
+        run: python scripts/validate_graph_refs.py

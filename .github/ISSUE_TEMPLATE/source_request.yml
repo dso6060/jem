@@ -1,0 +1,45 @@
+name: Source request
+description: Ask for a primary source link for an unsourced or partial field
+title: "[source] "
+labels: ["data", "needs-source"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use when a field exists but lacks a primary source, or you found a better official reference.
+
+  - type: input
+    id: entity_id
+    attributes:
+      label: Entity ID
+    validations:
+      required: true
+
+  - type: input
+    id: field_name
+    attributes:
+      label: Field or block name
+      placeholder: e.g. appointment.formally_appoints, case_volume.pending_cases
+    validations:
+      required: true
+
+  - type: textarea
+    id: why_needed
+    attributes:
+      label: Why is this source needed?
+    validations:
+      required: true
+
+  - type: input
+    id: candidate_url
+    attributes:
+      label: Candidate source URL (if you have one)
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+    validations:
+      required: false

@@ -1,10 +1,13 @@
 # Judiciary Entity Map (India) - JEM
 
+**Open structural map of India's judicial ecosystem — institutional capacity, relationships, and systemic gaps.**
+
 An open, honest structural study of the Indian judicial ecosystem.
 Maps institutional relationships — appointment chains, funding flows,
 oversight mechanisms, complaint pathways — not case outcomes.
 
-**Live:** `https://friedso.com/apps/jem/` *(adjust if your public path differs)*
+**Live:** `https://friedso.com/apps/jem/` *(adjust if your public path differs)*  
+**Knowledge transfer (maintainers):** [`docs/KNOWLEDGE_TRANSFER.md`](docs/KNOWLEDGE_TRANSFER.md) · [`docs/JEM_Knowledge_Transfer.docx`](docs/JEM_Knowledge_Transfer.docx)
 
 ---
 

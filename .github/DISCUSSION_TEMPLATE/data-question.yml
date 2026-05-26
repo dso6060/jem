@@ -1,0 +1,22 @@
+title: "Data question: "
+labels: ["Q&A"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ask about how JEM models an institution, a relationship type, or a score.
+        For corrections with sources, use the **Data correction** issue template instead.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+    validations:
+      required: true
+
+  - type: input
+    id: entity_id
+    attributes:
+      label: Related entity ID (optional)
+    validations:
+      required: false

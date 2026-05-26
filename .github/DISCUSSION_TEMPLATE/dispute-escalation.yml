@@ -1,0 +1,41 @@
+title: "Dispute: "
+labels: ["disputes"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Escalation path:** Discussion → maintainer decision → YAML update (`contested` or agreed fix).
+        See [GOVERNANCE.md](../GOVERNANCE.md).
+
+  - type: input
+    id: entity_id
+    attributes:
+      label: Entity ID
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What is disputed?
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Primary sources (all sides)
+      description: One URL per line
+    validations:
+      required: true
+
+  - type: dropdown
+    id: outcome_requested
+    attributes:
+      label: Outcome you suggest
+      options:
+        - Mark field contested in YAML
+        - Maintainer investigation
+        - Close — not a structural/factual dispute
+    validations:
+      required: false

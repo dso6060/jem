@@ -1,0 +1,56 @@
+name: Bug report
+description: Map UI, build pipeline, or GitHub Actions failure
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Web map (friedso.com or local jem/web/)
+        - validate.py / derive.py / build.py
+        - GitHub Actions CI
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. cd jem && python3 scripts/validate.py --strict
+        2. ...
+    validations:
+      required: false
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser / OS (if UI)
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console output or CI log excerpt
+      render: shell
+    validations:
+      required: false

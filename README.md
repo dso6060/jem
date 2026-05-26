@@ -1,13 +1,19 @@
 # Judiciary Entity Map (India) - JEM
 
-**Open-source structural map of the Indian judicial ecosystem.**  
+**Open structural map of India's judicial ecosystem — institutional capacity, relationships, and systemic gaps.**
+
 *Working name during early builds was “d3lem”; the project and paths are now **JEM** / `jem/`.*
 
-JEM maps *how* courts, tribunals, regulators, and oversight bodies are built — appointment chains, funding flows, independence risk, structural gaps, case volume and clogging — not *what* they decide.
+JEM maps *how* courts, tribunals, regulators, and oversight bodies are built — appointment chains, funding flows, independence risk, structural gaps, case volume and clogging — not *what* they decide. The goal is **structural literacy**: a dashboard-oriented view of institutional **carrying capacity** for administrators, litigants, journalists, ministry officials, and other stakeholders.
 
 → **Live:** `https://friedso.com/apps/jem/` *(adjust to your public URL if different)*  
 → **Data licence:** CC0 (public domain)  
 → **Code licence:** MIT  
+→ **Maintainer guide:** [`jem/docs/KNOWLEDGE_TRANSFER.md`](jem/docs/KNOWLEDGE_TRANSFER.md) (Word: [`jem/docs/JEM_Knowledge_Transfer.docx`](jem/docs/JEM_Knowledge_Transfer.docx))
+
+### Disclaimer
+
+Judiciary Entity Map (India) (JEM) presents structural information about institutions and their formal relationships, derived from public sources. It does not provide legal advice, predict case outcomes, or assess individual conduct. Independence Risk and Discretionary Power scores are algorithmic indicators of *structural design*, not findings of bias or misconduct. Data may be incomplete or outdated; verify critical facts against primary sources before relying on them in litigation, policy, or journalism. Corrections are welcome via GitHub with citations (once the public repository is published).
 
 ---
 
@@ -268,6 +274,10 @@ GitHub Actions validates all PRs touching `jem/data/**` or `jem/scripts/**`. Doe
 
 ## Contributing
 
-See [jem/docs/CONTRIBUTING.md](jem/docs/CONTRIBUTING.md). Every field that affects a score or gap marker needs a primary source. `data_quality: unverified` renders with a dashed border — always better to be honest about what is and is not verified.
+See [jem/docs/CONTRIBUTING.md](jem/docs/CONTRIBUTING.md). **v0.9:** community contributions are **data-quality upgrades on existing entities** only; maintainers handle new entities and relationship topology.
+
+GitHub scaffolding (issue/PR templates, CODEOWNERS, governance): [`.github/`](.github/) · publish steps: [`.github/PUBLISH_CHECKLIST.md`](.github/PUBLISH_CHECKLIST.md) · team placeholders: [`jem/docs/TEAM.md`](jem/docs/TEAM.md).
+
+Every field that affects a score or gap marker needs a primary source. `data_quality: unverified` renders with a dashed border — always better to be honest about what is and is not verified.
 
 No case outcomes. No individual judge names. No editorial commentary. Structural facts from Constitution, statutes, judgments, official reports only.

@@ -1,0 +1,46 @@
+name: Contested fact
+description: Report conflicting primary sources for the same structural claim
+title: "[contested] "
+labels: ["contested", "data"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        JEM does not resolve disputes by opinion. Maintainers will set `data_quality: contested` and cite **both** positions.
+        Consider opening a [Dispute discussion](https://github.com/dso6060/REPO_NAME/discussions) first.
+
+  - type: input
+    id: entity_id
+    attributes:
+      label: Entity ID
+    validations:
+      required: true
+
+  - type: input
+    id: field_name
+    attributes:
+      label: Field in dispute
+    validations:
+      required: true
+
+  - type: textarea
+    id: position_a
+    attributes:
+      label: Position A — claim + primary source URL
+    validations:
+      required: true
+
+  - type: textarea
+    id: position_b
+    attributes:
+      label: Position B — claim + primary source URL
+    validations:
+      required: true
+
+  - type: textarea
+    id: maintainer_notes
+    attributes:
+      label: Context for maintainers
+      description: Why this matters structurally (appointment, funding, jurisdiction, etc.)
+    validations:
+      required: false

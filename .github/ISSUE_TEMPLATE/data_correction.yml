@@ -1,0 +1,85 @@
+name: Data correction
+description: Correct a field on an existing entity with a primary source (preferred community contribution)
+title: "[data] "
+labels: ["data", "community"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **v0.9 scope:** Corrections to *existing* entities only. Do not request new entity IDs here — maintainers handle structural additions.
+        See [CONTRIBUTING.md](https://github.com/dso6060/REPO_NAME/blob/main/jem/docs/CONTRIBUTING.md).
+
+  - type: input
+    id: entity_id
+    attributes:
+      label: Entity ID
+      description: snake_case id, e.g. `hc_madras`, `nclt`, `tn_district_court_chennai`
+      placeholder: entity_id
+    validations:
+      required: true
+
+  - type: input
+    id: yaml_path
+    attributes:
+      label: YAML path (if known)
+      placeholder: jem/data/entities/...
+    validations:
+      required: false
+
+  - type: textarea
+    id: current_value
+    attributes:
+      label: Current value (wrong or outdated)
+      description: Quote the field and value as shown in the map or YAML
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_value
+    attributes:
+      label: Proposed correction
+    validations:
+      required: true
+
+  - type: input
+    id: source_url
+    attributes:
+      label: Primary source URL
+      description: Official GoI, india-code, gazette, judgment, DoJ, NJDG, or ministry site
+    validations:
+      required: true
+
+  - type: input
+    id: accessed_date
+    attributes:
+      label: Source accessed date
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+
+  - type: dropdown
+    id: data_quality_suggestion
+    attributes:
+      label: Suggested data_quality after fix
+      options:
+        - partial
+        - complete
+        - verified (maintainer will confirm)
+        - contested
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: pr_willingness
+    attributes:
+      label: Contribution
+      options:
+        - label: I can open a PR with this change myself
+        - label: I prefer maintainers apply the fix from this issue
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
+    validations:
+      required: false

@@ -1,5 +1,19 @@
 # Contributing to Judiciary Entity Map (India) - JEM
 
+## v0.9 contribution scope (read first)
+
+| You can submit (PR or issue) | Maintainers only |
+|------------------------------|------------------|
+| Source links, factual corrections on **existing** entities | New entity `id`s or relationship topology |
+| `data_quality` / `data_quality_notes` with citations | Schema or `derive.py` formula changes |
+| Request `contested` with two primary sources | `derived.scores_validated: true` |
+
+**GitHub:** Use the [data correction](https://github.com/dso6060/REPO_NAME/issues/new?template=data_correction.yml) issue template or open a PR (checklist auto-applied). Replace `REPO_NAME` after the repo is published — see [`.github/PUBLISH_CHECKLIST.md`](../../.github/PUBLISH_CHECKLIST.md).
+
+Governance: [`.github/GOVERNANCE.md`](../../.github/GOVERNANCE.md) · Team placeholders: [`TEAM.md`](TEAM.md)
+
+---
+
 ## Principles
 
 1. **Primary sources only.** Every `data_quality: verified` field requires a direct link to an official GoI source: india-code.nic.in, official gazette notification, Supreme Court judgment on main.sci.gov.in, or official ministry website.
