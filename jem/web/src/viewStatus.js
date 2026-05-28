@@ -3,6 +3,7 @@
 import { State } from './state.js';
 
 const IMPACT_FILTER_LABELS = {
+  has_structural_gaps: 'structural gaps',
   high_independence_risk: 'high independence risk',
   appointer_funder_same: 'same appointer & funder',
   no_public_criteria: 'no public appointment criteria',
@@ -66,12 +67,8 @@ export function primeGapStats(graph) {
 }
 
 function shortZoomLabel() {
-  const l = State.zoomLevel;
-  if (l === 0) return 'L0 clusters';
-  if (l === 1) return 'L1 map';
-  if (l === 2) return 'L2';
-  if (l === 3) return 'L3 selected';
-  return `L${l}`;
+  if (State.selectedEntityId) return 'entity selected';
+  return '3 generations';
 }
 
 function modeLabel() {
@@ -84,9 +81,9 @@ function modeLabel() {
 export function getCanvasEmptyState() {
   if (!State.graph) return null;
 
-  const visible = State.getVisibleEntities();
+  const slice = State.getFocusTrinitySlice();
+  const visibleCount = slice.entityIds?.size || 0;
   const total = State.graph.entities.length;
-  const visibleCount = visible.length;
 
   if (State.activeImpactFilter) {
     if (visibleCount === 0) {
@@ -102,19 +99,22 @@ export function getCanvasEmptyState() {
     return { title: 'Gaps mode — gap markers pending in graph build', body: '' };
   }
 
-  if (State.useProgressiveExplorer && State.expandedEntityIds.size === 0 && visibleCount <= 4) {
-    return { title: 'Roots only — use blue + on Supreme Court to expand', body: '' };
+  if (!slice.parent) {
+    return { title: 'No entity — pick from tree or search', body: '' };
   }
 
   if (visibleCount === 0) {
     return { title: 'Nothing visible — clear filters or move timeline', body: '' };
   }
 
-  if (visibleCount < 8 && total > 40 && !State.activeImpactFilter) {
-    return { title: `${visibleCount} of ${total} entities visible`, body: '' };
-  }
-
   return null;
+}
+
+function trinitySummary() {
+  const { parent, children, grandchildren } = State.getFocusTrinitySlice();
+  if (!parent) return 'no entity';
+  const p = parent.abbreviation || parent.name;
+  return `${p} · ${children.length} children · ${grandchildren.length} grandchildren`;
 }
 
 /** Single-line map status for the bar below the canvas. */
@@ -132,13 +132,8 @@ export function buildViewStatusText() {
     if (bits.length) parts.push(bits.join('+'));
   }
 
-  if (State.useProgressiveExplorer) {
-    parts.push(
-      State.expandedEntityIds.size === 0
-        ? 'roots only — blue + to expand'
-        : 'explorer expanded'
-    );
-  }
+  parts.push(trinitySummary());
+  parts.push(`${State.navMode === 'browse' ? 'Browse' : 'Appellate'} navigator`);
 
   if (State.showCaseVolume) parts.push('clog overlay');
 
@@ -178,6 +173,10 @@ const REFRESH_EVENTS = [
   'derivedToggle',
   'collapseChanged',
   'aggregateChanged',
+  'focusChanged',
+  'navModeChanged',
+  'browseFacetChanged',
+  'treeSelectionChanged',
 ];
 
 export function initViewStatus() {

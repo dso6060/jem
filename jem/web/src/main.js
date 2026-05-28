@@ -2,11 +2,14 @@
 // Loads graph.json, initialises all modules, wires events.
 
 import { State } from './state.js';
-import { initRenderer, render, fitGraphToViewport } from './renderer.js';
+import { initFocusCanvas, render, fitFocusToView } from './focusCanvas.js';
+import { initNavigatorTree, expandPathToEntity } from './navigatorTree.js';
+import { initGroupReport } from './groupReport.js';
 import { initTimeline } from './timeline.js';
-import { initPanel, openDetailPanel } from './panel.js';
+import { initPanel } from './panel.js';
 import { initNeighborhoodPanel } from './neighborhoodPanel.js';
 import { initViewStatus, getGapStats, primeGapStats } from './viewStatus.js';
+import { selectAndOpenEntity } from './entitySelection.js';
 
 const GRAPH_URL = './public/graph.json';
 
@@ -15,8 +18,11 @@ const GRAPH_URL = './public/graph.json';
 
 const FILTER_TO_CARD = {
   high_independence_risk: 'kpi-card-ir',
+  has_structural_gaps: 'kpi-card-gaps',
   blocked_or_absent: 'kpi-card-blocked',
 };
+
+const INSPECTOR_WIDTH_KEY = 'jem-inspector-width';
 
 let kpiCardsWired = false;
 
@@ -28,7 +34,7 @@ function syncKpiCardActive() {
     document.getElementById(cardIdForFilter)?.classList.add('active');
   }
 
-  if (State.viewMode === 'gaps') {
+  if (State.viewMode === 'gaps' || State.activeImpactFilter === 'has_structural_gaps') {
     document.getElementById('kpi-card-gaps')?.classList.add('active');
   }
 
@@ -70,6 +76,7 @@ function populateKpiCards(metrics) {
         fn();
         syncKpiCardActive();
         render();
+        requestAnimationFrame(() => fitFocusToView({ animate: false }));
       });
     };
 
@@ -80,6 +87,9 @@ function populateKpiCards(metrics) {
 
     onCard('kpi-card-gaps', () => {
       if (State.viewMode !== 'gaps') State.setViewMode('gaps');
+      State.setImpactFilter(
+        State.activeImpactFilter === 'has_structural_gaps' ? null : 'has_structural_gaps',
+      );
     });
 
     onCard('kpi-card-blocked', () => {
@@ -98,10 +108,15 @@ function populateKpiCards(metrics) {
         State.setImpactFilter(null);
         syncKpiCardActive();
         render();
+        requestAnimationFrame(() => fitFocusToView({ animate: false }));
       });
     }
 
-    State.subscribe('filterChanged', syncKpiCardActive);
+    State.subscribe('filterChanged', () => {
+      syncKpiCardActive();
+      render();
+      requestAnimationFrame(() => fitFocusToView({ animate: false }));
+    });
     State.subscribe('viewModeChanged', syncKpiCardActive);
     State.subscribe('derivedToggle', syncKpiCardActive);
   }
@@ -125,35 +140,37 @@ async function boot() {
       document.documentElement.style.setProperty('--jem-canvas-height', `${ch}px`);
     }
     State.initExplorerDefaults();
+    State.initFocusDefaults();
     primeGapStats(graph);
 
     // 2. Initialise modules (view status before KPI so gap stats are ready)
     initViewStatus();
-    initRenderer();
+    initFocusCanvas();
+    initNavigatorTree();
+    initGroupReport();
     initTimeline();
     initPanel();
     initNeighborhoodPanel();
-    initZoom();
     initToolbar();
     initSearch();
     initAboutModal();
     initDistrictLatticeHotkeys();
+    initMobileWorkspaceTabs();
+    initInspectorResize();
+    syncNavFacetVisibility();
 
     populateKpiCards(graph.impact_metrics || {});
 
     State.emit('graphLoaded', graph);
+    expandPathToEntity(State.focusEntityId);
+    ['supreme_court_india', 'president_india'].forEach(r => {
+      if (State.getEntityById(r)) expandPathToEntity(r);
+    });
 
-    // 4. Hide loading overlay
     document.getElementById('loading-overlay').style.display = 'none';
 
-    // 5. First render — default entity view (not cluster dashboard).
-    State.setZoomLevel(1);
+    State.setZoomLevel(2);
     render();
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        fitGraphToViewport({ duration: 0 });
-      });
-    });
 
   } catch (err) {
     console.error('JEM boot error:', err);
@@ -166,57 +183,10 @@ async function boot() {
   }
 }
 
-// ── Zoom ──────────────────────────────────────────────────────────────────────
-
-function initZoom() {
-  const svgEl = document.getElementById('main-svg');
-  const root = document.getElementById('graph-root');
-
-  const zoom = d3.zoom()
-    .scaleExtent([0.02, 32])
-    .translateExtent([[-28000, -24000], [28000, 24000]])
-    .wheelDelta((event) => {
-      const dy = event.deltaMode === 1 ? event.deltaY * 28
-        : event.deltaMode === 2 ? event.deltaY * 900
-        : event.deltaY;
-      return -dy * 0.0016;
-    })
-    .on('zoom', (event) => {
-      d3.select(root).attr('transform', event.transform);
-      State.setTransform(event.transform);
-      render();
-    });
-
-  d3.select(svgEl).call(zoom);
-
-  // Store zoom behaviour for programmatic use
-  State._zoom = zoom;
-  State._zoomSvg = d3.select(svgEl);
-
-  // Zoom buttons
-  const zoomIn = (e) => {
-    e.preventDefault?.();
-    e.stopPropagation?.();
-    State._zoomSvg.transition().duration(300).call(zoom.scaleBy, 1.5);
-  };
-  const zoomOut = (e) => {
-    e.preventDefault?.();
-    e.stopPropagation?.();
-    State._zoomSvg.transition().duration(300).call(zoom.scaleBy, 0.67);
-  };
-  const zoomReset = (e) => {
-    e.preventDefault?.();
-    e.stopPropagation?.();
-    fitGraphToViewport({ duration: 420 });
-    State.setZoomLevel(1);
-    render();
-  };
-  // Pointer events only to avoid double-firing.
-  document.getElementById('btn-zoom-in').addEventListener('pointerdown', zoomIn);
-  document.getElementById('btn-zoom-out').addEventListener('pointerdown', zoomOut);
-  document.getElementById('btn-zoom-reset').addEventListener('pointerdown', zoomReset);
-
-  d3.select(svgEl).call(zoom.transform, d3.zoomIdentity);
+function syncNavFacetVisibility() {
+  const facet = document.getElementById('nav-facet-switch');
+  if (!facet) return;
+  facet.classList.toggle('hidden', State.navMode !== 'browse');
 }
 
 // ── Toolbar ───────────────────────────────────────────────────────────────────
@@ -260,7 +230,7 @@ function syncModeToolbarButtons() {
 function initToolbar() {
   const advToggle = document.getElementById('btn-advanced-toggle');
   const advDrawer = document.getElementById('advanced-drawer');
-  const advSlot = document.getElementById('toolbar-advanced-slot');
+  const advSlot = document.getElementById('nav-advanced-slot');
 
   State.setViewMode('structure');
 
@@ -294,17 +264,12 @@ function initToolbar() {
   });
 
   if (advToggle && advDrawer) {
-    advToggle.addEventListener('pointerdown', (e) => {
-      e.preventDefault?.();
-      e.stopPropagation?.();
+    advToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       const nowOpen = !advDrawer.classList.contains('hidden');
-      if (nowOpen) {
-        advDrawer.classList.add('hidden');
-        advToggle.setAttribute('aria-expanded', 'false');
-      } else {
-        advDrawer.classList.remove('hidden');
-        advToggle.setAttribute('aria-expanded', 'true');
-      }
+      advDrawer.classList.toggle('hidden', nowOpen);
+      advToggle.setAttribute('aria-expanded', nowOpen ? 'false' : 'true');
     });
   }
 
@@ -364,7 +329,9 @@ function initToolbar() {
 
   State.subscribe('graphLoaded', () => {
     syncExplorerTreeActions();
+    syncNavFacetVisibility();
   });
+  State.subscribe('navModeChanged', () => syncNavFacetVisibility());
   State.subscribe('collapseChanged', () => {
     syncExplorerTreeActions();
   });
@@ -416,11 +383,110 @@ function initToolbar() {
     }
   });
 
-  document.addEventListener('pointerdown', (e) => {
+  document.addEventListener('click', (e) => {
     if (!advDrawer || !advToggle || advDrawer.classList.contains('hidden')) return;
     if (advSlot && advSlot.contains(e.target)) return;
     advDrawer.classList.add('hidden');
     advToggle.setAttribute('aria-expanded', 'false');
+  });
+}
+
+function initInspectorResize() {
+  const resizer = document.getElementById('inspector-resizer');
+  if (!resizer) return;
+
+  const root = document.documentElement;
+  const readMin = () => parseInt(getComputedStyle(root).getPropertyValue('--jem-inspector-min'), 10) || 300;
+  const readMax = () => {
+    const cssMax = parseInt(getComputedStyle(root).getPropertyValue('--jem-inspector-max'), 10) || 920;
+    return Math.min(cssMax, window.innerWidth - 320);
+  };
+
+  try {
+    const saved = localStorage.getItem(INSPECTOR_WIDTH_KEY);
+    if (saved) {
+      const w = parseInt(saved, 10);
+      if (w >= readMin() && w <= readMax()) {
+        root.style.setProperty('--jem-inspector-width', `${w}px`);
+      }
+    }
+  } catch {
+    /* ignore storage errors */
+  }
+
+  let dragging = false;
+
+  const applyWidth = (clientX) => {
+    const w = Math.min(readMax(), Math.max(readMin(), window.innerWidth - clientX));
+    root.style.setProperty('--jem-inspector-width', `${w}px`);
+    return w;
+  };
+
+  const stopDrag = () => {
+    if (!dragging) return;
+    dragging = false;
+    document.body.classList.remove('jem-resizing-inspector');
+    try {
+      const w = parseInt(getComputedStyle(root).getPropertyValue('--jem-inspector-width'), 10);
+      if (w) localStorage.setItem(INSPECTOR_WIDTH_KEY, String(w));
+    } catch {
+      /* ignore */
+    }
+  };
+
+  resizer.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return;
+    dragging = true;
+    document.body.classList.add('jem-resizing-inspector');
+    e.preventDefault();
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!dragging) return;
+    applyWidth(e.clientX);
+  });
+
+  window.addEventListener('mouseup', stopDrag);
+
+  resizer.addEventListener('keydown', (e) => {
+    const step = e.shiftKey ? 40 : 16;
+    const cur = parseInt(getComputedStyle(root).getPropertyValue('--jem-inspector-width'), 10) || 440;
+    if (e.key === 'ArrowLeft') {
+      root.style.setProperty('--jem-inspector-width', `${Math.min(readMax(), cur + step)}px`);
+      e.preventDefault();
+    } else if (e.key === 'ArrowRight') {
+      root.style.setProperty('--jem-inspector-width', `${Math.max(readMin(), cur - step)}px`);
+      e.preventDefault();
+    }
+  });
+}
+
+function initMobileWorkspaceTabs() {
+  const tabs = document.getElementById('mobile-workspace-tabs');
+  if (!tabs) return;
+
+  const setPanel = (panel) => {
+    document.body.dataset.mobilePanel = panel;
+    tabs.querySelectorAll('.mobile-tab').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.mobilePanel === panel);
+    });
+  };
+
+  tabs.querySelectorAll('.mobile-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setPanel(btn.dataset.mobilePanel);
+      if (btn.dataset.mobilePanel === 'focus') {
+        requestAnimationFrame(() => fitFocusToView({ animate: false }));
+      }
+    });
+  });
+
+  setPanel('focus');
+
+  State.subscribe('entitySelected', (id) => {
+    if (id && window.matchMedia('(max-width: 900px)').matches) {
+      setPanel('inspector');
+    }
   });
 }
 
@@ -437,6 +503,7 @@ function initSearch() {
       threshold: 0.35,
       includeScore: true,
     });
+    window.__jemFuse = fuse;
   });
 
   input.addEventListener('input', () => {
@@ -466,8 +533,8 @@ function initSearch() {
         const id = el.dataset.id;
         const entity = State.getEntityById(id);
         if (entity) {
-          State.selectEntity(id);
-          openDetailPanel(entity);
+          selectAndOpenEntity(entity);
+          expandPathToEntity(id);
           input.value = '';
           results.classList.add('hidden');
         }

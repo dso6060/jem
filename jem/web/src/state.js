@@ -88,6 +88,7 @@ export const State = {
   // ── Setters ───────────────────────────────────────────
   setYear(year) {
     this.currentYear = year;
+    this._buildBrowseIndex();
     this.emit('yearChanged', year);
   },
 
@@ -117,6 +118,7 @@ export const State = {
     if (id) this.revealEntityOnMapForSelection(id);
     this.emit('entitySelected', id);
     if (id) this.setZoomLevel(3);
+    else this.setZoomLevel(2);
   },
 
   /** District lattice group owned by this principal High Court (e.g. Madras → TN). */
@@ -274,9 +276,10 @@ export const State = {
       this.emit('collapseChanged', null);
       return;
     }
-    this.useProgressiveExplorer = true;
+    // Focus Trinity replaces the old full-map progressive reveal; do not hide appellate children globally.
+    this.useProgressiveExplorer = false;
     this.expandedEntityIds = new Set();
-    this._recomputeHiddenFromExpanded();
+    this.hiddenEntityIds = new Set();
     this.emit('collapseChanged', null);
   },
 
@@ -579,6 +582,8 @@ export const State = {
             || entity.operational_status === 'Not_Constituted'
             || gapTypes.includes('appellate_vacuum');
       }
+      case 'has_structural_gaps':
+        return Boolean(entity.gap_flag) || (Array.isArray(entity.gaps) && entity.gaps.length > 0);
       default:
         return true;
     }
@@ -636,6 +641,7 @@ export const State = {
 
   getEntityById(id) {
     if (!this.graph) return null;
+    if (id?.startsWith('__browse_')) return this.getBrowseGroupEntity(id);
     const found = this.graph.entities.find(e => e.id === id);
     if (found) return found;
     if (id.startsWith('__jem_agg_') && this._districtAggregateIndex?.groups) {
@@ -662,5 +668,290 @@ export const State = {
   isRelationshipHistorical(rel) {
     const abolished = rel.year_abolished;
     return abolished && abolished < this.currentYear;
+  },
+
+  // ── Focus Trinity UI ───────────────────────────────────
+  navMode: 'appellate',
+  browseFacet: 'cluster',
+  focusEntityId: null,
+  treeSelectedIds: new Set(),
+  _parentsByChild: null,
+  _browseIndex: null,
+  _browseKeyMap: null,
+
+  browseGroupId(facet, key) {
+    const slug = String(key).replace(/[^a-zA-Z0-9]+/g, '_');
+    return `__browse_${facet}_${slug}`;
+  },
+
+  initFocusDefaults() {
+    const roots = ['supreme_court_india', 'president_india'];
+    const found = roots.find(r => this.graph?.entities?.some(e => e.id === r));
+    this.focusEntityId = found || this.graph?.entities?.[0]?.id || null;
+    this._parentsByChild = this._buildParentsByChild();
+    this._buildBrowseIndex();
+    this.emit('focusChanged', this.focusEntityId);
+  },
+
+  _buildParentsByChild() {
+    const parents = {};
+    for (const r of (this.graph?.relationships || [])) {
+      if (r.relationship_category !== 'appellate_chain') continue;
+      if (r.target && r.source) parents[r.source] = r.target;
+    }
+    return parents;
+  },
+
+  _buildBrowseIndex() {
+    if (!this.graph) return;
+    const clusters = {};
+    const types = {};
+    const states = {};
+    for (const e of this.graph.entities) {
+      if (!this._entityPassesTimeFilter(e)) continue;
+      const c = e.cluster || 'other';
+      (clusters[c] ||= []).push(e.id);
+      const t = e.type || 'Other';
+      (types[t] ||= []).push(e.id);
+      const scope = e._detail?.jurisdiction_scope || e.jurisdiction_scope;
+      if (scope) {
+        const key = String(scope);
+        (states[key] ||= []).push(e.id);
+      }
+    }
+    const sortIds = (ids) => ids.sort((a, b) => {
+      const ea = this.getEntityById(a);
+      const eb = this.getEntityById(b);
+      return (ea?.name || a).localeCompare(eb?.name || b);
+    });
+    Object.values(clusters).forEach(sortIds);
+    Object.values(types).forEach(sortIds);
+    Object.values(states).forEach(sortIds);
+    this._browseIndex = { cluster: clusters, type: types, state: states };
+    if (this.graph.browse_index) {
+      Object.assign(this._browseIndex.cluster, this.graph.browse_index.clusters || {});
+      Object.assign(this._browseIndex.type, this.graph.browse_index.types || {});
+      Object.assign(this._browseIndex.state, this.graph.browse_index.states || {});
+    }
+    this._browseKeyMap = {};
+    for (const facet of ['cluster', 'type', 'state']) {
+      for (const key of Object.keys(this._browseIndex[facet] || {})) {
+        this._browseKeyMap[this.browseGroupId(facet, key)] = { facet, key };
+      }
+    }
+  },
+
+  _entityPassesTimeFilter(e) {
+    const created = e.created_year || 1950;
+    return created <= this.currentYear;
+  },
+
+  setNavMode(mode) {
+    if (mode !== 'appellate' && mode !== 'browse') return;
+    this.navMode = mode;
+    if (mode === 'appellate' && !this.getEntityById(this.focusEntityId)) {
+      this.initFocusDefaults();
+    } else if (mode === 'browse') {
+      const keys = Object.keys(this._browseIndex?.[this.browseFacet] || {});
+      if (keys.length && !String(this.focusEntityId || '').startsWith('__browse_')) {
+        this.focusEntityId = this.browseGroupId(this.browseFacet, keys[0]);
+      }
+    }
+    this.emit('navModeChanged', mode);
+    this.emit('focusChanged', this.focusEntityId);
+  },
+
+  setBrowseFacet(facet) {
+    if (!['cluster', 'type', 'state'].includes(facet)) return;
+    this.browseFacet = facet;
+    const keys = Object.keys(this._browseIndex?.[facet] || {});
+    if (keys.length) this.focusEntityId = this.browseGroupId(facet, keys[0]);
+    this.emit('browseFacetChanged', facet);
+    this.emit('focusChanged', this.focusEntityId);
+  },
+
+  setFocusEntity(id, options = {}) {
+    if (!id) return;
+    this.focusEntityId = id;
+    if (options.select === true) this.selectEntity(id);
+    this.emit('focusChanged', id);
+  },
+
+  getBrowseGroupEntity(id) {
+    if (!id?.startsWith('__browse_')) return null;
+    const mapped = this._browseKeyMap?.[id];
+    const facet = mapped?.facet;
+    const key = mapped?.key;
+    if (!facet || !key) return null;
+    const memberIds = this._browseIndex?.[facet]?.[key] || [];
+    const members = memberIds.map(mid => this.getEntityById(mid)).filter(Boolean);
+    let gapCount = 0;
+    let highIr = 0;
+    for (const m of members) {
+      if (m.gap_flag || (m.gaps?.length > 0)) gapCount++;
+      const lvl = (m.derived || {}).independence_risk_level;
+      if (lvl === 'high' || lvl === 'severe') highIr++;
+    }
+    return {
+      id,
+      name: key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+      abbreviation: `${members.length} entities`,
+      type: 'BrowseGroup',
+      cluster: facet === 'cluster' ? key : 'browse',
+      level_of_government: 'Central',
+      operational_status: 'Active',
+      data_quality: 'complete',
+      _jemBrowseGroup: true,
+      memberIds,
+      rollup: { count: members.length, gapCount, highIr },
+    };
+  },
+
+  getAppellateChildren(parentId, { forFocusView = false } = {}) {
+    if (!parentId) return [];
+    if (parentId.startsWith('__browse_')) {
+      const g = this.getBrowseGroupEntity(parentId);
+      return (g?.memberIds || [])
+        .map(id => this.getEntityById(id))
+        .filter(e => e && this._entityPassesTimeFilter(e));
+    }
+    if (!this._childrenByParent) this._childrenByParent = this._buildChildrenByParent();
+    const ids = this._childrenByParent[parentId] || [];
+    return ids
+      .map(id => this.getEntityById(id))
+      .filter(e => {
+        if (!e || !this._entityPassesTimeFilter(e)) return false;
+        if (forFocusView) return true;
+        return !this.hiddenEntityIds.has(e.id);
+      });
+  },
+
+  getFocusTrinitySlice() {
+    const parentRaw = this.focusEntityId
+      ? (this.getEntityById(this.focusEntityId) || this.getBrowseGroupEntity(this.focusEntityId))
+      : null;
+    if (!parentRaw) {
+      return { parent: null, children: [], grandchildren: [], entityIds: new Set() };
+    }
+
+    let children = this.getAppellateChildren(parentRaw.id, { forFocusView: true });
+    if (this.activeImpactFilter) {
+      children = children.filter(e => this._matchesImpactFilter(e, this.activeImpactFilter));
+    }
+
+    const grandchildren = [];
+    const childIds = new Set();
+    for (const ch of children) {
+      childIds.add(ch.id);
+      let gcs = this.getAppellateChildren(ch.id, { forFocusView: true }).filter(e => !e._jemBrowseGroup);
+      if (this.activeImpactFilter) {
+        gcs = gcs.filter(e => this._matchesImpactFilter(e, this.activeImpactFilter));
+      }
+      for (const gc of gcs) grandchildren.push(gc);
+    }
+
+    const entityIds = new Set([parentRaw.id, ...children.map(c => c.id), ...grandchildren.map(g => g.id)]);
+
+    return { parent: parentRaw, children, grandchildren, entityIds };
+  },
+
+  getTrinityRelationships(entityIds) {
+    if (!this.graph || !entityIds?.size) return [];
+    const visible = entityIds;
+    return (this.graph.relationships || []).filter(r => {
+      if (!visible.has(r.source) || !visible.has(r.target)) return false;
+      if (r.relationship_category === 'investigative') {
+        return this.showInvestigativeOverlay;
+      }
+      return this.activeLenses.has(r.relationship_category);
+    });
+  },
+
+  ensureEntityInTrinityView(entityId) {
+    if (!entityId || !this.graph) return;
+    if (this.navMode === 'browse') {
+      const e = this.getEntityById(entityId);
+      if (!e) return;
+      for (const [facet, groups] of Object.entries(this._browseIndex || {})) {
+        for (const [key, ids] of Object.entries(groups)) {
+          if (ids.includes(entityId)) {
+            this.browseFacet = facet;
+            this.focusEntityId = entityId;
+            this.emit('browseFacetChanged', facet);
+            this.emit('focusChanged', entityId);
+            return;
+          }
+        }
+      }
+      this.focusEntityId = entityId;
+      this.emit('focusChanged', entityId);
+      return;
+    }
+
+    if (entityId.startsWith('__jem_agg_') || entityId.startsWith('__browse_')) {
+      this.focusEntityId = entityId;
+      this.emit('focusChanged', entityId);
+      return;
+    }
+
+    const parents = this._parentsByChild || this._buildParentsByChild();
+    this._parentsByChild = parents;
+
+    const asParent = () => {
+      this.focusEntityId = entityId;
+      this.emit('focusChanged', entityId);
+    };
+
+    const children = this._childrenByParent?.[entityId] || [];
+    if (children.length) {
+      asParent();
+      return;
+    }
+
+    const p1 = parents[entityId];
+    if (p1 && (this._childrenByParent?.[p1] || []).includes(entityId)) {
+      this.focusEntityId = p1;
+      this.emit('focusChanged', p1);
+      return;
+    }
+
+    const p2 = p1 ? parents[p1] : null;
+    if (p2) {
+      this.focusEntityId = p2;
+      this.emit('focusChanged', p2);
+      return;
+    }
+
+    asParent();
+  },
+
+  toggleTreeSelection(id, on) {
+    if (!id) return;
+    if (on === undefined) {
+      if (this.treeSelectedIds.has(id)) this.treeSelectedIds.delete(id);
+      else this.treeSelectedIds.add(id);
+    } else if (on) this.treeSelectedIds.add(id);
+    else this.treeSelectedIds.delete(id);
+    this.emit('treeSelectionChanged', this.treeSelectedIds);
+  },
+
+  clearTreeSelection() {
+    this.treeSelectedIds = new Set();
+    this.emit('treeSelectionChanged', this.treeSelectedIds);
+  },
+
+  getTreeSelectedEntities() {
+    const out = [];
+    for (const id of this.treeSelectedIds) {
+      const e = this.getEntityById(id) || this.getBrowseGroupEntity(id);
+      if (e && !e._jemBrowseGroup) out.push(e);
+      else if (e?._jemBrowseGroup) {
+        for (const mid of e.memberIds || []) {
+          const m = this.getEntityById(mid);
+          if (m) out.push(m);
+        }
+      }
+    }
+    return out;
   },
 };

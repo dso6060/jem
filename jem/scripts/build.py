@@ -85,6 +85,28 @@ CANVAS_WIDTH = 1800
 CANVAS_HEIGHT = 1200
 
 
+def compute_browse_index(entities: List[Dict]) -> Dict[str, Dict[str, List[str]]]:
+    """Facet groupings for Browse navigator mode."""
+    clusters: Dict[str, List[str]] = {}
+    types: Dict[str, List[str]] = {}
+    states: Dict[str, List[str]] = {}
+    for e in entities:
+        eid = e.get("id")
+        if not eid:
+            continue
+        c = e.get("cluster") or "other"
+        clusters.setdefault(c, []).append(eid)
+        t = e.get("type") or "Other"
+        types.setdefault(t, []).append(eid)
+        scope = (e.get("_detail") or {}).get("jurisdiction_scope") or e.get("jurisdiction_scope")
+        if scope:
+            states.setdefault(str(scope), []).append(eid)
+    for bucket in (clusters, types, states):
+        for key in bucket:
+            bucket[key].sort()
+    return {"clusters": clusters, "types": types, "states": states}
+
+
 def compute_layout_positions(
     entities: List[Dict],
     cluster_positions: Dict[str, Dict],
@@ -452,6 +474,8 @@ def build_graph_json(data_dir: Path, output_path: Path, no_derive: bool = False)
         fe = {
             "id": e.get("id"),
             "name": e.get("name"),
+            "aliases": e.get("aliases", []),
+            "jurisdiction_scope": e.get("jurisdiction_scope"),
             "name_hindi": e.get("name_hindi"),
             "abbreviation": e.get("abbreviation"),
             "type": e.get("type"),
@@ -492,6 +516,24 @@ def build_graph_json(data_dir: Path, output_path: Path, no_derive: bool = False)
             },
             "position": positions.get(e["id"], {"x": 0, "y": 0}),
         }
+        # Gap / health fields (schema v1.3) for Gaps mode, detail panel, reports
+        if e.get("gap_flag") is not None:
+            fe["gap_flag"] = e.get("gap_flag")
+        if e.get("gap_count") is not None:
+            fe["gap_count"] = e.get("gap_count")
+        gaps = e.get("gaps") or e.get("structural_gap")
+        if gaps:
+            fe["gaps"] = gaps if isinstance(gaps, list) else [gaps]
+        if e.get("structural_exception"):
+            fe["structural_exception"] = True
+        if e.get("circularity_score") is not None:
+            fe["circularity_score"] = e.get("circularity_score")
+        if e.get("appellate_health"):
+            fe["appellate_health"] = e.get("appellate_health")
+        if e.get("appellate_functional") is not None:
+            fe["appellate_functional"] = e.get("appellate_functional")
+        if e.get("structural_health_score") is not None:
+            fe["structural_health_score"] = e.get("structural_health_score")
         frontend_entities.append(fe)
 
     print("\nStep 10: Serialising relationships...")
@@ -514,7 +556,10 @@ def build_graph_json(data_dir: Path, output_path: Path, no_derive: bool = False)
         }
         frontend_relationships.append(fr)
 
-    print("\nStep 11: Assembling final graph.json...")
+    print("\nStep 11: Building browse index...")
+    browse_index = compute_browse_index(frontend_entities)
+
+    print("\nStep 12: Assembling final graph.json...")
     graph = {
         "meta": {
             "version": "1.0.0",
@@ -530,6 +575,7 @@ def build_graph_json(data_dir: Path, output_path: Path, no_derive: bool = False)
         "clusters": clusters,
         "entities": frontend_entities,
         "relationships": frontend_relationships,
+        "browse_index": browse_index,
         "data_quality_legend": {
             "verified":    {"font_weight": "700", "color": "#000000", "border": "solid",  "opacity": 1.0,  "badge": None},
             "complete":    {"font_weight": "400", "color": "#000000", "border": "solid",  "opacity": 1.0,  "badge": None},

@@ -27,7 +27,7 @@ export function openDetailPanel(entity) {
         Keyboard: <kbd>+</kbd> or <kbd>=</kbd> expands every state lattice; <kbd>−</kbd> collapses all to one row per state (or this summary where no generic row exists).
       </p>
     `;
-    panel.classList.remove('hidden');
+    showDetailChrome();
     panel.scrollTop = 0;
     return;
   }
@@ -42,14 +42,24 @@ export function openDetailPanel(entity) {
 
   body.innerHTML = buildPanelHTML(entity);
 
-  panel.classList.remove('hidden');
+  showDetailChrome();
   panel.scrollTop = 0;
 
   openNeighborhoodPanel(entity);
 }
 
+function showDetailChrome() {
+  document.getElementById('detail-empty')?.classList.add('hidden');
+  document.getElementById('detail-panel')?.classList.remove('hidden');
+}
+
+function hideDetailChrome() {
+  document.getElementById('detail-empty')?.classList.remove('hidden');
+  document.getElementById('detail-panel')?.classList.add('hidden');
+}
+
 export function closeDetailPanel() {
-  document.getElementById('detail-panel').classList.add('hidden');
+  hideDetailChrome();
   closeNeighborhoodPanel();
   State.clearEntity();
 }
