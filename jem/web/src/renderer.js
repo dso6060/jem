@@ -86,11 +86,7 @@ function drawableNodeRadiusForEntity(d) {
     HIERARCHY_TIER_BASE_RADIUS.length - 1,
     Math.max(0, hierarchyTierForSizing(d))
   );
-  let base = HIERARCHY_TIER_BASE_RADIUS[tier] ?? NODE_BASE_RADIUS;
-  if (State.showDiscretionaryPower) {
-    const dp = (d.derived || {}).discretionary_power_score || 1;
-    return Math.max(NODE_MIN_RADIUS, Math.min(base * 1.45, base + dp * 1.25));
-  }
+  const base = HIERARCHY_TIER_BASE_RADIUS[tier] ?? NODE_BASE_RADIUS;
   return Math.max(NODE_MIN_RADIUS, base);
 }
 
@@ -712,17 +708,32 @@ export function renderEdges() {
         g.selectAll('.edge-label').remove();
         return;
       }
+      const dx = t.x - s.x;
+      const dy = t.y - s.y;
+      const segLen = Math.hypot(dx, dy);
+      // Skip labels on very short segments — they always overlap and are unreadable.
+      if (segLen < 90) {
+        g.selectAll('.edge-label').remove();
+        return;
+      }
       let lab = g.select('text.edge-label');
       if (lab.empty()) {
         lab = g.append('text').attr('class', 'edge-label');
       }
       const mx = (s.x + t.x) / 2;
       const my = (s.y + t.y) / 2;
+      const color = colors[d.relationship_category] || '#666';
       lab
-        .attr('fill', colors[d.relationship_category] || '#999')
-        .attr('font-size', '9px')
+        .attr('fill', color)
+        .attr('stroke', '#ffffff')
+        .attr('stroke-width', 3.5)
+        .attr('stroke-linejoin', 'round')
+        .attr('paint-order', 'stroke')
+        .attr('font-size', '10px')
+        .attr('font-weight', '600')
         .attr('dy', -4)
         .attr('text-anchor', 'middle')
+        .attr('pointer-events', 'none')
         .text(formatRelType(d.relationship_type))
         .attr('transform', `translate(${mx},${my})`);
     });
@@ -738,6 +749,7 @@ export function renderNodes() {
   const entities = State.getVisibleEntities();
   const posMap = buildPositionMap();
   const irColors = State.getIndependenceRiskColors();
+  const healthColors = State.getStructuralHealthColors();
   const dqLegend = State.getDataQualityLegend();
   const osLegend = State.getOperationalStatusLegend();
   const rels = State.getVisibleRelationships();
@@ -820,9 +832,10 @@ export function renderNodes() {
     if (State.viewMode === 'gaps' && d.operational_status === 'De_Facto_Blocked') {
       return { stroke: '#e67e22', strokeWidth: 3 };
     }
-    if (State.showIndependenceRisk) {
-      const level = (d.derived || {}).independence_risk_level || 'low';
-      return { stroke: irColors[level] || '#27ae60', strokeWidth: 2 };
+    const dh = d.derived || {};
+    const healthBand = dh.structural_health_level || State.structuralHealthBand(dh.structural_health_score);
+    if (healthBand) {
+      return { stroke: healthColors[healthBand] || '#27ae60', strokeWidth: 2 };
     }
     const kind = entityVisualKind(d);
     if (kind === 'court') return { stroke: '#94a3b8', strokeWidth: 2.5 };
@@ -903,20 +916,22 @@ export function renderNodes() {
     })
     .attr('opacity', dimIfNotNeighbor);
 
-  // Independence risk ring — judicial / allied shapes (circle outline)
+  // Structural health ring (master composite). Always on for scored entities;
+  // hidden for governance officeholders (null health score).
+  function healthBandFor(d) {
+    const dh = d.derived || {};
+    return dh.structural_health_level || State.structuralHealthBand(dh.structural_health_score);
+  }
   merged.select('.node-ir-ring')
     .style('display', d => (entityNodeShape(d) !== 'rect' ? null : 'none'))
     .attr('r', d => {
-      if (!State.showIndependenceRisk || entityNodeShape(d) === 'rect') return 0;
+      if (entityNodeShape(d) === 'rect' || !healthBandFor(d)) return 0;
       return shapeLayoutRadius(d, nodeRadius(d)) + IR_RING_OFFSET;
     })
     .attr('fill', 'none')
-    .attr('stroke', d => {
-      const level = (d.derived || {}).independence_risk_level || 'low';
-      return irColors[level] || '#27ae60';
-    })
+    .attr('stroke', d => healthColors[healthBandFor(d)] || '#27ae60')
     .attr('stroke-width', IR_RING_WIDTH)
-    .attr('opacity', d => (State.showIndependenceRisk && entityNodeShape(d) !== 'rect') ? 0.7 : 0);
+    .attr('opacity', d => (entityNodeShape(d) !== 'rect' && healthBandFor(d)) ? 0.7 : 0);
 
   merged.select('.node-ir-ring-rect')
     .style('display', d => (entityNodeShape(d) === 'rect' ? null : 'none'))
@@ -927,12 +942,9 @@ export function renderNodes() {
     .attr('rx', 10)
     .attr('ry', 10)
     .attr('fill', 'none')
-    .attr('stroke', d => {
-      const level = (d.derived || {}).independence_risk_level || 'low';
-      return irColors[level] || '#27ae60';
-    })
+    .attr('stroke', d => healthColors[healthBandFor(d)] || '#27ae60')
     .attr('stroke-width', IR_RING_WIDTH)
-    .attr('opacity', d => (State.showIndependenceRisk && entityNodeShape(d) === 'rect') ? 0.72 : 0);
+    .attr('opacity', d => (entityNodeShape(d) === 'rect' && healthBandFor(d)) ? 0.72 : 0);
 
   merged.select('.node-exception-shape')
     .style('display', d => {
@@ -2357,6 +2369,64 @@ function hideTooltip() {
   if (t) t.remove();
 }
 
+function htmlScoreMicroCard(node) {
+  const d = node.derived || {};
+  const healthColors = State.getStructuralHealthColors();
+  const irColors = State.getIndependenceRiskColors();
+  const dpColor = State.getDiscretionaryPowerColor();
+
+  const health = d.structural_health_score;
+  const healthBand = d.structural_health_level || State.structuralHealthBand(health);
+  const ir = d.independence_risk_score;
+  const irLevel = d.independence_risk_level;
+  const dp = d.discretionary_power_score;
+
+  if (health == null && ir == null && dp == null) return '';
+
+  const bar = (pct, color) => `
+    <div style="flex:1;height:6px;border-radius:3px;background:#eef2f7;overflow:hidden">
+      <div style="width:${Math.max(0, Math.min(100, pct))}%;height:100%;background:${color}"></div>
+    </div>`;
+
+  const healthPct = health == null ? 0 : health * 100;
+  const irPct = ir == null ? 0 : Math.min(100, (ir / 10) * 100);
+  const dpPct = dp == null ? 0 : Math.min(100, (dp / 10) * 100);
+
+  let rows = '';
+  if (health != null) {
+    rows += `
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+        <span style="min-width:54px;font-size:11px;font-weight:700;color:#111827">Health</span>
+        ${bar(healthPct, healthColors[healthBand] || '#27ae60')}
+        <span style="min-width:60px;text-align:right;font-family:var(--font-mono,monospace);font-size:11px;font-weight:700">
+          ${health.toFixed(2)} <span style="color:${healthColors[healthBand] || '#27ae60'};font-size:10px">${(healthBand || '').replace(/_/g, ' ').toUpperCase()}</span>
+        </span>
+      </div>`;
+  }
+  if (ir != null) {
+    rows += `
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0 3px 14px">
+        <span style="min-width:40px;font-size:11px;color:#4b5563">↳ IR</span>
+        ${bar(irPct, irColors[irLevel] || '#6b7280')}
+        <span style="min-width:60px;text-align:right;font-family:var(--font-mono,monospace);font-size:11px">
+          ${ir} <span style="color:${irColors[irLevel] || '#6b7280'};font-size:10px">${(irLevel || '').toUpperCase()}</span>
+        </span>
+      </div>`;
+  }
+  if (dp != null) {
+    rows += `
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0 3px 14px">
+        <span style="min-width:40px;font-size:11px;color:#4b5563">↳ DP</span>
+        ${bar(dpPct, dpColor)}
+        <span style="min-width:60px;text-align:right;font-family:var(--font-mono,monospace);font-size:11px">${dp}</span>
+      </div>`;
+  }
+
+  return `<div style="flex-shrink:0;padding:8px 12px 6px;border-bottom:1px solid #f1f5f9">${rows}
+    <div style="font-size:10px;color:#9ca3af;margin-top:4px">Click for full breakdown</div>
+  </div>`;
+}
+
 function htmlIndependenceRiskBreakdown(breakdown) {
   if (!breakdown || typeof breakdown !== 'object') return '';
   const rows = Object.entries(breakdown)
@@ -2399,19 +2469,14 @@ function showNodeRelationshipsTooltip(event, node, rels) {
     'overflow:hidden',
   ].join(';');
 
+  const scoreHeader = htmlScoreMicroCard(node);
+
   if (State.viewMode === 'risk') {
     const derived = node.derived || {};
-    const irColors = State.getIndependenceRiskColors();
-    const level = derived.independence_risk_level || 'unknown';
-    const score = derived.independence_risk_score;
-    const levelColor = irColors[level] || '#6b7280';
-    let html = `<div style="flex-shrink:0;padding:10px 12px 0;font-weight:700">${node.abbreviation || node.name}</div>`;
-    html += `<div style="flex-shrink:0;font-size:11px;color:#6b7280;margin-bottom:4px;padding:0 12px">Independence risk</div>`;
-    html += `<div style="flex-shrink:0;display:flex;align-items:baseline;gap:10px;margin-bottom:4px;padding:0 12px">
-      <span style="font-size:20px;font-weight:800;font-family:var(--font-mono,monospace)">${score ?? '—'}</span>
-      <span style="font-size:11px;font-weight:700;color:${levelColor}">${(level || '').toUpperCase()}</span>
-    </div>`;
+    let html = `<div style="flex-shrink:0;padding:10px 12px 4px;font-weight:700">${node.abbreviation || node.name}</div>`;
+    html += scoreHeader;
     html += `<div class="graph-hover-tooltip-body" style="flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding:0 12px 12px">`;
+    html += '<div style="font-size:11px;color:#6b7280;margin:8px 0 2px">Independence-risk factors</div>';
     html += htmlIndependenceRiskBreakdown(derived.independence_risk_breakdown);
     html += '</div>';
     t.innerHTML = html;
@@ -2425,7 +2490,7 @@ function showNodeRelationshipsTooltip(event, node, rels) {
   }
 
   const connected = rels.filter(r => r.source === node.id || r.target === node.id);
-  if (!connected.length) return;
+  if (!connected.length && !scoreHeader) return;
 
   const byCat = new Map();
   connected.forEach(r => {
@@ -2439,7 +2504,8 @@ function showNodeRelationshipsTooltip(event, node, rels) {
   const relTitle = (r) => (r.relationship_type || '').replace(/_/g, ' ');
 
   let html = `<div style="flex-shrink:0;padding:10px 12px 0;font-weight:700">${node.abbreviation || node.name}</div>`;
-  html += `<div style="flex-shrink:0;color:#6b7280;font-size:11px;margin-bottom:6px;padding:0 12px">${connected.length} relationship(s)</div>`;
+  html += scoreHeader;
+  html += `<div style="flex-shrink:0;color:#6b7280;font-size:11px;margin:6px 0 0;padding:0 12px">${connected.length} relationship(s)</div>`;
   html += '<div class="graph-hover-tooltip-body" style="flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding:0 10px 12px 12px">';
   for (const [cat, items] of byCat.entries()) {
     html += `<div style="margin:8px 0 4px 0;font-size:11px;color:#374151;font-weight:700">${catTitle(cat)}</div>`;

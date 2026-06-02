@@ -32,50 +32,7 @@ const CLUSTER_LABELS = {
 // Clusters where IR scores are not computed
 const SCORE_EXCLUDED_CLUSTERS = new Set(['legislative_executive', 'people_roles']);
 
-const TYPE_CATEGORY_MAP = {
-  ConstitutionalCourt: 'Constitutional',
-  HighCourtBench: 'Constitutional',
-  CentralTribunal: 'Tribunal',
-  StateTribunal: 'Tribunal',
-  RegulatoryBodyQJ: 'Regulator',
-  SharedRegulatoryBody: 'Regulator',
-  BankingOmbudsman: 'Regulator',
-  ConsumerCommission: 'Consumer',
-  ArbitralInstitution: 'ADR',
-  MediationBody: 'ADR',
-  LokAdalat: 'ADR',
-  ADRBody: 'ADR',
-  AuditBody: 'Audit',
-  AppointmentBody: 'Appointment',
-  Lokayukta: 'Audit',
-  SubordinateCivilCourt: 'Subordinate',
-  SubordinateCriminalCourt: 'Subordinate',
-  CityCivilCourt: 'Subordinate',
-  SpecialCourt: 'Subordinate',
-  FastTrackCourt: 'Subordinate',
-  RevenueCourt: 'Subordinate',
-  FamilyCourt: 'Subordinate',
-  CommercialCourt: 'Subordinate',
-  StatutoryBodyNotConstituted: 'Not Constituted',
-  ExecutiveBody: 'Executive',
-  Ministry: 'Executive',
-  Department: 'Executive',
-  LegislativeBody: 'Legislative',
-  InvestigativeAgency: 'Investigative',
-  ProsecutionBody: 'Investigative',
-  DigitalInfraBody: 'Digital',
-  SecurityBody: 'Security',
-  TrainingBody: 'Training',
-  ProfessionalBody: 'Professional',
-};
-
-const TYPE_CATEGORIES = ['All', 'Constitutional', 'Tribunal', 'Regulator', 'Consumer', 'ADR', 'Audit', 'Subordinate', 'Appointment', 'Investigative'];
-
 // ── Helpers ───────────────────────────────────────────────────────────────────
-
-function entityCategory(e) {
-  return TYPE_CATEGORY_MAP[e.type] || 'Other';
-}
 
 function riskLevelLabel(level) {
   if (!level) return '—';
@@ -120,11 +77,13 @@ function irScoreToLevel(score) {
 }
 
 // ── Bubble strip plot ─────────────────────────────────────────────────────────
-// One row per cluster. X = IR score (0–15). Bubble area ∝ entity count at
-// that score. Color = risk level. Click bubble → cluster drill-down filtered
-// to that score bucket.
+// One row per cluster. X = structural_health score (0.0–1.0, MASTER composite).
+// Left = critical, right = healthy. Bubble area ∝ entity count at that health
+// bucket. Color = health band. Click bubble → drill-down with IR + DP
+// constituent breakdowns for the entities at that bucket.
 
-const SCORE_MAX   = 15;
+const HEALTH_MAX  = 1.0;
+const HEALTH_BUCKET = 0.05;    // group entities into 0.05-wide health buckets
 const ROW_H       = 40;        // px per cluster row
 const LABEL_W     = 148;       // px for left cluster label column
 const AXIS_H      = 28;        // px for x-axis
@@ -132,44 +91,84 @@ const HEADER_H    = 18;        // px for column header
 const PLOT_PAD_R  = 20;        // right padding
 const MAX_BUBBLE_R = 15;       // max bubble radius in px
 
-// Risk thresholds (matching derive.py: low 0-2, moderate 3-5, high 6-8, severe 9+)
-const RISK_ZONES = [
-  { x0: 0,   x1: 2.5,  level: 'low',      fill: '#f0fdf4' },
-  { x0: 2.5, x1: 5.5,  level: 'moderate', fill: '#fff7ed' },
-  { x0: 5.5, x1: 8.5,  level: 'high',     fill: '#fef2f2' },
-  { x0: 8.5, x1: 15,   level: 'severe',   fill: '#faf5ff' },
+// Health bands (matching derive.py + ring legend)
+const HEALTH_COLORS = {
+  critical: '#e74c3c',
+  at_risk:  '#f39c12',
+  watch:    '#f1c40f',
+  healthy:  '#27ae60',
+};
+// Zones listed left→right in display order (reversed: healthy on left, critical on right).
+const HEALTH_ZONES = [
+  { x0: 0.8, x1: 1.0, level: 'healthy',  fill: '#f0fdf4' },
+  { x0: 0.6, x1: 0.8, level: 'watch',    fill: '#fefce8' },
+  { x0: 0.3, x1: 0.6, level: 'at_risk',  fill: '#fff7ed' },
+  { x0: 0.0, x1: 0.3, level: 'critical', fill: '#fef2f2' },
 ];
 
+const HEALTH_LEVEL_LABELS = {
+  critical: 'Critical',
+  at_risk:  'At Risk',
+  watch:    'Watch',
+  healthy:  'Healthy',
+};
+
+function healthLevelLabel(level) {
+  return HEALTH_LEVEL_LABELS[level] || (level || '—');
+}
+
+// Reversed axis: health=1.0 → left edge, health=0.0 → right edge.
 function scoreToX(score, plotW) {
-  return LABEL_W + (score / SCORE_MAX) * plotW;
+  return LABEL_W + ((HEALTH_MAX - score) / HEALTH_MAX) * plotW;
+}
+
+function healthBandFor(score) {
+  if (score == null) return null;
+  if (score < 0.3) return 'critical';
+  if (score < 0.6) return 'at_risk';
+  if (score < 0.8) return 'watch';
+  return 'healthy';
 }
 
 function buildStripData(entities) {
-  // For each cluster: Map of score → { count, level, entityIds }
+  // For each cluster: Map of bucket → { count, level, entityIds, irAvg, dpAvg }
   const clusters = {};
   entities.forEach(e => {
     const cl = e.cluster;
     if (!cl || SCORE_EXCLUDED_CLUSTERS.has(cl)) return;
-    const score = e.derived?.independence_risk_score;
-    const level = e.derived?.independence_risk_level;
-    if (score == null || !level) return;
+    const health = e.derived?.structural_health_score;
+    if (health == null) return;
+    const bucket = Math.round(health / HEALTH_BUCKET) * HEALTH_BUCKET;
+    const key = bucket.toFixed(2);
+    const level = healthBandFor(bucket);
     if (!clusters[cl]) clusters[cl] = {};
-    const key = score;
-    if (!clusters[cl][key]) clusters[cl][key] = { count: 0, level, ids: [] };
-    clusters[cl][key].count++;
-    clusters[cl][key].ids.push(e.id);
+    if (!clusters[cl][key]) {
+      clusters[cl][key] = { count: 0, level, ids: [], irSum: 0, dpSum: 0, bucket };
+    }
+    const slot = clusters[cl][key];
+    slot.count++;
+    slot.ids.push(e.id);
+    slot.irSum += e.derived?.independence_risk_score || 0;
+    slot.dpSum += e.derived?.discretionary_power_score || 0;
   });
 
-  // Sort clusters by weighted avg (worst first)
+  // Sort clusters by weighted avg health (worst — lowest health — first)
   return Object.entries(clusters)
     .filter(([, pts]) => Object.keys(pts).length > 0)
     .map(([cl, pts]) => {
-      const entries = Object.entries(pts).map(([s, d]) => ({ score: +s, ...d }));
+      const entries = Object.entries(pts).map(([, d]) => ({
+        score: d.bucket,
+        count: d.count,
+        level: d.level,
+        ids: d.ids,
+        irAvg: d.irSum / d.count,
+        dpAvg: d.dpSum / d.count,
+      }));
       const total = entries.reduce((s, d) => s + d.count, 0);
       const wavg = entries.reduce((s, d) => s + d.score * d.count, 0) / (total || 1);
       return { cl, entries, total, wavg };
     })
-    .sort((a, b) => b.wavg - a.wavg);
+    .sort((a, b) => a.wavg - b.wavg);
 }
 
 function renderStripPlot(entities, svgWidth) {
@@ -178,28 +177,30 @@ function renderStripPlot(entities, svgWidth) {
   const svgH  = HEADER_H + rows.length * ROW_H + AXIS_H;
 
   let svg = `<svg class="strip-svg" viewBox="0 0 ${svgWidth} ${svgH}"
-    role="img" aria-label="Independence risk distribution by cluster">`;
+    role="img" aria-label="Structural health distribution by cluster">`;
 
-  // ── Background risk zones ──────────────────────────────────────────────────
+  // ── Background health zones ────────────────────────────────────────────────
   const zonesY = HEADER_H;
   const zonesH = rows.length * ROW_H;
-  RISK_ZONES.forEach(z => {
-    const zx = scoreToX(z.x0, plotW);
-    const zw = scoreToX(z.x1, plotW) - zx;
+  HEALTH_ZONES.forEach(z => {
+    const xa = scoreToX(z.x0, plotW);
+    const xb = scoreToX(z.x1, plotW);
+    const zx = Math.min(xa, xb);
+    const zw = Math.abs(xb - xa);
     svg += `<rect x="${zx}" y="${zonesY}" width="${zw}" height="${zonesH}"
       fill="${z.fill}" />`;
   });
 
   // ── Zone label row (header) ────────────────────────────────────────────────
-  RISK_ZONES.forEach(z => {
+  HEALTH_ZONES.forEach(z => {
     const zx = scoreToX((z.x0 + z.x1) / 2, plotW);
     svg += `<text x="${zx}" y="${HEADER_H - 5}" text-anchor="middle"
-      font-size="9" fill="${RISK_COLORS[z.level]}" font-weight="600"
-      opacity="0.8">${riskLevelLabel(z.level)}</text>`;
+      font-size="9" fill="${HEALTH_COLORS[z.level]}" font-weight="600"
+      opacity="0.85">${healthLevelLabel(z.level)}</text>`;
   });
 
-  // ── Vertical grid lines at whole-number tick marks ────────────────────────
-  [0, 3, 6, 9, 12, 15].forEach(tick => {
+  // ── Vertical grid lines at band boundaries ────────────────────────────────
+  [0.0, 0.3, 0.6, 0.8, 1.0].forEach(tick => {
     const gx = scoreToX(tick, plotW);
     svg += `<line x1="${gx}" y1="${HEADER_H}" x2="${gx}" y2="${HEADER_H + zonesH}"
       stroke="#ddd" stroke-width="1" />`;
@@ -245,20 +246,23 @@ function renderStripPlot(entities, svgWidth) {
     svg += `<text x="${LABEL_W - 8}" y="${cy + 15}" text-anchor="end"
       font-size="9" fill="#86857c">${total}</text>`;
 
-    // Bubbles — one per distinct score value in this cluster
-    entries.forEach(({ score, count, level, ids }) => {
+    // Bubbles — one per health bucket in this cluster
+    entries.forEach(({ score, count, level, ids, irAvg, dpAvg }) => {
       const bx = scoreToX(score, plotW);
       const r  = Math.min(MAX_BUBBLE_R, Math.max(3, Math.sqrt(count) * 2.8));
-      const color = RISK_COLORS[level] || '#aaa';
+      const color = HEALTH_COLORS[level] || '#aaa';
       const encodedIds = encodeURIComponent(JSON.stringify(ids));
+      const titleText = `${count} ${count === 1 ? 'entity' : 'entities'} · ${label}
+Health ≈ ${score.toFixed(2)} (${healthLevelLabel(level)})
+  ↳ IR avg ${irAvg.toFixed(1)} · DP avg ${dpAvg.toFixed(1)}`;
 
       svg += `<circle class="strip-bubble"
         cx="${bx}" cy="${cy}" r="${r}"
         fill="${color}" fill-opacity="0.75"
         stroke="${color}" stroke-width="1" stroke-opacity="0.9"
-        data-cluster-id="${cl}" data-score="${score}" data-ids="${encodedIds}"
+        data-cluster-id="${cl}" data-score="${score.toFixed(2)}" data-ids="${encodedIds}"
         cursor="pointer" style="transition:opacity .15s">
-        <title>${count} ${count === 1 ? 'entity' : 'entities'} · ${label} · score ${score} (${riskLevelLabel(level)})</title>
+        <title>${titleText}</title>
       </circle>`;
 
       // Count label inside bubble if it fits
@@ -274,13 +278,13 @@ function renderStripPlot(entities, svgWidth) {
   const axisY = HEADER_H + zonesH + 4;
   svg += `<line x1="${LABEL_W}" y1="${axisY}" x2="${svgWidth - PLOT_PAD_R}" y2="${axisY}"
     stroke="#ccc" stroke-width="1" />`;
-  [0, 3, 6, 9, 12, 15].forEach(tick => {
+  [1.0, 0.8, 0.6, 0.4, 0.2, 0.0].forEach(tick => {
     const tx = scoreToX(tick, plotW);
     svg += `<text x="${tx}" y="${axisY + 13}" text-anchor="middle"
-      font-size="9" fill="#86857c">${tick}</text>`;
+      font-size="9" fill="#86857c">${tick.toFixed(1)}</text>`;
   });
   svg += `<text x="${LABEL_W + plotW / 2}" y="${axisY + 24}" text-anchor="middle"
-    font-size="9" fill="#86857c">Independence Risk Score →</text>`;
+    font-size="9" fill="#86857c">← Healthy · Structural Health · Critical →</text>`;
 
   svg += `</svg>`;
   return svg;
@@ -288,325 +292,374 @@ function renderStripPlot(entities, svgWidth) {
 
 // ── High-risk entity registry ─────────────────────────────────────────────────
 
-function renderRiskRegistry(entities) {
-  const highRisk = entities
-    .filter(e => e.derived?.independence_risk_level === 'high' || e.derived?.independence_risk_level === 'severe')
-    .sort((a, b) => (b.derived?.independence_risk_score || 0) - (a.derived?.independence_risk_score || 0));
+// ── Spotlight carousel ────────────────────────────────────────────────────────
+// Featured set: critical + at_risk entities, worst-first. One large card per slide.
 
-  if (!highRisk.length) return '<p class="sum-empty">No high-risk entities found in this build.</p>';
+function spotlightSet(entities) {
+  return entities
+    .filter(e => {
+      const lvl = e.derived?.structural_health_level;
+      return lvl === 'critical' || lvl === 'at_risk';
+    })
+    .sort((a, b) =>
+      (a.derived?.structural_health_score ?? 999) - (b.derived?.structural_health_score ?? 999)
+    );
+}
 
-  const rows = highRisk.map(e => {
-    const level = e.derived?.independence_risk_level || '';
-    const score = e.derived?.independence_risk_score ?? '—';
-    const breakdown = e.derived?.independence_risk_breakdown || {};
-    // Pick the top contributing factor as the short description
-    const topFactor = Object.entries(breakdown)
-      .filter(([, v]) => v > 0)
-      .sort((a, b) => b[1] - a[1])[0];
-    const desc = topFactor ? topFactor[0] : '';
+function topFactors(breakdown, n = 3) {
+  if (!breakdown) return [];
+  return Object.entries(breakdown)
+    .filter(([, v]) => v > 0)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, n);
+}
 
-    return `<div class="reg-row" role="row">
-      <span class="reg-score" style="color:${RISK_COLORS[level] || '#333'}">${score}</span>
-      <span class="reg-name">
-        <button class="reg-entity-link" data-entity-id="${e.id}">${e.name}</button>
-        ${statusPill(e)}
-      </span>
-      <span class="reg-desc">${desc}</span>
+function renderSpotlightCard(e) {
+  const d = e.derived || {};
+  const health = d.structural_health_score;
+  const healthLvl = d.structural_health_level || healthBandFor(health);
+  const healthColor = HEALTH_COLORS[healthLvl] || '#aaa';
+  const healthPct = health != null ? Math.max(0, Math.min(100, health * 100)) : 0;
+
+  const irLvl = d.independence_risk_level;
+  const irColor = RISK_COLORS[irLvl] || '#6b7280';
+  const ir = d.independence_risk_score;
+  const dp = d.discretionary_power_score;
+
+  const irFactors = topFactors(d.independence_risk_breakdown, 3);
+  const dpFactors = topFactors(d.discretionary_power_breakdown, 3);
+
+  const factorList = (rows, color) => rows.length
+    ? rows.map(([reason, pts]) => `
+        <div class="dr-bd-row">
+          <span class="dr-bd-pts" style="color:${color}">+${pts}</span>
+          <span class="dr-bd-reason">${reason}</span>
+        </div>`).join('')
+    : '<div class="dr-empty">No leaf factors recorded.</div>';
+
+  const meta = [
+    e.created_year ? `Est. ${e.created_year}` : null,
+    govLevelLabel(e.level_of_government),
+    typeLabel(e.type),
+  ].filter(Boolean).join(' · ');
+
+  return `<article class="sp-card" data-entity-id="${e.id}">
+    <header class="sp-card-head">
+      <div class="sp-card-name">${e.name}${statusPill(e)}</div>
+      <div class="sp-card-band" style="background:${healthColor}1a;color:${healthColor};border:1px solid ${healthColor}66">
+        ${healthLevelLabel(healthLvl).toUpperCase()}
+      </div>
+    </header>
+
+    <div class="sp-card-master">
+      <div class="sp-card-master-row">
+        <span class="sp-card-master-label">Structural Health</span>
+        <span class="sp-card-master-number" style="color:${healthColor}">${health != null ? health.toFixed(2) : '—'}</span>
+      </div>
+      <div class="sp-card-master-bar">
+        <div class="sp-card-master-fill" style="width:${healthPct}%;background:${healthColor}"></div>
+      </div>
+    </div>
+
+    <div class="sp-card-constituents">
+      <div class="sp-card-const-col">
+        <div class="sp-card-const-head" style="color:${irColor}">
+          ↳ Independence Risk · ${ir ?? '—'}${irLvl ? ' · ' + irLvl.toUpperCase() : ''}
+        </div>
+        ${factorList(irFactors, irColor)}
+      </div>
+      <div class="sp-card-const-col">
+        <div class="sp-card-const-head" style="color:#6366f1">
+          ↳ Discretionary Power · ${dp ?? '—'}
+        </div>
+        ${factorList(dpFactors, '#6366f1')}
+      </div>
+    </div>
+
+    <div class="sp-card-meta">${meta}</div>
+
+    <div class="sp-card-actions">
+      <button class="sp-action sp-open" data-entity-id="${e.id}">Open profile →</button>
+      <button class="sp-action sp-report" data-entity-id="${e.id}">↓ Report</button>
+    </div>
+  </article>`;
+}
+
+function renderSpotlightCarousel(featured, totalEntities) {
+  if (!featured.length) {
+    return `<div class="sp-empty">
+      <p>No entities are currently in critical or at-risk health bands.</p>
+      <button class="sp-browse-all" id="sp-browse-all">Browse all ${totalEntities} entities →</button>
     </div>`;
+  }
+  const cards = featured.map(renderSpotlightCard).join('');
+  const useDots = featured.length <= 10;
+  const dots = useDots
+    ? featured.map((_, i) => `<button class="sp-dot${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="Go to card ${i + 1}"></button>`).join('')
+    : '';
+  return `<div class="sp-carousel" tabindex="0">
+    <button class="sp-arrow sp-arrow-prev" aria-label="Previous">‹</button>
+    <div class="sp-viewport">
+      <div class="sp-track" id="sp-track" style="transform:translateX(0%)">${cards}</div>
+    </div>
+    <button class="sp-arrow sp-arrow-next" aria-label="Next">›</button>
+    <div class="sp-footer">
+      <div class="sp-progress">
+        ${useDots
+          ? `<div class="sp-dots">${dots}</div>`
+          : `<span class="sp-counter"><span id="sp-counter-i">1</span> / ${featured.length}</span>`}
+      </div>
+      <div class="sp-footer-right">
+        <span class="sp-footer-label"><span id="sp-counter-label">${featured.length}</span> critical &amp; at-risk</span>
+        <button class="sp-browse-all" id="sp-browse-all">Browse all ${totalEntities} →</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── Catalog drawer (full entity list, slide-in) ───────────────────────────────
+
+const _drawerState = { rendered: false, search: '', band: 'all' };
+
+function entityMatchesSearch(e, q) {
+  if (!q) return true;
+  const needle = q.toLowerCase();
+  return (e.name || '').toLowerCase().includes(needle)
+    || (e.abbreviation || '').toLowerCase().includes(needle);
+}
+
+function renderDrawerList(entities) {
+  const filtered = entities
+    .filter(e => {
+      if (_drawerState.band !== 'all') {
+        const lvl = e.derived?.structural_health_level;
+        if (_drawerState.band === 'unscored') {
+          if (lvl) return false;
+        } else if (lvl !== _drawerState.band) return false;
+      }
+      return entityMatchesSearch(e, _drawerState.search);
+    });
+
+  if (!filtered.length) {
+    return '<p class="cat-drawer-empty">No entities match the current filter.</p>';
+  }
+
+  // Group by cluster
+  const grouped = {};
+  filtered.forEach(e => {
+    const cl = e.cluster || '_unknown';
+    (grouped[cl] ||= []).push(e);
+  });
+
+  const clusterIds = Object.keys(grouped).sort((a, b) => {
+    const aw = grouped[a].reduce((s, e) => s + (e.derived?.structural_health_score ?? 1), 0) / grouped[a].length;
+    const bw = grouped[b].reduce((s, e) => s + (e.derived?.structural_health_score ?? 1), 0) / grouped[b].length;
+    return aw - bw;
+  });
+
+  return clusterIds.map(cl => {
+    const members = grouped[cl].slice().sort((a, b) =>
+      (a.derived?.structural_health_score ?? 999) - (b.derived?.structural_health_score ?? 999)
+    );
+    const rows = members.map(e => {
+      const d = e.derived || {};
+      const lvl = d.structural_health_level || healthBandFor(d.structural_health_score);
+      const color = lvl ? (HEALTH_COLORS[lvl] || '#aaa') : '#aaa';
+      const health = d.structural_health_score;
+      return `<button class="cat-row" data-entity-id="${e.id}" data-report="0">
+        <span class="cat-row-health" style="color:${color}">${health != null ? health.toFixed(2) : '—'}</span>
+        <span class="cat-row-name">${e.name}${statusPill(e)}</span>
+        <span class="cat-row-ir">IR ${d.independence_risk_score ?? '—'}</span>
+        <span class="cat-row-dp">DP ${d.discretionary_power_score ?? '—'}</span>
+        <span class="cat-row-report" data-report="1" data-entity-id="${e.id}" title="Jump to entity report">↓</span>
+      </button>`;
+    }).join('');
+    return `<section class="cat-drawer-cluster">
+      <header class="cat-drawer-cluster-head">
+        <span>${CLUSTER_LABELS[cl] || cl}</span>
+        <span class="cat-drawer-cluster-count">${members.length}</span>
+      </header>
+      <div class="cat-drawer-rows">${rows}</div>
+    </section>`;
   }).join('');
-
-  return `<div class="reg-header reg-row" role="columnheader">
-    <span class="reg-score">Score</span>
-    <span class="reg-name">Entity</span>
-    <span class="reg-desc">Top structural factor</span>
-  </div>
-  <div class="reg-body">${rows}</div>`;
 }
 
-// ── All-entities table ────────────────────────────────────────────────────────
+function renderCatalogDrawer(entities) {
+  const bands = ['all', 'critical', 'at_risk', 'watch', 'healthy', 'unscored'];
+  const bandLabel = {
+    all: 'All',
+    critical: 'Critical',
+    at_risk: 'At Risk',
+    watch: 'Watch',
+    healthy: 'Healthy',
+    unscored: 'Unscored',
+  };
+  const chips = bands.map(b => `
+    <button class="cat-drawer-chip${b === _drawerState.band ? ' active' : ''}" data-band="${b}">${bandLabel[b]}</button>
+  `).join('');
 
-function buildHierarchyMaps(rels) {
-  const childrenOf = {};
-  const parentOf   = {};
-  // AppealableTo: source appeals to target → target is the parent
-  rels.forEach(r => {
-    if (r.relationship_category === 'appellate_chain') {
-      const parent = r.target, child = r.source;
-      if (parent && child) {
-        (childrenOf[parent] ||= []).push(child);
-        if (!parentOf[child]) parentOf[child] = parent;
-      }
-    }
-  });
-  // BenchOf: source is a bench of target → target is the parent
-  rels.forEach(r => {
-    if (r.relationship_type === 'BenchOf') {
-      const parent = r.target, child = r.source;
-      if (parent && child && !parentOf[child]) {
-        (childrenOf[parent] ||= []).push(child);
-        parentOf[child] = parent;
-      }
-    }
-  });
-  return { childrenOf, parentOf };
-}
-
-// Renders appellate tree rows recursively; returns { html, visited }
-function renderTreeRows(rootIds, entityById, childrenOf, sortKey) {
-  const visited = new Set();
-  let html = '';
-
-  function walk(id, depth, ancestors) {
-    if (visited.has(id)) return;
-    visited.add(id);
-    const e = entityById[id];
-    if (!e) return;
-
-    const rawChildren = (childrenOf[id] || []).filter(c => entityById[c] && !visited.has(c));
-    const hasChildren = rawChildren.length > 0;
-    const sortedChildren = [...rawChildren].sort((a, b) => {
-      const ea = entityById[a], eb = entityById[b];
-      return sortKey === 'risk'
-        ? (eb?.derived?.independence_risk_score ?? -1) - (ea?.derived?.independence_risk_score ?? -1)
-        : (ea?.name || a).localeCompare(eb?.name || b);
-    });
-
-    const level        = e.derived?.independence_risk_level;
-    const score        = e.derived?.independence_risk_score;
-    const isAbols      = e.operational_status === 'Abolished';
-    const govLvl       = govLevelLabel(e.level_of_government);
-    const ancestorsStr = ancestors.join(',');
-    const isCollapsed  = _collapsedTreeNodes.has(id);
-    const rowCls       = ['tree-row', isAbols && 'all-row-abolished'].filter(Boolean).join(' ');
-
-    html += `<tr class="${rowCls}" data-id="${id}" data-depth="${depth}" data-ancestors="${ancestorsStr}">
-      <td class="tree-toggle-cell">
-        ${hasChildren
-          ? `<button class="tree-toggle" data-id="${id}" title="${isCollapsed ? 'Expand' : 'Collapse'}">${isCollapsed ? '▶' : '▼'}</button>`
-          : `<span class="tree-leaf"></span>`}
-      </td>
-      <td class="tree-name-cell" style="padding-left:${depth * 18 + 2}px">
-        <button class="reg-entity-link" data-entity-id="${id}">${e.name}</button>
-        ${statusPill(e)}
-        <span class="tree-type-lbl">${typeLabel(e.type)}</span>
-      </td>
-      <td class="all-gov"><span class="gov-pill">${govLvl}</span></td>
-      <td class="all-risk">
-        ${level
-          ? `<span class="risk-badge risk-${level}" style="color:${RISK_COLORS[level]}">${riskLevelLabel(level)}</span><span class="risk-num"> ${score}</span>`
-          : '<span class="risk-none">—</span>'}
-      </td>
-    </tr>`;
-
-    if (!isCollapsed) {
-      sortedChildren.forEach(child => walk(child, depth + 1, [...ancestors, id]));
-    }
-  }
-
-  rootIds.forEach(id => walk(id, 0, []));
-  return { html, visited };
-}
-
-// Renders cluster-grouped rows for a given entity list (used for orphans + filtered views)
-function renderClusterRows(members, childrenOf, parentOf, entityById, sortKey) {
-  const clustersRaw = State.graph?.clusters || {};
-  const clusterMeta = {};
-  Object.values(clustersRaw).forEach(cl => { clusterMeta[cl.id] = cl; });
-
-  const byCluster = {};
-  members.forEach(e => { (byCluster[e.cluster || '_unknown'] ||= []).push(e); });
-
-  const clusterOrder = Object.keys(byCluster).sort((a, b) => {
-    const aAvg = clusterMeta[a]?.avg_independence_risk
-      ?? byCluster[a].reduce((s, e) => s + (e.derived?.independence_risk_score ?? 0), 0) / byCluster[a].length;
-    const bAvg = clusterMeta[b]?.avg_independence_risk
-      ?? byCluster[b].reduce((s, e) => s + (e.derived?.independence_risk_score ?? 0), 0) / byCluster[b].length;
-    return bAvg - aAvg;
-  });
-
-  function clusterEntityRow(e, rank, isChild = false) {
-    const level   = e.derived?.independence_risk_level;
-    const score   = e.derived?.independence_risk_score;
-    const isAbols = e.operational_status === 'Abolished';
-    const cls     = ['all-row', isChild && 'all-row-child', isAbols && 'all-row-abolished'].filter(Boolean).join(' ');
-    return `<tr class="${cls}" data-cat="${entityCategory(e)}">
-      <td class="all-rank">${isChild ? '' : rank}</td>
-      <td class="all-name">
-        ${isChild ? '<span class="tree-connector">└</span>' : ''}
-        <button class="reg-entity-link" data-entity-id="${e.id}">${e.name}</button>
-        ${statusPill(e)}
-      </td>
-      <td class="all-gov"><span class="gov-pill">${govLevelLabel(e.level_of_government)}</span></td>
-      <td class="all-risk">
-        ${level
-          ? `<span class="risk-badge risk-${level}" style="color:${RISK_COLORS[level]}">${riskLevelLabel(level)}</span><span class="risk-num"> ${score}</span>`
-          : '<span class="risk-none">—</span>'}
-      </td>
-    </tr>`;
-  }
-
-  let html = '';
-  const memberIdSet = new Set(members.map(e => e.id));
-
-  clusterOrder.forEach(clusterId => {
-    const clMembers = byCluster[clusterId] || [];
-    if (!clMembers.length) return;
-
-    const meta       = clusterMeta[clusterId];
-    const clColor    = meta?.color || '#888';
-    const clLabel    = CLUSTER_LABELS[clusterId] || clusterId;
-    const isExcluded = SCORE_EXCLUDED_CLUSTERS.has(clusterId);
-    const scored     = clMembers.filter(e => e.derived?.independence_risk_score != null);
-    const avgIR      = scored.length
-      ? (scored.reduce((s, e) => s + e.derived.independence_risk_score, 0) / scored.length).toFixed(1)
-      : null;
-    const avgLevel = avgIR != null ? irScoreToLevel(+avgIR) : null;
-
-    html += `<tr class="cl-header-row">
-      <td colspan="4" class="cl-header-cell">
-        <span class="cl-header-dot" style="background:${clColor}"></span>
-        <span class="cl-header-name">${clLabel}</span>
-        <span class="cl-header-count">${clMembers.length} entities</span>
-        ${avgLevel ? `<span class="cl-header-ir" style="color:${RISK_COLORS[avgLevel]}">avg IR ${avgIR}</span>` : ''}
-        ${isExcluded ? '<span class="cl-header-excl">scores not computed</span>' : ''}
-      </td>
-    </tr>`;
-
-    // Top-level = not a child of another entity in this same set
-    const topLevel = clMembers.filter(e => !parentOf[e.id] || !memberIdSet.has(parentOf[e.id]));
-
-    const byType = {};
-    topLevel.forEach(e => { (byType[e.type || '_unknown'] ||= []).push(e); });
-
-    const typeOrder = Object.keys(byType).sort((a, b) => {
-      if (sortKey === 'risk') {
-        const aA = byType[a].reduce((s, e) => s + (e.derived?.independence_risk_score ?? -1), 0) / byType[a].length;
-        const bA = byType[b].reduce((s, e) => s + (e.derived?.independence_risk_score ?? -1), 0) / byType[b].length;
-        return bA - aA;
-      }
-      return a.localeCompare(b);
-    });
-
-    typeOrder.forEach(typeName => {
-      let typeMembers = [...byType[typeName]];
-      typeMembers = sortKey === 'risk'
-        ? typeMembers.sort((a, b) => (b.derived?.independence_risk_score ?? -1) - (a.derived?.independence_risk_score ?? -1))
-        : typeMembers.sort((a, b) => a.name.localeCompare(b.name));
-
-      const childCount = typeMembers.reduce((n, e) =>
-        n + (childrenOf[e.id] || []).filter(c => memberIdSet.has(c)).length, 0);
-
-      html += `<tr class="type-header-row">
-        <td colspan="4" class="type-header-cell">
-          <span class="type-header-name">${typeLabel(typeName)}</span>
-          <span class="type-header-count">${typeMembers.length}${childCount ? ` + ${childCount}` : ''}</span>
-        </td>
-      </tr>`;
-
-      typeMembers.forEach((e, i) => {
-        html += clusterEntityRow(e, i + 1);
-        const children = (childrenOf[e.id] || [])
-          .filter(c => memberIdSet.has(c))
-          .map(c => entityById[c])
-          .filter(Boolean);
-        if (children.length) {
-          const sorted = sortKey === 'risk'
-            ? [...children].sort((a, b) => (b.derived?.independence_risk_score ?? -1) - (a.derived?.independence_risk_score ?? -1))
-            : [...children].sort((a, b) => a.name.localeCompare(b.name));
-          sorted.forEach(child => { html += clusterEntityRow(child, 0, true); });
-        }
-      });
-    });
-  });
-
-  return html;
-}
-
-function renderClusteredEntitiesTable(entities, filter = 'All', sortKey = 'risk') {
-  const rels = State.graph?.relationships || [];
-  const { childrenOf, parentOf } = buildHierarchyMaps(rels);
-  const entityById = {};
-  entities.forEach(e => { entityById[e.id] = e; });
-
-  // Filter mode: skip the appellate tree, show only matching cluster rows
-  if (filter !== 'All') {
-    const filtered = entities.filter(e => entityCategory(e) === filter);
-    const clHtml = renderClusterRows(filtered, childrenOf, parentOf, entityById, sortKey);
-    return `<table class="all-table all-table-clustered">
-      <thead><tr>
-        <th class="all-rank">#</th><th>Entity</th><th>Level</th><th>Independence Risk</th>
-      </tr></thead>
-      <tbody>${clHtml}</tbody>
-    </table>`;
-  }
-
-  // All mode: appellate tree on top + orphan cluster groups below
-  const ROOTS = ['supreme_court_india', 'president_india'].filter(id => entityById[id]);
-  const { html: treeHtml, visited: inTree } = renderTreeRows(ROOTS, entityById, childrenOf, sortKey);
-  const orphans  = entities.filter(e => !inTree.has(e.id));
-  const orphanHtml = renderClusterRows(orphans, childrenOf, parentOf, entityById, sortKey);
-
-  const tbody = `
-    <tr class="section-divider-row">
-      <td colspan="4" class="section-divider-cell">
-        <span class="section-divider-title">Appellate hierarchy</span>
-        <span class="section-divider-count">${inTree.size} entities · rooted at Supreme Court &amp; President</span>
-      </td>
-    </tr>
-    ${treeHtml}
-    <tr class="section-divider-row">
-      <td colspan="4" class="section-divider-cell">
-        <span class="section-divider-title">Outside appellate chain</span>
-        <span class="section-divider-count">${orphans.length} entities · grouped by cluster</span>
-        <span class="section-divider-note">Regulators, tribunals &amp; legislative bodies without documented appellate connections</span>
-      </td>
-    </tr>
-    ${orphanHtml}
-  `;
-
-  return `<table class="all-table all-table-clustered" id="all-entities-tree-table">
-    <thead><tr>
-      <th class="tree-toggle-col"></th><th>Entity</th><th>Level</th><th>Independence Risk</th>
-    </tr></thead>
-    <tbody>${tbody}</tbody>
-  </table>`;
+  return `<header class="cat-drawer-head">
+      <div class="cat-drawer-title">Browse all ${entities.length} entities</div>
+      <button class="cat-drawer-close" id="cat-drawer-close" aria-label="Close">✕</button>
+    </header>
+    <div class="cat-drawer-controls">
+      <input type="search" class="cat-drawer-search" id="cat-drawer-search"
+        placeholder="Search by name or abbreviation…" value="${_drawerState.search}">
+      <div class="cat-drawer-chips" role="group" aria-label="Health band filter">${chips}</div>
+    </div>
+    <div class="cat-drawer-list" id="cat-drawer-list">${renderDrawerList(entities)}</div>`;
 }
 
 // ── Cluster drill-down overlay ────────────────────────────────────────────────
+
+function buildFactorFrequency(members, breakdownKey) {
+  const counts = new Map();
+  members.forEach(e => {
+    const bd = (e.derived || {})[breakdownKey];
+    if (!bd) return;
+    for (const [reason, pts] of Object.entries(bd)) {
+      if (!counts.has(reason)) counts.set(reason, { count: 0, total: 0 });
+      const slot = counts.get(reason);
+      slot.count++;
+      slot.total += pts;
+    }
+  });
+  return [...counts.entries()]
+    .map(([reason, v]) => ({ reason, count: v.count, total: v.total }))
+    .sort((a, b) => b.count - a.count || b.total - a.total);
+}
+
+function renderPatternTab(members) {
+  const healthValues = members.map(e => e.derived?.structural_health_score).filter(v => v != null);
+  const irValues = members.map(e => e.derived?.independence_risk_score).filter(v => v != null);
+  const dpValues = members.map(e => e.derived?.discretionary_power_score).filter(v => v != null);
+
+  const avgHealth = healthValues.length ? healthValues.reduce((s, v) => s + v, 0) / healthValues.length : null;
+  const avgIR = irValues.length ? irValues.reduce((s, v) => s + v, 0) / irValues.length : null;
+  const avgDP = dpValues.length ? dpValues.reduce((s, v) => s + v, 0) / dpValues.length : null;
+
+  const irFactors = buildFactorFrequency(members, 'independence_risk_breakdown').slice(0, 6);
+  const dpFactors = buildFactorFrequency(members, 'discretionary_power_breakdown').slice(0, 6);
+
+  const factorRow = (f, n) => `
+    <div class="dr-factor-row">
+      <span class="dr-factor-reason">${f.reason}</span>
+      <span class="dr-factor-count">${f.count}/${n}</span>
+      <span class="dr-factor-points">+${f.total} pts</span>
+    </div>`;
+
+  const avgHealthColor = avgHealth != null ? (HEALTH_COLORS[healthBandFor(avgHealth)] || '#aaa') : '#aaa';
+
+  return `
+    <div class="dr-pattern">
+      <div class="dr-stat-band">
+        <div class="dr-stat">
+          <div class="dr-stat-lbl">Avg Health</div>
+          <div class="dr-stat-num" style="color:${avgHealthColor}">${avgHealth != null ? avgHealth.toFixed(2) : '—'}</div>
+        </div>
+        <div class="dr-stat">
+          <div class="dr-stat-lbl">Avg IR</div>
+          <div class="dr-stat-num">${avgIR != null ? avgIR.toFixed(1) : '—'}</div>
+        </div>
+        <div class="dr-stat">
+          <div class="dr-stat-lbl">Avg DP</div>
+          <div class="dr-stat-num">${avgDP != null ? avgDP.toFixed(1) : '—'}</div>
+        </div>
+      </div>
+
+      <div class="dr-section">
+        <div class="dr-section-title">Recurring IR factors</div>
+        <p class="dr-section-hint">Each row: how many entities in this bucket share the factor, and total points contributed.</p>
+        ${irFactors.length
+          ? irFactors.map(f => factorRow(f, members.length)).join('')
+          : '<p class="dr-empty">No IR breakdown data.</p>'}
+      </div>
+
+      <div class="dr-section">
+        <div class="dr-section-title">Recurring DP factors</div>
+        ${dpFactors.length
+          ? dpFactors.map(f => factorRow(f, members.length)).join('')
+          : '<p class="dr-empty">No DP breakdown data.</p>'}
+      </div>
+    </div>`;
+}
+
+function renderEntityBreakdown(e) {
+  const d = e.derived || {};
+  const irBd = d.independence_risk_breakdown || {};
+  const dpBd = d.discretionary_power_breakdown || {};
+  const irRows = Object.entries(irBd).sort((a, b) => b[1] - a[1]);
+  const dpRows = Object.entries(dpBd).sort((a, b) => b[1] - a[1]);
+  const factorList = (rows, color) => rows.length
+    ? rows.map(([reason, pts]) => `
+        <div class="dr-bd-row">
+          <span class="dr-bd-pts" style="color:${pts >= 0 ? color : '#16a34a'}">${pts >= 0 ? '+' : ''}${pts}</span>
+          <span class="dr-bd-reason">${reason}</span>
+        </div>`).join('')
+    : '<div class="dr-empty">No breakdown.</div>';
+
+  return `<div class="dr-expand-body">
+    <div class="dr-expand-col">
+      <div class="dr-expand-head">↳ Independence Risk · ${d.independence_risk_score ?? '—'} ${(d.independence_risk_level || '').toUpperCase()}</div>
+      ${factorList(irRows, '#dc2626')}
+    </div>
+    <div class="dr-expand-col">
+      <div class="dr-expand-head">↳ Discretionary Power · ${d.discretionary_power_score ?? '—'}</div>
+      ${factorList(dpRows, '#6366f1')}
+    </div>
+    <div class="dr-expand-footer">
+      <button class="dr-open-full" data-entity-id="${e.id}">Open full entity panel →</button>
+    </div>
+  </div>`;
+}
+
+function renderEntitiesTab(members) {
+  if (!members.length) return `<p class="sum-empty">No entities in this bucket.</p>`;
+  const rows = members.map((e) => {
+    const d = e.derived || {};
+    const health = d.structural_health_score;
+    const healthLvl = d.structural_health_level || healthBandFor(health);
+    const healthColor = HEALTH_COLORS[healthLvl] || '#aaa';
+    const irLvl = d.independence_risk_level;
+    const irColor = RISK_COLORS[irLvl] || '#aaa';
+    return `<div class="dr-row" data-entity-row="${e.id}">
+      <button class="dr-row-head" data-toggle-id="${e.id}" aria-expanded="false">
+        <span class="dr-row-caret">▸</span>
+        <span class="dr-row-health" style="color:${healthColor}">${health != null ? health.toFixed(2) : '—'}</span>
+        <span class="dr-row-name">${e.name}${statusPill(e)}</span>
+        <span class="dr-row-chips">
+          <span class="reg-const-chip" style="color:${irColor};border-color:${irColor}66">IR ${d.independence_risk_score ?? '—'}${irLvl ? ' · ' + irLvl.charAt(0).toUpperCase() + irLvl.slice(1) : ''}</span>
+          <span class="reg-const-chip reg-const-chip-dp">DP ${d.discretionary_power_score ?? '—'}</span>
+        </span>
+        <span class="dr-row-type">${e.type?.replace(/([A-Z])/g, ' $1').trim() || ''}</span>
+      </button>
+      <div class="dr-row-expand" data-expand-id="${e.id}" hidden>
+        ${renderEntityBreakdown(e)}
+      </div>
+    </div>`;
+  }).join('');
+  return `<div class="dr-entities">${rows}</div>`;
+}
 
 function buildClusterDrillHTML(clusterId, entities, filterIds = null) {
   const label = CLUSTER_LABELS[clusterId] || clusterId;
   const idSet = filterIds ? new Set(filterIds) : null;
   const members = entities
     .filter(e => e.cluster === clusterId && (!idSet || idSet.has(e.id)))
-    .sort((a, b) => (b.derived?.independence_risk_score ?? -1) - (a.derived?.independence_risk_score ?? -1));
+    .sort((a, b) => (a.derived?.structural_health_score ?? 999) - (b.derived?.structural_health_score ?? 999));
 
   if (!members.length) return `<p class="sum-empty">No entities in this cluster.</p>`;
 
-  const rows = members.map((e, i) => {
-    const level = e.derived?.independence_risk_level;
-    const score = e.derived?.independence_risk_score;
-    const color = level ? RISK_COLORS[level] : '#aaa';
-    return `<div class="reg-row" role="row">
-      <span class="reg-score" style="color:${color}">${score ?? '—'}</span>
-      <span class="reg-name">
-        <button class="reg-entity-link" data-entity-id="${e.id}">${e.name}</button>
-        ${statusPill(e)}
-      </span>
-      <span class="reg-desc" style="color:var(--jem-mute);font-size:11px">${e.type?.replace(/([A-Z])/g,' $1').trim() || ''}</span>
-    </div>`;
-  }).join('');
-
   return `<div class="cl-drill-header">
-    <span class="cl-drill-title">${label}</span>
-    <span class="cl-drill-count">${members.length} entities</span>
-  </div>
-  <div class="reg-header reg-row" role="columnheader">
-    <span class="reg-score">Score</span>
-    <span class="reg-name">Entity</span>
-    <span class="reg-desc">Type</span>
-  </div>
-  <div class="reg-body">${rows}</div>`;
+      <span class="cl-drill-title">${label}</span>
+      <span class="cl-drill-count">${members.length} entities · sorted by worst health</span>
+    </div>
+    <div class="dr-tabs" role="tablist">
+      <button class="dr-tab active" data-dr-tab="pattern" role="tab" aria-selected="true">Pattern</button>
+      <button class="dr-tab" data-dr-tab="entities" role="tab" aria-selected="false">Entities (${members.length})</button>
+    </div>
+    <div class="dr-pane" data-dr-pane="pattern">${renderPatternTab(members)}</div>
+    <div class="dr-pane dr-pane-hidden" data-dr-pane="entities">${renderEntitiesTab(members)}</div>`;
 }
 
 function showClusterDrill(clusterId, entities, container, filterIds = null) {
@@ -637,7 +690,47 @@ function showClusterDrill(clusterId, entities, container, filterIds = null) {
     overlay.classList.add('cl-drill-hidden');
   });
   overlay.querySelector('.cl-drill-body')?.addEventListener('click', e => {
-    const link = e.target.closest('[data-entity-id]');
+    // Tab switch
+    const tabBtn = e.target.closest('.dr-tab');
+    if (tabBtn) {
+      const tab = tabBtn.dataset.drTab;
+      overlay.querySelectorAll('.dr-tab').forEach(t => {
+        const active = t.dataset.drTab === tab;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      overlay.querySelectorAll('.dr-pane').forEach(p => {
+        p.classList.toggle('dr-pane-hidden', p.dataset.drPane !== tab);
+      });
+      return;
+    }
+
+    // Inline row expand
+    const rowHead = e.target.closest('.dr-row-head');
+    if (rowHead) {
+      const id = rowHead.dataset.toggleId;
+      const expand = overlay.querySelector(`[data-expand-id="${CSS.escape(id)}"]`);
+      const caret = rowHead.querySelector('.dr-row-caret');
+      if (expand) {
+        const willOpen = expand.hasAttribute('hidden');
+        if (willOpen) expand.removeAttribute('hidden'); else expand.setAttribute('hidden', '');
+        rowHead.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+        if (caret) caret.textContent = willOpen ? '▾' : '▸';
+      }
+      return;
+    }
+
+    // "Open full entity panel" button
+    const openFull = e.target.closest('.dr-open-full');
+    if (openFull) {
+      e.preventDefault();
+      overlay.classList.add('cl-drill-hidden');
+      State.emit('navigateToDetail', openFull.dataset.entityId);
+      return;
+    }
+
+    // Existing entity link (legacy / future)
+    const link = e.target.closest('[data-entity-id]:not(.dr-open-full):not(.dr-row-head)');
     if (link) {
       e.preventDefault();
       overlay.classList.add('cl-drill-hidden');
@@ -647,11 +740,6 @@ function showClusterDrill(clusterId, entities, container, filterIds = null) {
 }
 
 // ── Main render ───────────────────────────────────────────────────────────────
-
-let _currentTab = 'risks';
-let _currentCatFilter = 'All';
-let _currentSort = 'risk';
-let _collapsedTreeNodes = new Set();
 
 export function initSummaryView() {
   const graph = State.graph;
@@ -668,10 +756,6 @@ export function initSummaryView() {
     ?? entities.filter(e => e.operational_status === 'Not_Constituted').length;
   const highRiskCount = metrics.high_independence_risk_count
     ?? entities.filter(e => ['high', 'severe'].includes(e.derived?.independence_risk_level)).length;
-
-  const catFilterBtns = TYPE_CATEGORIES.map(cat =>
-    `<button class="cat-filter-btn${cat === 'All' ? ' active' : ''}" data-cat="${cat}">${cat}</button>`
-  ).join('');
 
   container.innerHTML = `
     <div class="sum-inner">
@@ -700,35 +784,23 @@ export function initSummaryView() {
         </div>` : ''}
       </div>
 
+      <div class="sm-section sp-section">
+        <div class="sm-section-head">
+          <span class="sm-section-title">Spotlight · critical &amp; at-risk entities</span>
+        </div>
+        <p class="sm-note-global">Each card is a preview of the entity's structural report. Step through with arrows or swipe.</p>
+        ${renderSpotlightCarousel(spotlightSet(entities), entities.length)}
+      </div>
+
       <div class="sm-section">
         <div class="sm-section-head">
-          <span class="sm-section-title">Independence risk distribution</span>
+          <span class="sm-section-title">Structural health distribution</span>
         </div>
-        <p class="sm-note-global">Each bubble = entities at that score. Bubble area ∝ count. Click any bubble or label to see those entities. Legislative/executive bodies excluded (governance anchors).</p>
+        <p class="sm-note-global">Master composite of independence risk + discretionary power.
+        Each bubble = entities at that health band; bubble area ∝ count.
+        Click a bubble to drill into the constituent IR + DP scores for those entities.
+        Legislative/executive bodies excluded (governance anchors).</p>
         <div class="strip-wrap" id="strip-plot-wrap"></div>
-      </div>
-
-      <div class="sum-tabs" role="tablist">
-        <button class="sum-tab active" id="sum-tab-risks" data-tab="risks" role="tab" aria-selected="true">High-risk entities (${highRiskCount})</button>
-        <button class="sum-tab" id="sum-tab-all" data-tab="all" role="tab" aria-selected="false">All ${entities.length} entities</button>
-      </div>
-
-      <div id="sum-pane-risks" class="sum-pane" role="tabpanel">
-        <p class="sum-pane-note">Entities with high or severe independence risk, ranked by score. Click an entity to see its full structural profile.</p>
-        <div class="reg-table" id="risk-registry">${renderRiskRegistry(entities)}</div>
-      </div>
-
-      <div id="sum-pane-all" class="sum-pane sum-pane-hidden" role="tabpanel">
-        <p class="sum-pane-note">All ${entities.length} entities, sorted by independence risk. ⚐ Scores for legislative/executive bodies not computed — governance anchors only.</p>
-        <div class="all-controls">
-          <div class="cat-filter-group" role="group" aria-label="Filter by category">${catFilterBtns}</div>
-          <div class="sort-group">
-            <span class="sort-lbl">Sort:</span>
-            <button class="sort-btn active" id="sort-by-risk">By risk</button>
-            <button class="sort-btn" id="sort-by-alpha">A–Z</button>
-          </div>
-        </div>
-        <div id="all-entities-table">${renderClusteredEntitiesTable(entities, 'All', 'risk')}</div>
       </div>
 
       <div class="sum-footer">
@@ -805,50 +877,37 @@ export function initSummaryView() {
     }
   });
 
-  // ── Wire tabs ──────────────────────────────────────────────────────────────
-  container.querySelectorAll('.sum-tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      _currentTab = btn.dataset.tab;
-      container.querySelectorAll('.sum-tab').forEach(b => {
-        b.classList.toggle('active', b === btn);
-        b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
-      });
-      container.querySelectorAll('.sum-pane').forEach(p => p.classList.add('sum-pane-hidden'));
-      const pane = container.querySelector(`#sum-pane-${_currentTab}`);
-      if (pane) pane.classList.remove('sum-pane-hidden');
-    });
-  });
+  // ── Wire spotlight carousel ────────────────────────────────────────────────
+  const featured = spotlightSet(entities);
+  wireSpotlightCarousel(container, featured);
 
-  // ── Wire category filter buttons + tree collapse ──────────────────────────
+  // ── Wire card actions, browse-all, generic entity links ───────────────────
   container.addEventListener('click', e => {
-    // Tree collapse/expand toggle
-    const treeToggle = e.target.closest('.tree-toggle');
-    if (treeToggle) {
-      const id = treeToggle.dataset.id;
-      if (_collapsedTreeNodes.has(id)) _collapsedTreeNodes.delete(id);
-      else _collapsedTreeNodes.add(id);
-      _rerenderAllTable(container, entities);
+    const reportBtn = e.target.closest('.sp-report');
+    if (reportBtn) {
+      e.preventDefault();
+      const id = reportBtn.dataset.entityId;
+      try { sessionStorage.setItem('jem.autoExport', id); } catch (_) {}
+      State.emit('navigateToDetail', id);
       return;
     }
 
-    const catBtn = e.target.closest('.cat-filter-btn');
-    if (catBtn) {
-      _currentCatFilter = catBtn.dataset.cat;
-      container.querySelectorAll('.cat-filter-btn').forEach(b => b.classList.toggle('active', b === catBtn));
-      _rerenderAllTable(container, entities);
+    const openBtn = e.target.closest('.sp-open');
+    if (openBtn) {
+      e.preventDefault();
+      State.emit('navigateToDetail', openBtn.dataset.entityId);
       return;
     }
 
-    const sortBtn = e.target.closest('.sort-btn');
-    if (sortBtn) {
-      _currentSort = sortBtn.id === 'sort-by-alpha' ? 'alpha' : 'risk';
-      container.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b === sortBtn));
-      _rerenderAllTable(container, entities);
+    const browseBtn = e.target.closest('#sp-browse-all');
+    if (browseBtn) {
+      e.preventDefault();
+      openCatalogDrawer(entities);
       return;
     }
 
     const entityLink = e.target.closest('[data-entity-id]');
-    if (entityLink) {
+    if (entityLink && !entityLink.closest('.sp-card-head')) {
       e.preventDefault();
       State.emit('navigateToDetail', entityLink.dataset.entityId);
     }
@@ -860,15 +919,183 @@ export function initSummaryView() {
   });
 }
 
-function _rerenderAllTable(container, entities) {
-  const el = container.querySelector('#all-entities-table');
-  if (el) el.innerHTML = renderClusteredEntitiesTable(entities, _currentCatFilter, _currentSort);
+// ── Spotlight carousel state + interaction ───────────────────────────────────
+
+let _spotlightIndex = 0;
+let _spotlightTimer = null;
+const SPOTLIGHT_INTERVAL_MS = 6000;
+
+function wireSpotlightCarousel(container, featured) {
+  const carousel = container.querySelector('.sp-carousel');
+  if (!carousel || !featured.length) return;
+
+  const track = carousel.querySelector('#sp-track');
+  const dots = [...carousel.querySelectorAll('.sp-dot')];
+  const counterI = carousel.querySelector('#sp-counter-i');
+  const total = featured.length;
+  _spotlightIndex = 0;
+
+  function goTo(i, opts = {}) {
+    // Loop: wrap around at edges so auto-advance never gets stuck
+    _spotlightIndex = ((i % total) + total) % total;
+    track.style.transform = `translateX(-${_spotlightIndex * 100}%)`;
+    dots.forEach((d, di) => d.classList.toggle('active', di === _spotlightIndex));
+    if (counterI) counterI.textContent = String(_spotlightIndex + 1);
+    if (opts.userInitiated !== false) restartTimer();
+  }
+
+  function startTimer() {
+    if (total <= 1) return;
+    stopTimer();
+    _spotlightTimer = setInterval(() => {
+      goTo(_spotlightIndex + 1, { userInitiated: false });
+    }, SPOTLIGHT_INTERVAL_MS);
+  }
+  function stopTimer() {
+    if (_spotlightTimer) { clearInterval(_spotlightTimer); _spotlightTimer = null; }
+  }
+  function restartTimer() { stopTimer(); startTimer(); }
+
+  carousel.querySelector('.sp-arrow-prev')?.addEventListener('click', e => {
+    e.preventDefault();
+    goTo(_spotlightIndex - 1);
+  });
+  carousel.querySelector('.sp-arrow-next')?.addEventListener('click', e => {
+    e.preventDefault();
+    goTo(_spotlightIndex + 1);
+  });
+  dots.forEach(dot => {
+    dot.addEventListener('click', e => {
+      e.preventDefault();
+      goTo(+dot.dataset.i);
+    });
+  });
+
+  carousel.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(_spotlightIndex - 1); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); goTo(_spotlightIndex + 1); }
+  });
+
+  // Pointer/touch swipe
+  let startX = null;
+  const viewport = carousel.querySelector('.sp-viewport');
+  viewport?.addEventListener('pointerdown', e => { startX = e.clientX; stopTimer(); });
+  viewport?.addEventListener('pointerup', e => {
+    if (startX == null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    if (Math.abs(dx) < 40) { startTimer(); return; }
+    goTo(_spotlightIndex + (dx < 0 ? 1 : -1));
+  });
+  viewport?.addEventListener('pointercancel', () => { startX = null; startTimer(); });
+
+  // Pause on hover/focus, resume on leave/blur
+  carousel.addEventListener('mouseenter', stopTimer);
+  carousel.addEventListener('mouseleave', startTimer);
+  carousel.addEventListener('focusin', stopTimer);
+  carousel.addEventListener('focusout', startTimer);
+  // Pause when the tab is hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopTimer();
+    else startTimer();
+  });
+
+  startTimer();
+}
+
+// ── Catalog drawer (open/close, search, filter) ──────────────────────────────
+
+function openCatalogDrawer(entities) {
+  let drawer = document.getElementById('catalog-drawer');
+  if (!drawer) {
+    drawer = document.createElement('aside');
+    drawer.id = 'catalog-drawer';
+    drawer.className = 'catalog-drawer hidden';
+    drawer.setAttribute('aria-hidden', 'true');
+    drawer.innerHTML = `
+      <div class="cat-drawer-backdrop"></div>
+      <div class="cat-drawer-panel" role="dialog" aria-label="Browse all entities"></div>
+    `;
+    document.body.appendChild(drawer);
+  }
+
+  const panel = drawer.querySelector('.cat-drawer-panel');
+  panel.innerHTML = renderCatalogDrawer(entities);
+  _drawerState.rendered = true;
+
+  // Show drawer
+  drawer.classList.remove('hidden');
+  drawer.setAttribute('aria-hidden', 'false');
+  requestAnimationFrame(() => drawer.classList.add('open'));
+
+  // Focus search
+  setTimeout(() => drawer.querySelector('#cat-drawer-search')?.focus(), 50);
+
+  // Wire interactions once
+  if (!drawer.dataset.wired) {
+    drawer.dataset.wired = '1';
+
+    drawer.addEventListener('click', e => {
+      if (e.target.classList.contains('cat-drawer-backdrop')
+          || e.target.closest('#cat-drawer-close')) {
+        closeCatalogDrawer(drawer);
+        return;
+      }
+      const chip = e.target.closest('.cat-drawer-chip');
+      if (chip) {
+        _drawerState.band = chip.dataset.band;
+        drawer.querySelectorAll('.cat-drawer-chip').forEach(c =>
+          c.classList.toggle('active', c === chip));
+        rerenderDrawerList(drawer, entities);
+        return;
+      }
+      const reportIcon = e.target.closest('[data-report="1"]');
+      if (reportIcon) {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = reportIcon.dataset.entityId;
+        try { sessionStorage.setItem('jem.autoExport', id); } catch (_) {}
+        closeCatalogDrawer(drawer);
+        State.emit('navigateToDetail', id);
+        return;
+      }
+      const row = e.target.closest('.cat-row');
+      if (row) {
+        e.preventDefault();
+        closeCatalogDrawer(drawer);
+        State.emit('navigateToDetail', row.dataset.entityId);
+      }
+    });
+
+    drawer.addEventListener('input', e => {
+      if (e.target.id === 'cat-drawer-search') {
+        _drawerState.search = e.target.value || '';
+        rerenderDrawerList(drawer, entities);
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !drawer.classList.contains('hidden')) {
+        closeCatalogDrawer(drawer);
+      }
+    });
+  }
+}
+
+function rerenderDrawerList(drawer, entities) {
+  const list = drawer.querySelector('#cat-drawer-list');
+  if (list) list.innerHTML = renderDrawerList(entities);
+}
+
+function closeCatalogDrawer(drawer) {
+  drawer.classList.remove('open');
+  drawer.setAttribute('aria-hidden', 'true');
+  setTimeout(() => drawer.classList.add('hidden'), 220);
 }
 
 // Called externally to reset the view (e.g. when returning from detail)
 export function resetSummaryView() {
-  _currentTab = 'risks';
-  _currentCatFilter = 'All';
-  _currentSort = 'risk';
-  _collapsedTreeNodes.clear();
+  _spotlightIndex = 0;
+  _drawerState.search = '';
+  _drawerState.band = 'all';
 }

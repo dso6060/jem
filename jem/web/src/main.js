@@ -456,10 +456,7 @@ function initToolbar() {
   syncDerivedToolbarButtons();
   syncModeToolbarButtons();
   const noteEl = document.getElementById('unvalidated-note');
-  if (noteEl) {
-    noteEl.style.visibility = (State.showIndependenceRisk || State.showDiscretionaryPower)
-      ? 'visible' : 'hidden';
-  }
+  if (noteEl) noteEl.style.visibility = 'visible';
 
   document.querySelectorAll('.mode-btn').forEach(btn => {
     btn.addEventListener('pointerdown', (e) => {
@@ -556,32 +553,12 @@ function initToolbar() {
     syncExplorerTreeActions();
   });
 
-  const irBtn = document.getElementById('toggle-ir');
-  const irHandler = (e) => {
-    e.preventDefault?.();
-    e.stopPropagation?.();
-    State.toggleIR();
-    irBtn.classList.toggle('active', State.showIndependenceRisk);
-    render();
-  };
-  irBtn.addEventListener('pointerdown', irHandler);
-
-  const dpBtn = document.getElementById('toggle-dp');
-  const dpHandler = (e) => {
-    e.preventDefault?.();
-    e.stopPropagation?.();
-    State.toggleDP();
-    dpBtn.classList.toggle('active', State.showDiscretionaryPower);
-    render();
-  };
-  dpBtn.addEventListener('pointerdown', dpHandler);
+  // IR/DP toolbar toggles removed — structural health is the default ring;
+  // constituents are exposed via hover micro-card and entity detail panel.
 
   State.subscribe('derivedToggle', () => {
     const note = document.getElementById('unvalidated-note');
-    if (note) {
-      note.style.visibility = (State.showIndependenceRisk || State.showDiscretionaryPower)
-        ? 'visible' : 'hidden';
-    }
+    if (note) note.style.visibility = 'visible';
     syncDerivedToolbarButtons();
   });
 
@@ -594,10 +571,7 @@ function initToolbar() {
     syncLensToolbarButtons();
     syncDerivedToolbarButtons();
     const note = document.getElementById('unvalidated-note');
-    if (note) {
-      note.style.visibility = (State.showIndependenceRisk || State.showDiscretionaryPower)
-        ? 'visible' : 'hidden';
-    }
+    if (note) note.style.visibility = 'visible';
   });
 
   document.addEventListener('click', (e) => {

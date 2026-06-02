@@ -68,9 +68,14 @@ function buildPanelHTML(e) {
   const d = e._detail || {};
   const derived = e.derived || {};
   const irColors = State.graph ? State.getIndependenceRiskColors() : {};
+  const healthColors = State.graph ? State.getStructuralHealthColors() : {};
+  const dpColor = State.graph ? State.getDiscretionaryPowerColor() : '#6366f1';
   const irLevel = derived.independence_risk_level || 'unknown';
   const irScore = derived.independence_risk_score;
   const dpScore = derived.discretionary_power_score;
+  const healthScore = derived.structural_health_score;
+  const healthLevel = derived.structural_health_level || (State.graph ? State.structuralHealthBand(healthScore) : null);
+  const healthBreakdown = derived.structural_health_breakdown;
 
   let html = '';
 
@@ -223,41 +228,73 @@ function buildPanelHTML(e) {
   html += buildStructuralGapsSectionHTML(e);
 
   // ── Derived Scores ─────────────────────────────────────
-  if (State.viewMode === 'risk' && irScore === undefined && dpScore === undefined) {
+  if (State.viewMode === 'risk' && irScore === undefined && dpScore === undefined && healthScore == null) {
     html += section('Structural Risk Indicators', `
-      <p class="detail-empty-hint">Independence risk and discretionary power scores are not computed for this entity yet. When derived fields are present, rings on the map and bars here will reflect structural vulnerability to executive influence.</p>
+      <p class="detail-empty-hint">Structural-health, independence-risk and discretionary-power scores are not computed for this entity yet.</p>
     `);
-  } else if (irScore !== undefined || dpScore !== undefined) {
+  } else if (irScore !== undefined || dpScore !== undefined || healthScore != null) {
     const validated = derived.scores_validated;
+    const healthColor = healthColors[healthLevel] || '#9ca3af';
+
+    let masterBlock = '';
+    if (healthScore != null) {
+      const healthPct = Math.max(0, Math.min(100, healthScore * 100));
+      masterBlock = `
+        <div class="health-master">
+          <div class="health-master-head">
+            <span class="health-master-label">Structural Health</span>
+            <span class="health-master-band" style="background:${healthColor}1a;color:${healthColor};border:1px solid ${healthColor}66">${(healthLevel || '').replace(/_/g, ' ').toUpperCase()}</span>
+          </div>
+          <div class="health-master-row">
+            <div class="health-master-bar"><div class="health-master-fill" style="width:${healthPct}%;background:${healthColor}"></div></div>
+            <div class="health-master-number" style="color:${healthColor}">${healthScore.toFixed(2)}</div>
+          </div>
+          <div class="health-master-note">Composite of independence risk and discretionary power (1.0 = healthy, 0.0 = critical).</div>
+          ${healthBreakdown ? `<div class="health-master-breakdown">
+            ${Object.entries(healthBreakdown).map(([k, v]) => `
+              <div class="health-master-bd-row">
+                <span class="health-master-bd-label">${k}</span>
+                <span class="health-master-bd-val">−${(v).toFixed(3)}</span>
+              </div>`).join('')}
+          </div>` : ''}
+        </div>`;
+    }
+
+    const constituents = (irScore !== undefined || dpScore !== undefined) ? `
+      <div class="health-constituents">
+        <div class="health-constituents-head">Constituents</div>
+        ${irScore !== undefined ? `
+          <div class="score-row constituent">
+            <div class="score-label">↳ Independence Risk</div>
+            <div class="score-bar-outer">
+              <div class="score-bar-fill ir-${irLevel}" style="width:${Math.min(100, irScore*10)}%;background:${irColors[irLevel] || '#6b7280'}"></div>
+            </div>
+            <div class="score-number" style="color:${irColors[irLevel] || '#6b7280'}">${irScore} — ${(irLevel||'').toUpperCase()}</div>
+          </div>
+          ${buildBreakdown(derived.independence_risk_breakdown)}
+        ` : ''}
+        ${dpScore !== undefined ? `
+          <div class="score-row constituent" style="margin-top:12px">
+            <div class="score-label">↳ Discretionary Power</div>
+            <div class="score-bar-outer">
+              <div class="score-bar-fill dp" style="width:${Math.min(100, dpScore*10)}%;background:${dpColor}"></div>
+            </div>
+            <div class="score-number" style="color:${dpColor}">${dpScore}</div>
+          </div>
+          ${buildBreakdown(derived.discretionary_power_breakdown)}
+        ` : ''}
+      </div>` : '';
+
     html += `<div class="detail-section">
       <div class="detail-section-title">
         Structural Risk Indicators
         ${!validated ? '<span class="unvalidated-badge">⚐ Pending community review</span>' : ''}
       </div>
-      ${irScore !== undefined ? `
-        <div class="score-row">
-          <div class="score-label">Independence Risk</div>
-          <div class="score-bar-outer">
-            <div class="score-bar-fill ir-${irLevel}" style="width:${Math.min(100, irScore*8)}%"></div>
-          </div>
-          <div class="score-number" style="color:${irColors[irLevel] || '#27ae60'}">${irScore} — ${irLevel.toUpperCase()}</div>
-        </div>
-        ${buildBreakdown(derived.independence_risk_breakdown)}
-      ` : ''}
-      ${dpScore !== undefined ? `
-        <div class="score-row" style="margin-top:12px">
-          <div class="score-label">Discretionary Power</div>
-          <div class="score-bar-outer">
-            <div class="score-bar-fill dp" style="width:${Math.min(100, dpScore*6)}%"></div>
-          </div>
-          <div class="score-number">${dpScore}</div>
-        </div>
-        ${buildBreakdown(derived.discretionary_power_breakdown)}
-      ` : ''}
+      ${masterBlock}
+      ${constituents}
       <div class="score-note">
-        These scores are algorithmically derived from the data fields above.
-        They are structural indicators, not judgments on conduct.
-        Each factor links back to a data field — see ARCHITECTURE.md.
+        These scores are algorithmically derived from the data fields above —
+        structural indicators, not judgments on conduct. Each factor links back to a data field.
       </div>
     </div>`;
   }

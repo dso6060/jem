@@ -67,6 +67,45 @@ def excluded_score_result() -> Tuple[int, Dict[str, int]]:
     return 0, {GOVERNANCE_EXCLUDED_MESSAGE: 0}
 
 
+# ── Structural Health (master composite) ──────────────────────────────────────
+# Composite of independence_risk + discretionary_power on a 0.0–1.0 scale.
+# 1.0 = structurally healthy; 0.0 = structurally critical.
+# Weights chosen so IR (the stronger structural signal) dominates; tune here.
+IR_WEIGHT = 0.6
+DP_WEIGHT = 0.4
+IR_NORM_DIVISOR = 10.0  # IR ranges 0–10+; clamp at 10
+DP_NORM_DIVISOR = 10.0  # DP ranges 0–10+; clamp at 10
+
+
+def compute_structural_health(
+    ir_score: int, dp_score: int, entity: Dict[str, Any]
+) -> Tuple[Optional[float], Optional[str], Optional[Dict[str, float]]]:
+    """Composite health from IR + DP. Returns (score, level, breakdown) or
+    (None, None, None) for governance officeholders (no IR/DP basis)."""
+    if is_governance_scores_excluded(entity):
+        return None, None, None
+
+    ir_norm = min(ir_score / IR_NORM_DIVISOR, 1.0)
+    dp_norm = min(dp_score / DP_NORM_DIVISOR, 1.0)
+    risk = IR_WEIGHT * ir_norm + DP_WEIGHT * dp_norm
+    health = round(1.0 - risk, 3)
+
+    if health < 0.3:
+        level = "critical"
+    elif health < 0.6:
+        level = "at_risk"
+    elif health < 0.8:
+        level = "watch"
+    else:
+        level = "healthy"
+
+    breakdown = {
+        "Independence risk contribution": round(ir_norm * IR_WEIGHT, 3),
+        "Discretionary power contribution": round(dp_norm * DP_WEIGHT, 3),
+    }
+    return health, level, breakdown
+
+
 # ── Independence Risk Formula ─────────────────────────────────────────────────
 #
 # Higher score = higher structural independence risk.
@@ -332,6 +371,9 @@ def derive_scores_for_all(data_dir: Path) -> Dict[str, Dict]:
 
             ir_score, ir_breakdown = compute_independence_risk(entity)
             dp_score, dp_breakdown = compute_discretionary_power(entity)
+            health_score, health_level, health_breakdown = compute_structural_health(
+                ir_score, dp_score, entity
+            )
 
             results[entity_id] = {
                 "independence_risk_score": ir_score,
@@ -339,6 +381,9 @@ def derive_scores_for_all(data_dir: Path) -> Dict[str, Dict]:
                 "independence_risk_level": classify_ir(ir_score),
                 "discretionary_power_score": dp_score,
                 "discretionary_power_breakdown": dp_breakdown,
+                "structural_health_score": health_score,
+                "structural_health_level": health_level,
+                "structural_health_breakdown": health_breakdown,
                 "scores_validated": entity.get("derived", {}).get("scores_validated", False)
                 if entity.get("derived")
                 else False,
@@ -376,20 +421,30 @@ def explain_entity(entity_id: str, data_dir: Path):
             if entity and entity.get("id") == entity_id:
                 ir_score, ir_bd = compute_independence_risk(entity)
                 dp_score, dp_bd = compute_discretionary_power(entity)
+                h_score, h_level, h_bd = compute_structural_health(ir_score, dp_score, entity)
 
                 print(f"\n{'='*60}")
                 print(f"Score Explanation: {entity.get('name', entity_id)}")
                 print(f"{'='*60}")
-                print(f"\nINDEPENDENCE RISK SCORE: {ir_score} ({classify_ir(ir_score).upper()})")
-                print("Breakdown:")
+
+                if h_score is None:
+                    print(f"\nSTRUCTURAL HEALTH: — (governance officeholder, not scored)")
+                else:
+                    print(f"\nSTRUCTURAL HEALTH: {h_score:.2f} ({h_level.upper()})")
+                    print("Constituent contributions (risk → 1.0 - risk = health):")
+                    for reason, pts in sorted((h_bd or {}).items(), key=lambda x: -x[1]):
+                        print(f"  -{pts:.3f}  {reason}")
+
+                print(f"\n  └─ INDEPENDENCE RISK SCORE: {ir_score} ({classify_ir(ir_score).upper()})")
+                print("     Breakdown:")
                 for reason, pts in sorted(ir_bd.items(), key=lambda x: -x[1]):
                     sign = "+" if pts >= 0 else ""
-                    print(f"  {sign}{pts:+3d}  {reason}")
+                    print(f"       {sign}{pts:+3d}  {reason}")
 
-                print(f"\nDISCRETIONARY POWER SCORE: {dp_score}")
-                print("Breakdown:")
+                print(f"\n  └─ DISCRETIONARY POWER SCORE: {dp_score}")
+                print("     Breakdown:")
                 for reason, pts in sorted(dp_bd.items(), key=lambda x: -x[1]):
-                    print(f"  +{pts:3d}  {reason}")
+                    print(f"       +{pts:3d}  {reason}")
                 print()
                 return
 

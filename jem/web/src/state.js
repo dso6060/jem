@@ -639,6 +639,27 @@ export const State = {
       || {};
   },
 
+  getStructuralHealthColors() {
+    return this.graph?.legends?.structural_health_colors || {
+      healthy: '#27ae60',
+      watch: '#f1c40f',
+      at_risk: '#f39c12',
+      critical: '#e74c3c',
+    };
+  },
+
+  structuralHealthBand(score) {
+    if (score == null || Number.isNaN(score)) return null;
+    if (score < 0.3) return 'critical';
+    if (score < 0.6) return 'at_risk';
+    if (score < 0.8) return 'watch';
+    return 'healthy';
+  },
+
+  getDiscretionaryPowerColor() {
+    return '#6366f1';
+  },
+
   getEntityById(id) {
     if (!this.graph) return null;
     if (id?.startsWith('__browse_')) return this.getBrowseGroupEntity(id);

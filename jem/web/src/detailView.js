@@ -18,6 +18,20 @@ const RISK_EXPLAIN = {
   severe:   'Critical structural independence risk — multiple compounding factors or entity not constituted.',
 };
 
+const HEALTH_EXPLAIN = {
+  critical: 'Critical structural health — compounding independence and discretionary-power risks across the entity\'s design.',
+  at_risk:  'Multiple structural vulnerabilities; the entity\'s design exposes it to executive influence or unbounded discretion.',
+  watch:    'Functional but with notable structural weaknesses worth monitoring.',
+  healthy:  'Structural design offers meaningful guardrails against executive influence and unchecked discretion.',
+};
+
+const HEALTH_LEVEL_LABELS = {
+  critical: 'Critical',
+  at_risk:  'At Risk',
+  watch:    'Watch',
+  healthy:  'Healthy',
+};
+
 const REL_COLORS = {
   appellate_chain: '#2c3e50',
   appointment:     '#e67e22',
@@ -139,12 +153,13 @@ function renderCaseVolume(cv) {
 
 const GRAPH_LENSES = ['appellate_chain', 'supervisory', 'appointment', 'funding'];
 
-// Which relationships each lens includes
+// Which relationships each lens includes.
+// Note: BenchOf (statutory_ref category) is structural hierarchy — a bench is *part of*
+// its parent court — not an appellate route. It is always shown regardless of lens so
+// that toggling the Appellate lens never makes unrelated structural edges vanish.
 function relMatchesLens(r, lenses) {
-  if (lenses.has('appellate_chain') &&
-      (r.relationship_category === 'appellate_chain' ||
-       (r.relationship_category === 'statutory_ref' && r.relationship_type === 'BenchOf')))
-    return true;
+  if (r.relationship_category === 'statutory_ref' && r.relationship_type === 'BenchOf') return true;
+  if (lenses.has('appellate_chain') && r.relationship_category === 'appellate_chain') return true;
   if (lenses.has('supervisory')  && r.relationship_category === 'supervisory')  return true;
   if (lenses.has('appointment')  && r.relationship_category === 'appointment')  return true;
   if (lenses.has('funding')      && r.relationship_category === 'funding')      return true;
@@ -571,6 +586,272 @@ function renderNeighborhoodGraph(container, entityId, lenses) {
   container.appendChild(resetBtn);
 }
 
+// ── XLSX export ───────────────────────────────────────────────────────────────
+// Multi-sheet workbook: each concern (identity, scores, factors, appointment, …)
+// becomes its own sheet. SheetJS is lazy-loaded from a CDN on first click so it
+// doesn't impact initial page load.
+
+const SHEETJS_CDN = 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+
+function loadSheetJS() {
+  if (window.XLSX) return Promise.resolve(window.XLSX);
+  if (window._sheetjsLoading) return window._sheetjsLoading;
+  window._sheetjsLoading = new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = SHEETJS_CDN;
+    s.async = true;
+    s.onload = () => resolve(window.XLSX);
+    s.onerror = () => reject(new Error('Failed to load XLSX library'));
+    document.head.appendChild(s);
+  });
+  return window._sheetjsLoading;
+}
+
+// Sheet names: ≤31 chars, none of  : \ / ? * [ ]
+function safeSheetName(name) {
+  return name.replace(/[:\\/?*[\]]/g, ' ').slice(0, 31);
+}
+
+function buildEntityWorkbookSheets(entity) {
+  const d = entity.derived || {};
+  const det = entity._detail || {};
+  const sheets = []; // [{ name, aoa: [[...rows]] }]
+
+  // ── Identity ──
+  sheets.push({
+    name: 'Identity',
+    aoa: [
+      ['Field', 'Value'],
+      ['id', entity.id],
+      ['name', entity.name],
+      ['abbreviation', entity.abbreviation || ''],
+      ['type', entity.type],
+      ['cluster', entity.cluster],
+      ['level_of_government', entity.level_of_government],
+      ['created_year', entity.created_year ?? ''],
+      ['abolished_year', entity.abolished_year ?? ''],
+      ['operational_status', entity.operational_status],
+      ['constitutional_basis', entity.constitutional_basis || ''],
+      ['statutory_basis', entity.statutory_basis || ''],
+      ['data_quality', entity.data_quality],
+    ],
+  });
+
+  // ── Scores ──
+  sheets.push({
+    name: 'Scores',
+    aoa: [
+      ['Score', 'Value', 'Level'],
+      ['Structural Health', d.structural_health_score ?? '', d.structural_health_level || ''],
+      ['Independence Risk', d.independence_risk_score ?? '', d.independence_risk_level || ''],
+      ['Discretionary Power', d.discretionary_power_score ?? '', ''],
+      ['scores_validated', d.scores_validated ?? '', ''],
+    ],
+  });
+
+  // ── Health contributions ──
+  const hBd = d.structural_health_breakdown;
+  if (hBd && Object.keys(hBd).length) {
+    sheets.push({
+      name: 'Health Contributions',
+      aoa: [
+        ['Contribution', 'Risk weight (subtracted from 1.0)'],
+        ...Object.entries(hBd).map(([k, v]) => [k, typeof v === 'number' ? +v.toFixed(3) : v]),
+      ],
+    });
+  }
+
+  // ── IR factors ──
+  const irBd = d.independence_risk_breakdown;
+  if (irBd && Object.keys(irBd).length) {
+    sheets.push({
+      name: 'IR Factors',
+      aoa: [
+        ['Factor', 'Points'],
+        ...Object.entries(irBd).sort((a, b) => b[1] - a[1]),
+      ],
+    });
+  }
+
+  // ── DP factors ──
+  const dpBd = d.discretionary_power_breakdown;
+  if (dpBd && Object.keys(dpBd).length) {
+    sheets.push({
+      name: 'DP Factors',
+      aoa: [
+        ['Factor', 'Points'],
+        ...Object.entries(dpBd).sort((a, b) => b[1] - a[1]),
+      ],
+    });
+  }
+
+  // ── Appointment ──
+  if (det.appointment) {
+    const a = det.appointment;
+    const rows = [
+      ['nominates', a.nominates || ''],
+      ['recommends', a.recommends || ''],
+      ['consulted', Array.isArray(a.consulted) ? a.consulted.join('; ') : (a.consulted || '')],
+      ['consultation_binding', a.consultation_binding ?? ''],
+      ['formally_appoints', a.formally_appoints || ''],
+      ['criteria_public', a.criteria_public ?? ''],
+      ['tenure', a.tenure || ''],
+      ['reappointment_possible', a.reappointment_possible ?? ''],
+      ['removal_authority', a.removal_authority || ''],
+      ['removal_requires_parliament', a.removal_requires_parliament ?? ''],
+    ].filter(([, v]) => v !== '' && v !== undefined && v !== null);
+    if (rows.length) sheets.push({ name: 'Appointment', aoa: [['Field', 'Value'], ...rows] });
+  }
+
+  // ── Funding ──
+  if (det.funding) {
+    const f = det.funding;
+    const rows = [
+      ['primary_source', f.primary_source || ''],
+      ['ministry_responsible', f.ministry_responsible || ''],
+      ['state_contribution_percent', f.state_contribution_percent ?? ''],
+      ['budget_figure_crore', f.budget_figure_crore ?? ''],
+      ['budget_year', f.budget_year ?? ''],
+    ].filter(([, v]) => v !== '' && v !== undefined && v !== null);
+    if (rows.length) sheets.push({ name: 'Funding', aoa: [['Field', 'Value'], ...rows] });
+  }
+
+  // ── Audit ──
+  if (det.audit) {
+    const au = det.audit;
+    const rows = [
+      ['audited_by', au.audited_by || ''],
+      ['audit_type', au.audit_type || ''],
+      ['audit_report_public', au.audit_report_public ?? ''],
+      ['conduct_oversight_body', au.conduct_oversight_body || ''],
+    ].filter(([, v]) => v !== '' && v !== undefined && v !== null);
+    if (rows.length) sheets.push({ name: 'Audit', aoa: [['Field', 'Value'], ...rows] });
+  }
+
+  // ── Complaint mechanism ──
+  if (det.complaint_mechanism) {
+    const c = det.complaint_mechanism;
+    const complaintRows = (c.bias_complaint_to || []).map((b, i) => [
+      i + 1,
+      b.body || '',
+      b.mechanism || '',
+      b.external_to_judiciary ?? '',
+      b.is_public_process ?? '',
+      b.complainant_has_locus ?? '',
+      b.timeframe_defined ?? '',
+    ]);
+    if (complaintRows.length) {
+      sheets.push({
+        name: 'Complaint — Bias',
+        aoa: [
+          ['#', 'Body', 'Mechanism', 'External', 'Public process', 'Locus', 'Timeframe defined'],
+          ...complaintRows,
+        ],
+      });
+    }
+    const otherRows = [];
+    if (c.criminal_prosecution) {
+      const cp = c.criminal_prosecution;
+      otherRows.push(['criminal_prosecution.requires_sanction_from', cp.requires_sanction_from || '']);
+      otherRows.push(['criminal_prosecution.consultation_required_with', cp.consultation_required_with || '']);
+      otherRows.push(['criminal_prosecution.consultation_binding', cp.consultation_binding ?? '']);
+    }
+    if (c.lokpal_jurisdiction) {
+      otherRows.push(['lokpal_jurisdiction', c.lokpal_jurisdiction]);
+      if (c.lokpal_jurisdiction_note) otherRows.push(['lokpal_jurisdiction_note', c.lokpal_jurisdiction_note]);
+    }
+    if (otherRows.length) {
+      sheets.push({ name: 'Complaint — Other', aoa: [['Field', 'Value'], ...otherRows] });
+    }
+  }
+
+  // ── Case volume ──
+  if (det.case_volume && typeof det.case_volume === 'object') {
+    const cv = det.case_volume;
+    const rows = [
+      ['data_as_of', cv.data_as_of || ''],
+      ['pending_cases', cv.pending_cases ?? ''],
+      ['filed_last_year', cv.filed_last_year ?? ''],
+      ['disposed_last_year', cv.disposed_last_year ?? ''],
+      ['disposal_rate', cv.disposal_rate ?? ''],
+      ['avg_disposal_days', cv.avg_disposal_days ?? ''],
+      ['clog_severity', cv.clog_severity || ''],
+      ['source_type', cv.source_type || ''],
+      ['source_url', cv.source_url || ''],
+    ].filter(([, v]) => v !== '' && v !== undefined && v !== null);
+    if (rows.length) sheets.push({ name: 'Case Volume', aoa: [['Field', 'Value'], ...rows] });
+  }
+
+  // ── Judge strength ──
+  if (det.judge_strength && typeof det.judge_strength === 'object') {
+    const rows = Object.entries(det.judge_strength)
+      .filter(([, v]) => v !== '' && v !== undefined && v !== null);
+    if (rows.length) sheets.push({ name: 'Judge Strength', aoa: [['Field', 'Value'], ...rows] });
+  }
+
+  // ── Sources ──
+  if (entity.sources && entity.sources.length) {
+    const rows = entity.sources.map((s, i) => [
+      i + 1,
+      s.title || s.label || '',
+      s.url || (typeof s === 'string' ? s : ''),
+    ]);
+    sheets.push({ name: 'Sources', aoa: [['#', 'Title', 'URL'], ...rows] });
+  }
+
+  // ── README / metadata first sheet ──
+  const meta = [
+    ['JEM — Structural Report'],
+    ['Entity', entity.name],
+    ['ID', entity.id],
+    ['Generated', new Date().toISOString()],
+    [],
+    ['Sheets in this workbook:'],
+    ...sheets.map(s => ['', s.name]),
+  ];
+  sheets.unshift({ name: 'README', aoa: meta });
+
+  return sheets;
+}
+
+function applyColumnWidths(ws) {
+  const ref = ws['!ref'];
+  if (!ref || !window.XLSX) return;
+  const range = window.XLSX.utils.decode_range(ref);
+  const widths = [];
+  for (let C = range.s.c; C <= range.e.c; C++) {
+    let max = 10;
+    for (let R = range.s.r; R <= range.e.r; R++) {
+      const cell = ws[window.XLSX.utils.encode_cell({ r: R, c: C })];
+      if (!cell || cell.v == null) continue;
+      const len = String(cell.v).length;
+      if (len > max) max = len;
+    }
+    widths.push({ wch: Math.min(max + 2, 60) });
+  }
+  ws['!cols'] = widths;
+}
+
+async function downloadEntityXLSX(entity) {
+  let XLSX;
+  try {
+    XLSX = await loadSheetJS();
+  } catch (err) {
+    console.error(err);
+    alert('Could not load spreadsheet library. Check your internet connection.');
+    return;
+  }
+  const wb = XLSX.utils.book_new();
+  const sheets = buildEntityWorkbookSheets(entity);
+  for (const s of sheets) {
+    const ws = XLSX.utils.aoa_to_sheet(s.aoa);
+    applyColumnWidths(ws);
+    XLSX.utils.book_append_sheet(wb, ws, safeSheetName(s.name));
+  }
+  const filename = `${(entity.id || 'entity').replace(/[^a-z0-9_-]+/gi, '_')}.xlsx`;
+  XLSX.writeFile(wb, filename);
+}
+
 // ── Main render ───────────────────────────────────────────────────────────────
 
 export function renderDetailView(entityId, fromEntityId = null) {
@@ -592,7 +873,11 @@ export function renderDetailView(entityId, fromEntityId = null) {
   const level = derived.independence_risk_level;
   const score = derived.independence_risk_score;
   const dpScore = derived.discretionary_power_score;
-  const isScoreExcluded = score == null && dpScore == null;
+  const healthScore = derived.structural_health_score;
+  const healthLevel = derived.structural_health_level || State.structuralHealthBand?.(healthScore);
+  const healthColors = State.getStructuralHealthColors?.() || {};
+  const healthColor = healthLevel ? (healthColors[healthLevel] || '#888') : '#888';
+  const isScoreExcluded = score == null && dpScore == null && healthScore == null;
   const isNotValidated = derived.scores_validated === false;
 
   const prevEntityId = _historyStack[_historyStack.length - 1];
@@ -604,11 +889,18 @@ export function renderDetailView(entityId, fromEntityId = null) {
     .map(l => `<button class="nb-lens-btn${_nbLenses.has(l) ? ' active' : ''}" data-lens="${l}" style="--lens-color:${REL_COLORS[l]}">${REL_LABELS[l]}</button>`)
     .join('');
 
+  const healthPct = healthScore != null ? Math.max(0, Math.min(100, healthScore * 100)) : 0;
+  const healthLabel = healthLevel ? HEALTH_LEVEL_LABELS[healthLevel] || healthLevel : null;
+
   container.innerHTML = `
     <div class="dv-inner">
       <div class="dv-nav">
         <button class="dv-back-btn" id="dv-back">${backLabel}</button>
         <span class="dv-breadcrumb">${CLUSTER_LABELS[entity.cluster] || entity.cluster || ''}</span>
+        <div class="dv-actions-top">
+          <button class="dv-action-btn dv-export-xlsx" id="dv-export-xlsx" title="Download per-entity raw data as multi-sheet Excel file">↓ XLSX</button>
+          <button class="dv-action-btn dv-export-pdf" id="dv-export-pdf" title="Print / save as PDF">↓ Export PDF</button>
+        </div>
       </div>
 
       <div class="dv-layout">
@@ -626,36 +918,56 @@ export function renderDetailView(entityId, fromEntityId = null) {
           </div>
 
           ${isScoreExcluded ? `
-            <div class="dv-no-score">Independence risk score not computed for this entity type (governance anchor).</div>
+            <div class="dv-no-score">Structural scores not computed for this entity type (governance anchor).</div>
           ` : `
-            <div class="ir-hero" style="--ir-color:${RISK_COLORS[level] || '#888'}">
-              <div class="ir-score-num">${score ?? '—'}</div>
-              <div class="ir-level-label">${level ? level.toUpperCase() + ' INDEPENDENCE RISK' : 'INDEPENDENCE RISK'}</div>
-              <div class="ir-explain">${RISK_EXPLAIN[level] || ''}</div>
+            <div class="health-hero" style="--h-color:${healthColor}">
+              <div class="health-hero-top">
+                <div class="health-hero-num">${healthScore != null ? healthScore.toFixed(2) : '—'}</div>
+                <div class="health-hero-meta">
+                  <div class="health-hero-label">STRUCTURAL HEALTH</div>
+                  ${healthLabel ? `<div class="health-hero-band">${healthLabel.toUpperCase()}</div>` : ''}
+                </div>
+              </div>
+              <div class="health-hero-bar"><div class="health-hero-fill" style="width:${healthPct}%"></div></div>
+              <div class="health-hero-explain">${HEALTH_EXPLAIN[healthLevel] || 'Composite of independence risk and discretionary power.'}</div>
               ${isNotValidated ? '<div class="ir-pending">⚐ Scores pending community review</div>' : ''}
             </div>
-            ${renderBreakdown(derived.independence_risk_breakdown, 'Independence risk', 15)}
 
-            ${dpScore != null ? `<div class="dp-section">
-              <span class="dp-label">Discretionary Power</span>
-              <span class="dp-score">${dpScore}</span>
-              <div class="dp-bar-wrap"><div class="dp-bar" style="width:${Math.min(100, (dpScore / 20) * 100)}%"></div></div>
-            </div>` : ''}
+            <div class="dv-constituents">
+              <div class="dv-const-head">Constituents</div>
+
+              ${score != null ? `
+                <div class="dv-const-block">
+                  <div class="dv-const-row">
+                    <span class="dv-const-label">↳ Independence Risk</span>
+                    <span class="dv-const-score" style="color:${RISK_COLORS[level] || '#888'}">${score} · ${(level || '').toUpperCase()}</span>
+                  </div>
+                  <div class="dv-const-explain">${RISK_EXPLAIN[level] || ''}</div>
+                  ${renderBreakdown(derived.independence_risk_breakdown, 'Independence risk', 15)}
+                </div>
+              ` : ''}
+
+              ${dpScore != null ? `
+                <div class="dv-const-block">
+                  <div class="dv-const-row">
+                    <span class="dv-const-label">↳ Discretionary Power</span>
+                    <span class="dv-const-score" style="color:#6366f1">${dpScore}</span>
+                  </div>
+                  <div class="dp-bar-wrap"><div class="dp-bar" style="width:${Math.min(100, (dpScore / 20) * 100)}%"></div></div>
+                  ${renderBreakdown(derived.discretionary_power_breakdown, 'Discretionary power', 15)}
+                </div>
+              ` : ''}
+            </div>
           `}
 
           ${renderCaseVolume(detail.case_volume)}
 
           <div class="dv-full-profile">
-            <button class="dv-profile-toggle" id="dv-profile-toggle">
-              Full structural profile ▾
+            <div class="dv-profile-head">
+              <span class="dv-profile-title">Full structural profile</span>
               <span class="dv-profile-hint">appointment · funding · audit · complaint · sources</span>
-            </button>
-            <div class="dv-profile-body hidden" id="dv-profile-body"></div>
-          </div>
-
-          <div class="dv-actions">
-            <button class="dv-open-map" id="dv-open-map">Open in full map →</button>
-            <button class="dv-export-pdf" id="dv-export-pdf">↓ Export PDF</button>
+            </div>
+            <div class="dv-profile-body" id="dv-profile-body"></div>
           </div>
         </div>
 
@@ -675,6 +987,20 @@ export function renderDetailView(entityId, fromEntityId = null) {
     </div>
   `;
 
+  // Auto-render the full structural profile (open by default)
+  const _profileBody = container.querySelector('#dv-profile-body');
+  if (_profileBody) {
+    _profileBody.innerHTML = buildPanelHTML(entity);
+    _profileBody.dataset.rendered = '1';
+    _profileBody.addEventListener('click', ev => {
+      const lnk = ev.target.closest('.detail-connection-row');
+      if (!lnk) return;
+      ev.preventDefault();
+      const id = lnk.getAttribute('data-entity-id');
+      if (id) State.emit('navigateToDetail', id);
+    });
+  }
+
   // ── Wire back button ────────────────────────────────────────────────────────
   container.querySelector('#dv-back')?.addEventListener('click', () => {
     if (prevEntityId) {
@@ -685,37 +1011,9 @@ export function renderDetailView(entityId, fromEntityId = null) {
     }
   });
 
-  // ── Wire "open in full map" ─────────────────────────────────────────────────
-  container.querySelector('#dv-open-map')?.addEventListener('click', () => {
-    State.emit('navigateToMap', entityId);
-  });
-
-  // ── Wire full structural profile toggle ────────────────────────────────────
-  container.querySelector('#dv-profile-toggle')?.addEventListener('click', () => {
-    const body = container.querySelector('#dv-profile-body');
-    const btn  = container.querySelector('#dv-profile-toggle');
-    if (!body) return;
-    const isHidden = body.classList.contains('hidden');
-    if (isHidden) {
-      // Lazy-render full profile on first open
-      if (!body.dataset.rendered) {
-        body.innerHTML = buildPanelHTML(entity);
-        body.dataset.rendered = '1';
-        // Wire connection rows inside the profile to navigate via detail view
-        body.addEventListener('click', ev => {
-          const btn2 = ev.target.closest('.detail-connection-row');
-          if (!btn2) return;
-          ev.preventDefault();
-          const id = btn2.getAttribute('data-entity-id');
-          if (id) State.emit('navigateToDetail', id);
-        });
-      }
-      body.classList.remove('hidden');
-      btn.innerHTML = `Full structural profile ▴ <span class="dv-profile-hint">appointment · funding · audit · complaint · sources</span>`;
-    } else {
-      body.classList.add('hidden');
-      btn.innerHTML = `Full structural profile ▾ <span class="dv-profile-hint">appointment · funding · audit · complaint · sources</span>`;
-    }
+  // ── Wire XLSX export ────────────────────────────────────────────────────────
+  container.querySelector('#dv-export-xlsx')?.addEventListener('click', () => {
+    downloadEntityXLSX(entity);
   });
 
   // ── Wire lens toggles ───────────────────────────────────────────────────────
@@ -730,62 +1028,12 @@ export function renderDetailView(entityId, fromEntityId = null) {
   });
 
   // ── Wire PDF export ─────────────────────────────────────────────────────────
+  // The profile section is already open by default and the map is excluded from print
+  // via @media print rules in main.css (.jem-print-detail body class).
   container.querySelector('#dv-export-pdf')?.addEventListener('click', () => {
-    // 1. Ensure full structural profile is generated and visible
-    const profileBody = container.querySelector('#dv-profile-body');
-    let profileWasHidden = false;
-    if (profileBody) {
-      if (!profileBody.dataset.rendered) {
-        profileBody.innerHTML = buildPanelHTML(entity);
-        profileBody.dataset.rendered = '1';
-        profileBody.addEventListener('click', ev => {
-          const btn2 = ev.target.closest('.detail-connection-row');
-          if (!btn2) return;
-          ev.preventDefault();
-          const id = btn2.getAttribute('data-entity-id');
-          if (id) State.emit('navigateToDetail', id);
-        });
-      }
-      profileWasHidden = profileBody.classList.contains('hidden');
-      if (profileWasHidden) profileBody.classList.remove('hidden');
-    }
-
-    // 2. Fit the SVG viewBox to its actual content so the full tree prints
-    const graphWrap = container.querySelector('#nb-graph-wrap');
-    const svgEl = graphWrap?.querySelector('svg');
-    let savedWidth = null, savedHeight = null, savedViewBox = null;
-    if (svgEl) {
-      try {
-        const bbox = svgEl.getBBox();
-        if (bbox.width > 0 && bbox.height > 0) {
-          savedWidth   = svgEl.getAttribute('width');
-          savedHeight  = svgEl.getAttribute('height');
-          savedViewBox = svgEl.getAttribute('viewBox');
-          const pad = 28;
-          svgEl.setAttribute('viewBox',
-            `${bbox.x - pad} ${bbox.y - pad} ${bbox.width + pad * 2} ${bbox.height + pad * 2}`);
-          svgEl.setAttribute('width', '100%');
-          svgEl.removeAttribute('height');
-        }
-      } catch (_) { /* getBBox may fail if element not rendered */ }
-    }
-
-    // 3. Print
     document.body.classList.add('jem-print-detail');
-
     const done = () => {
       document.body.classList.remove('jem-print-detail');
-      // Restore profile state
-      if (profileWasHidden && profileBody) profileBody.classList.add('hidden');
-      // Restore SVG attributes
-      if (svgEl) {
-        if (savedWidth  != null) svgEl.setAttribute('width', savedWidth);
-        else svgEl.removeAttribute('width');
-        if (savedHeight != null) svgEl.setAttribute('height', savedHeight);
-        else svgEl.removeAttribute('height');
-        if (savedViewBox != null) svgEl.setAttribute('viewBox', savedViewBox);
-        else svgEl.removeAttribute('viewBox');
-      }
       window.removeEventListener('afterprint', done);
     };
     window.addEventListener('afterprint', done);
@@ -796,6 +1044,21 @@ export function renderDetailView(entityId, fromEntityId = null) {
   requestAnimationFrame(() => {
     _redrawNeighborhood(container);
   });
+
+  // ── Auto-scroll to export action when arrived via "↓ Report" from summary ──
+  try {
+    if (sessionStorage.getItem('jem.autoExport') === entity.id) {
+      sessionStorage.removeItem('jem.autoExport');
+      requestAnimationFrame(() => {
+        const btn = container.querySelector('#dv-export-pdf');
+        if (btn) {
+          btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          btn.classList.add('dv-export-pulse');
+          setTimeout(() => btn.classList.remove('dv-export-pulse'), 1800);
+        }
+      });
+    }
+  } catch (_) { /* sessionStorage unavailable */ }
 }
 
 function _redrawNeighborhood(container) {
