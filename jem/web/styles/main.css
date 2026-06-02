@@ -2921,20 +2921,6 @@ body.jem-resizing-inspector * {
 
 /* ── Summary footer ───────────────────────────────────────────────────────── */
 
-.sum-footer { margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--jem-faint); }
-.btn-explore-map {
-  background: none;
-  border: 1px solid var(--jem-ink);
-  padding: 6px 16px;
-  border-radius: 4px;
-  font-family: var(--font-main);
-  font-size: 12px;
-  color: var(--jem-ink);
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.btn-explore-map:hover { background: var(--jem-ink); color: #fff; }
-
 /* ── Command palette search augmentation ──────────────────────────────────── */
 
 .palette-hint {

@@ -803,9 +803,6 @@ export function initSummaryView() {
         <div class="strip-wrap" id="strip-plot-wrap"></div>
       </div>
 
-      <div class="sum-footer">
-        <button class="btn-explore-map" id="btn-explore-map">Explore full map →</button>
-      </div>
 
     </div>
   `;
@@ -913,10 +910,6 @@ export function initSummaryView() {
     }
   });
 
-  // ── Wire "Explore full map" ────────────────────────────────────────────────
-  container.querySelector('#btn-explore-map')?.addEventListener('click', () => {
-    State.emit('navigateToMap', null);
-  });
 }
 
 // ── Spotlight carousel state + interaction ───────────────────────────────────
