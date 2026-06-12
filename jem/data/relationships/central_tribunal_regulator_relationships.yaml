@@ -1044,6 +1044,233 @@ relationships:
         type: GoIWebsite
         accessed_date: "2026-06-12"
 
+  # ── C04 AFT regional benches — AppealableTo SC (s.30) ───────────────────
+
+  - id: rel_aft_chandigarh_to_sc_appellate
+    source: aft_chandigarh
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30 — appeals from AFT lie to SC only"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as aggregate rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_lucknow_to_sc_appellate
+    source: aft_lucknow
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_kolkata_to_sc_appellate
+    source: aft_kolkata
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_guwahati_to_sc_appellate
+    source: aft_guwahati
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_chennai_to_sc_appellate
+    source: aft_chennai
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_hyderabad_to_sc_appellate
+    source: aft_hyderabad
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Circuit bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_kochi_to_sc_appellate
+    source: aft_kochi
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_jaipur_to_sc_appellate
+    source: aft_jaipur
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_mumbai_to_sc_appellate
+    source: aft_mumbai
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_jabalpur_to_sc_appellate
+    source: aft_jabalpur
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_srinagar_to_sc_appellate
+    source: aft_srinagar
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2016
+    data_quality: partial
+    notes: Regional bench (Srinagar at Jammu); same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  # ── C19 Tax stack — income tax appellate chain ───────────────────────────
+
+  - id: rel_ao_it_to_cit_a_appellate
+    source: ao_income_tax_generic
+    target: cit_appeals_generic
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Income Tax Act 1961, s.246A — appeals against AO orders lie to CIT(A)"
+    year_established: 1961
+    data_quality: partial
+    notes: First appellate forum in IT chain; generic AO entity represents field formations.
+    sources:
+      - label: "Income Tax Act 1961, s.246A"
+        url: https://www.india-code.nic.in/CodeofActs/1961/1961_43.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_cit_a_to_itat_appellate
+    source: cit_appeals_generic
+    target: itat
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Income Tax Act 1961, s.253 — appeals from CIT(A) orders lie to ITAT"
+    year_established: 1961
+    data_quality: partial
+    notes: >-
+      Second appellate forum; JCIT(A) small-appeal route per Finance Act 2023 is a
+      parallel first tier not modelled separately.
+    sources:
+      - label: "Income Tax Act 1961, s.253"
+        url: https://www.india-code.nic.in/CodeofActs/1961/1961_43.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
   # ── PrimaryFunder edges (Ministry → Entity) ───────────────────────────────
 
   - id: rel_mca_funds_nclat
