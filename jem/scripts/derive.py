@@ -425,9 +425,7 @@ def derive_scores_for_all(data_dir: Path) -> Dict[str, Dict]:
 
             ir_score, ir_breakdown = compute_independence_risk(entity)
             dp_score, dp_breakdown = compute_discretionary_power(entity)
-            health_score, health_level, health_breakdown = compute_structural_health(
-                entity, ir_score, dp_score
-            )
+            sh_score, sh_level, sh_breakdown = compute_structural_health(entity, ir_score, dp_score)
 
             results[entity_id] = {
                 "independence_risk_score": ir_score,
@@ -435,9 +433,9 @@ def derive_scores_for_all(data_dir: Path) -> Dict[str, Dict]:
                 "independence_risk_level": classify_ir(ir_score),
                 "discretionary_power_score": dp_score,
                 "discretionary_power_breakdown": dp_breakdown,
-                "structural_health_score": health_score,
-                "structural_health_level": health_level,
-                "structural_health_breakdown": health_breakdown,
+                "structural_health_score": sh_score,
+                "structural_health_level": sh_level,
+                "structural_health_breakdown": sh_breakdown,
                 "scores_validated": entity.get("derived", {}).get("scores_validated", False)
                 if entity.get("derived")
                 else False,

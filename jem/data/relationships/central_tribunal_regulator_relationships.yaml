@@ -148,13 +148,1128 @@ relationships:
     is_constitutional: false
     statutory_basis: "RDDBFI Act 1993, s.18 — any person aggrieved by DRT order may appeal to DRAT"
     year_established: 1993
-    notes: Appeal must be filed within 45 days; pre-deposit condition applies.
+    notes: >-
+      Aggregate DRT→DRAT edge retained for constellation view. Location-level DRT
+      entities (C04 batch 1) have bench-specific AppealableTo edges below.
     data_quality: verified
     sources:
       - label: "RDDBFI Act 1993, s.18"
         url: https://india-code.nic.in/handle/123456789/1573
         type: CentralAct
         accessed_date: "2025-01-15"
+
+  # ── C04 DRT batch 1 — location DRT → bench DRAT ─────────────────────────
+
+  - id: rel_drt_chennai_to_drat_chennai
+    source: drt_chennai
+    target: drat_chennai
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: DRAT Chennai official About Us lists Chennai DRTs under this bench.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "DRAT Chennai — About Us"
+        url: https://drat.tn.nic.in/AboutUs.htm
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_mumbai_to_drat_mumbai
+    source: drt_mumbai
+    target: drat_mumbai
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: MoF e-tribunals composition listing.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "MoF e-tribunals — DRAT/DRT composition"
+        url: https://drt.etribunals.gov.in/drtlive/composition.php
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_delhi_to_drat_delhi
+    source: drt_delhi
+    target: drat_delhi
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: >-
+      Wired per maintainer jurisdiction table; some practitioner sources route Delhi
+      DRT appeals to DRAT Allahabad — verify Gazette before upgrading to verified.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_kolkata_to_drat_kolkata
+    source: drt_kolkata
+    target: drat_kolkata
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: MoF e-tribunals composition listing.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "MoF e-tribunals — DRAT/DRT composition"
+        url: https://drt.etribunals.gov.in/drtlive/composition.php
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_bengaluru_to_drat_chennai
+    source: drt_bengaluru
+    target: drat_chennai
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: DRAT Chennai official About Us lists Bengaluru DRTs under this bench.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "DRAT Chennai — About Us"
+        url: https://drat.tn.nic.in/AboutUs.htm
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_hyderabad_to_drat_kolkata
+    source: drt_hyderabad
+    target: drat_kolkata
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: >-
+      RESOLVED: G.S.R. 538(E) dated 8 June 2018 (DRAT Kolkata Recruitment Rules First
+      Schedule) groups DRT-1/2 Hyderabad under DRAT Kolkata; reconfirmed G.S.R.
+      429(E)/2021. Originally DRAT Chennai circuit (G.S.R. 134(E)/2000). DRAT Chennai
+      jurisdiction page excludes Hyderabad. See drt_hyderabad data_quality_notes.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "G.S.R. 538(E) dated 8 June 2018 — DRAT Kolkata Recruitment Rules"
+        url: https://www.casemine.com/act/in/5f5f11199fca195c05ccdf06
+        type: GazetteNotification
+        accessed_date: "2026-06-12"
+      - label: "DRAT Chennai — Jurisdiction (Hyderabad absent)"
+        url: https://drat.tn.nic.in/Jurisdiction.htm
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_ahmedabad_to_drat_mumbai
+    source: drt_ahmedabad
+    target: drat_mumbai
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: MoF e-tribunals composition listing.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "MoF e-tribunals — DRAT/DRT composition"
+        url: https://drt.etribunals.gov.in/drtlive/composition.php
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_pune_to_drat_mumbai
+    source: drt_pune
+    target: drat_mumbai
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: MoF e-tribunals composition listing.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "MoF e-tribunals — DRAT/DRT composition"
+        url: https://drt.etribunals.gov.in/drtlive/composition.php
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_allahabad_to_drat_allahabad
+    source: drt_allahabad
+    target: drat_allahabad
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: MoF e-tribunals composition listing.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "MoF e-tribunals — DRAT/DRT composition"
+        url: https://drt.etribunals.gov.in/drtlive/composition.php
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_chandigarh_to_drat_delhi
+    source: drt_chandigarh
+    target: drat_delhi
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: Maintainer jurisdiction table; J&K/Ladakh extension left partial on entity.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  # ── C04 DRT batch 2 — location DRT → bench DRAT ─────────────────────────
+
+  - id: rel_drt_lucknow_to_drat_allahabad
+    source: drt_lucknow
+    target: drat_allahabad
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: G.S.R. 274(E)/2000; S.O. 454(E)/2017; S.O. 4719(E)/2022 circuit.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_jaipur_to_drat_delhi
+    source: drt_jaipur
+    target: drat_delhi
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: G.S.R. 655(E)/1994; S.O. 4718(E)/2022 circuit.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_patna_to_drat_allahabad
+    source: drt_patna
+    target: drat_allahabad
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: G.S.R. 325(E)/1997 establishment.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_ranchi_to_drat_allahabad
+    source: drt_ranchi
+    target: drat_allahabad
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: G.S.R. 113(E)/2002 establishment.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_jabalpur_to_drat_allahabad
+    source: drt_jabalpur
+    target: drat_allahabad
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: G.S.R. 181(E)/1998 establishment.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_dehradun_to_drat_allahabad
+    source: drt_dehradun
+    target: drat_allahabad
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 2017
+    data_quality: partial
+    notes: S.O. 454(E)/2017 — new DRT for Uttarakhand carved from Lucknow circuit.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_guwahati_to_drat_kolkata
+    source: drt_guwahati
+    target: drat_kolkata
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: G.S.R. 538(E)/2018 DRAT Kolkata Recruitment Rules First Schedule.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "G.S.R. 538(E) dated 8 June 2018"
+        url: https://www.casemine.com/act/in/5f5f11199fca195c05ccdf06
+        type: GazetteNotification
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_cuttack_to_drat_kolkata
+    source: drt_cuttack
+    target: drat_kolkata
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: G.S.R. 538(E)/2018 DRAT Kolkata Recruitment Rules First Schedule.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "G.S.R. 538(E) dated 8 June 2018"
+        url: https://www.casemine.com/act/in/5f5f11199fca195c05ccdf06
+        type: GazetteNotification
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_siliguri_to_drat_kolkata
+    source: drt_siliguri
+    target: drat_kolkata
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 2017
+    data_quality: partial
+    notes: G.S.R. 538(E)/2018; Siliguri established S.O. 831(E)/2017.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "G.S.R. 538(E) dated 8 June 2018"
+        url: https://www.casemine.com/act/in/5f5f11199fca195c05ccdf06
+        type: GazetteNotification
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_visakhapatnam_to_drat_kolkata
+    source: drt_visakhapatnam
+    target: drat_kolkata
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: >-
+      G.S.R. 112(E)/2002; S.O. 254(E)/2017; G.S.R. 538(E)/2018 DRAT Kolkata circuit
+      (transferred from original DRAT Chennai circuit G.S.R. 134(E)/2000).
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "G.S.R. 538(E) dated 8 June 2018"
+        url: https://www.casemine.com/act/in/5f5f11199fca195c05ccdf06
+        type: GazetteNotification
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_ernakulam_to_drat_chennai
+    source: drt_ernakulam
+    target: drat_chennai
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: G.S.R. 397(E)/1999; S.O. 4717(E)/2022 circuit.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_coimbatore_to_drat_chennai
+    source: drt_coimbatore
+    target: drat_chennai
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: G.S.R. 221(E)/2002; S.O. 4717(E)/2022 circuit.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_madurai_to_drat_chennai
+    source: drt_madurai
+    target: drat_chennai
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: G.S.R. 15(E)/2007; S.O. 4717(E)/2022 circuit.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_nagpur_to_drat_mumbai
+    source: drt_nagpur
+    target: drat_mumbai
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: G.S.R. 945(E)/2000 establishment.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_drt_aurangabad_to_drat_mumbai
+    source: drt_aurangabad
+    target: drat_mumbai
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "RDDBFI Act 1993, s.18"
+    year_established: 1993
+    data_quality: partial
+    notes: G.S.R. 909(E)/2000; S.O. 4719(E)/2022 circuit.
+    sources:
+      - label: "RDDBFI Act 1993, s.18"
+        url: https://india-code.nic.in/handle/123456789/1573
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  # ── C04 AFT regional benches — BenchOf parent tribunal ───────────────────
+
+  - id: rel_aft_chandigarh_bench_of_aft
+    source: aft_chandigarh
+    target: aft
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "AFT Act 2007, s.5 — regional benches of the Armed Forces Tribunal"
+    year_established: 2009
+    data_quality: partial
+    notes: Territorial jurisdiction per aft.gov.in/jurisdiction.
+    sources:
+      - label: "AFT Act 2007, s.5"
+        url: https://www.india-code.nic.in/CodeofActs/2007/2007_55.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "AFT — bench territorial jurisdiction"
+        url: https://aft.gov.in/jurisdiction
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_lucknow_bench_of_aft
+    source: aft_lucknow
+    target: aft
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "AFT Act 2007, s.5"
+    year_established: 2009
+    data_quality: partial
+    sources:
+      - label: "AFT Act 2007, s.5"
+        url: https://www.india-code.nic.in/CodeofActs/2007/2007_55.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "AFT — bench territorial jurisdiction"
+        url: https://aft.gov.in/jurisdiction
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_kolkata_bench_of_aft
+    source: aft_kolkata
+    target: aft
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "AFT Act 2007, s.5"
+    year_established: 2009
+    data_quality: partial
+    sources:
+      - label: "AFT Act 2007, s.5"
+        url: https://www.india-code.nic.in/CodeofActs/2007/2007_55.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "AFT — bench territorial jurisdiction"
+        url: https://aft.gov.in/jurisdiction
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_guwahati_bench_of_aft
+    source: aft_guwahati
+    target: aft
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "AFT Act 2007, s.5"
+    year_established: 2009
+    data_quality: partial
+    sources:
+      - label: "AFT Act 2007, s.5"
+        url: https://www.india-code.nic.in/CodeofActs/2007/2007_55.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "AFT — bench territorial jurisdiction"
+        url: https://aft.gov.in/jurisdiction
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_chennai_bench_of_aft
+    source: aft_chennai
+    target: aft
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "AFT Act 2007, s.5"
+    year_established: 2009
+    data_quality: partial
+    notes: Parent regional bench for southern zone; Hyderabad circuit bench sits under this bench.
+    sources:
+      - label: "AFT Act 2007, s.5"
+        url: https://www.india-code.nic.in/CodeofActs/2007/2007_55.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "AFT — bench territorial jurisdiction"
+        url: https://aft.gov.in/jurisdiction
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_hyderabad_bench_of_aft_chennai
+    source: aft_hyderabad
+    target: aft_chennai
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "AFT Act 2007, s.5 — circuit bench under Chennai regional bench"
+    year_established: 2015
+    data_quality: partial
+    notes: >-
+      Circuit bench at Secunderabad under Chennai regional bench (not a separate
+      regional bench on aft.gov.in jurisdiction table). Telangana coverage only.
+    sources:
+      - label: "AFT Act 2007, s.5"
+        url: https://www.india-code.nic.in/CodeofActs/2007/2007_55.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "AFT — bench territorial jurisdiction"
+        url: https://aft.gov.in/jurisdiction
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_kochi_bench_of_aft
+    source: aft_kochi
+    target: aft
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "AFT Act 2007, s.5"
+    year_established: 2009
+    data_quality: partial
+    sources:
+      - label: "AFT Act 2007, s.5"
+        url: https://www.india-code.nic.in/CodeofActs/2007/2007_55.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "AFT — bench territorial jurisdiction"
+        url: https://aft.gov.in/jurisdiction
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_jaipur_bench_of_aft
+    source: aft_jaipur
+    target: aft
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "AFT Act 2007, s.5"
+    year_established: 2009
+    data_quality: partial
+    sources:
+      - label: "AFT Act 2007, s.5"
+        url: https://www.india-code.nic.in/CodeofActs/2007/2007_55.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "AFT — bench territorial jurisdiction"
+        url: https://aft.gov.in/jurisdiction
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_mumbai_bench_of_aft
+    source: aft_mumbai
+    target: aft
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "AFT Act 2007, s.5"
+    year_established: 2009
+    data_quality: partial
+    sources:
+      - label: "AFT Act 2007, s.5"
+        url: https://www.india-code.nic.in/CodeofActs/2007/2007_55.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "AFT — bench territorial jurisdiction"
+        url: https://aft.gov.in/jurisdiction
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_jabalpur_bench_of_aft
+    source: aft_jabalpur
+    target: aft
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "AFT Act 2007, s.5"
+    year_established: 2009
+    data_quality: partial
+    sources:
+      - label: "AFT Act 2007, s.5"
+        url: https://www.india-code.nic.in/CodeofActs/2007/2007_55.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "AFT — bench territorial jurisdiction"
+        url: https://aft.gov.in/jurisdiction
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_srinagar_bench_of_aft
+    source: aft_srinagar
+    target: aft
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "AFT Act 2007, s.5 — Regional Bench (Srinagar) at Jammu"
+    year_established: 2009
+    data_quality: partial
+    notes: >-
+      Single statutory bench Regional Bench (Srinagar) at Jammu per aft.gov.in.
+      Supersedes colloquial aft_jammu id.
+    sources:
+      - label: "AFT Act 2007, s.5"
+        url: https://www.india-code.nic.in/CodeofActs/2007/2007_55.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "AFT — bench territorial jurisdiction"
+        url: https://aft.gov.in/jurisdiction
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  # ── C04 CESTAT regional benches — BenchOf parent tribunal ────────────────
+
+  - id: rel_cestat_chennai_bench_of_cestat
+    source: cestat_chennai
+    target: cestat
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Customs Act 1962, s.129 — regional benches of CESTAT"
+    year_established: 1982
+    data_quality: partial
+    sources:
+      - label: "Customs Act 1962, s.129"
+        url: https://www.india-code.nic.in/CodeofActs/1962/1962_52.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "CESTAT official website"
+        url: https://cestat.gov.in
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_cestat_mumbai_bench_of_cestat
+    source: cestat_mumbai
+    target: cestat
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Customs Act 1962, s.129"
+    year_established: 1982
+    data_quality: partial
+    sources:
+      - label: "Customs Act 1962, s.129"
+        url: https://www.india-code.nic.in/CodeofActs/1962/1962_52.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "CESTAT official website"
+        url: https://cestat.gov.in
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_cestat_kolkata_bench_of_cestat
+    source: cestat_kolkata
+    target: cestat
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Customs Act 1962, s.129"
+    year_established: 1982
+    data_quality: partial
+    sources:
+      - label: "Customs Act 1962, s.129"
+        url: https://www.india-code.nic.in/CodeofActs/1962/1962_52.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "CESTAT official website"
+        url: https://cestat.gov.in
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_cestat_bangalore_bench_of_cestat
+    source: cestat_bangalore
+    target: cestat
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Customs Act 1962, s.129"
+    year_established: 2000
+    data_quality: partial
+    notes: Bangalore bench established 14 December 2000 per cestat.gov.in/aboutus.
+    sources:
+      - label: "Customs Act 1962, s.129"
+        url: https://www.india-code.nic.in/CodeofActs/1962/1962_52.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "CESTAT — About Us"
+        url: https://cestat.gov.in/aboutus
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_cestat_ahmedabad_bench_of_cestat
+    source: cestat_ahmedabad
+    target: cestat
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Customs Act 1962, s.129"
+    year_established: 2006
+    data_quality: partial
+    notes: Ahmedabad bench established 3 March 2006 per cestat.gov.in/aboutus.
+    sources:
+      - label: "Customs Act 1962, s.129"
+        url: https://www.india-code.nic.in/CodeofActs/1962/1962_52.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "CESTAT — About Us"
+        url: https://cestat.gov.in/aboutus
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_cestat_hyderabad_bench_of_cestat
+    source: cestat_hyderabad
+    target: cestat
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Customs Act 1962, s.129"
+    year_established: 2015
+    data_quality: partial
+    notes: Hyderabad bench established 14 December 2015 per cestat.gov.in/aboutus.
+    sources:
+      - label: "Customs Act 1962, s.129"
+        url: https://www.india-code.nic.in/CodeofActs/1962/1962_52.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "CESTAT — About Us"
+        url: https://cestat.gov.in/aboutus
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_cestat_allahabad_bench_of_cestat
+    source: cestat_allahabad
+    target: cestat
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Customs Act 1962, s.129"
+    year_established: 2015
+    data_quality: partial
+    notes: Allahabad bench established 1 September 2015 per cestat.gov.in/aboutus.
+    sources:
+      - label: "Customs Act 1962, s.129"
+        url: https://www.india-code.nic.in/CodeofActs/1962/1962_52.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "CESTAT — About Us"
+        url: https://cestat.gov.in/aboutus
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  - id: rel_cestat_chandigarh_bench_of_cestat
+    source: cestat_chandigarh
+    target: cestat
+    relationship_type: BenchOf
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Customs Act 1962, s.129"
+    year_established: 2015
+    data_quality: partial
+    notes: Chandigarh bench established 1 December 2015 per cestat.gov.in/aboutus.
+    sources:
+      - label: "Customs Act 1962, s.129"
+        url: https://www.india-code.nic.in/CodeofActs/1962/1962_52.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+      - label: "CESTAT — About Us"
+        url: https://cestat.gov.in/aboutus
+        type: GoIWebsite
+        accessed_date: "2026-06-12"
+
+  # ── C04 AFT regional benches — AppealableTo SC (s.30) ───────────────────
+
+  - id: rel_aft_chandigarh_to_sc_appellate
+    source: aft_chandigarh
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30 — appeals from AFT lie to SC only"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as aggregate rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_lucknow_to_sc_appellate
+    source: aft_lucknow
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_kolkata_to_sc_appellate
+    source: aft_kolkata
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_guwahati_to_sc_appellate
+    source: aft_guwahati
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_chennai_to_sc_appellate
+    source: aft_chennai
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_hyderabad_to_sc_appellate
+    source: aft_hyderabad
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Circuit bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_kochi_to_sc_appellate
+    source: aft_kochi
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_jaipur_to_sc_appellate
+    source: aft_jaipur
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_mumbai_to_sc_appellate
+    source: aft_mumbai
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_jabalpur_to_sc_appellate
+    source: aft_jabalpur
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2009
+    data_quality: partial
+    notes: Regional bench order; same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_aft_srinagar_to_sc_appellate
+    source: aft_srinagar
+    target: supreme_court_india
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Armed Forces Tribunal Act 2007, s.30"
+    year_established: 2016
+    data_quality: partial
+    notes: Regional bench (Srinagar at Jammu); same statutory path as rel_aft_to_sc_appellate.
+    sources:
+      - label: "AFT Act 2007, s.30"
+        url: https://india-code.nic.in/handle/123456789/2093
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  # ── C19 Tax stack — income tax appellate chain ───────────────────────────
+
+  - id: rel_ao_it_to_cit_a_appellate
+    source: ao_income_tax_generic
+    target: cit_appeals_generic
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Income Tax Act 1961, s.246A — appeals against AO orders lie to CIT(A)"
+    year_established: 1961
+    data_quality: partial
+    notes: First appellate forum in IT chain; generic AO entity represents field formations.
+    sources:
+      - label: "Income Tax Act 1961, s.246A"
+        url: https://www.india-code.nic.in/CodeofActs/1961/1961_43.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
+
+  - id: rel_cit_a_to_itat_appellate
+    source: cit_appeals_generic
+    target: itat
+    relationship_type: AppealableTo
+    relationship_category: appellate_chain
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: "Income Tax Act 1961, s.253 — appeals from CIT(A) orders lie to ITAT"
+    year_established: 1961
+    data_quality: partial
+    notes: >-
+      Second appellate forum; JCIT(A) small-appeal route per Finance Act 2023 is a
+      parallel first tier not modelled separately.
+    sources:
+      - label: "Income Tax Act 1961, s.253"
+        url: https://www.india-code.nic.in/CodeofActs/1961/1961_43.pdf
+        type: CentralAct
+        accessed_date: "2026-06-12"
 
   # ── PrimaryFunder edges (Ministry → Entity) ───────────────────────────────
 

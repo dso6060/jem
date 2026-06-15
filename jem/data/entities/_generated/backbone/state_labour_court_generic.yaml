@@ -1,0 +1,28 @@
+id: state_labour_court_generic
+name: State Labour Court — Generic
+abbreviation: SLC
+type: StateTribunal
+cluster: tribunals_adr
+level_of_government: State
+created_year: 1947
+operational_status: Active
+statutory_basis: Industrial Disputes Act 1947 s.7 — State Government labour courts
+appointment:
+  formally_appoints: governor_state
+  removal_authority: governor_state
+funding:
+  primary_source: State_Consolidated_Fund
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Performance
+  audit_report_public: true
+complaint_mechanism:
+  bias_complaint_to: []
+  lokpal_jurisdiction: Contested
+data_quality: partial
+data_quality_notes: Generic scaffold. IRC 2020 notified but not in force as of Jun 2026; IDA 1947 remains operative.
+sources:
+- label: India Code — Constitution & Acts
+  url: https://india-code.nic.in/
+  type: GoIWebsite
+  accessed_date: '2026-06-12'
