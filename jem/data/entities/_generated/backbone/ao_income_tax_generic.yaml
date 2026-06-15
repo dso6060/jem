@@ -1,0 +1,102 @@
+id: ao_income_tax_generic
+name: Assessing Officer (Income Tax) — Generic
+name_hindi: आयकर निर्धारण अधिकारी — सामान्य
+abbreviation: AO (IT)
+aliases:
+- Income Tax Officer
+- ITO
+- Deputy Commissioner of Income Tax (Assessment)
+- DCIT (Assessment)
+type: ExecutiveBody
+cluster: executive_interface
+level_of_government: Central
+created_year: 1961
+operational_status: Active
+constitutional_basis: null
+statutory_basis: >
+  Income Tax Act 1961 s.2(7A) (definition of Assessing Officer); ss.120–133C
+  (jurisdiction, powers, and functions of income-tax authorities including AOs);
+  ss.143–144 (assessment procedure); ss.147–148A (reassessment); s.156 (demand
+  notice). Faceless Assessment Scheme under s.144B (CBDT Notification 60/2020) —
+  assessment largely performed through National Faceless Assessment Centre (NFAC).
+  Appeals against AO orders lie to CIT(A)/JCIT(A) under s.246A, thence to ITAT
+  under s.253.
+appointment:
+  nominates: cbdt
+  recommends: null
+  consulted: []
+  consultation_binding: null
+  formally_appoints: central_government
+  criteria_public: false
+  tenure: IRS/ITO cadre service tenure; no fixed term
+  reappointment_possible: null
+  removal_authority: central_government
+  removal_requires_parliament: false
+  removal_independent_committee: false
+funding:
+  primary_source: Consolidated_Fund_India
+  ministry_responsible: ministry_of_finance
+  state_contribution_percent: null
+  budget_figure_crore: null
+  budget_year: null
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+  conduct_oversight_body: cbdt
+complaint_mechanism:
+  bias_complaint_to: []
+  criminal_prosecution:
+    requires_sanction_from: central_government
+    consultation_required_with: null
+    consultation_binding: null
+  removal_mechanism: Departmental proceedings under CCS (CCA) Rules 1965
+  lokpal_jurisdiction: 'Yes'
+  lokpal_jurisdiction_note: IRS/ITO officers are Central Government servants; Lokpal jurisdiction applies per Lokpal and Lokayuktas Act 2013 s.14(1)(a).
+  source: null
+jurisdiction_scope:
+  is_all_india: true
+  jurisdiction_types:
+  - Income tax assessments (original)
+  - Reassessments
+  - TDS processing
+  - Demand and recovery
+  states_covered: []
+  uts_covered: []
+structural_variations:
+  - variation_id: ao_faceless_assessment
+    description: >
+      Faceless Assessment Scheme launched under s.144B of the IT Act, notified vide
+      CBDT Notification No. 60/2020 and subsequent notifications. Cases assigned to
+      National Faceless Assessment Centre (NFAC), Delhi and Regional Faceless
+      Assessment Centres; assessment completed without face-to-face interaction.
+      Certain categories (international tax, search/seizure, black money) excluded
+      from faceless scheme.
+    applicable_to:
+      - ao_income_tax_generic
+    source: IT Act 1961 s.144B; CBDT Notification 60/2020 dated 13 August 2020
+    independence_risk_note: >
+      Faceless scheme reduces opportunity for AO-taxpayer corruption but raises
+      concerns about due process; multiple HC petitions filed 2020-2023.
+data_quality: partial
+data_quality_notes: >-
+  Generic entity representing the Assessing Officer cadre across all Income Tax field formations. AO is the originating authority in the IT appellate chain: AO → CIT(A) → ITAT → HC → SC.
+
+  This entity models the structural role, not any individual AO or charge/ward. Actual formations are allocated by CBDT through charge orders; individual AO jurisdictions assigned under IT Act 1961 s.120 via CBDT notification.
+
+  No judge_strength or case_volume fields applicable — volume statistics are reported at CBDT/department level, not per AO unit.
+sources:
+- label: Income Tax Act 1961 s.2(7A) and s.120–124 — definition and jurisdiction of AO
+  url: https://www.india-code.nic.in/CodeofActs/1961/1961_43.pdf
+  type: CentralAct
+  accessed_date: '2026-06-11'
+- label: Income Tax India — official portal
+  url: https://incometaxindia.gov.in
+  type: GoIWebsite
+  accessed_date: '2026-06-11'
+- label: >
+    Faceless Assessment Scheme — s.144B; CBDT Notification 60/2020 dated
+    13 August 2020
+  url: https://www.incometaxindia.gov.in/communications/notification/notification60_2020.pdf
+  type: GazetteNotification
+  accessed_date: '2026-06-12'
