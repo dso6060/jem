@@ -119,11 +119,59 @@ Judiciary Entity Map (India) (JEM) presents structural information about institu
 | C25 | People / roles layer | ~20 | **pending** | 3 |
 | C26 | Relationship wiring (orphans) | — | **done** | 1–3 |
 | C27 | Data-quality upgrades | 1103 | **updated** | all |
-| C28 | NJDG / judge_strength numerics | 1103 | **partial** | 2 |
+| C28 | NJDG / judge_strength numerics | 1103 | **partial** — see below | 2 |
 
 **Contributors:** copy prompts from the roadmap + [`AI_DATA_ENTRY_PROMPT.md`](jem/docs/AI_DATA_ENTRY_PROMPT.md) → open a **GitHub issue** with YAML (no email). **New entities:** proposed drafts OK. **Relationships:** maintainers only.
 
 *Maintainers: when a category is **done**, update this table and move its prompt to the roadmap archive.*
+
+---
+
+## Numerics status (C28) — `judge_strength` & NJDG snapshots
+
+**Category C28 is structurally started but numerically incomplete in v1.2.0.** Topology and schema are in place; populated counts depend on **external GoI sources** that are **not stored in this repository**.
+
+### Coverage audit (Jun 2026)
+
+| Field | Entities with block | With real numbers | Status |
+|---|---|---|---|
+| `judge_strength` (allotted / appointed) | **746** | **39** | Stubs attached; bulk fill blocked on DoJ / HC rosters |
+| `case_volume` / pending caseload | **153** | **84** | Rollup merge from prior NJDG snapshot only |
+
+Scripts: [`populate_v12_numerics.py`](jem/scripts/populate_v12_numerics.py) (idempotent stubs) · [`merge_njdg_snapshot.py`](jem/scripts/merge_njdg_snapshot.py) (external snapshot) · plan: [`NJDG_MERGE_PLAN.md`](jem/docs/NJDG_MERGE_PLAN.md).
+
+### The NJDG snapshot problem
+
+1. **No district export in git.** The National Judicial Data Grid does not publish a bulk, versioned dataset suitable for committing to the repo. v1 historically merged a **maintainer-local** `graph.json` export (~216 nodes with `_detail.case_volume`). That snapshot path is documented in [`NJDG_MERGE_PLAN.md`](jem/docs/NJDG_MERGE_PLAN.md) but **must not be committed** (size, ToS, staleness).
+
+2. **Rollups merged; new courts are empty.** `merge_njdg_snapshot.py --apply` applied `case_volume` to ~139 entities (HCs, tribunals, MH/DL/KA/TN rollups). The **v1.2 state-pack expansion** added 400+ court entities with **no matching NJDG rows** in the old snapshot — they have structural YAML only.
+
+3. **Per-district pendency is gated (v1.3).** Example: TN has 38 district-court entities; **1** has district-level pending data (Chennai). Bombay HC and Madras HC use custom CMS — NJDG reliability is **Low** for those chains (see gap registry). Filling `tn_district_court_*`, `mh_district_court_*`, and peers requires **district-level NJDG exports** or a maintainer-attached snapshot via GitHub issue.
+
+4. **`judge_strength` will not be invented.** `populate_v12_numerics.py` adds schema-correct blocks with `allotted: null`, `appointed: null`, and `source_url` placeholders pointing at DoJ vacancy reports and HC/tribunal roster pages. Populating ~700 remaining courts requires a maintainer pass from primary sources:
+   - [DoJ judicial vacancy reports](https://doj.gov.in/report-and-committees/judicial-vacancy-reports)
+   - Official HC bench rosters (parent HC holds sanctioned strength; benches report appointed only)
+   - Tribunal annual / quarterly member-strength reports
+
+### Maintainer workflow
+
+```bash
+cd jem
+python3 scripts/populate_v12_numerics.py                    # judge_strength stubs (idempotent)
+python3 scripts/merge_njdg_snapshot.py --snapshot /path/to/graph.json --plan report.md
+python3 scripts/merge_njdg_snapshot.py --snapshot /path/to/graph.json --apply
+python3 scripts/validate.py --strict && python3 scripts/derive.py && python3 scripts/build.py
+```
+
+**Contributors:** attach NJDG exports or per-court primary-source URLs in a GitHub issue; maintainers run merge + validation. Do not email snapshots.
+
+### Release targets
+
+| Milestone | Numerics scope |
+|---|---|
+| **v1.2.0** (current) | Schema + 746 `judge_strength` stubs + 84 rollup `case_volume` rows |
+| **v1.3** | Per-district NJDG when district exports exist (TN 38/38, MH/KA bootstrap districts) |
+| **v2.0** | Live NJDG API, staleness UI, year-over-year clog trends |
 
 ---
 
@@ -245,9 +293,9 @@ Individual DLSA entities (650+), individual district CDRC entries (670+), indivi
 
 | Feature | Why deferred |
 |---|---|
-| **HC permanent benches + judge strength (allotted/appointed)** | **In v2.0 data model** — see `jem/docs/V2_DATA_MODEL.md`; generator emits bench stubs; populate counts from DoJ/NJDG |
+| **HC permanent benches + judge strength (allotted/appointed)** | **Partially in v1.2** — bench stubs + 746 `judge_strength` blocks; only 39 populated. Bulk fill deferred to maintainer DoJ/HC pass; see C28 section above |
 | State/Central Govt as major litigant (diamond nodes) | New node type, `FrequentLitigantIn` relationship, government litigation data from DoJ |
-| Live NJDG API integration | Rate limiting, cache invalidation, staleness UI — v1 uses static snapshots |
+| Live NJDG API integration | Rate limiting, cache invalidation, staleness UI — v1 uses static snapshots; district exports not in repo (C28) |
 | Case flow Sankey | Separate D3 Sankey module — appeal_rate_percent data needs verification across all tiers |
 | Appointment delay pipeline | `avg_days_vacancy_unfilled` data not yet populated |
 | Litigant journey mode | New interaction model, separate state machine |
@@ -335,7 +383,7 @@ GitHub: https://github.com/dso6060/jem_prototype — Actions validates PRs; **do
 | 0 | Central institutions + TN + PY sample | Maintainer | **Done** |
 | 1 | MH + DL + KA full state entities | Maintainer | **Done** |
 | 2 | All remaining states + UTs (core packs) | Maintainer + agents | **Done** (`v1.2.0`) |
-| 3 | District resolution (DLSAs, per-district NJDG, DRT sub-benches) | Community + maintainer | **Next** |
+| 3 | District resolution + per-district NJDG numerics | Community + maintainer | **Next** (blocked on district exports — C28) |
 | 4 | Revenue courts, Board of Revenue per state | Specialist contributors | Open |
 
 ---
