@@ -9,8 +9,8 @@
 | **Audience** | Co-maintainer (technical background); executive overview — use Cursor/Claude for deep dives |
 | **Primary author** | Divya Sornaraja ([@dso6060](https://github.com/dso6060)) — data, deploy, process design |
 | **Co-maintainer** | Prajna Prayas ([@Prajna1999](https://github.com/Prajna1999)) — equal on GitHub; production deploy stays with founder |
-| **Canonical demo (attribution)** | https://friedso.com/apps/jem/ (May 2026 build, ~506 entities) |
-| **Current release label** | **v0.9** (pre-stabilisation; UI/data fixes in progress) |
+| **Canonical demo (attribution)** | https://friedso.com/apps/jem/ (v1.0.0 build, **1,103** entities — deploy pending) |
+| **Current release label** | **v1.0.0** (Jun 2026) — first public semver; UI merged from `feature/ui-cleanup` |
 | **Licences** | Data CC0 · Code MIT |
 | **AI data-entry prompt** | [`AI_DATA_ENTRY_PROMPT.md`](AI_DATA_ENTRY_PROMPT.md) · also §20 below |
 | **Entity build roadmap** | [`ENTITY_BUILD_ROADMAP.md`](ENTITY_BUILD_ROADMAP.md) · README [entity progress](../../README.md#entity-build-progress) |
@@ -36,17 +36,17 @@ For command-level detail, see also:
 
 **Mission (operational framing):** Structural literacy that consolidates and presents the **functional or operational capacity** of judicial entities — a dashboard-oriented view of **court carrying capacity** for better administration and public understanding. Intended stakeholders include judicial administrators, litigants, journalists, the CJI's office, ministry officials, bureaucrats, researchers, and civic-tech users.
 
-**Current state (May 2026):**
+**Current state (Jun 2026):**
 
 | Metric | Value |
 |--------|--------|
-| Entity YAML files | 506 |
-| Relationships in `graph.json` | 525 |
-| Built graph size | ~1.86 MB |
+| Entity YAML files | 1,103 |
+| Relationships in `graph.json` | 1,858 |
+| Built graph size | ~5.5 MB |
 | `validate.py` | 0 errors (strict) |
-| Live site | May 2026 build deployed |
-| Git tags | **None** (no `v1.0.0` tag in git history) |
-| `graph.json` meta.version | `1.0.0` (internal build label — treat publicly as **v0.9** until stabilised) |
+| Live site | May 2026 build (~506 entities) — **v1.0.0 deploy pending** |
+| Git tags | `v1.0.0` (Jun 2026), `v1.2.0` (data-only milestone, Jun 15) |
+| `graph.json` meta.version | `1.0.0` |
 | Data entry | Founder + Cursor/Claude sessions only |
 | GitHub remote | **Not yet created** (founder will create; name TBD on call) |
 | Community contributions | **Not open yet** — planned: data-quality upgrades only |
@@ -254,13 +254,13 @@ Scaffolding is in **`.github/`** (ready before first push):
 
 ---
 
-## 11. Versioning note: v0.9 vs build metadata
+## 11. Versioning note: v1.0.0 vs build metadata
 
 | Label | Meaning |
 |-------|---------|
-| **v0.9 (public)** | Current stabilisation track — UI fixes, data bugs, process hardening before calling v1.0 |
-| **graph.json `meta.version: 1.0.0`** | Internal compiler label from May 20 build — consider aligning to `0.9.0` on next `build.py` run |
-| **git tags** | None yet — create `v0.9.0` after co-maintainer onboarding + GitHub push |
+| **v1.0.0 (public)** | First public semver release (Jun 2026) — 1,103 entities, full state/UT packs, UI refresh |
+| **graph.json `meta.version: 1.0.0`** | Internal compiler label — not the same as git tag |
+| **git tags** | `v1.0.0` (Jun 16 2026, UI + corpus); `v1.2.0` (Jun 15 data milestone, pre-UI merge) |
 
 ---
 
@@ -337,7 +337,7 @@ Optional future: `CONTRIBUTORS.md` listing merged PR authors.
 
 - [ ] Clone repo; `cd jem && pip install -r scripts/requirements.txt`
 - [ ] Run `python3 scripts/validate.py --strict` (expect 0 errors)
-- [ ] Run `./scripts/safe_pipeline.sh`; confirm `graph.json` meta ~506 entities
+- [ ] Run `./scripts/safe_pipeline.sh`; confirm `graph.json` meta ~1,103 entities
 - [ ] Open local `jem/web/` via static server; click SC, Madras HC, TN district collapse
 - [ ] Read `DATA_MODEL.md` § governance exclusions + score formulae
 - [ ] Read `SESSION_WORKFLOW.md` § overwrite risks (`build.py`, generators)

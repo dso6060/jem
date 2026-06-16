@@ -120,13 +120,13 @@
 | §5 full state district lattices (core packs done; TN/MH/KA deep) | ⏸️ Core packs ✅; per-district expansion deferred | **v1.4** |
 | Gap registry entities (tax/labour/defence benches) | ⏸️ Mostly done — GSTAT benches gated | **v1.5** (Part 5) |
 
-### v1.0.0 release (operator — prepared, not yet run)
+### v1.0.0 release (operator — tagged Jun 2026; production deploy pending)
 
 **Runbook:** [`jem/docs/V1_RELEASE_RUNBOOK.md`](jem/docs/V1_RELEASE_RUNBOOK.md) · **Preflight:** `./jem/scripts/deploy_prep.sh`
 
 - [ ] **1. Deploy** — rsync `graph.json` + `jem/web/` (see runbook §1; symlink caveat)
 - [ ] **2. Live smoke tests** — runbook §2 checklist on production URL
-- [ ] **3. Tag** — `git tag -a v1.0.0` after smoke pass (push deferred to v2 — Part 4.3)
+- [x] **3. Tag** — `git tag -a v1.0.0` (Jun 16 2026; includes UI merge + 1,103-entity corpus)
 
 ### Parked (scheduled later — do not block v1.0.0 tag)
 
@@ -156,7 +156,7 @@ Semantic data releases after **v1.0.0** deploy. Tag with `git tag -a v1.x.y` aft
 
 | Release | Scope | Acceptance |
 |---------|--------|------------|
-| **v1.0.0** | Ship graph at deploy time (**1,103** entities, **1,855** rels at Jun 15 head; was 668/748 at Jun 12). | `validate.py` 0 errors; runbook deploy + smoke; local tag |
+| **v1.0.0** | Ship graph at deploy time (**1,103** entities, **1,858** rels; UI merge Jun 16). | `validate.py` 0 errors; local tag ✅; friedso deploy pending |
 | **v1.1** | **Structural integrity** — no new external datasets required | Config matches graph; UP/WB/RJ bench edges ✅; orphans **0** ✅; KA Dharwad + generic `state_data` remain |
 | **v1.2** | **Numeric coverage** — DoJ + NJDG rollups | `judge_strength` on all court-like entities; `case_volume` >> 84/1,103 |
 | **v1.3** | **Per-district NJDG** — blocked on district exports | TN 38/38 + MH/KA bootstrap districts with district URLs |
@@ -179,7 +179,8 @@ Semantic data releases after **v1.0.0** deploy. Tag with `git tag -a v1.x.y` aft
 - [ ] Extend **`case_volume.pending_cases`** beyond 84/506 — refresh `merge_njdg_snapshot.py` when new snapshot path available
 - [ ] All court-like entities: `judge_strength` block with `data_as_of` + `source_type` (nulls OK + `data_quality_notes`)
 - [ ] **Audit baseline:** `judge_strength` 39/1,103 → target majority of courts; `pending_cases` 84/1,103 → target all HCs + state rollups + named districts
-- [ ] Tag `v1.2.0` after smoke
+- [x] Tag `v1.0.0` (Jun 16 2026 — UI merge + full corpus on `main`)
+- [ ] Tag `v1.2.0` numerics milestone after bulk `judge_strength` / `case_volume` fill
 
 ### v1.3 — per-district NJDG (Part 3.5.2 — blocked on exports)
 
@@ -465,7 +466,7 @@ Shortcut: `cd jem && ./scripts/safe_pipeline.sh` (does not run bundle generator)
 - [x] NJDG snapshot merge applied (139 entities) — Part 3.5
 - [ ] **§1 Deploy** — [`V1_RELEASE_RUNBOOK.md`](jem/docs/V1_RELEASE_RUNBOOK.md) + `deploy_prep.sh`
 - [ ] **§2 Smoke tests** — same runbook (production URL)
-- [ ] **§3 Tag** — `git tag -a v1.0.0` locally after smoke pass; `git push` / remote → v2 (Part 4.3)
+- [x] **§3 Tag** — `git tag -a v1.0.0` (Jun 16 2026 on `main`); `git push` / remote → v2 (Part 4.3)
 
 ---
 
@@ -951,7 +952,7 @@ Rule: If a task requires domain reasoning about Indian judicial structure or new
 | Tribunal completion + drt_b5 (C20 MoLE wiring) | **599** | **~3.02 MB** | **Jun 12 2026 ✅** |
 | Phase 1 batch (ITAT×25, UP/WB/RJ, C10/C11, M-T1–M-T6) | **668** | **~3.34 MB** | **Jun 12 2026 ✅** |
 | Wave 4–5 (all state/UT core packs + rel wiring) | **1,103** | **~5.63 MB** | **Jun 15 2026 ✅** |
-| **v1.0.0** tag + production deploy | **1,103** | **~5.63 MB** | **Ready — run runbook** (not yet deployed) |
+| **v1.0.0** tag + production deploy | **1,103** | **~5.63 MB** | **Tagged Jun 16 2026** ✅ · friedso deploy pending |
 | **v1.1** structural (KA verify, generic state_data) | 1,103+ | ~5.6 MB | **Nearly done** — orphans 0 ✅ |
 | **v1.2** numerics (`judge_strength`, `case_volume` bulk) | 1,103+ | ~5.6 MB | **Pending** — 39/1,103 JS, 84/1,103 CV |
 | **v1.3** per-district NJDG (TN/MH/KA) | 1,103+ | ~5.6 MB | TBD (blocked on exports) |

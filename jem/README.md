@@ -7,6 +7,7 @@ Maps institutional relationships — appointment chains, funding flows,
 oversight mechanisms, complaint pathways — not case outcomes.
 
 **Canonical demo (attribution):** https://friedso.com/apps/jem/  
+**Release:** `v1.0.0` (Jun 2026) — 1,103 entities · summary/detail UI refresh  
 **Knowledge transfer (maintainers):** [`docs/KNOWLEDGE_TRANSFER.md`](docs/KNOWLEDGE_TRANSFER.md) · [`docs/JEM_Knowledge_Transfer.docx`](docs/JEM_Knowledge_Transfer.docx)  
 **AI data entry (copy-paste):** [`docs/AI_DATA_ENTRY_PROMPT.md`](docs/AI_DATA_ENTRY_PROMPT.md) · **Build roadmap (1,500+):** [`docs/ENTITY_BUILD_ROADMAP.md`](docs/ENTITY_BUILD_ROADMAP.md)
 
@@ -140,8 +141,7 @@ Do not set `data_quality: verified` unless you have a direct link to a primary G
 
 ## Status
 
-Current coverage: ~8 sample entities (build scaffolding only).
-Target: ~1,500 structural entities.
+**v1.0.0** (Jun 2026): **1,103** structural entities, **1,858** relationships in `graph.json`. Target: ~1,500 structural entities.
 
 Priority data entry order:
 1. All 25 High Courts

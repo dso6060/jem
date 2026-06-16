@@ -10,8 +10,8 @@ JEM maps *how* courts, tribunals, regulators, and oversight bodies are built —
 → **Data licence:** CC0 (public domain)  
 → **Code licence:** MIT  
 → **GitHub:** https://github.com/dso6060/jem_prototype  
-→ **Release:** `v1.2.0` (Jun 2026) — **1,103 entities**, **1,855 relationships**, **0 orphan nodes**  
-→ **Maintainer:** [@dso6060](https://github.com/dso6060) ·  · co-maintainer [@Prajna1999](https://github.com/Prajna1999)  
+→ **Release:** `v1.0.0` (Jun 2026) — **1,103 entities**, **1,858 relationships**, **0 orphan nodes** · summary/detail UI refresh  
+→ **Maintainer:** [@dso6060](https://github.com/dso6060) ·  · co-maintainer [@Prajna1999](https://github.com/Prajna1999) (UI)  
 → **Maintainer guide:** [`jem/docs/KNOWLEDGE_TRANSFER.md`](jem/docs/KNOWLEDGE_TRANSFER.md) · [`jem/docs/JEM_Knowledge_Transfer.docx`](jem/docs/JEM_Knowledge_Transfer.docx)  
 → **AI data-entry prompt:** [`jem/docs/AI_DATA_ENTRY_PROMPT.md`](jem/docs/AI_DATA_ENTRY_PROMPT.md) · **Entity roadmap:** [`jem/docs/ENTITY_BUILD_ROADMAP.md`](jem/docs/ENTITY_BUILD_ROADMAP.md)
 
@@ -42,7 +42,7 @@ Judiciary Entity Map (India) (JEM) presents structural information about institu
 
 ## V1 entity coverage
 
-**Snapshot (v1.2.0, Jun 2026):** full structural packs for **all states and UTs** (35 codes), central tribunal bench lattice (CESTAT×8, AFT×11, DRT×25, ITAT×25), tax/labour/defence/IP stacks, and **0 orphan entities** in `graph.json`. TN retains the deepest district lattice (38 courts); other states use core pack + named high-volume districts.
+**Snapshot (v1.0.0, Jun 2026):** full structural packs for **all states and UTs** (35 codes), central tribunal bench lattice (CESTAT×8, AFT×11, DRT×25, ITAT×25), tax/labour/defence/IP stacks, and **0 orphan entities** in `graph.json`. TN retains the deepest district lattice (38 courts); other states use core pack + named high-volume districts. Frontend: redesigned summary dashboard, detail panel, and entity connection views (`feature/ui-cleanup` merged).
 
 **Constitutional courts:** Supreme Court · All 25 High Courts (complete) · 13 permanent HC benches
 
@@ -82,7 +82,7 @@ Judiciary Entity Map (India) (JEM) presents structural information about institu
 
 ## Entity build progress
 
-**1,103 / ~1,500** structural entities in repo (**v1.2.0**, Jun 2026). Full phased prompts and maintainer workflow: [`jem/docs/ENTITY_BUILD_ROADMAP.md`](jem/docs/ENTITY_BUILD_ROADMAP.md) · acceptance rubric: [`jem/docs/PHASE2_ACCEPTANCE_RUBRIC.md`](jem/docs/PHASE2_ACCEPTANCE_RUBRIC.md).
+**1,103 / ~1,500** structural entities in repo (**v1.0.0**, Jun 2026). Full phased prompts and maintainer workflow: [`jem/docs/ENTITY_BUILD_ROADMAP.md`](jem/docs/ENTITY_BUILD_ROADMAP.md) · acceptance rubric: [`jem/docs/PHASE2_ACCEPTANCE_RUBRIC.md`](jem/docs/PHASE2_ACCEPTANCE_RUBRIC.md).
 
 | Status | Meaning |
 |--------|---------|
@@ -129,7 +129,7 @@ Judiciary Entity Map (India) (JEM) presents structural information about institu
 
 ## Numerics status (C28) — `judge_strength` & NJDG snapshots
 
-**Category C28 is structurally started but numerically incomplete in v1.2.0.** Topology and schema are in place; populated counts depend on **external GoI sources** that are **not stored in this repository**.
+**Category C28 is structurally started but numerically incomplete in v1.0.0.** Topology and schema are in place; populated counts depend on **external GoI sources** that are **not stored in this repository**.
 
 ### Coverage audit (Jun 2026)
 
@@ -169,7 +169,7 @@ python3 scripts/validate.py --strict && python3 scripts/derive.py && python3 scr
 
 | Milestone | Numerics scope |
 |---|---|
-| **v1.2.0** (current) | Schema + 746 `judge_strength` stubs + 84 rollup `case_volume` rows |
+| **v1.0.0** (current) | Schema + 746 `judge_strength` stubs + 84 rollup `case_volume` rows |
 | **v1.3** | Per-district NJDG when district exports exist (TN 38/38, MH/KA bootstrap districts) |
 | **v2.0** | Live NJDG API, staleness UI, year-over-year clog trends |
 
@@ -214,7 +214,7 @@ The canonical record of everything not yet in the data layer, deferred to v2, ou
 
 ### B. Known entities not yet in v1 — community contribution needed
 
-> **Note (v1.2.0):** Many items below are now **in graph** as principals, regional benches, or generics (CESTAT×8, AFT×11, DRT×25, ITAT×25, CGIT, EPFAT, IP stack, state VAT/SAT stubs). This section lists remaining depth work — per-bench DRT sub-entities, constituted GSTAT benches, per-district NJDG numerics.
+> **Note (v1.0.0):** Many items below are now **in graph** as principals, regional benches, or generics (CESTAT×8, AFT×11, DRT×25, ITAT×25, CGIT, EPFAT, IP stack, state VAT/SAT stubs). This section lists remaining depth work — per-bench DRT sub-entities, constituted GSTAT benches, per-district NJDG numerics.
 
 **Tax / Revenue tribunals (remaining depth):**
 
@@ -281,7 +281,7 @@ The canonical record of everything not yet in the data layer, deferred to v2, ou
 
 **Phase 1 — complete (MH, DL, KA, TN, PY):** full packs; TN has 38-district lattice.
 
-**Phase 2 — complete (v1.2.0):** core packs for all remaining states and UTs (AP, TS, GJ, UP, WB, RJ, MP, BR, KL, PB, HR, OD, NE states, CG, GA, HP, JH, UK, CH, AN, LD, LA, JK, SK, PY).
+**Phase 2 — complete (v1.0.0):** core packs for all remaining states and UTs (AP, TS, GJ, UP, WB, RJ, MP, BR, KL, PB, HR, OD, NE states, CG, GA, HP, JH, UK, CH, AN, LD, LA, JK, SK, PY).
 
 **Phase 3 — District resolution (next):**
 
@@ -382,7 +382,7 @@ GitHub: https://github.com/dso6060/jem_prototype — Actions validates PRs; **do
 |---|---|---|---|
 | 0 | Central institutions + TN + PY sample | Maintainer | **Done** |
 | 1 | MH + DL + KA full state entities | Maintainer | **Done** |
-| 2 | All remaining states + UTs (core packs) | Maintainer + agents | **Done** (`v1.2.0`) |
+| 2 | All remaining states + UTs (core packs) | Maintainer + agents | **Done** (`v1.0.0`) |
 | 3 | District resolution + per-district NJDG numerics | Community + maintainer | **Next** (blocked on district exports — C28) |
 | 4 | Revenue courts, Board of Revenue per state | Specialist contributors | Open |
 
