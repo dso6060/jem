@@ -7,7 +7,7 @@ Repository: **https://github.com/dso6060/jem_prototype** (public)
 - [x] Create public repo `jem_prototype` under `@dso6060`
 - [x] Push `main` with `.github/` scaffolding
 - [x] Description: *Open structural map of India's judicial ecosystem — institutional capacity, relationships, and systemic gaps.*
-- [x] Topics: `india`, `judiciary`, `open-data`, `legal-tech`, `d3js`
+- [x] Topics: `india`, `judiciary`, `open-data`, `legal-tech`
 - [x] Homepage: https://friedso.com/apps/jem/
 - [x] Maintainer contact: [@dso6060](https://github.com/dso6060) (GitHub Issues / security advisories only — no public email)
 - [ ] Licence: MIT (code) — note in README that `jem/data/` is CC0

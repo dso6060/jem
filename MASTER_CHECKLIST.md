@@ -610,7 +610,7 @@ Complete when setting up **v2** remote workflow (not required to cut local `v1.0
 - [ ] Push `main` and tags: `git push -u origin main && git push origin v1.0.0`
 - [ ] Confirm `.github/workflows/validate.yml` runs on PRs touching `jem/data/**` or `jem/scripts/**`
 - [ ] Optional v2 CI: add `build.py` dry-run or `deploy_prep.sh` on `main` push
-- [ ] Add topics: `india`, `judiciary`, `open-data`, `d3js`, `legal-tech`
+- [ ] Add topics: `india`, `judiciary`, `open-data`, `legal-tech`
 - [ ] Description: "Open-source structural map of the Indian judicial ecosystem"
 
 Existing workflow (PR only): validate `--strict` + `derive.py` in `jem/` working directory.
