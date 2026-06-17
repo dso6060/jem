@@ -11,7 +11,7 @@ JEM maps *how* courts, tribunals, regulators, and oversight bodies are built —
 → **Code licence:** MIT  
 → **GitHub:** https://github.com/dso6060/jem_prototype  
 → **Release:** `v1.0.0` (Jun 2026) — **1,117 entities**, **1,882 relationships**, **0 orphan nodes** · audit passes 1–4 + QA sprint (Jun 2026)  
-→ **Maintainer:** [@dso6060](https://github.com/dso6060) ·  · co-maintainer [@Prajna1999](https://github.com/Prajna1999) (UI)  
+→ **Maintainer:** [@dso6060](https://github.com/dso6060) |  · co-maintainer [@Prajna1999](https://github.com/Prajna1999) (UI)  
 → **Maintainer guide:** [`jem/docs/KNOWLEDGE_TRANSFER.md`](jem/docs/KNOWLEDGE_TRANSFER.md) · [`jem/docs/JEM_Knowledge_Transfer.docx`](jem/docs/JEM_Knowledge_Transfer.docx)  
 → **AI data-entry prompt:** [`jem/docs/AI_DATA_ENTRY_PROMPT.md`](jem/docs/AI_DATA_ENTRY_PROMPT.md) · **Entity roadmap:** [`jem/docs/ENTITY_BUILD_ROADMAP.md`](jem/docs/ENTITY_BUILD_ROADMAP.md)
 
