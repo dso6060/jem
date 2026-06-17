@@ -221,7 +221,7 @@ CI does **not** run `build.py` or deploy.
 
 ## 9. GitHub & community launch plan
 
-**Founder:** [@dso6060](https://github.com/dso6060) |  · **Co-maintainer:** [@Prajna1999](https://github.com/Prajna1999) · Repo: [dso6060/jem_prototype](https://github.com/dso6060/jem_prototype)
+**Founder:** [@dso6060](https://github.com/dso6060) · **Co-maintainer:** [@Prajna1999](https://github.com/Prajna1999) · Repo: [dso6060/jem_prototype](https://github.com/dso6060/jem_prototype)
 
 Scaffolding is in **`.github/`** (ready before first push):
 

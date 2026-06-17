@@ -6,7 +6,7 @@ Lightweight rules for maintainers and future reviewers. Full context: [`jem/docs
 
 | Role | GitHub | Responsibilities |
 |------|--------|------------------|
-| **Founder / lead maintainer** | [@dso6060](https://github.com/dso6060) |  | Data curation, schema, production deploy (private), final merge on disputed facts |
+| **Founder / lead maintainer** | [@dso6060](https://github.com/dso6060) | GitHub | Data curation, schema, production deploy (private), final merge on disputed facts |
 | **Co-maintainer** | Prajna Prayas · [@Prajna1999](https://github.com/Prajna1999) | Equal review on PRs; shared CODEOWNERS; no production deploy unless delegated later |
 | **Community contributor** | Any GitHub user | **Data-quality upgrades only** (sources, corrections, notes) via PR or issue |
 | **Domain / legal reviewer** | *TBD* | Advisory review; does not merge unless granted write access |
