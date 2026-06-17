@@ -274,8 +274,10 @@ TIMELINE_EVENTS = [
     {"year": 2016, "label": "IBC enacted — Insolvency & Bankruptcy Code", "type": "legislation"},
     {"year": 2019, "label": "ACI legislated (not constituted); J&K reorganisation", "type": "institutional"},
     {"year": 2020, "label": "Tribunals Reforms Act contested", "type": "legislation"},
-    {"year": 2023, "label": "Mediation Act; BNS/BNSS/BSA replace IPC/CrPC/Evidence", "type": "legislation"},
+    {"year": 2023, "label": "GSTAT Principal Bench established; Mediation Act", "type": "institutional"},
     {"year": 2023, "label": "eCourts Phase III — ₹7210 crore; NJDG-SC launched", "type": "digital"},
+    {"year": 2024, "label": "GSTAT President appointed", "type": "institutional"},
+    {"year": 2025, "label": "GSTAT Procedure Rules notified", "type": "legislation"},
     {"year": 2025, "label": "Lokpal jurisdiction over HC judges — SC stays order", "type": "judgment"},
 ]
 

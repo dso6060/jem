@@ -46,7 +46,7 @@ Judiciary Entity Map (India) (JEM) presents structural information about institu
 
 **Constitutional courts:** Supreme Court · All 25 High Courts (complete) · 13 permanent HC benches
 
-**Central tribunals:** NCLT · NCLAT · NGT · ITAT · SAT · CAT · DRT · DRAT · TDSAT · APTEL · ATFE · CESTAT · AFT · GSTAT (Not_Constituted)
+**Central tribunals:** NCLT · NCLAT · NGT · ITAT · SAT · CAT · DRT · DRAT · TDSAT · APTEL · ATFE · CESTAT · AFT · GSTAT (Partial_Operational)
 
 **Quasi-judicial regulators:** SEBI · RBI · CCI · TRAI · IRDAI · IBBI · NMC · IFSCA · CERC · Lokpal · NCAHP · Banking Ombudsman (RBI IOS) · Insurance Ombudsman (IRDAI) · TNERC · SERC (generic) · RERA (generic) · TN RERA
 
@@ -185,14 +185,14 @@ The canonical record of everything not yet in the data layer, deferred to v2, ou
 
 | Entity | Gap | Severity |
 |---|---|---|
-| GSTAT | Not constituted — 8 years since legislation. 15,000+ GST cases at HCs instead. | Critical |
-| ACI | Not constituted — 6 years since legislation. SC issued notice 2025. | Critical |
+| GSTAT | Partially operational — Principal Bench constituted Sep 2023; Procedure Rules 2025 in force; state bench appointments incomplete. ~8,100+ GST cases still at HCs (per Rules notification; figure contested). | Critical |
+| ACI | Not constituted — ~7 years since legislation. SC issued notice 23 Jan 2025. | Critical |
 | TN Lokayukta | Operational status contested — verify against state portal vs historical gap notes | High |
 | AFT | No HC appeal path — only direct SC SLP. 44% vacancy. MoD appointer-litigant loop. | Critical/High |
-| Allahabad HC | 43% vacancy — 69 of 160 posts. India's highest-volume HC. | Critical |
+| Allahabad HC | ~50% vacancy — 80 of 160 posts (Jul 2025 snapshot). India's highest-volume HC. | Critical |
 | Patna HC | 47% vacancy — 25 of 53 posts. | Critical |
 | NCDRC | Disposal rate 0.78 — backlog growing. Only Critical clog entity in v1. | Critical |
-| Mediation Council | Not constituted — 2 years since legislation. Same pattern as ACI. | High |
+| Mediation Council | Not constituted — ~3 years since Mediation Act 2023. Same pattern as ACI. | High |
 | Gram Nyayalaya | <500 of 5,000 envisaged operational. UP: zero. | High |
 | NGT | 45% vacancy — 9 of 20 posts. | High |
 | NCLT | Complaint goes to appointing ministry (MCA) — structural conflict. | High |
@@ -221,7 +221,7 @@ The canonical record of everything not yet in the data layer, deferred to v2, ou
 | Entity | Notes |
 |---|---|
 | CESTAT regional benches (8) | Chennai, Mumbai, Kolkata, Bangalore, Ahmedabad, Hyderabad, Allahabad, Chandigarh |
-| GSTAT state benches (31) | Planned but not constituted — enter as Not_Constituted with state variations |
+| GSTAT state benches (31) | Principal Bench constituted; state benches being notified — enter individual benches as gazette confirms full constitution |
 | Dispute Resolution Panel (DRP) | Income Tax Act Section 144C. Inside CBDT — severe circularity. |
 | AAR (Income Tax) | Authority for Advance Rulings. Slow, documented delays. |
 | CAAR (Customs) | Reconstituted 2021. Replaced AAR Customs. |

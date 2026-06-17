@@ -1,0 +1,73 @@
+id: mediation_council_india
+name: Mediation Council of India
+abbreviation: MCI
+aliases:
+- Mediation Council
+- Mediation Council of India
+type: MediationBody
+cluster: arbitration
+level_of_government: Central
+jurisdiction_scope:
+  is_all_india: true
+  jurisdiction_types:
+  - mediation_standards
+created_year: 2023
+operational_status: Not_Constituted
+constitutional_basis: null
+statutory_basis: 'Mediation Act 2023, Part III (ss. 31–44) — Mediation Council of India.'
+appointment:
+  nominates: null
+  recommends: null
+  consulted:
+  - chief_justice_india
+  consultation_binding: true
+  formally_appoints: central_government
+  criteria_public: true
+  tenure: 4 years or age 70 (whichever earlier) for Chairperson
+  reappointment_possible: false
+  removal_authority: central_government
+  removal_requires_parliament: false
+  removal_independent_committee: true
+funding:
+  primary_source: Ministry_Budget
+  ministry_responsible: ministry_law_justice
+  budget_figure_crore: null
+  budget_year: null
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+  conduct_oversight_body: null
+complaint_mechanism:
+  bias_complaint_to: []
+  removal_mechanism: Central Government on recommendation of committee per Mediation Act 2023.
+  lokpal_jurisdiction: Not_Applicable
+  lokpal_jurisdiction_note: Body not constituted — question does not arise.
+  source: Mediation Act 2023
+structural_gap:
+  flag: true
+  gaps:
+  - gap_id: mediation_council_not_constituted
+    gap_type: Institutional_Gap
+    gap_severity: High
+    gap_description: >-
+      Not constituted — ~3 years since Mediation Act 2023 enactment
+      (September 2023). Same legislative vacuum pattern as ACI.
+    gap_source: Mediation Act 2023
+    gap_since_year: 2023
+    gap_status: Open
+data_quality: verified
+data_quality_notes: >-
+  Mediation Council not constituted as of June 2026 — ~3 years since
+  Mediation Act 2023 enactment (September 2023). Statutory functions
+  include registration of mediators, training standards, and policy
+  oversight under Part III of the Act.
+sources:
+- label: Mediation Act 2023 — India Code
+  url: https://india-code.nic.in/
+  type: CentralAct
+  accessed_date: '2026-06-17'
+- label: Ministry of Law and Justice — Mediation Act 2023
+  url: https://law.gov.in/
+  type: GoIWebsite
+  accessed_date: '2026-06-17'

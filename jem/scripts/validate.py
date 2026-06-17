@@ -45,7 +45,7 @@ CLUSTERS = [
 
 GOV_LEVELS = ["Central", "State", "UT", "Shared_MultiState", "Shared_CentralState"]
 
-OPERATIONAL_STATUSES = ["Active", "Not_Constituted", "Proposed", "Abolished", "Merged", "Suspended"]
+OPERATIONAL_STATUSES = ["Active", "Partial_Operational", "Not_Constituted", "Proposed", "Abolished", "Merged", "Suspended", "De_Facto_Blocked"]
 
 DATA_QUALITY_VALUES = ["verified", "complete", "partial", "unverified", "contested"]
 

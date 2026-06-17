@@ -9,7 +9,7 @@ type: CentralTribunal
 cluster: tribunals_adr
 level_of_government: Central
 created_year: 2023
-operational_status: Not_Constituted
+operational_status: Partial_Operational
 constitutional_basis: null
 statutory_basis: 'Central Goods and Services Tax Act 2017 ss.109–110 (as amended by Finance Act 2023); GST Appellate Tribunal
   (Appointment and Conditions of Service of President and Members) Rules 2023. Principal Bench at New Delhi; State Benches
@@ -46,7 +46,7 @@ complaint_mechanism:
     consultation_binding: null
   removal_mechanism: null
   lokpal_jurisdiction: Not_Applicable
-  lokpal_jurisdiction_note: Tribunal not yet constituted as of Jun 2026.
+  lokpal_jurisdiction_note: State bench member appointments incomplete as of Jun 2026.
   source: null
 jurisdiction_scope:
   is_all_india: true
@@ -55,10 +55,10 @@ jurisdiction_scope:
   states_covered: []
   uts_covered: []
 data_quality: partial
-data_quality_notes: 'Generic scaffold only. GSTAT Principal and State Benches not operationalised as of Jun 2026 despite statutory
-  framework (Finance Act 2023). Do not create individual state-bench entities until gazette notifications confirm constitution.
-  Parent aggregate: gstat (Not_Constituted). Pre-GST and interim appeals remain with High Courts. v1.2 judge_strength stub
-  attached'
+data_quality_notes: 'Generic scaffold only. GSTAT Principal Bench operational since Sep 2023; state bench notifications issued
+  incrementally; member appointments at state benches remain incomplete (Jun 2026). Do not create individual state-bench
+  entities until gazette notifications confirm full constitution. Parent aggregate: gstat (Partial_Operational). v1.2 judge_strength
+  stub attached'
 sources:
 - label: CGST Act 2017 s.109 — India Code
   url: https://www.india-code.nic.in/CodeofActs/2017/2017_12.pdf
@@ -68,6 +68,10 @@ sources:
   url: https://cbic-gst.gov.in/
   type: GoIWebsite
   accessed_date: '2026-06-12'
+- label: GSTAT Procedure Rules 2025 — notified 24 April 2025
+  url: https://egazette.gov.in/
+  type: GazetteNotification
+  accessed_date: '2026-06-17'
 judge_strength:
   data_as_of: null
   allotted: null

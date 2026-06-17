@@ -15,7 +15,7 @@ constitutional_basis: null
 statutory_basis: 'Each state''s VAT/commercial-tax legislation, typically: (a) State Value Added Tax Act (2003–2006 era) —
   Tribunal constituted under respective state act; or (b) pre-VAT state Sales Tax Act tribunal continued. Post-GST (01.07.2017):
   jurisdiction restricted to pre-GST legacy disputes. Most states retain the tribunal body for legacy matters. A few states
-  have integrated with State Goods and Services Tax Act 2017 appellate mechanisms pending GSTAT constitution.'
+  have integrated with State Goods and Services Tax Act 2017 appellate mechanisms; GSTAT Principal Bench operational since Sep 2023 but state benches incomplete.'
 appointment:
   nominates: null
   recommends: null
@@ -83,8 +83,9 @@ structural_variations:
   independence_risk_note: null
 data_quality: partial
 data_quality_notes: Generic node representing state-level VAT/commercial-tax appellate tribunals (~28 states maintain such
-  bodies). Post-GST (July 2017) jurisdiction is exclusively for pre-GST legacy disputes; no new GST appeals can be filed until
-  GSTAT is constituted. Some states (e.g. Telangana, Andhra Pradesh post- bifurcation) have merged or reconstituted these
+  bodies). Post-GST (July 2017) jurisdiction is exclusively for pre-GST legacy disputes; new GST appeals route to GSTAT
+  (partially operational since Sep 2023) but many cases remain at High Courts pending full state bench operationalisation.
+  Some states (e.g. Telangana, Andhra Pradesh post- bifurcation) have merged or reconstituted these
   bodies. created_year 2003 is approximate — reflects the broad wave of state VAT Act enactments (2003–2006); some tribunals
   predate this under Sales Tax Acts. State-specific entities should be modelled separately when state packs are built (C15–C18).
   structural_variations cover major states only; 23 additional state variants not yet enumerated. funding.ministry_responsible

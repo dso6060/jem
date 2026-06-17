@@ -143,11 +143,13 @@ entity:
     required: true
     values:
       - Active
+      - Partial_Operational   # Legislated and partly operational (e.g. principal bench only)
       - Not_Constituted    # Legislated but not set up
       - Proposed           # Under draft legislation
       - Abolished          # No longer exists
       - Merged             # Merged into another body
       - Suspended          # Temporarily non-operational
+      - De_Facto_Blocked   # Exists on paper but blocked in practice
 
   constitutional_basis:
     type: string

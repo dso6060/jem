@@ -9,7 +9,7 @@ type: CentralTribunal
 cluster: tribunals_adr
 level_of_government: Central
 created_year: 2017
-operational_status: Not_Constituted
+operational_status: Partial_Operational
 constitutional_basis: null
 statutory_basis: Central Goods and Services Tax Act, 2017, s.109–110 (as amended by Finance Act 2023 — substituted ss.109–110A,
   inserted s.112A); notified benches under s.109(6). Principal Bench at New Delhi; State Benches in each state/UT.
@@ -54,30 +54,41 @@ structural_variations:
   applicable_to:
   - national
   source: CGST Act 2017 s.109(1)(a) as amended by Finance Act 2023
-  independence_risk_note: President post unfilled since enactment (2017–present, June 2026). Tribunal not operationally constituted
-    despite 8+ years of GST implementation.
+  independence_risk_note: Principal Bench established 1 September 2023; President (Justice Sanjaya Kumar Mishra) appointed
+    6 May 2024. GSTAT Procedure Rules 2025 notified 24 April 2025. Operational but state benches and member appointments
+    remain incomplete.
 - variation_id: gstat_state_bench
   description: State Benches (one per state/UT or shared for smaller UTs) each comprising one Judicial Member and one Technical
-    Member. 31 planned benches per Finance Act 2023. None constituted as of June 2026.
+    Member. 31 planned benches per Finance Act 2023; state bench notifications issued incrementally.
   applicable_to:
   - state_level
   source: CGST Act 2017 s.109(6) as amended; MoF Notification S.O. 1559(E) dated 06.04.2023 (locations notified).
-  independence_risk_note: All 31 state/UT benches unoperational. Taxpayers unable to appeal AAR/AAAR orders; writ petitions
-    to High Courts are the de facto remedy.
+  independence_risk_note: State bench member appointments remain incomplete as of June 2026. Many GST appeals still route
+    to High Courts pending full bench operationalisation.
+structural_gap:
+  flag: true
+  gaps:
+  - gap_id: gstat_partial_operational
+    gap_type: Institutional_Gap
+    gap_severity: Critical
+    gap_description: >-
+      Principal Bench constituted (Sep 2023); President appointed May 2024;
+      GSTAT Procedure Rules 2025 in force. State bench member appointments
+      remain incomplete; GST appeals still pending at High Courts (~8,100+
+      per Procedure Rules notification — figure contested by source).
+    gap_source: GSTAT Procedure Rules 2025 notification (24 Apr 2025); CBIC/GSTAT establishment notifications
+    gap_since_year: 2017
+    gap_status: Partial_Addressed
 data_quality: partial
-data_quality_notes: 'Structural_gap: CRITICAL. GSTAT not constituted for 8+ years since GST enactment (July 2017) through
-  Finance Act 2023 amendments and beyond. MoF notified bench locations (April 2023) and amended appointment procedure (Finance
-  Act 2023 s.110A) but President post and all Member posts remain vacant as of June 2026. No case_volume data possible (no
-  sittings). Appointment sub-committee constituted under SC monitoring (Union of India v. Mohit Minerals, W.P.(C) 859/2022
-  — SC directed expeditious constitution, order dated 19 May 2023). budget_figure not separately identified in Union Budget
-  (subsumed under DoR establishment estimates pending constitution). Mohit Minerals SC judgment PDF URL verified live on webapi.sci.gov.in
-  (drt_b4); main.sci.gov.in unreachable via automated access.
-
-  M-T3 watch Jun 2026: still Not_Constituted; monitor egazette.gov.in and CBIC for bench notifications. v1.2 judge_strength
+data_quality_notes: 'Structural_gap: CRITICAL (partial operationalisation). GSTAT Principal Bench established 1 September
+  2023; President appointed 6 May 2024; GSTAT Procedure Rules 2025 notified 24 April 2025. Tribunal is partially functional
+  — not "not constituted" — but state bench member appointments remain incomplete as of June 2026. GST appeals continue at
+  High Courts pending full operationalisation. budget_figure not separately identified in Union Budget (subsumed under DoR
+  establishment estimates). Mohit Minerals SC judgment (19 May 2022) context for earlier constitution delay. v1.2 judge_strength
   stub attached'
 unverified_fields:
 - field: funding.budget_figure_crore
-  note: 'Union Budget does not disaggregate GSTAT allocation pending constitution.
+  note: 'Union Budget does not disaggregate GSTAT allocation.
 
     '
 sources:
@@ -100,6 +111,10 @@ sources:
   url: https://india-code.nic.in/CodeofActs13/20230008.pdf
   type: CentralAct
   accessed_date: '2026-06-12'
+- label: GSTAT Procedure Rules 2025 — notified 24 April 2025
+  url: https://egazette.gov.in/
+  type: GazetteNotification
+  accessed_date: '2026-06-17'
 judge_strength:
   data_as_of: null
   allotted: null

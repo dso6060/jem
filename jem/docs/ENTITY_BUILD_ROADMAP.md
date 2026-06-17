@@ -185,10 +185,11 @@ Removed aggregate rel_itat_to_high_courts_all. Zone table in itat.yaml data_qual
 TASK: (Completed) DRT-I/II/III aliases and Option B rollup notes on 8 multi-bench city rollups.
 ```
 
-#### ~~M-T3 · GSTAT watch~~ · **gated** 2026-06
+#### ~~M-T3 · GSTAT watch~~ · **done** 2026-06
 
 ```
-TASK: (Monitoring) gstat + gstat_bench_generic remain Not_Constituted; M-T3 watch note added. Flip on gazette.
+TASK: (Completed) gstat flipped to Partial_Operational — Principal Bench Sep 2023,
+President May 2024, Procedure Rules Apr 2025. State bench entities remain gated.
 ```
 
 #### ~~M-T4 · state_labour_court_generic~~ · **done** 2026-06

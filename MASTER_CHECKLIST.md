@@ -632,7 +632,7 @@ Each item: entity_id to create, source URL, which Cursor session.
 - [x] `cestat_hyderabad` — covers TS, AP
 - [x] `cestat_allahabad` — covers UP, UK
 - [x] `cestat_chandigarh` — covers PB, HR, HP, JK, LA, CH
-- [x] `gstat_bench_generic` — 31 planned benches, Not_Constituted scaffold — Jun 2026
+- [x] `gstat_bench_generic` — 31 planned benches, Partial_Operational scaffold — Jun 2026 (Principal Bench constituted Sep 2023)
 - [x] `aar_income_tax` — Authority for Advance Rulings (IT) — Jun 2026
 - [x] `caar_customs` — Customs Authority for Advance Rulings (reconstituted 2021)
 
@@ -822,7 +822,7 @@ These need their own repos. JEM's schema is a usable starting point.
 - [ ] Quarterly: check SC Annual Report for SC pendency / disposal data
 - [ ] Annually: update budget_figure_crore from Union Budget for ministry entities
 - [ ] On SC judgment: add to amendment_history if structural change (e.g., new collegium ruling)
-- [ ] On new legislation: add new entity or update operational_status (e.g., if GSTAT constituted)
+- [ ] On new legislation: add new entity or update operational_status (e.g., GSTAT flipped to Partial_Operational Jun 2026)
 - [ ] On HC appointment: update working_strength, rerun derive.py, check IR score change
 
 ---

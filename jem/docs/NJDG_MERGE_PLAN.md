@@ -122,7 +122,7 @@
 | `lokpal_india` | `lokpal_india` | — | **no YAML — skip** |
 | `mact_generic` | `mact_generic` | — | **no YAML — skip** |
 | `mcia` | `mcia` | `data/entities/_generated/backbone/mcia.yaml` | merge case_volume |
-| `mediation_council_india` | `mediation_council_india` | — | **no YAML — skip** |
+| `mediation_council_india` | `mediation_council_india` | — | **YAML added Jun 2026** |
 | `meity` | `meity` | — | **no YAML — skip** |
 | `merc` | `merc` | `data/entities/_generated/states/mh/merc.yaml` | merge case_volume |
 | `mh_advocate_general` | `mh_advocate_general` | `data/entities/_generated/states/mh/mh_advocate_general.yaml` | merge case_volume |

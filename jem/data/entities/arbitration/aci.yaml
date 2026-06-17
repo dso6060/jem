@@ -48,7 +48,19 @@ complaint_mechanism:
   lokpal_jurisdiction_note: Body not constituted — question does not arise.
   source: Arbitration and Conciliation Act 1996, Section 43F (as amended 2019)
 data_quality: verified
-data_quality_notes: 'ACI''s non-constitution is confirmed by GoI press release (Feb 2026) and SC notice to Union government to respond to petition seeking its establishment. The Draft Arbitration and Conciliation (Amendment) Bill 2024 proposes revised powers. Status as of April 2025: Bill in public consultation; ACI not constituted.'
+data_quality_notes: 'ACI not constituted as of June 2026 — ~7 years since 2019 amendment legislation. SC issued notice to Union government 23 January 2025 to explain prolonged delay. GoI press release (Feb 2026) confirms non-constitution. Draft Arbitration and Conciliation (Amendment) Bill 2024 proposes revised powers; Bill in public consultation.'
+structural_gap:
+  flag: true
+  gaps:
+  - gap_id: aci_not_constituted
+    gap_type: Institutional_Gap
+    gap_severity: Critical
+    gap_description: >-
+      Not constituted — ~7 years since 2019 amendment legislation.
+      SC issued notice to Union government 23 January 2025.
+    gap_source: Arbitration and Conciliation (Amendment) Act 2019; SC notice Jan 2025
+    gap_since_year: 2019
+    gap_status: Open
 structural_variations:
 - variation_id: aci_2024_bill_revision
   description: 'Draft Arbitration Bill 2024 proposes to replace ACI''s grading power with recognition of arbitral institutions and model rules. This would change the composition and functions defined in the 2019 Act if passed.

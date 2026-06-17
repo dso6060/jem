@@ -83,6 +83,18 @@ digital_infrastructure:
   digital_variant: NIC_Standard
   integrated_with_njdg: true
 structural_variations: []
+structural_gap:
+  flag: true
+  gaps:
+  - gap_id: hc_allahabad_judge_vacancy
+    gap_type: Capacity_Gap
+    gap_severity: Critical
+    gap_description: >-
+      ~50% judicial vacancy — 80 of 160 posts unfilled (working strength
+      ~80 judges) as of July 2025 snapshot. India's highest-volume High Court.
+    gap_source: DoJ judicial vacancy report / HC roster (Jul 2025)
+    gap_since_year: null
+    gap_status: Open
 data_quality: partial
 data_quality_notes: Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged complaint_mechanism populated from SC In-House Procedure 1999 and SC Stay Order Feb 2025 (suo moto). criminal_prosecution.requires_sanction_from set to governor_state per Veeraswami (1991) for HC judges. lokpal_jurisdiction No per operative Feb 2025 stay; revisit if SC decides finally. audit.conduct_oversight_body set to in_house_procedure_sc (same procedure governs HC judges).
 sources:
@@ -99,18 +111,19 @@ sources:
   type: NJDG
   accessed_date: '2024-12-01'
 judge_strength:
-  data_as_of: '2025-12-24'
+  data_as_of: '2025-07-25'
   allotted: 160
-  appointed: 110
-  vacancy_count: 50
+  appointed: 80
+  vacancy_count: 80
   source_type: DoJ_Report
-  source_url: https://cdnbbsr.s3waas.gov.in/s35d6646aad9bcc0be55b2c82f69750387/uploads/2025/12/202512241943014515.pdf
+  source_url: https://doj.gov.in/report-and-committees/judicial-vacancy-reports
   notes: >-
-    Pmt 119 Addl 41 sanctioned; Pmt 110 Addl 0 working; Pmt 9 Addl 41 vacancies
+    ~50% vacancy snapshot (Jul 2025): 80 working judges of 160 sanctioned posts;
+    80 vacancies. Prior Dec 2024 DoJ figure (110 working) superseded.
 case_volume:
   data_as_of: '2024-12-01'
   sanctioned_strength: 160
-  working_strength: 91
+  working_strength: 80
   pending_cases: 1100000
   filed_last_year: 380000
   disposed_last_year: 330000

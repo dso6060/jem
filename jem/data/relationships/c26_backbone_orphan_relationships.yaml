@@ -27,13 +27,29 @@ relationships:
     is_binding: true
     is_constitutional: false
     statutory_basis: Arbitration and Conciliation (Amendment) Act 2019
-    notes: Arbitration Council of India constituted under MoLJ.
+    notes: Arbitration Council of India legislated under MoLJ; not yet constituted.
     data_quality: partial
     sources:
       - label: India Code — Constitution & Acts
         url: https://india-code.nic.in/
         type: GoIWebsite
         accessed_date: '2026-06-15'
+
+  - id: rel_molj_fund_mediation_council
+    source: ministry_law_justice
+    target: mediation_council_india
+    relationship_type: PrimaryFunder
+    relationship_category: funding
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: Mediation Act 2023
+    notes: Mediation Council of India constituted under MoLJ (not yet operational).
+    data_quality: partial
+    sources:
+      - label: Mediation Act 2023 — India Code
+        url: https://india-code.nic.in/
+        type: GoIWebsite
+        accessed_date: '2026-06-17'
 
   - id: rel_molj_fund_nja
     source: ministry_law_justice
