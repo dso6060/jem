@@ -1,0 +1,78 @@
+id: lokpal_india
+name: Lokpal of India
+name_hindi: लोकपाल
+abbreviation: Lokpal
+aliases:
+  - Lokpal
+  - Central Lokpal
+type: RegulatoryBodyQJ
+cluster: regulatory_bodies
+level_of_government: Central
+jurisdiction_scope:
+  is_all_india: true
+  jurisdiction_types:
+    - Anti-corruption inquiry
+    - Public servant misconduct
+created_year: 2019
+operational_status: Active
+constitutional_basis: null
+statutory_basis: Lokpal and Lokayuktas Act, 2013 (Act 1 of 2014) — assented 1 Jan 2014, commenced 16 Jan 2014.
+appointment:
+  nominates: null
+  recommends: central_government
+  consulted:
+    - supreme_court_india
+  consultation_binding: false
+  formally_appoints: president_india
+  criteria_public: true
+  tenure: 5 years or age 70, whichever is earlier (Lokpal Act 2013 s.5)
+  reappointment_possible: false
+  removal_authority: president_india
+  removal_requires_parliament: false
+  removal_independent_committee: true
+funding:
+  primary_source: Consolidated_Fund_India
+  ministry_responsible: ministry_personnel_dopt
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+  conduct_oversight_body: null
+complaint_mechanism:
+  bias_complaint_to: []
+  lokpal_jurisdiction: Not_Applicable
+  lokpal_jurisdiction_note: Lokpal is the apex anti-corruption ombudsman — not subject to its own jurisdiction.
+  source: Lokpal and Lokayuktas Act, 2013
+structural_gap:
+  flag: true
+  gaps:
+    - gap_id: lokpal_chairperson_vacancy_closed
+      gap_type: Capacity_Gap
+      gap_severity: Moderate
+      gap_description: >-
+        Chairperson vacancy May 2022–Mar 2024 (Pinaki Chandra Ghose retired 27 May 2022;
+        Justice A.M. Khanwilkar sworn in 10 Mar 2024). Full bench reconstituted Mar 2024.
+        Gap closed — historical only.
+      gap_source: Rashtrapati Bhavan; The Hindu, 10 Mar 2024
+      gap_since_year: 2022
+      gap_status: Closed
+data_quality: partial
+data_quality_notes: >-
+  Fully operational as of Mar 2024. Chairperson Justice Ajay Manikrao Khanwilkar
+  (oath 10 Mar 2024). Judicial members appointed Mar 2024 include Ritu Raj Awasthi,
+  Lingappa Narayana Swamy, Sanjay Yadav. First chairperson Justice Pinaki Chandra Ghose
+  (Mar 2019–May 2022). Selection Committee per Lokpal Act 2013 s.4 (PM, CJI, Lok Sabha
+  Speaker, LoP, eminent jurist).
+sources:
+  - label: Lokpal and Lokayuktas Act, 2013 — India Code
+    url: https://india-code.nic.in/handle/123456789/2335
+    type: CentralAct
+    accessed_date: '2026-06-17'
+  - label: Justice A.M. Khanwilkar sworn in as Lokpal Chairperson — The Hindu
+    url: https://www.thehindu.com/news/national/former-sc-judge-am-khanwilkar-administered-oath-as-lokpal-chairperson/article67935925.ece
+    type: OfficialReport
+    accessed_date: '2026-06-17'
+  - label: Lokpal official website
+    url: https://lokpal.gov.in/
+    type: GoIWebsite
+    accessed_date: '2026-06-17'

@@ -60,10 +60,14 @@ judge_strength:
   notes: 39 benches operational across India as of public records; each bench has one Presiding Officer. Exact sanctioned
     vs working strength not verified at authoring time.
 data_quality: partial
-data_quality_notes: Entity models the DRT system as a single central entity (39 benches); individual bench entities not created
-  — Phase-2 scope if needed. Ministry id ministry_of_finance assumed present in graph. Case volume and strength data left
-  partial. NJDG snapshot case_volume merged v1.2 judge_strength stub attached
+data_quality_notes: Entity models the DRT system as a single central entity (39 DRTs, 5 DRATs per DFS); graph has 25 regional
+  DRT bench entities — incomplete lattice. Ministry id ministry_of_finance assumed present in graph. Case volume and strength
+  data left partial. NJDG snapshot case_volume merged v1.2 judge_strength stub attached
 sources:
+- label: DFS — 39 DRTs and 5 DRATs
+  url: https://financialservices.gov.in/drt-drat
+  type: GoIWebsite
+  accessed_date: '2026-06-17'
 - label: RDDBFI Act 1993, s.3 — establishment of Tribunals
   url: https://india-code.nic.in/handle/123456789/1573
   type: CentralAct

@@ -5,11 +5,11 @@ cluster: executive_interface
 level_of_government: State
 jurisdiction_scope:
   states_covered:
-  - TN
+    - TN
   is_all_india: false
-created_year: 2001
+created_year: 2018
 operational_status: Active
-statutory_basis: Tamil Nadu Lokayukta Act 2001
+statutory_basis: Tamil Nadu Lokayukta Act, 2018 (Act 33 of 2018) — in force 13 Nov 2018; enacted under Lokpal Act 2013 s.63.
 funding:
   primary_source: State_Consolidated_Fund
 audit:
@@ -20,14 +20,21 @@ complaint_mechanism:
   bias_complaint_to: []
   lokpal_jurisdiction: 'Yes'
 data_quality: partial
+data_quality_notes: >-
+  Operational. Chairperson Justice P. Rajamanickam (G.O. Feb 2025; term to 17 Apr 2027).
+  Non-judicial members V. Ramaraj and Arumuga Mohan Alagamani appointed Feb 2025.
+  Prior chairperson vacancy (pre-2025) resolved. CM probe requires assembly approval
+  per TN Act — powers narrower than central Lokpal.
 sources:
-- label: Tamil Nadu Lokayukta portal
-  url: https://lokayukta.tn.gov.in/
-  type: GoIWebsite
-  accessed_date: '2026-06-15'
-- label: India Code — Constitution & Acts
-  url: https://india-code.nic.in/
-  type: GoIWebsite
-  accessed_date: '2026-06-15'
-data_quality_notes: Prior graph marked Not_Constituted; upgraded per state portal
-  — maintainer verify.
+  - label: Tamil Nadu Lokayukta portal
+    url: https://tamilnadulokayukta.tn.gov.in/
+    type: GoIWebsite
+    accessed_date: '2026-06-17'
+  - label: Tamil Nadu Lokayukta Act, 2018 — India Code
+    url: https://www.indiacode.nic.in/handle/123456789/15694
+    type: CentralAct
+    accessed_date: '2026-06-17'
+  - label: TN G.O. — Justice P. Rajamanickam as Chairperson (Feb 2025)
+    url: https://www.dailythanthi.com/news/tamilnadu/retired-judge-appointed-as-tamil-nadu-lokayukta-chairman-1144688
+    type: OfficialReport
+    accessed_date: '2026-06-17'

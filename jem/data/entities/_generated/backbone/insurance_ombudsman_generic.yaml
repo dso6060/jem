@@ -67,9 +67,13 @@ data_quality_notes: >
   generic pattern (cf. state_election_commission_generic, court_martial_generic).
   Two-tier model:
     Layer 1 — Insurance Ombudsman (17 offices): consumer-facing mediation and
-    binding award up to Rs. 30 lakh (2017 Rules, as amended 2021).
+    binding award up to Rs 50 lakh (G.S.R. amendment notified 10 Nov 2023; prior cap
+    Rs 30 lakh under 2017 Rules as amended 2021).
     Layer 2 — Securities Appellate Tribunal (SAT): appellate body for IRDAI
     regulatory orders under Insurance Laws (Amendment) Act 2015 § 110C.
+  Awards binding on insurer once complainant accepts (Insurance Ombudsman Rules 2017
+  r.17). No direct contempt power — if insurer defies, complainant escalates to IRDAI
+  or consumer court. Draft IRDAI IIO Guidelines 2025 propose stronger enforcement.
   This entity models Layer 1. SAT and IRDAI are modelled separately in repo.
   Former draft id insurance_appellate_generic was incorrect — renamed 2026-06-12.
 
@@ -86,3 +90,7 @@ sources:
     url: https://india-code.nic.in/CodeSection.aspx?actcode=A201504
     type: CentralAct
     accessed_date: '2026-06-11'
+  - label: Council for Insurance Ombudsmen — FAQs (Rs 50 lakh cap; binding awards)
+    url: https://www.cioins.co.in/Faqs
+    type: GoIWebsite
+    accessed_date: '2026-06-17'

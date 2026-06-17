@@ -5,11 +5,14 @@ cluster: executive_interface
 level_of_government: State
 jurisdiction_scope:
   states_covered:
-  - PY
+    - PY
   is_all_india: false
-created_year: 2025
+created_year: 2014
 operational_status: Not_Constituted
-statutory_basis: No Lokayukta Act for Puducherry UT as of 2025
+statutory_basis: >-
+  No Puducherry Lokayukta Act enacted. Central Lokpal and Lokayuktas Act, 2013
+  (commenced 16 Jan 2014) mandates state Lokayuktas under s.63; applicability to
+  UTs with legislatures (Puducherry) is legally ambiguous — Act refers to "States."
 funding:
   primary_source: State_Consolidated_Fund
 audit:
@@ -19,15 +22,35 @@ audit:
 complaint_mechanism:
   bias_complaint_to: []
   lokpal_jurisdiction: Not_Applicable
+structural_gap:
+  flag: true
+  gaps:
+    - gap_id: py_lokayukta_not_constituted
+      gap_type: Legislative_Gap
+      gap_severity: High
+      gap_description: >-
+        No Lokayukta constituted in Puducherry (12+ years since Lokpal Act 2013
+        commenced Jan 2014). UT-with-legislature status creates ambiguity whether
+        central Act Lokayukta mandate applies directly. SC notice to states (2018)
+        included Puducherry.
+      gap_source: Lokpal and Lokayuktas Act 2013; The Tribune, 23 Mar 2018
+      gap_since_year: 2014
+      gap_status: Open
 data_quality: partial
+data_quality_notes: >-
+  Body not constituted. No primary source confirms a Puducherry Lokayukta Act or
+  functioning institution. Central Lokpal may cover applicable Union functionaries;
+  state/UT public servants without a local Lokayukta remain a coverage gap.
 sources:
-- label: Puducherry Lokayukta portal
-  url: https://py.gov.in/
-  type: GoIWebsite
-  accessed_date: '2026-06-15'
-- label: India Code — Constitution & Acts
-  url: https://india-code.nic.in/
-  type: GoIWebsite
-  accessed_date: '2026-06-15'
-data_quality_notes: UT; Central Lokpal may cover applicable functionaries. Body not
-  constituted.
+  - label: Lokpal and Lokayuktas Act, 2013 — India Code
+    url: https://india-code.nic.in/handle/123456789/2335
+    type: CentralAct
+    accessed_date: '2026-06-17'
+  - label: Puducherry Government portal
+    url: https://py.gov.in/
+    type: GoIWebsite
+    accessed_date: '2026-06-17'
+  - label: SC notice to states without Lokayukta — The Tribune
+    url: https://www.tribuneindia.com/news/archive/nation/sc-notice-to-11-states-over-lokayukta-567123
+    type: OfficialReport
+    accessed_date: '2026-06-17'

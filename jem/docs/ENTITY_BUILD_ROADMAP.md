@@ -32,7 +32,7 @@
 | C01 | Constitutional courts (SC + 25 HCs) | ~26 | ~27 + benches | **done** | 0 | Maintainer |
 | C02 | HC permanent benches | ~14 | ~13 + UP/WB/RJ routing wired | **updated** | 1 | Maintainer |
 | C03 | Central tribunals (principal) | ~15 | ~14 | **done** | 0 | Maintainer |
-| C04 | Central tribunals — regional benches (CESTAT×8, AFT×11 locations/15 courts, DRT×25, ITAT×25) | ~56 | ~69 | **updated** | 2 | Mixed |
+| C04 | Central tribunals — regional benches (CESTAT×9, AFT×11 locations/15 courts, DRT×39/DRAT×5, ITAT×63/27 stations) | ~56 | ~69 | **updated** | 2 | Mixed |
 | C05 | Quasi-judicial regulators (SEBI, TRAI, SERC/RERA gens) | ~80 | ~76 | **updated** | 1 | Mixed |
 | C06 | Consumer commissions (NCDRC + state/district) | ~70 | ~54 | **updated** | 2 | Contributor drafts |
 | C07 | ADR (NALSA, SLSA, Lok Adalat, mediation, arbitration institutes) | ~40 | ~37 | **updated** | 1 | Mixed |

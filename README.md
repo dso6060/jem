@@ -42,7 +42,7 @@ Judiciary Entity Map (India) (JEM) presents structural information about institu
 
 ## V1 entity coverage
 
-**Snapshot (v1.0.0, Jun 2026):** full structural packs for **all states and UTs** (35 codes), central tribunal bench lattice (CESTAT×8, AFT×11 locations / 15 courts, DRT×25, ITAT×25), tax/labour/defence/IP stacks, and **0 orphan entities** in `graph.json`. TN retains the deepest district lattice (38 courts); other states use core pack + named high-volume districts. Frontend: redesigned summary dashboard, detail panel, and entity connection views (`feature/ui-cleanup` merged).
+**Snapshot (v1.0.0, Jun 2026):** full structural packs for **all states and UTs** (35 codes), central tribunal bench lattice (CESTAT×9 locations, AFT×11 locations / 15 courts, DRT×39 + DRAT×5, ITAT×63 benches / 27 stations — graph has 25 ITAT station entities), tax/labour/defence/IP stacks, and **0 orphan entities** in `graph.json`. TN retains the deepest district lattice (38 courts); other states use core pack + named high-volume districts. Frontend: redesigned summary dashboard, detail panel, and entity connection views (`feature/ui-cleanup` merged).
 
 **Constitutional courts:** Supreme Court · All 25 High Courts (complete) · 13 permanent HC benches
 
@@ -68,7 +68,7 @@ Judiciary Entity Map (India) (JEM) presents structural information about institu
 
 **Investigative:** CBI · Enforcement Directorate
 
-**Training / Audit:** NJA · SJA (generic) · TNSJA · CAG India · Lokayukta (generic) · TN Lokayukta (NC) · PY Lokayukta (NC)
+**Training / Audit:** NJA · SJA (generic) · TNSJA · CAG India · Lokayukta (generic) · TN Lokayukta · PY Lokayukta (NC)
 
 **Subordinate courts:** District & Sessions Court (generic) · Civil Judge/MM (generic) · Special Court (generic) · TN District Courts · Chennai District Court · PY District Courts · TN Special Courts · Gram Nyayalaya (generic)
 
@@ -187,7 +187,7 @@ The canonical record of everything not yet in the data layer, deferred to v2, ou
 |---|---|---|
 | GSTAT | Partially operational — Principal Bench constituted Sep 2023; Procedure Rules 2025 in force; state bench appointments incomplete. ~8,100+ GST cases still at HCs (per Rules notification; figure contested). | Critical |
 | ACI | Not constituted — ~7 years since legislation. SC issued notice 23 Jan 2025. | Critical |
-| TN Lokayukta | Operational status contested — verify against state portal vs historical gap notes | High |
+| TN Lokayukta | Operational — Chairperson Justice P. Rajamanickam (Feb 2025). TN Lokayukta Act 2018. CM probe needs assembly approval. | Moderate |
 | AFT | No HC appeal path — only direct SC SLP. 11 locations / 15 courts. MoD appointer-litigant loop. Bench vacancies Mar 2026: Jabalpur/Guwahati/Srinagar fully vacant. | Critical/High |
 | Allahabad HC | ~50% vacancy — 80 of 160 posts (Jul 2025 snapshot). India's highest-volume HC. | Critical |
 | Patna HC | ~17% vacancy — 9 of 53 posts (44 judges, Jun 2026). Improving after 7 appointments. | Moderate |
@@ -202,9 +202,10 @@ The canonical record of everything not yet in the data layer, deferred to v2, ou
 | CESTAT | MoF appointer-litigant loop — CBIC is respondent in every case. | High |
 | TNERC | State appoints regulator + owns TANGEDCO (primary regulated entity). | High |
 | CJI (Master of Roster) | No codified rules for bench/case assignment. Full discretion. | High |
-| PY Lokayukta | Not constituted — 12 years since Lokpal Act. | High |
+| Lokpal | Fully operational — Chairperson Justice A.M. Khanwilkar (oath 10 Mar 2024). 2022–2024 chairperson vacancy closed. | — |
+| PY Lokayukta | Not constituted — 12+ years since Lokpal Act (Jan 2014). UT-with-legislature mandate ambiguous. | High |
 | RBI (Ombudsman) | Appellate authority is Dy Governor of same RBI. | Moderate |
-| Insurance Ombudsman | Rs 50L cap. Awards nominally binding but unenforceable. | Moderate |
+| Insurance Ombudsman | Rs 50L cap (Nov 2023 amendment). Awards binding on insurer; limited enforcement if defied — escalate to IRDAI/consumer court. | Moderate |
 | NMC | No dedicated medical negligence tribunal — routes through consumer courts. | Moderate |
 | Bombay HC, Madras HC | Custom CMS — NJDG reliability Low. | Moderate |
 | BCI / State Bar Councils | Self-regulatory — no external oversight body. | Moderate |
@@ -214,13 +215,13 @@ The canonical record of everything not yet in the data layer, deferred to v2, ou
 
 ### B. Known entities not yet in v1 — community contribution needed
 
-> **Note (v1.0.0):** Many items below are now **in graph** as principals, regional benches, or generics (CESTAT×8, AFT×11 locations (15 courts), DRT×25, ITAT×25, CGIT, EPFAT, IP stack, state VAT/SAT stubs). This section lists remaining depth work — per-bench DRT sub-entities, constituted GSTAT benches, per-district NJDG numerics.
+> **Note (v1.0.0):** Many items below are now **in graph** as principals, regional benches, or generics (CESTAT×9 locations, AFT×11 locations (15 courts), DRT×39 + DRAT×5, ITAT×63 benches / 27 stations (25 station entities in graph), CGIT, EPFAT, IP stack, state VAT/SAT stubs). This section lists remaining depth work — per-bench DRT sub-entities, constituted GSTAT benches, per-district NJDG numerics.
 
 **Tax / Revenue tribunals (remaining depth):**
 
 | Entity | Notes |
 |---|---|
-| CESTAT regional benches (8) | Chennai, Mumbai, Kolkata, Bangalore, Ahmedabad, Hyderabad, Allahabad, Chandigarh |
+| CESTAT regional benches (8) + Principal | Chennai, Mumbai, Kolkata, Bangalore, Ahmedabad, Hyderabad, Allahabad, Chandigarh (+ Principal Delhi = 9 locations) |
 | GSTAT state benches (31) | Principal Bench constituted; state benches being notified — enter individual benches as gazette confirms full constitution |
 | Dispute Resolution Panel (DRP) | Income Tax Act Section 144C. Inside CBDT — severe circularity. |
 | AAR (Income Tax) | Authority for Advance Rulings. Slow, documented delays. |
