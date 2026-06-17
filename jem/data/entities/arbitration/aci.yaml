@@ -81,6 +81,10 @@ sources:
   url: https://www.pib.gov.in/PressReleasePage.aspx?PRID=2224369
   type: GoIWebsite
   accessed_date: '2025-04-15'
+- label: SC notice to Union on ACI constitution — The Hindu, 23 Jan 2025
+  url: https://www.thehindu.com/news/national/has-an-arbitration-council-been-constituted-explained/article70519620.ece
+  type: OfficialReport
+  accessed_date: '2026-06-17'
 - label: Draft Arbitration Bill 2024 — Ministry of Law & Justice
   url: https://doj.gov.in/
   type: GoIWebsite

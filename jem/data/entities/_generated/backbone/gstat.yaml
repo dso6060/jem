@@ -55,7 +55,7 @@ structural_variations:
   - national
   source: CGST Act 2017 s.109(1)(a) as amended by Finance Act 2023
   independence_risk_note: Principal Bench established 1 September 2023; President (Justice Sanjaya Kumar Mishra) appointed
-    6 May 2024. GSTAT Procedure Rules 2025 notified 24 April 2025. Operational but state benches and member appointments
+    3 May 2024 (ACC). GSTAT Procedure Rules 2025 notified 24 April 2025. Operational but state benches and member appointments
     remain incomplete.
 - variation_id: gstat_state_bench
   description: State Benches (one per state/UT or shared for smaller UTs) each comprising one Judicial Member and one Technical
@@ -81,7 +81,7 @@ structural_gap:
     gap_status: Partial_Addressed
 data_quality: partial
 data_quality_notes: 'Structural_gap: CRITICAL (partial operationalisation). GSTAT Principal Bench established 1 September
-  2023; President appointed 6 May 2024; GSTAT Procedure Rules 2025 notified 24 April 2025. Tribunal is partially functional
+  2023; President appointed 3 May 2024 (ACC); GSTAT Procedure Rules 2025 notified 24 April 2025. Tribunal is partially functional
   — not "not constituted" — but state bench member appointments remain incomplete as of June 2026. GST appeals continue at
   High Courts pending full operationalisation. budget_figure not separately identified in Union Budget (subsumed under DoR
   establishment estimates). Mohit Minerals SC judgment (19 May 2022) context for earlier constitution delay. v1.2 judge_strength
@@ -111,9 +111,13 @@ sources:
   url: https://india-code.nic.in/CodeofActs13/20230008.pdf
   type: CentralAct
   accessed_date: '2026-06-12'
-- label: GSTAT Procedure Rules 2025 — notified 24 April 2025
-  url: https://egazette.gov.in/
+- label: GSTAT Procedure Rules 2025 — G.S.R. 256(E), 24 April 2025
+  url: https://efiling.gstat.gov.in/downloads/manual/Procedure_Rules.pdf
   type: GazetteNotification
+  accessed_date: '2026-06-17'
+- label: ACC appoints Justice Sanjaya Kumar Mishra as GSTAT President — Economic Times, 3 May 2024
+  url: https://economictimes.indiatimes.com/news/economy/policy/centre-approves-appointment-of-sanjaya-kumar-mishra-as-president-gstat/articleshow/109807255.cms
+  type: OfficialReport
   accessed_date: '2026-06-17'
 judge_strength:
   data_as_of: null

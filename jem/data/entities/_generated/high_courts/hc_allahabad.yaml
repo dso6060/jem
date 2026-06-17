@@ -106,6 +106,10 @@ sources:
   url: https://main.sci.gov.in/
   type: GoIWebsite
   accessed_date: '2026-05-13'
+- label: DoJ judicial vacancy report — Allahabad HC 80/160 working strength (Jul 2025)
+  url: https://doj.gov.in/report-and-committees/judicial-vacancy-reports
+  type: OfficialReport
+  accessed_date: '2026-06-17'
 - label: National Judicial Data Grid (NJDG)
   url: https://njdg.ecourts.gov.in/
   type: NJDG
