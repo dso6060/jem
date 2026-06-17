@@ -378,6 +378,54 @@ relationships:
     sources:
       - *india_code
 
+  - id: rel_dopt_oversight_cbi
+    source: ministry_personnel_dopt
+    target: cbi
+    relationship_type: PolicyOversight
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: DSPE Act 1946; GoI allocation of business
+    notes: CBI administered by DoPT (MoPP&P) — not MHA despite 1963 MHA constitution resolution.
+    data_quality: partial
+    sources:
+      - label: CBI — Official Website
+        url: https://cbi.gov.in/
+        type: GoIWebsite
+        accessed_date: '2026-06-17'
+
+  - id: rel_mof_oversight_ed
+    source: ministry_of_finance
+    target: enforcement_directorate
+    relationship_type: PolicyOversight
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: PMLA 2002; FEMA 1999
+    notes: ED under Department of Revenue, Ministry of Finance — not MHA.
+    data_quality: partial
+    sources:
+      - label: Enforcement Directorate — Official Website
+        url: https://enforcementdirectorate.gov.in/
+        type: GoIWebsite
+        accessed_date: '2026-06-17'
+
+  - id: rel_mof_oversight_atfe
+    source: ministry_of_finance
+    target: atfe
+    relationship_type: PolicyOversight
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    statutory_basis: FEMA 1999, Chapter V
+    notes: ATFE is FEMA appellate tribunal under MoF — not MHA/ED despite FEMA enforcement overlap.
+    data_quality: partial
+    sources:
+      - label: FEMA 1999 — India Code
+        url: https://india-code.nic.in/
+        type: CentralAct
+        accessed_date: '2026-06-17'
+
   - id: rel_cbi_writ_hc_competent
     source: cbi
     target: high_court_competent

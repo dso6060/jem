@@ -39,9 +39,7 @@ complaint_mechanism:
 
     '
 data_quality: partial
-data_quality_notes: "created_year 1995 (operational); LSA Act 1987 is statute date. Patron-in-Chief (CJI, ex officio) not\
-  \ modelled as appointment relationship. Designates → lok_adalat_generic in adr_arbitration_relationships.yaml. ministry_responsible\
-  \ 'ministry_law_justice' assumed — verify in graph.\n NJDG snapshot case_volume merged"
+data_quality_notes: "created_year 1995 (operational); LSA Act 1987 is statute date. Patron-in-Chief: CJI (ex officio). Executive Chairman: senior SC judge designated by CJI (currently Justice Vikram Nath, Jun 2026). Designates → lok_adalat_generic in adr_arbitration_relationships.yaml. ministry_responsible 'ministry_law_justice' assumed — verify in graph.\n NJDG snapshot case_volume merged"
 sources:
 - label: Legal Services Authorities Act 1987 — India Code
   url: https://india-code.nic.in/acts-detail/NzI2

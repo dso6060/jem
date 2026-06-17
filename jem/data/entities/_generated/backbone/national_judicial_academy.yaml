@@ -1,20 +1,44 @@
 id: national_judicial_academy
 name: National Judicial Academy
-type: ExecutiveBody
+name_hindi: राष्ट्रीय न्यायिक अकादमी
+abbreviation: NJA
+type: TrainingBody
 cluster: training_professional
 level_of_government: Central
 jurisdiction_scope:
   is_all_india: true
-created_year: 1950
+created_year: 1993
 operational_status: Active
+constitutional_basis: null
+statutory_basis: National Judicial Academy (India) — registered society; governed by Governing Council chaired by CJI.
+appointment:
+  nominates: supreme_court_india
+  formally_appoints: supreme_court_india
+  criteria_public: false
+  tenure: null
+  reappointment_possible: null
+  removal_authority: supreme_court_india
+funding:
+  primary_source: Consolidated_Fund_India
+  ministry_responsible: ministry_law_justice
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+  conduct_oversight_body: supreme_court_india
+complaint_mechanism:
+  lokpal_jurisdiction: Not_Applicable
 data_quality: partial
-data_quality_notes: Stub for graph connectivity; verify appointment/funding against primary sources.
+data_quality_notes: >-
+  Autonomous society at Bhopal (63-acre campus). Fully funded by GoI through
+  DoJ/MoLJ but works under directions of the Supreme Court — CJI chairs the
+  Governing Council. Not subordinate to MoLJ in the same way as other DoJ bodies.
 sources:
-- label: India Code — Constitution & Acts
-  url: https://india-code.nic.in/
-  type: GoIWebsite
-  accessed_date: '2026-05-13'
-- label: National Judicial Data Grid (NJDG)
-  url: https://njdg.ecourts.gov.in/
-  type: NJDG
-  accessed_date: '2024-12-01'
+  - label: NJA — Official Website
+    url: https://nja.gov.in/
+    type: GoIWebsite
+    accessed_date: '2026-06-17'
+  - label: DoJ — National Judicial Academy
+    url: https://doj.gov.in/page/national-judicial-academy
+    type: GoIWebsite
+    accessed_date: '2026-06-17'

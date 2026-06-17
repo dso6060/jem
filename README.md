@@ -195,6 +195,11 @@ The canonical record of everything not yet in the data layer, deferred to v2, ou
 | Mediation Council | Not constituted — ~3 years since Mediation Act 2023. Same pattern as ACI. | High |
 | Gram Nyayalaya | 333 of 488 notified operational (Oct 2025). Target ~6,000 (Law Commission 1986). UP leads with 109 — not zero. | High |
 | NGT | Below statutory minimum both tracks — 6 judicial + 7 expert (Aug 2025); Act requires ≥10 each. | High |
+| SAT | Single Mumbai bench (nationwide). Quorum crisis Dec 2023–Apr 2024; CJI Jul 2024 called for additional benches. | Moderate |
+| CBI | Parent DoPT (MoPP&P) — not MHA. State consent withdrawals restrict jurisdiction. | Moderate |
+| ED | Parent Department of Revenue / MoF — not MHA. | Moderate |
+| NJA | Funded via DoJ but governed by SC (CJI chairs Governing Council). | Moderate |
+| AG / SG | AG India is constitutional (Art. 76); SG and ASGs are statutory only — scoring must not treat SG as constitutional. | — |
 | NCLT | Complaint goes to appointing ministry (MCA) — structural conflict. | High |
 | Collegium SC | No criteria, no timeline, no external review. NJAC struck down 2015. | High |
 | State Police | No binding obligation to provide HC judge security. Active litigation 2024–25. | Critical |

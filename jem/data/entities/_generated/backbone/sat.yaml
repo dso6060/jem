@@ -37,10 +37,35 @@ audit:
   audit_type: CAG_Statutory
   audit_report_public: true
 data_quality: partial
-data_quality_notes: "created_year 1995 (Securities Laws Amendment Act 1995 — SAT constituted). Statutory basis lists three\
-  \ Acts; SEBI Act 1992 is primary. PFRDA (2014) and IRDAI jurisdiction added subsequently — verify current IRDAI amendment.\
-  \ ministry_responsible 'ministry_of_finance' — DEA demand head, not Revenue; verify in graph. case_volume null — SAT Annual\
-  \ Report in §3/§7.\n NJDG snapshot case_volume merged v1.2 judge_strength stub attached"
+data_quality_notes: "created_year 1995 (Securities Laws Amendment Act 1995 — SAT constituted). Single bench in Mumbai with\
+  \ India-wide jurisdiction (sat.gov.in). Statutory basis lists three Acts; SEBI Act 1992 is primary. PFRDA (2014) and IRDAI\
+  \ jurisdiction added subsequently. ministry_responsible 'ministry_of_finance' — DEA demand head. Quorum crisis Dec 2023–Apr\
+  \ 2024 after PO retirement; Justice P.S. Dinesh Kumar assumed charge Apr 2024.\n NJDG snapshot case_volume merged v1.2\
+  \ judge_strength stub attached"
+structural_gap:
+  flag: true
+  gaps:
+    - gap_id: sat_quorum_crisis_dec2023
+      gap_type: Capacity_Gap
+      gap_severity: High
+      gap_description: >-
+        Near-functional collapse Dec 2023–Apr 2024 — Presiding Officer Justice Tarun
+        Agarwala retired Dec 2023; only one technical member remained; final orders
+        stalled for ~3 months. Justice P.S. Dinesh Kumar (former CJ Karnataka HC)
+        assumed charge Apr 2024. Gap closed but backlog persisted.
+      gap_source: Business Standard / Hindu BusinessLine, Apr 2024
+      gap_since_year: 2023
+      gap_status: Partial_Addressed
+    - gap_id: sat_single_bench_national
+      gap_type: Capacity_Gap
+      gap_severity: Moderate
+      gap_description: >-
+        Only one SAT bench (Mumbai) for nationwide SEBI/IRDAI/PFRDA appeals.
+        CJI called for additional benches (Jul 2024) amid growing market volume;
+        expansion pending since 2016 Budget announcement.
+      gap_source: sat.gov.in; News on Air, Jul 2024
+      gap_since_year: 1995
+      gap_status: Open
 sources:
 - label: SEBI Act 1992 — SEBI Official Website
   url: https://www.sebi.gov.in/legal/acts/aug-1992/the-securities-and-exchange-board-of-india-act-1992_2101.html
@@ -50,10 +75,14 @@ sources:
   url: https://india-code.nic.in/acts-detail/MjY5MzQ=
   type: CentralAct
   accessed_date: '2026-05-18'
-- label: SAT — Official Website
+- label: SAT — Official Website (single Mumbai bench)
   url: https://sat.gov.in
   type: GoIWebsite
-  accessed_date: '2026-05-18'
+  accessed_date: '2026-06-17'
+- label: SAT quorum crisis and new PO appointment — Business Standard, Apr 2024
+  url: https://www.business-standard.com/markets/news/securities-tribunal-gets-new-presiding-officer-new-technical-member-124040500313_1.html
+  type: OfficialReport
+  accessed_date: '2026-06-17'
 - label: National Judicial Data Grid (NJDG)
   url: https://njdg.ecourts.gov.in/
   type: NJDG

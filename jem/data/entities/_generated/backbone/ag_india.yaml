@@ -1,0 +1,37 @@
+id: ag_india
+name: Attorney General for India
+abbreviation: AG
+type: LegalOfficer
+cluster: executive_interface
+level_of_government: Central
+jurisdiction_scope:
+  is_all_india: true
+created_year: 1950
+operational_status: Active
+constitutional_basis: Article 76, Constitution of India
+statutory_basis: null
+appointment:
+  nominates: central_government
+  formally_appoints: president_india
+  criteria_public: false
+  tenure: At pleasure of President; must be qualified to be appointed SC judge
+  reappointment_possible: true
+  removal_authority: president_india
+funding:
+  primary_source: Consolidated_Fund_India
+  ministry_responsible: ministry_law_justice
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+complaint_mechanism:
+  lokpal_jurisdiction: Not_Applicable
+data_quality: partial
+data_quality_notes: >-
+  Constitutional office (Art. 76). Independence Risk scoring applies constitutional
+  basis −2 reduction. Not a judge; appears for Union in SC and selected HC matters.
+sources:
+  - label: Constitution of India — Article 76
+    url: https://india-code.nic.in/
+    type: Constitution
+    accessed_date: '2026-06-17'

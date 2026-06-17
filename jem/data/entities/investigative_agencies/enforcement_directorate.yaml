@@ -1,0 +1,56 @@
+id: enforcement_directorate
+name: Enforcement Directorate
+abbreviation: ED
+aliases:
+  - ED
+type: InvestigativeAgency
+cluster: executive_interface
+level_of_government: Central
+jurisdiction_scope:
+  is_all_india: true
+  jurisdiction_types:
+    - Special
+created_year: 1956
+operational_status: Active
+constitutional_basis: null
+statutory_basis: >-
+  Prevention of Money Laundering Act 2002 (PMLA); Foreign Exchange Management
+  Act 1999 (FEMA). Agency under Department of Revenue, Ministry of Finance —
+  not MHA (transferred from MHA in 1957).
+appointment:
+  nominates: central_government
+  formally_appoints: central_government
+  criteria_public: false
+  tenure: null
+  reappointment_possible: null
+  removal_authority: central_government
+funding:
+  primary_source: Ministry_Budget
+  ministry_responsible: ministry_of_finance
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+complaint_mechanism:
+  bias_complaint_to:
+    - body: high_court_competent
+      mechanism: Writ petition under Article 226 challenging ED action
+      complainant_has_locus: true
+      is_public_process: true
+      timeframe_defined: false
+      external_to_judiciary: true
+  lokpal_jurisdiction: 'Yes'
+  lokpal_jurisdiction_note: ED officers are central government servants under Lokpal Act 2013 s.14.
+data_quality: partial
+data_quality_notes: >-
+  Parent chain: Department of Revenue → Ministry of Finance. Commonly but
+  incorrectly assumed to be under MHA. ED is separate from CBI (DoPT/MoPP&P).
+sources:
+  - label: Enforcement Directorate — Official Website
+    url: https://enforcementdirectorate.gov.in/
+    type: GoIWebsite
+    accessed_date: '2026-06-17'
+  - label: PMLA 2002 — India Code
+    url: https://india-code.nic.in/
+    type: CentralAct
+    accessed_date: '2026-06-17'

@@ -1,0 +1,41 @@
+id: sg_india
+name: Solicitor General of India
+abbreviation: SG
+type: LegalOfficer
+cluster: executive_interface
+level_of_government: Central
+jurisdiction_scope:
+  is_all_india: true
+created_year: 1950
+operational_status: Active
+constitutional_basis: null
+statutory_basis: Law Officers (Conditions of Service) Rules, 1987 — statutory/conventional office; not a constitutional post (unlike AG under Art. 76).
+appointment:
+  nominates: central_government
+  formally_appoints: president_india
+  criteria_public: false
+  tenure: As notified; not fixed in Constitution
+  reappointment_possible: true
+  removal_authority: president_india
+funding:
+  primary_source: Consolidated_Fund_India
+  ministry_responsible: ministry_law_justice
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: true
+complaint_mechanism:
+  lokpal_jurisdiction: Not_Applicable
+data_quality: partial
+data_quality_notes: >-
+  NOT a constitutional office — do not apply Art. 76 constitutional-basis −2
+  scoring reduction. Assists AG; appears for Union in courts. ASGs share same status.
+sources:
+  - label: Law Officers (Conditions of Service) Rules, 1987
+    url: https://india-code.nic.in/
+    type: GoIWebsite
+    accessed_date: '2026-06-17'
+  - label: Constitution of India — Article 76 (AG only; SG not mentioned)
+    url: https://india-code.nic.in/
+    type: Constitution
+    accessed_date: '2026-06-17'

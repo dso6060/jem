@@ -15,9 +15,10 @@ created_year: 1963
 abolished_year: null
 operational_status: Active
 constitutional_basis: null
-statutory_basis: 'Delhi Special Police Establishment Act 1946 (DSPE Act). CBI constituted by Ministry of Home Affairs Resolution 1963.
-
-  '
+statutory_basis: >-
+  Delhi Special Police Establishment Act 1946 (DSPE Act). CBI constituted by
+  MHA Resolution 1963; presently administered by DoPT (Ministry of Personnel,
+  Public Grievances and Pensions) — not MHA.
 appointment:
   nominates: null
   recommends: selection_committee_cbi_director
@@ -106,6 +107,10 @@ sources:
   url: https://main.sci.gov.in/
   type: SCJudgment
   accessed_date: '2025-04-01'
+- label: CBI — About (DoPT administration)
+  url: https://cbi.gov.in/
+  type: GoIWebsite
+  accessed_date: '2026-06-17'
 - label: National Judicial Data Grid (NJDG)
   url: https://njdg.ecourts.gov.in/
   type: NJDG

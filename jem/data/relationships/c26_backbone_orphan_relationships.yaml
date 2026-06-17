@@ -59,13 +59,28 @@ relationships:
     is_binding: true
     is_constitutional: false
     statutory_basis: National Judicial Academy Act 1993
-    notes: NJA Bhopal funded through Union Ministry of Law and Justice.
+    notes: NJA Bhopal funded through Union Ministry of Law and Justice. Governing Council chaired by CJI — funding ≠ administrative subordination.
     data_quality: partial
     sources:
       - label: India Code — Constitution & Acts
         url: https://india-code.nic.in/
         type: GoIWebsite
         accessed_date: '2026-06-15'
+
+  - id: rel_sc_oversight_nja
+    source: supreme_court_india
+    target: national_judicial_academy
+    relationship_type: PolicyOversight
+    relationship_category: statutory_ref
+    is_binding: true
+    is_constitutional: false
+    notes: CJI chairs NJA Governing Council; academy works under directions of the Supreme Court despite GoI funding via DoJ.
+    data_quality: partial
+    sources:
+      - label: NJA — Official Website
+        url: https://nja.gov.in/
+        type: GoIWebsite
+        accessed_date: '2026-06-17'
 
   - id: rel_sc_oversight_ecommittee
     source: supreme_court_india
