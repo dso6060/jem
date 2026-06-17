@@ -39,11 +39,20 @@ audit:
   audit_type: CAG_Statutory
   audit_report_public: true
 data_quality: partial
-data_quality_notes: "cluster 'tribunals_adr' is temporary fallback — change to 'consumer_redressal' after Cursor Fix 1 is\
-  \ applied. created_year 1988 (operational constitution); CPA 1986 enacted is also defensible — maintainer to decide policy.\
-  \ ministry_responsible entity id 'ministry_consumer_affairs' assumed — verify in graph. case_volume and judge_strength null\
-  \ — populate from NCDRC Annual Report or DoJ vacancy data in §3/§7.\n NJDG snapshot case_volume merged v1.2 judge_strength\
-  \ stub attached"
+data_quality_notes: "cluster 'consumer_redressal'. Prior NJDG snapshot disposal_rate 0.78 (Dec 2024) drove a Critical clog label — stale. DoCA reported NCDRC monthly disposal rate 122% for July 2025 (cases disposed exceeded cases filed) following e-Jagriti launch Jan 2025. Monthly throughput ≠ full backlog clearance; pending inventory may remain. v1.2 judge_strength stub attached"
+structural_gap:
+  flag: true
+  gaps:
+  - gap_id: ncdrc_clog_label_stale
+    gap_type: Data_Gap
+    gap_severity: Moderate
+    gap_description: >-
+      Prior Critical clog label (0.78 disposal rate, Dec 2024 snapshot) superseded.
+      DoCA reported 122% monthly disposal rate for July 2025. Full pending-case
+      inventory needs fresh NJDG/e-Jagriti export before reassessing backlog severity.
+    gap_source: Department of Consumer Affairs statement, Aug 2025; consumeraffairs.nic.in
+    gap_since_year: 2024
+    gap_status: Partial_Addressed
 sources:
 - label: Consumer Protection Act 2019 — India Code
   url: https://india-code.nic.in/acts-detail/MjMxMzM=
@@ -57,20 +66,24 @@ sources:
   url: https://consumeraffairs.nic.in/ncdrc
   type: GoIWebsite
   accessed_date: '2026-05-18'
-- label: National Judicial Data Grid (NJDG)
-  url: https://njdg.ecourts.gov.in/
-  type: NJDG
-  accessed_date: '2024-12-01'
+- label: DoCA — NCDRC 122% monthly disposal, July 2025 (e-Jagriti)
+  url: https://consumeraffairs.nic.in/
+  type: GoIWebsite
+  accessed_date: '2026-06-17'
+- label: PTI/DoCA statement on July 2025 consumer forum disposal rates
+  url: https://www.theweek.in/wire-updates/business/2025/08/17/dcm19-biz-ncdrc-case-disposal.html
+  type: OfficialReport
+  accessed_date: '2026-06-17'
 case_volume:
-  data_as_of: '2024-12-01'
-  pending_cases: 110000
-  filed_last_year: 18000
-  disposed_last_year: 14000
-  avg_disposal_days: 1825
-  source_url: https://ncdrc.nic.in/
-  source_type: Tribunal_Report
-  disposal_rate: 0.7778
-  clog_severity: critical
+  data_as_of: '2025-07-31'
+  pending_cases: null
+  filed_last_year: null
+  disposed_last_year: null
+  avg_disposal_days: null
+  source_url: https://consumeraffairs.nic.in/
+  source_type: AnnualReport
+  disposal_rate: 1.22
+  clog_severity: low
 judge_strength:
   data_as_of: null
   allotted: null

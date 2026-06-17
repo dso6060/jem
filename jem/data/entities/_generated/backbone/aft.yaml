@@ -86,6 +86,17 @@ structural_gap:
     gap_source: AFT Act 2007; MoD as primary funder and nominating authority
     gap_since_year: 2009
     gap_status: Open
+  - gap_id: aft_bench_vacancies_mar2026
+    gap_type: Capacity_Gap
+    gap_severity: High
+    gap_description: >-
+      Bench-by-bench vacancies (Rajya Sabha, Mar 2026): Jabalpur, Guwahati,
+      Srinagar each 2/2 vacant; Chandigarh, Lucknow, Kochi, Chennai, Kolkata
+      each 1 vacancy; Principal Bench Delhi fully staffed; 11 of 34 member
+      posts vacant nationally. No single aggregate % — use bench table.
+    gap_source: MoS Defence Sanjay Seth, Rajya Sabha reply, 30 Mar 2026
+    gap_since_year: 2026
+    gap_status: Open
 data_quality: partial
 data_quality_notes: 'Entity created from statutory sources. Bench lattice: 11 locations (Principal Bench New Delhi + 10 regional benches) but 15 sitting courts total — Delhi, Chandigarh, and Lucknow each have 3 courts; other regional benches have 1 court each (PIB 2009; aftdelhi.nic.in). README shorthand AFT×11 = 11 location entities, not 15 courts. Note: AFT appeals go directly to the Supreme Court (AFT Act 2007, s.30) — NOT to High Courts. Member vacancy is bench-specific; no verified aggregate vacancy percentage — do not cite a single %. NJDG snapshot case_volume merged v1.2 judge_strength stub attached'
 sources:
@@ -101,7 +112,7 @@ sources:
   url: https://www.pib.gov.in/newsite/erelcontent.aspx?relid=56489
   type: GoIWebsite
   accessed_date: '2026-06-17'
-- label: National Judicial Data Grid (NJDG)
-  url: https://njdg.ecourts.gov.in/
-  type: NJDG
-  accessed_date: '2024-12-01'
+- label: Rajya Sabha reply — AFT bench vacancies, 30 Mar 2026
+  url: https://www.thehindu.com/news/national/armed-forces-tribunal-faces-11097-pending-cases-vacancies-across-benches-raise-concern/article70803376.ece
+  type: OfficialReport
+  accessed_date: '2026-06-17'

@@ -93,7 +93,7 @@ Judiciary Entity Map (India) (JEM) presents structural information about institu
 | ID | Category | Est. | Status | Phase |
 |----|----------|------|--------|-------|
 | C01 | Constitutional courts (SC + 25 HCs) | ~26 | **done** | 0 |
-| C02 | HC permanent benches | ~14 | **updated** | 1 |
+| C02 | HC permanent benches | ~14 | **updated** — count unverified; needs per-bench DoJ/gazette citation | 1 |
 | C03 | Central tribunals (principal) | ~15 | **done** | 0 |
 | C04 | Tribunal regional benches (CESTAT, AFT, DRT, ITAT) | ~69 | **updated** | 2 |
 | C05 | Quasi-judicial regulators | ~80 | **updated** | 1 |
@@ -188,13 +188,13 @@ The canonical record of everything not yet in the data layer, deferred to v2, ou
 | GSTAT | Partially operational — Principal Bench constituted Sep 2023; Procedure Rules 2025 in force; state bench appointments incomplete. ~8,100+ GST cases still at HCs (per Rules notification; figure contested). | Critical |
 | ACI | Not constituted — ~7 years since legislation. SC issued notice 23 Jan 2025. | Critical |
 | TN Lokayukta | Operational status contested — verify against state portal vs historical gap notes | High |
-| AFT | No HC appeal path — only direct SC SLP. 11 locations / 15 courts (not 11 courts). MoD appointer-litigant loop. Member vacancy bench-specific — no aggregate % cited. | Critical/High |
+| AFT | No HC appeal path — only direct SC SLP. 11 locations / 15 courts. MoD appointer-litigant loop. Bench vacancies Mar 2026: Jabalpur/Guwahati/Srinagar fully vacant. | Critical/High |
 | Allahabad HC | ~50% vacancy — 80 of 160 posts (Jul 2025 snapshot). India's highest-volume HC. | Critical |
 | Patna HC | ~17% vacancy — 9 of 53 posts (44 judges, Jun 2026). Improving after 7 appointments. | Moderate |
-| NCDRC | Disposal rate 0.78 — backlog growing. Only Critical clog entity in v1. | Critical |
+| NCDRC | July 2025 monthly disposal 122% (DoCA) — prior 0.78 Critical clog label withdrawn as stale. Full backlog needs fresh export. | Moderate |
 | Mediation Council | Not constituted — ~3 years since Mediation Act 2023. Same pattern as ACI. | High |
-| Gram Nyayalaya | 333 of 488 notified operational (Oct 2025). Target ~5,000 (Law Commission 1986). UP leads with 109 — not zero. | High |
-| NGT | Below statutory minimum — 4 judicial + 6 expert members (Nov 2025); Act requires ≥10 each category. | High |
+| Gram Nyayalaya | 333 of 488 notified operational (Oct 2025). Target ~6,000 (Law Commission 1986). UP leads with 109 — not zero. | High |
+| NGT | Below statutory minimum both tracks — 6 judicial + 7 expert (Aug 2025); Act requires ≥10 each. | High |
 | NCLT | Complaint goes to appointing ministry (MCA) — structural conflict. | High |
 | Collegium SC | No criteria, no timeline, no external review. NJAC struck down 2015. | High |
 | State Police | No binding obligation to provide HC judge security. Active litigation 2024–25. | Critical |

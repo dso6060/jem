@@ -52,7 +52,7 @@ structural_gap:
     gap_description: >-
       333 of 488 notified Gram Nyayalayas operational in 11 States/UTs
       (Oct 2025 Lok Sabha reply). Law Commission 114th Report (1986) envisaged
-      ~5,000 village courts nationwide; rollout remains far below target.
+      ~6,000 village courts nationwide; rollout remains far below target.
       UP leads with 109 operational (not zero). AP, Telangana, J&K, Ladakh
       have notified courts but none operational.
     gap_source: DoJ Gram Nyayalaya dashboard; MoS Law Lok Sabha reply Oct 2025
@@ -63,7 +63,7 @@ data_quality_notes: >-
   Aggregate generic node. Operational count 333/488 notified (Oct 2025) per
   MoS Law Arjun Ram Meghwal Lok Sabha reply; DoJ dashboard shows 337 operational
   (state totals may lag reply). Prior claim "UP: zero" is incorrect — UP has
-  109–111 operational per official sources. Target ~5,000 from Law Commission
+  109–111 operational per official sources. Target ~6,000 from Law Commission
   114th Report (1986), not a statutory cap in the 2008 Act.
 sources:
 - label: Gram Nyayalayas Act 2008 — India Code

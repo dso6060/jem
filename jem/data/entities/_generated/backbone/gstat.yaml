@@ -96,6 +96,10 @@ sources:
   url: https://india-code.nic.in/DownloadFile?FileName=A2017-12.pdf
   type: CentralAct
   accessed_date: '2026-06-11'
+- label: MoF Notification S.O. 3568(E) — GSTAT constituted, 1 Sep 2023
+  url: https://egazette.gov.in/
+  type: GazetteNotification
+  accessed_date: '2026-06-17'
 - label: MoF Notification S.O. 1559(E) — GSTAT bench locations notified
   url: https://egazette.gov.in/WriteReadData/2023/245026.pdf
   type: GazetteNotification
