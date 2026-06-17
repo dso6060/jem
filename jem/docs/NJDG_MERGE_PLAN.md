@@ -64,7 +64,7 @@
 | `esi_court_generic` | `esi_court_generic` | — | **no YAML — skip** |
 | `family_court_generic` | `family_court_generic` | — | **no YAML — skip** |
 | `governor_state_generic` | `governor_state_generic` | — | **no YAML — skip** |
-| `gram_nyayalaya_generic` | `gram_nyayalaya_generic` | — | **no YAML — skip** |
+| `gram_nyayalaya_generic` | `gram_nyayalaya_generic` | — | **YAML added Jun 2026** |
 | `gstat` | `gstat` | — | **no YAML — skip** |
 | `hc_allahabad` | `hc_allahabad` | `data/entities/_generated/high_courts/hc_allahabad.yaml` | merge case_volume |
 | `hc_andhra_pradesh` | `hc_andhra_pradesh` | `data/entities/_generated/high_courts/hc_andhra_pradesh.yaml` | merge case_volume |

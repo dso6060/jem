@@ -336,6 +336,7 @@ tribunals and regulatory bodies are built, funded, appointed and held accountabl
     <strong style="color:#27ae60">Healthy</strong> (≥0.8)</p>
     <p>Formula: <code>health = 1 − (0.6 · normalised IR + 0.4 · normalised DP)</code>.
     Constituents (IR, DP) use their own palettes inside the entity detail panel.</p>
+    <p><em>Weight rationale:</em> Independence Risk (0.6) is weighted higher than Discretionary Power (0.4) because executive capture of appointment and funding chains is treated as the primary structural threat to institutional independence. These weights are an <strong>editorial choice pending community review</strong> — not derived from a published methodological study. See <code>jem/scripts/derive.py</code> and <code>docs/DATA_MODEL.md</code>.</p>
 
     <h4>Independence Risk (0–15+) — constituent</h4>
     <p>Structural vulnerability to executive influence.</p>
@@ -358,11 +359,12 @@ tribunals and regulatory bodies are built, funded, appointed and held accountabl
     <h4>Clog Severity</h4>
     <p>From disposal rate (disposed ÷ filed) and avg disposal days.</p>
     <ul>
-      <li>Critical: rate &lt;0.85 AND days &gt;730</li>
-      <li>High: rate &lt;0.95 OR days &gt;365</li>
+      <li>Critical: rate &lt;0.85 <strong>AND</strong> days &gt;730 (both dimensions stressed)</li>
+      <li>High: rate &lt;0.95 <strong>OR</strong> days &gt;365 (either dimension alone triggers High — a court with fast disposal but a 0.94 rate, or slow disposal with a healthy rate, still flags High)</li>
       <li>Moderate: rate &lt;1.0</li>
       <li>Low: rate ≥1.0 AND days ≤365</li>
     </ul>
+    <p><em>Note:</em> The AND/OR asymmetry between Critical and High is intentional but means "High clog" does not always imply both backlog <em>and</em> slow disposal — check the underlying numbers in the entity card.</p>
 
     <h3>Markers</h3>
     <ul>

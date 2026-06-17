@@ -65,19 +65,42 @@ judge_strength:
   source_url: https://aft.gov.in/
   notes: Multiple Regional Benches (Principal Bench Delhi + 8 regional benches). Total sanctioned and working member strength
     not verified at authoring time.
+structural_gap:
+  flag: true
+  gaps:
+  - gap_id: aft_no_hc_appeal
+    gap_type: Appellate_Gap
+    gap_severity: Critical
+    gap_description: >-
+      No High Court appeal path — appeals lie directly to Supreme Court under
+      AFT Act 2007 s.30 (SLP route).
+    gap_source: Armed Forces Tribunal Act 2007 s.30
+    gap_since_year: 2009
+    gap_status: Open
+  - gap_id: aft_mod_appointer_litigant
+    gap_type: Circularity
+    gap_severity: High
+    gap_description: >-
+      Ministry of Defence nominates members, funds the tribunal, and is the
+      respondent in service-matter litigation — appointer-litigant loop.
+    gap_source: AFT Act 2007; MoD as primary funder and nominating authority
+    gap_since_year: 2009
+    gap_status: Open
 data_quality: partial
-data_quality_notes: 'Entity created from statutory sources. ministry_defence entity id assumed present in graph — flag if
-  absent. Note: AFT appeals go directly to the Supreme Court (AFT Act 2007, s.30) — NOT to High Courts. Appellate relationship
-  recorded as AppealableTo supreme_court_india. NJDG snapshot case_volume merged v1.2 judge_strength stub attached'
+data_quality_notes: 'Entity created from statutory sources. Bench lattice: 11 locations (Principal Bench New Delhi + 10 regional benches) but 15 sitting courts total — Delhi, Chandigarh, and Lucknow each have 3 courts; other regional benches have 1 court each (PIB 2009; aftdelhi.nic.in). README shorthand AFT×11 = 11 location entities, not 15 courts. Note: AFT appeals go directly to the Supreme Court (AFT Act 2007, s.30) — NOT to High Courts. Member vacancy is bench-specific; no verified aggregate vacancy percentage — do not cite a single %. NJDG snapshot case_volume merged v1.2 judge_strength stub attached'
 sources:
 - label: Armed Forces Tribunal Act 2007 (Act 55 of 2007)
   url: https://india-code.nic.in/handle/123456789/2093
   type: CentralAct
   accessed_date: '2025-01-15'
-- label: AFT official website
-  url: https://aftdelhi.nic.in
+- label: AFT official website — bench structure (11 locations, 15 courts)
+  url: https://aftdelhi.nic.in/index.php
   type: GoIWebsite
-  accessed_date: '2025-01-15'
+  accessed_date: '2026-06-17'
+- label: PIB — AFT inaugurated; 15 courts across Delhi, Chandigarh, Lucknow and regional benches
+  url: https://www.pib.gov.in/newsite/erelcontent.aspx?relid=56489
+  type: GoIWebsite
+  accessed_date: '2026-06-17'
 - label: National Judicial Data Grid (NJDG)
   url: https://njdg.ecourts.gov.in/
   type: NJDG

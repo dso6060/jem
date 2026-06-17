@@ -83,6 +83,19 @@ digital_infrastructure:
   digital_variant: NIC_Standard
   integrated_with_njdg: true
 structural_variations: []
+structural_gap:
+  flag: true
+  gaps:
+  - gap_id: hc_patna_judge_vacancy
+    gap_type: Capacity_Gap
+    gap_severity: Moderate
+    gap_description: >-
+      ~17% vacancy — 9 of 53 posts unfilled (44 judges working) after seven
+      appointments notified June 2026; down from 16 vacancies (37 working)
+      earlier in 2026. Vacancy improving but still below sanctioned strength.
+    gap_source: DoJ appointment notification; Bar & Bench Jun 2026
+    gap_since_year: null
+    gap_status: Partial_Addressed
 data_quality: partial
 data_quality_notes: Pending NJDG-backed pendency and judge_strength fields per bench. NJDG snapshot case_volume merged complaint_mechanism populated from SC In-House Procedure 1999 and SC Stay Order Feb 2025 (suo moto). criminal_prosecution.requires_sanction_from set to governor_state per Veeraswami (1991) for HC judges. lokpal_jurisdiction No per operative Feb 2025 stay; revisit if SC decides finally. audit.conduct_oversight_body set to in_house_procedure_sc (same procedure governs HC judges).
 sources:
@@ -94,19 +107,24 @@ sources:
   url: https://main.sci.gov.in/
   type: GoIWebsite
   accessed_date: '2026-05-13'
+- label: DoJ — seven judges appointed to Patna HC (Jun 2026 notification)
+  url: https://www.barandbench.com/news/litigation/central-government-clears-appointment-of-7-new-judges-to-patna-high-court
+  type: OfficialReport
+  accessed_date: '2026-06-17'
 - label: National Judicial Data Grid (NJDG)
   url: https://njdg.ecourts.gov.in/
   type: NJDG
   accessed_date: '2024-12-01'
 judge_strength:
-  data_as_of: '2025-12-24'
+  data_as_of: '2026-06-15'
   allotted: 53
-  appointed: 35
-  vacancy_count: 18
+  appointed: 44
+  vacancy_count: 9
   source_type: DoJ_Report
-  source_url: https://cdnbbsr.s3waas.gov.in/s35d6646aad9bcc0be55b2c82f69750387/uploads/2025/12/202512241943014515.pdf
+  source_url: https://www.barandbench.com/news/litigation/central-government-clears-appointment-of-7-new-judges-to-patna-high-court
   notes: >-
-    Pmt 40 Addl 13 sanctioned; Pmt 35 Addl 0 working; Pmt 5 Addl 13 vacancies
+    Seven judges sworn in 15 Jun 2026; working strength 44 of 53 (9 vacancies).
+    Prior strength was 37 before June 2026 appointments.
 case_volume:
   data_as_of: '2024-12-01'
   pending_cases: 280000

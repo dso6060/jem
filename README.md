@@ -42,7 +42,7 @@ Judiciary Entity Map (India) (JEM) presents structural information about institu
 
 ## V1 entity coverage
 
-**Snapshot (v1.0.0, Jun 2026):** full structural packs for **all states and UTs** (35 codes), central tribunal bench lattice (CESTAT×8, AFT×11, DRT×25, ITAT×25), tax/labour/defence/IP stacks, and **0 orphan entities** in `graph.json`. TN retains the deepest district lattice (38 courts); other states use core pack + named high-volume districts. Frontend: redesigned summary dashboard, detail panel, and entity connection views (`feature/ui-cleanup` merged).
+**Snapshot (v1.0.0, Jun 2026):** full structural packs for **all states and UTs** (35 codes), central tribunal bench lattice (CESTAT×8, AFT×11 locations / 15 courts, DRT×25, ITAT×25), tax/labour/defence/IP stacks, and **0 orphan entities** in `graph.json`. TN retains the deepest district lattice (38 courts); other states use core pack + named high-volume districts. Frontend: redesigned summary dashboard, detail panel, and entity connection views (`feature/ui-cleanup` merged).
 
 **Constitutional courts:** Supreme Court · All 25 High Courts (complete) · 13 permanent HC benches
 
@@ -188,13 +188,13 @@ The canonical record of everything not yet in the data layer, deferred to v2, ou
 | GSTAT | Partially operational — Principal Bench constituted Sep 2023; Procedure Rules 2025 in force; state bench appointments incomplete. ~8,100+ GST cases still at HCs (per Rules notification; figure contested). | Critical |
 | ACI | Not constituted — ~7 years since legislation. SC issued notice 23 Jan 2025. | Critical |
 | TN Lokayukta | Operational status contested — verify against state portal vs historical gap notes | High |
-| AFT | No HC appeal path — only direct SC SLP. 44% vacancy. MoD appointer-litigant loop. | Critical/High |
+| AFT | No HC appeal path — only direct SC SLP. 11 locations / 15 courts (not 11 courts). MoD appointer-litigant loop. Member vacancy bench-specific — no aggregate % cited. | Critical/High |
 | Allahabad HC | ~50% vacancy — 80 of 160 posts (Jul 2025 snapshot). India's highest-volume HC. | Critical |
-| Patna HC | 47% vacancy — 25 of 53 posts. | Critical |
+| Patna HC | ~17% vacancy — 9 of 53 posts (44 judges, Jun 2026). Improving after 7 appointments. | Moderate |
 | NCDRC | Disposal rate 0.78 — backlog growing. Only Critical clog entity in v1. | Critical |
 | Mediation Council | Not constituted — ~3 years since Mediation Act 2023. Same pattern as ACI. | High |
-| Gram Nyayalaya | <500 of 5,000 envisaged operational. UP: zero. | High |
-| NGT | 45% vacancy — 9 of 20 posts. | High |
+| Gram Nyayalaya | 333 of 488 notified operational (Oct 2025). Target ~5,000 (Law Commission 1986). UP leads with 109 — not zero. | High |
+| NGT | Below statutory minimum — 4 judicial + 6 expert members (Nov 2025); Act requires ≥10 each category. | High |
 | NCLT | Complaint goes to appointing ministry (MCA) — structural conflict. | High |
 | Collegium SC | No criteria, no timeline, no external review. NJAC struck down 2015. | High |
 | State Police | No binding obligation to provide HC judge security. Active litigation 2024–25. | Critical |
@@ -214,7 +214,7 @@ The canonical record of everything not yet in the data layer, deferred to v2, ou
 
 ### B. Known entities not yet in v1 — community contribution needed
 
-> **Note (v1.0.0):** Many items below are now **in graph** as principals, regional benches, or generics (CESTAT×8, AFT×11, DRT×25, ITAT×25, CGIT, EPFAT, IP stack, state VAT/SAT stubs). This section lists remaining depth work — per-bench DRT sub-entities, constituted GSTAT benches, per-district NJDG numerics.
+> **Note (v1.0.0):** Many items below are now **in graph** as principals, regional benches, or generics (CESTAT×8, AFT×11 locations (15 courts), DRT×25, ITAT×25, CGIT, EPFAT, IP stack, state VAT/SAT stubs). This section lists remaining depth work — per-bench DRT sub-entities, constituted GSTAT benches, per-district NJDG numerics.
 
 **Tax / Revenue tribunals (remaining depth):**
 

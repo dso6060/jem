@@ -34,20 +34,36 @@ audit:
   audited_by: cag_india
   audit_type: CAG_Statutory
   audit_report_public: true
+structural_gap:
+  flag: true
+  gaps:
+  - gap_id: ngt_below_statutory_minimum
+    gap_type: Capacity_Gap
+    gap_severity: High
+    gap_description: >-
+      Functioning well below NGT Act 2010 s.4 statutory minimum of 10 judicial
+      members and 10 expert members (each category notified up to 20). As of
+      late 2025: 4 judicial + 6 expert members in post — 10 total, half the
+      per-category floor. Do not conflate judicial and expert posts into a
+      single "20 posts" vacancy percentage.
+    gap_source: NGT Act 2010 s.4; Indian Express Nov 2025; Lok Sabha reply Dec 2025
+    gap_since_year: 2010
+    gap_status: Open
 data_quality: partial
-data_quality_notes: "NGT is EXCLUDED from Tribunals Reforms Act 2021 — appointment under NGT Act 2010 s.5-7 directly. Verify\
-  \ no subsequent amendment changes this. NGT has 5 zonal benches (New Delhi principal; Chennai, Bhopal, Pune, Kolkata zonal)\
-  \ — bench routing Phase-2. ministry_responsible 'ministry_environment' assumed — verify canonical id in graph (may be 'ministry_moefcc').\
-  \ case_volume null — §3/§7.\n NJDG snapshot case_volume merged v1.2 judge_strength stub attached"
+data_quality_notes: "NGT is EXCLUDED from Tribunals Reforms Act 2021 — appointment under NGT Act 2010 s.5-7 directly. NGT has 5 zonal benches (New Delhi principal; Chennai, Bhopal, Pune, Kolkata zonal) — bench routing Phase-2. Member strength: statutory minimum 10+10 (judicial + expert); late 2025 working strength 4 judicial + 6 expert per press/Lok Sabha reporting. ministry_responsible 'ministry_environment' assumed — verify canonical id in graph (may be 'ministry_moefcc').\n NJDG snapshot case_volume merged v1.2 judge_strength stub attached"
 sources:
 - label: National Green Tribunal Act 2010 — India Code
   url: https://india-code.nic.in/acts-detail/MjA2OTU=
   type: CentralAct
   accessed_date: '2026-05-18'
-- label: NGT — Official Website
-  url: https://greentribunal.gov.in
-  type: GoIWebsite
-  accessed_date: '2026-05-18'
+- label: NGT Act 2010 s.4 — composition (10–20 judicial + 10–20 expert)
+  url: https://upload.indiacode.nic.in/view-casepdf?id=AC_CEN_16_18_00009_201019_1517807326004&type=act
+  type: CentralAct
+  accessed_date: '2026-06-17'
+- label: Indian Express — NGT at 4 judicial + 6 expert members (Nov 2025)
+  url: https://indianexpress.com/article/india/ngt-has-space-for-experts-most-of-them-now-are-former-govt-officers-10552658/
+  type: OfficialReport
+  accessed_date: '2026-06-17'
 - label: National Judicial Data Grid (NJDG)
   url: https://njdg.ecourts.gov.in/
   type: NJDG
@@ -63,9 +79,12 @@ case_volume:
   disposal_rate: 0.8
   clog_severity: high
 judge_strength:
-  data_as_of: null
+  data_as_of: '2025-11-01'
   allotted: null
-  appointed: null
+  appointed: 10
+  vacancy_count: null
   source_type: Tribunal_Report
-  source_url: https://greentribunal.gov.in/
-  notes: Member/chair strength from tribunal annual report or DoJ quarterly vacancy data.
+  source_url: https://indianexpress.com/article/india/ngt-has-space-for-experts-most-of-them-now-are-former-govt-officers-10552658/
+  notes: >-
+    4 judicial + 6 expert members in post (Nov 2025 reporting). Statutory
+    minimum is 10 per category (NGT Act s.4), not a combined 20-post cap.

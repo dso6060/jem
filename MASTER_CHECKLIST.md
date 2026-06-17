@@ -761,7 +761,7 @@ These entities are in the repo but at partial/unverified quality. Any contributo
 - [ ] `district_cdrc_generic`: add per-district pendency from consumerhelpline.gov.in
 - [ ] `rera_generic`: verify appellate tribunal operational status per state
 - [ ] `serc_generic`: verify APTEL appeal statistics per SERC
-- [ ] `gram_nyayalaya_generic`: update state-wise operational count (2025 data)
+- [x] `gram_nyayalaya_generic` — aggregate entity with Oct 2025 DoJ/Lok Sabha counts — Jun 2026
 - [ ] All entities with `scores_validated: false`: domain reviewer to check derive.py output
   Command: `python3 jem/scripts/derive.py --explain {entity_id}` for each
 

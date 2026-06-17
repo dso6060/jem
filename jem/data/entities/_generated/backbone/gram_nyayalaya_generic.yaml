@@ -1,0 +1,80 @@
+id: gram_nyayalaya_generic
+name: Gram Nyayalaya (Generic)
+name_hindi: ग्राम न्यायालय (सामान्य)
+abbreviation: GN
+aliases:
+- Village Court
+- Gram Nyayalayas
+type: SubordinateCivilCourt
+cluster: subordinate_courts
+level_of_government: State
+jurisdiction_scope:
+  is_all_india: false
+  jurisdiction_types:
+  - Civil
+  - Criminal
+created_year: 2009
+operational_status: Partial_Operational
+constitutional_basis: null
+statutory_basis: Gram Nyayalayas Act, 2008 — State Governments establish in consultation with respective High Courts (s.3).
+appointment:
+  nominates: null
+  recommends: null
+  consulted: []
+  formally_appoints: governor_state
+  criteria_public: false
+  tenure: null
+  reappointment_possible: null
+  removal_authority: governor_state
+  removal_requires_parliament: false
+  removal_independent_committee: false
+funding:
+  primary_source: State_Consolidated_Fund
+  ministry_responsible: null
+  budget_figure_crore: null
+  budget_year: null
+audit:
+  audited_by: cag_india
+  audit_type: CAG_Statutory
+  audit_report_public: null
+  conduct_oversight_body: null
+complaint_mechanism:
+  bias_complaint_to: []
+  lokpal_jurisdiction: Contested
+  lokpal_jurisdiction_note: State Lokayukta jurisdiction varies; not uniformly mapped.
+  source: Gram Nyayalayas Act 2008
+structural_gap:
+  flag: true
+  gaps:
+  - gap_id: gram_nyayalaya_under_rollout
+    gap_type: Capacity_Gap
+    gap_severity: High
+    gap_description: >-
+      333 of 488 notified Gram Nyayalayas operational in 11 States/UTs
+      (Oct 2025 Lok Sabha reply). Law Commission 114th Report (1986) envisaged
+      ~5,000 village courts nationwide; rollout remains far below target.
+      UP leads with 109 operational (not zero). AP, Telangana, J&K, Ladakh
+      have notified courts but none operational.
+    gap_source: DoJ Gram Nyayalaya dashboard; MoS Law Lok Sabha reply Oct 2025
+    gap_since_year: 2009
+    gap_status: Partial_Addressed
+data_quality: partial
+data_quality_notes: >-
+  Aggregate generic node. Operational count 333/488 notified (Oct 2025) per
+  MoS Law Arjun Ram Meghwal Lok Sabha reply; DoJ dashboard shows 337 operational
+  (state totals may lag reply). Prior claim "UP: zero" is incorrect — UP has
+  109–111 operational per official sources. Target ~5,000 from Law Commission
+  114th Report (1986), not a statutory cap in the 2008 Act.
+sources:
+- label: Gram Nyayalayas Act 2008 — India Code
+  url: https://india-code.nic.in/
+  type: CentralAct
+  accessed_date: '2026-06-17'
+- label: DoJ — Operational Gram Nyayalaya dashboard
+  url: https://dashboard.doj.gov.in/gn/operational_gram_nyayalaya
+  type: GoIWebsite
+  accessed_date: '2026-06-17'
+- label: Lok Sabha reply — 333 Gram Nyayalayas operational (Oct 31, 2025)
+  url: https://www.newkerala.com/news/o/333-gram-nyayalayas-operational-11-states-arjun-ram-meghwal-669
+  type: OfficialReport
+  accessed_date: '2026-06-17'
