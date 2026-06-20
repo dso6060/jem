@@ -96,65 +96,23 @@ function buildPanelHTML(e, opts = {}) {
   }
 
   // ── Lifecycle ──────────────────────────────────────────
-  html += section('Lifecycle', `
-    <div class="detail-row"><span class="lbl">Established</span><span>${e.created_year}</span></div>
-    ${e.abolished_year ? `<div class="detail-row abolished"><span class="lbl">Abolished</span><span>${e.abolished_year}</span></div>` : ''}
-    <div class="detail-row"><span class="lbl">Status</span><span class="status-badge status-${(e.operational_status||'').toLowerCase().replace('_','-')}">${humanize(e.operational_status)}</span></div>
-    ${e.constitutional_basis ? `<div class="detail-row"><span class="lbl">Constitutional basis</span><span class="monospace">${e.constitutional_basis}</span></div>` : ''}
-    ${e.statutory_basis ? `<div class="detail-row"><span class="lbl">Statutory basis</span><span>${e.statutory_basis}</span></div>` : ''}
-  `);
+  html += section('Lifecycle', lifecycleBody(e));
 
   // ── Parent HC (permanent bench) ───────────────────────
-  if (d.parent_hc) {
-    html += section('High Court structure', `
-      ${row('Parent High Court', d.parent_hc)}
-    `);
-  }
+  if (d.parent_hc) html += section('High Court structure', parentHCBody(d));
 
   // ── Judge strength (v2.0) ─────────────────────────────
-  html += buildJudgeStrengthSectionHTML(e, d);
+  html += section('Judge strength', judgeStrengthBody(e, d));
 
   // ── Appointment Chain ──────────────────────────────────
-  if (d.appointment) {
-    const a = d.appointment;
-    html += section('Appointment Chain', `
-      ${row('Nominates', a.nominates)}
-      ${row('Recommends', a.recommends)}
-      ${a.consulted && a.consulted.length ? row('Consulted (binding: ' + (a.consultation_binding ? 'YES' : 'no') + ')', a.consulted.join(', ')) : ''}
-      ${row('Formally appoints', a.formally_appoints)}
-      ${a.criteria_public !== null && a.criteria_public !== undefined ?
-        `<div class="detail-row ${!a.criteria_public ? 'risk-flag' : ''}">
-          <span class="lbl">Appointment criteria public?</span>
-          <span>${a.criteria_public ? '✓ Yes' : '✗ No — opacity risk'}</span>
-        </div>` : ''}
-      ${row('Tenure', a.tenure)}
-      ${a.reappointment_possible !== undefined ?
-        `<div class="detail-row ${a.reappointment_possible ? 'risk-flag' : ''}">
-          <span class="lbl">Reappointment possible?</span>
-          <span>${a.reappointment_possible ? '⚠ Yes — creates dependency' : '✓ No'}</span>
-        </div>` : ''}
-      ${row('Removal authority', a.removal_authority)}
-      ${a.removal_requires_parliament !== undefined ?
-        `<div class="detail-row">
-          <span class="lbl">Removal requires Parliament?</span>
-          <span>${a.removal_requires_parliament ? '✓ Yes' : '✗ No'}</span>
-        </div>` : ''}
-    `);
-  }
+  if (d.appointment) html += section('Appointment Chain', appointmentBody(d));
 
   // ── Funding ────────────────────────────────────────────
-  if (d.funding) {
-    const f = d.funding;
-    html += section('Funding', `
-      ${row('Primary source', f.primary_source)}
-      ${row('Responsible ministry', f.ministry_responsible)}
-      ${f.state_contribution_percent ? row('State share', f.state_contribution_percent + '%') : ''}
-      ${f.budget_figure_crore ? row('Budget (₹ crore)', `${f.budget_figure_crore} Cr (FY ${f.budget_year})`) : ''}
-    `);
-  }
+  if (d.funding) html += section('Funding', fundingBody(d));
 
   // ── Case volume & clog (NJDG / reports) ─────────────────
-  if (d.case_volume && typeof d.case_volume === 'object') {
+  // ponytail: detail view renders its own Case volume section; skip here to avoid duplication.
+  if (!opts.omitCaseVolume && d.case_volume && typeof d.case_volume === 'object') {
     const cv = d.case_volume;
     const rows = [];
     if (cv.data_as_of) rows.push(row('Data as of', cv.data_as_of));
@@ -178,64 +136,12 @@ function buildPanelHTML(e, opts = {}) {
   }
 
   // ── Audit ──────────────────────────────────────────────
-  if (d.audit) {
-    const a = d.audit;
-    html += section('Audit & Oversight', `
-      ${row('Audited by', a.audited_by)}
-      ${row('Audit type', a.audit_type)}
-      ${a.audit_report_public !== undefined ?
-        `<div class="detail-row">
-          <span class="lbl">Audit reports public?</span>
-          <span>${a.audit_report_public ? '✓ Yes' : '✗ No'}</span>
-        </div>` : ''}
-      ${row('Conduct oversight body', a.conduct_oversight_body || 'None identified')}
-    `);
-  }
+  if (d.audit) html += section('Audit & Oversight', auditBody(d));
 
   // ── Complaint Mechanism ────────────────────────────────
-  if (d.complaint_mechanism) {
-    const c = d.complaint_mechanism;
-    let complaintHtml = '';
-    if (c.bias_complaint_to && c.bias_complaint_to.length > 0) {
-      c.bias_complaint_to.forEach((b, i) => {
-        complaintHtml += `<div class="complaint-body">
-          <strong>${i+1}. ${b.body}</strong>
-          <div class="complaint-detail">${b.mechanism}</div>
-          <div class="complaint-flags">
-            ${b.external_to_judiciary ? '<span class="flag green">External oversight</span>' : '<span class="flag orange">Internal only</span>'}
-            ${b.is_public_process ? '<span class="flag green">Public process</span>' : '<span class="flag grey">Not public</span>'}
-            ${b.complainant_has_locus ? '<span class="flag green">Complainant has locus</span>' : '<span class="flag red">No locus for complainant</span>'}
-            ${b.timeframe_defined ? '<span class="flag green">Timeframe defined</span>' : '<span class="flag grey">No defined timeframe</span>'}
-          </div>
-        </div>`;
-      });
-    } else {
-      complaintHtml = '<div class="risk-flag-block">⚠ No complaint mechanism found</div>';
-    }
-    if (c.criminal_prosecution) {
-      const cp = c.criminal_prosecution;
-      complaintHtml += `<div class="detail-row risk-flag">
-        <span class="lbl">Criminal prosecution requires sanction from</span>
-        <span>${cp.requires_sanction_from}</span>
-      </div>`;
-      if (cp.consultation_required_with) {
-        complaintHtml += `<div class="detail-row ${cp.consultation_binding ? 'risk-flag' : ''}">
-          <span class="lbl">Consultation with (binding: ${cp.consultation_binding ? 'YES' : 'no'})</span>
-          <span>${cp.consultation_required_with}</span>
-        </div>`;
-      }
-    }
-    if (c.lokpal_jurisdiction) {
-      const ljClass = c.lokpal_jurisdiction === 'No' ? 'risk-flag' : c.lokpal_jurisdiction === 'Contested' ? 'contested-flag' : '';
-      complaintHtml += `<div class="detail-row ${ljClass}">
-        <span class="lbl">Lokpal jurisdiction</span>
-        <span>${c.lokpal_jurisdiction}${c.lokpal_jurisdiction_note ? ' — ' + c.lokpal_jurisdiction_note : ''}</span>
-      </div>`;
-    }
-    html += section('Complaint Mechanism (Bias / Misconduct)', complaintHtml);
-  }
+  if (d.complaint_mechanism) html += section('Complaint Mechanism (Bias / Misconduct)', complaintBody(d));
 
-  html += buildStructuralGapsSectionHTML(e);
+  html += section('Structural gaps', structuralGapsBody(e));
 
   // ── Derived Scores ─────────────────────────────────────
   // Suppressed in detail view (omitRiskIndicators) since the Indicator card
@@ -317,23 +223,14 @@ function buildPanelHTML(e, opts = {}) {
   html += buildConnectionsSectionHTML(e.id);
 
   // ── Sources ────────────────────────────────────────────
-  if (e.sources && e.sources.length > 0) {
-    let sourceHtml = e.sources.map(s =>
-      `<div class="source-row">
-        <span class="source-type source-type-${(s.type||'').toLowerCase()}">${s.type || '?'}</span>
-        <a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.label}</a>
-        ${s.accessed_date ? `<span class="source-date">Accessed ${s.accessed_date}</span>` : ''}
-      </div>`
-    ).join('');
-    html += section('Primary Sources', sourceHtml);
-  }
+  html += section('Primary Sources', sourcesBody(e));
 
   return html;
 }
 
 // ── HTML Helpers ──────────────────────────────────────────────────────────────
 
-function buildStructuralGapsSectionHTML(e) {
+function structuralGapsBody(e) {
   const gapList = e.gaps || [];
   const gapCount = Number(e.gap_count) || 0;
   const hasRecorded =
@@ -359,14 +256,165 @@ function buildStructuralGapsSectionHTML(e) {
     if (e.structural_exception) {
       inner += '<p class="detail-empty-hint">Marked as structural exception (deviates from statutory template).</p>';
     }
-    return section('Structural gaps', inner);
+    return inner;
   }
 
   if (State.viewMode !== 'gaps') return '';
 
-  return section('Structural gaps', `
-    <p class="detail-empty-hint">No gap annotations for this entity in the current dataset. When the build adds gap fields, documented issues (appellate vacuum, missing oversight, statutory mismatch, etc.) will appear here and on the map as <strong>*</strong>, <strong>EX</strong>, or <strong>⟳</strong> markers.</p>
-  `);
+  return `<p class="detail-empty-hint">No gap annotations for this entity in the current dataset. When the build adds gap fields, documented issues (appellate vacuum, missing oversight, statutory mismatch, etc.) will appear here and on the map as <strong>*</strong>, <strong>EX</strong>, or <strong>⟳</strong> markers.</p>`;
+}
+
+// Returns true when structuralGapsBody() will surface anything for this entity.
+function hasGapsContent(e) {
+  return Boolean(
+    e.gap_flag
+    || Number(e.gap_count) > 0
+    || (e.gaps || []).length > 0
+    || e.structural_exception
+    || (e.circularity_score ?? e.derived?.circularity_score ?? 0) > 0
+  );
+}
+
+function lifecycleBody(e) {
+  return `
+    <div class="detail-row"><span class="lbl">Established</span><span>${e.created_year}</span></div>
+    ${e.abolished_year ? `<div class="detail-row abolished"><span class="lbl">Abolished</span><span>${e.abolished_year}</span></div>` : ''}
+    <div class="detail-row"><span class="lbl">Status</span><span class="status-badge status-${(e.operational_status||'').toLowerCase().replace('_','-')}">${humanize(e.operational_status)}</span></div>
+    ${e.constitutional_basis ? `<div class="detail-row"><span class="lbl">Constitutional basis</span><span class="monospace">${e.constitutional_basis}</span></div>` : ''}
+    ${e.statutory_basis ? `<div class="detail-row"><span class="lbl">Statutory basis</span><span>${e.statutory_basis}</span></div>` : ''}
+  `;
+}
+
+function parentHCBody(d) {
+  if (!d.parent_hc) return '';
+  return row('Parent High Court', d.parent_hc);
+}
+
+function appointmentBody(d) {
+  if (!d.appointment) return '';
+  const a = d.appointment;
+  return `
+    ${row('Nominates', a.nominates)}
+    ${row('Recommends', a.recommends)}
+    ${a.consulted && a.consulted.length ? row('Consulted (binding: ' + (a.consultation_binding ? 'YES' : 'no') + ')', a.consulted.join(', ')) : ''}
+    ${row('Formally appoints', a.formally_appoints)}
+    ${a.criteria_public !== null && a.criteria_public !== undefined ?
+      `<div class="detail-row ${!a.criteria_public ? 'risk-flag' : ''}">
+        <span class="lbl">Appointment criteria public?</span>
+        <span>${a.criteria_public ? '✓ Yes' : '✗ No — opacity risk'}</span>
+      </div>` : ''}
+    ${row('Tenure', a.tenure)}
+    ${a.reappointment_possible !== undefined ?
+      `<div class="detail-row ${a.reappointment_possible ? 'risk-flag' : ''}">
+        <span class="lbl">Reappointment possible?</span>
+        <span>${a.reappointment_possible ? '⚠ Yes — creates dependency' : '✓ No'}</span>
+      </div>` : ''}
+    ${row('Removal authority', a.removal_authority)}
+    ${a.removal_requires_parliament !== undefined ?
+      `<div class="detail-row">
+        <span class="lbl">Removal requires Parliament?</span>
+        <span>${a.removal_requires_parliament ? '✓ Yes' : '✗ No'}</span>
+      </div>` : ''}
+  `;
+}
+
+function fundingBody(d) {
+  if (!d.funding) return '';
+  const f = d.funding;
+  return `
+    ${row('Primary source', f.primary_source)}
+    ${row('Responsible ministry', f.ministry_responsible)}
+    ${f.state_contribution_percent ? row('State share', f.state_contribution_percent + '%') : ''}
+    ${f.budget_figure_crore ? row('Budget (₹ crore)', `${f.budget_figure_crore} Cr (FY ${f.budget_year})`) : ''}
+  `;
+}
+
+function auditBody(d) {
+  if (!d.audit) return '';
+  const a = d.audit;
+  return `
+    ${row('Audited by', a.audited_by)}
+    ${row('Audit type', a.audit_type)}
+    ${a.audit_report_public !== undefined ?
+      `<div class="detail-row">
+        <span class="lbl">Audit reports public?</span>
+        <span>${a.audit_report_public ? '✓ Yes' : '✗ No'}</span>
+      </div>` : ''}
+    ${row('Conduct oversight body', a.conduct_oversight_body || 'None identified')}
+  `;
+}
+
+function complaintBody(d) {
+  if (!d.complaint_mechanism) return '';
+  const c = d.complaint_mechanism;
+  let html = '';
+  if (c.bias_complaint_to && c.bias_complaint_to.length > 0) {
+    c.bias_complaint_to.forEach((b, i) => {
+      html += `<div class="complaint-body">
+        <strong>${i+1}. ${b.body}</strong>
+        <div class="complaint-detail">${b.mechanism}</div>
+        <div class="complaint-flags">
+          ${b.external_to_judiciary ? '<span class="flag green">External oversight</span>' : '<span class="flag orange">Internal only</span>'}
+          ${b.is_public_process ? '<span class="flag green">Public process</span>' : '<span class="flag grey">Not public</span>'}
+          ${b.complainant_has_locus ? '<span class="flag green">Complainant has locus</span>' : '<span class="flag red">No locus for complainant</span>'}
+          ${b.timeframe_defined ? '<span class="flag green">Timeframe defined</span>' : '<span class="flag grey">No defined timeframe</span>'}
+        </div>
+      </div>`;
+    });
+  } else {
+    html = '<div class="risk-flag-block">⚠ No complaint mechanism found</div>';
+  }
+  if (c.criminal_prosecution) {
+    const cp = c.criminal_prosecution;
+    html += `<div class="detail-row risk-flag">
+      <span class="lbl">Criminal prosecution requires sanction from</span>
+      <span>${cp.requires_sanction_from}</span>
+    </div>`;
+    if (cp.consultation_required_with) {
+      html += `<div class="detail-row ${cp.consultation_binding ? 'risk-flag' : ''}">
+        <span class="lbl">Consultation with (binding: ${cp.consultation_binding ? 'YES' : 'no'})</span>
+        <span>${cp.consultation_required_with}</span>
+      </div>`;
+    }
+  }
+  if (c.lokpal_jurisdiction) {
+    const ljClass = c.lokpal_jurisdiction === 'No' ? 'risk-flag' : c.lokpal_jurisdiction === 'Contested' ? 'contested-flag' : '';
+    html += `<div class="detail-row ${ljClass}">
+      <span class="lbl">Lokpal jurisdiction</span>
+      <span>${c.lokpal_jurisdiction}${c.lokpal_jurisdiction_note ? ' — ' + c.lokpal_jurisdiction_note : ''}</span>
+    </div>`;
+  }
+  return html;
+}
+
+function sourcesBody(e) {
+  if (!e.sources || !e.sources.length) return '';
+  return e.sources.map(s =>
+    `<div class="source-row">
+      <span class="source-type source-type-${(s.type||'').toLowerCase()}">${s.type || '?'}</span>
+      <a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.label}</a>
+      ${s.accessed_date ? `<span class="source-date">Accessed ${s.accessed_date}</span>` : ''}
+    </div>`
+  ).join('');
+}
+
+// Themed-widget catalogue consumed by the detail view to distribute sections
+// across left/right columns. Each entry has a stable `key`, a display `title`,
+// the inner-HTML `body` (already empty-checked), and `defaultOpen`.
+export function getProfileSections(entity) {
+  const d = entity._detail || {};
+  const list = [
+    { key: 'lifecycle',      title: 'Lifecycle',                          body: lifecycleBody(entity),  defaultOpen: true  },
+    { key: 'parent_hc',      title: 'High Court structure',               body: parentHCBody(d),        defaultOpen: false },
+    { key: 'judges',         title: 'Judge strength',                     body: judgeStrengthBody(entity, d), defaultOpen: true  },
+    { key: 'appointment',    title: 'Appointment chain',                  body: appointmentBody(d),     defaultOpen: false },
+    { key: 'funding',        title: 'Funding',                            body: fundingBody(d),         defaultOpen: false },
+    { key: 'audit',          title: 'Audit & oversight',                  body: auditBody(d),           defaultOpen: false },
+    { key: 'complaint',      title: 'Complaint mechanism (Bias / Misconduct)', body: complaintBody(d),  defaultOpen: false },
+    { key: 'gaps',           title: 'Structural gaps',                    body: structuralGapsBody(entity), defaultOpen: hasGapsContent(entity) },
+    { key: 'sources',        title: 'Primary sources',                    body: sourcesBody(entity),    defaultOpen: false },
+  ];
+  return list.filter(s => s.body && s.body.trim());
 }
 
 function buildConnectionsSectionHTML(entityId) {
@@ -466,7 +514,7 @@ function isCourtLikeType(type) {
   ].includes(type);
 }
 
-function buildJudgeStrengthSectionHTML(entity, d) {
+function judgeStrengthBody(entity, d) {
   if (!isCourtLikeType(entity.type)) return '';
 
   const js = d.judge_strength || {};
@@ -493,7 +541,7 @@ function buildJudgeStrengthSectionHTML(entity, d) {
     js.notes ? `<div class="detail-row"><span class="lbl">Notes</span><span>${js.notes}</span></div>` : '',
   ].filter(Boolean);
 
-  return section('Judge strength', rows.join(''));
+  return rows.join('');
 }
 
 function qualityIcon(dq) {
@@ -523,6 +571,9 @@ function humanize(str) {
 // ── Event Binding (called after DOM ready) ────────────────────────────────────
 
 // Exported so detailView.js can embed the full structural profile inline.
+// `getProfileSections` (exported via its declaration above) is the detail
+// view's primary entry point — it returns themed widgets that the detail
+// page distributes across columns.
 export { buildPanelHTML };
 
 export function initPanel() {

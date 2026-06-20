@@ -3217,9 +3217,9 @@ body.jem-resizing-inspector * {
 /* ── Detail view layout ───────────────────────────────────────────────────── */
 
 .dv-inner {
-  max-width: 1040px;
+  max-width: min(1280px, 100%);
   margin: 0 auto;
-  padding: 24px 32px 60px;
+  padding: 24px clamp(12px, 4vw, 32px) 60px;
 }
 
 .dv-nav {
@@ -3227,11 +3227,13 @@ body.jem-resizing-inspector * {
   align-items: center;
   gap: 10px;
   margin-bottom: 18px;
+  flex-wrap: wrap;
 }
 .dv-actions-top {
   margin-left: auto;
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 .dv-action-btn {
   background: #fff;
@@ -3501,12 +3503,21 @@ body.jem-resizing-inspector * {
 
 .dv-layout {
   display: grid;
-  grid-template-columns: minmax(420px, 1.05fr) 1.25fr;
-  gap: 32px;
+  grid-template-columns: minmax(360px, 1.05fr) minmax(0, 1.25fr);
+  gap: clamp(16px, 3vw, 32px);
   align-items: start;
 }
-@media (max-width: 760px) {
+/* Tablet portrait / small laptop: two cols feel cramped — collapse to single. */
+@media (max-width: 960px) {
   .dv-layout { grid-template-columns: 1fr; }
+}
+/* Phone: shrink hero typography and tighten action pills. */
+@media (max-width: 540px) {
+  .dv-name { font-size: 17px; }
+  .dv-action-btn { padding: 5px 9px; font-size: 11px; }
+  .dv-action-btn .dv-action-label { display: none; }
+  .nb-section-head { flex-direction: column; align-items: stretch; }
+  .nb-graph-wrap { aspect-ratio: auto; min-height: clamp(320px, 60vh, 520px); }
 }
 
 /* ── Collapsible sections (Profile / Clog / Calculation) ───────────────── */
@@ -3700,7 +3711,7 @@ details.dv-const-block[open] > summary::after { transform: rotate(90deg); }
 
 /* ── Neighborhood graph (right column) ───────────────────────────────────── */
 
-.dv-right { position: sticky; top: 16px; }
+.dv-right { display: flex; flex-direction: column; gap: 12px; }
 
 .nb-section-head {
   display: flex;
@@ -3734,7 +3745,9 @@ details.dv-const-block[open] > summary::after { transform: rotate(90deg); }
   border: 1px solid var(--jem-faint);
   border-radius: 4px;
   background: #fff;
-  min-height: 320px;
+  min-height: clamp(420px, 55vh, 680px);
+  max-height: 78vh;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
 }
 .nb-reset-btn {

@@ -2,7 +2,19 @@
 // Independence risk hero + score breakdown + neighborhood graph + gaps + case volume.
 
 import { State } from './state.js';
-import { buildPanelHTML } from './panel.js';
+import { getProfileSections } from './panel.js';
+
+const LEFT_PROFILE_KEYS  = new Set(['lifecycle', 'parent_hc', 'judges', 'appointment', 'funding']);
+const RIGHT_PROFILE_KEYS = new Set(['audit', 'complaint', 'gaps', 'sources']);
+
+function renderProfileWidget(s) {
+  return `
+    <details class="dv-section"${s.defaultOpen ? ' open' : ''}>
+      <summary><span>${s.title}</span></summary>
+      <div class="dv-section-body">${s.body}</div>
+    </details>
+  `;
+}
 import { getAppellateUpstream, getAppellateDownstream } from './entityConnections.js';
 
 const RISK_COLORS = {
@@ -230,7 +242,23 @@ function renderCaseVolume(cv) {
   if (cv.clog_severity) stats.push(`<span class="cv-stat"><span class="cv-num" style="color:${clogColor(cv.clog_severity)}">${cv.clog_severity.toUpperCase()}</span><span class="cv-label"> clog</span></span>`);
   if (!stats.length) return '';
   const asOf = cv.data_as_of ? `<span class="cv-asof">Data as of ${cv.data_as_of}</span>` : '';
-  return `<div class="cv-section"><div class="cv-row">${stats.join('')}${asOf}</div></div>`;
+  const head = `<div class="cv-section"><div class="cv-row">${stats.join('')}${asOf}</div></div>`;
+
+  // Detail rows (previously buried under the Profile widget).
+  const rows = [];
+  const row = (lbl, val) => val == null || val === '' ? '' : `<div class="detail-row"><span class="lbl">${lbl}</span><span>${val}</span></div>`;
+  if (cv.pending_cases != null) rows.push(row('Pending cases', String(cv.pending_cases).replace(/\B(?=(\d{3})+(?!\d))/g, ',')));
+  if (cv.filed_last_year != null) rows.push(row('Filed (last year)', String(cv.filed_last_year)));
+  if (cv.disposed_last_year != null) rows.push(row('Disposed (last year)', String(cv.disposed_last_year)));
+  if (cv.disposal_rate != null) rows.push(row('Disposal rate', String(cv.disposal_rate)));
+  if (cv.avg_disposal_days != null) rows.push(row('Avg disposal days', String(cv.avg_disposal_days)));
+  if (cv.sanctioned_strength != null) rows.push(row('Sanctioned strength', String(cv.sanctioned_strength)));
+  if (cv.working_strength != null) rows.push(row('Working strength', String(cv.working_strength)));
+  if (cv.clog_severity) rows.push(row('Clog severity', cv.clog_severity));
+  if (cv.source_type) rows.push(row('Volume source type', cv.source_type));
+  if (cv.source_url) rows.push(`<div class="detail-row"><span class="lbl">Volume source</span><span><a href="${cv.source_url}" target="_blank" rel="noopener noreferrer">${cv.source_url}</a></span></div>`);
+  const detail = rows.length ? `<div class="cv-rows">${rows.join('')}</div>` : '';
+  return head + detail;
 }
 
 // ── Directed force-graph (ego-network) ───────────────────────────────────────
@@ -387,9 +415,14 @@ function renderNeighborhoodGraph(container, entityId, lenses) {
   }
 
   // ── SVG scaffold ──────────────────────────────────────────────────────────
+  // viewBox + 100% sizing → SVG rescales with the container on window resize,
+  // so the graph stays fully visible at all breakpoints without re-rendering.
   const svg = d3.select(container).append('svg')
-    .attr('width', W).attr('height', H)
-    .style('font-family', 'Inter, sans-serif');
+    .attr('viewBox', `0 0 ${W} ${H}`)
+    .attr('preserveAspectRatio', 'xMidYMid meet')
+    .attr('width', '100%').attr('height', '100%')
+    .style('font-family', 'Inter, sans-serif')
+    .style('display', 'block');
 
   const defs = svg.append('defs');
   // Pre-create all category markers so newly added edges always find theirs
@@ -413,9 +446,9 @@ function renderNeighborhoodGraph(container, entityId, lenses) {
 
   // ── Live force simulation ─────────────────────────────────────────────────
   const sim = d3.forceSimulation()
-    .force('link',    d3.forceLink().id(d => d.id).distance(130).strength(0.45))
-    .force('charge',  d3.forceManyBody().strength(-300))
-    .force('collide', d3.forceCollide().radius(d => d.isFocus ? 34 : 26).iterations(3))
+    .force('link',    d3.forceLink().id(d => d.id).distance(170).strength(0.45))
+    .force('charge',  d3.forceManyBody().strength(-450))
+    .force('collide', d3.forceCollide().radius(d => d.isFocus ? 40 : 32).iterations(3))
     .force('center',  d3.forceCenter(cx, cy).strength(0.05))
     .alphaDecay(0.028).velocityDecay(0.42);
 
@@ -573,6 +606,7 @@ function renderNeighborhoodGraph(container, entityId, lenses) {
 
   // ── Render update (called on init and after expand/collapse) ──────────────
   let edgeSel, lblSel, nodeGSel;
+  let _pendingFit = true;
 
   function updateGraph() {
     edgeSel = gLinks.selectAll('path.nb-edge')
@@ -645,8 +679,29 @@ function renderNeighborhoodGraph(container, entityId, lenses) {
 
     sim.nodes(mNodes);
     sim.force('link').links(mLinks);
-    sim.force('charge').strength(-300 - mNodes.length * 5);
     sim.alpha(0.35).restart();
+    _pendingFit = true;
+  }
+
+  // ── Zoom-to-fit ────────────────────────────────────────────────────────────
+  function zoomToFit(animate = true) {
+    if (!mNodes.length) return;
+    const pad = 40;
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const n of mNodes) {
+      if (n.x < minX) minX = n.x;
+      if (n.y < minY) minY = n.y;
+      if (n.x > maxX) maxX = n.x;
+      if (n.y > maxY) maxY = n.y;
+    }
+    const bboxW = (maxX - minX) + pad * 2;
+    const bboxH = (maxY - minY) + pad * 2;
+    const scale = Math.min(W / bboxW, H / bboxH, 1);
+    const tx = W / 2 - ((minX + maxX) / 2) * scale;
+    const ty = H / 2 - ((minY + maxY) / 2) * scale;
+    const t = d3.zoomIdentity.translate(tx, ty).scale(scale);
+    const sel = animate ? svg.transition().duration(400) : svg;
+    sel.call(zoom.transform, t);
   }
 
   // ── Tick: update positions ────────────────────────────────────────────────
@@ -658,15 +713,25 @@ function renderNeighborhoodGraph(container, entityId, lenses) {
         .attr('transform', `rotate(${angle},${mx},${my})`);
     });
     if (nodeGSel) nodeGSel.attr('transform', d => `translate(${d.x},${d.y})`);
+
+    // Fit once per (re)layout, after the simulation has roughly settled.
+    if (_pendingFit && sim.alpha() < 0.08) {
+      _pendingFit = false;
+      zoomToFit(true);
+    }
   });
 
   // ── Initial render ─────────────────────────────────────────────────────────
   updateGraph();
 
-  // Reset button
+  // Reset button — clears drag pins, refits to current layout.
   const resetBtn = document.createElement('button');
   resetBtn.textContent = '⌂'; resetBtn.className = 'nb-reset-btn'; resetBtn.title = 'Reset view';
-  resetBtn.onclick = () => svg.transition().duration(300).call(zoom.transform, d3.zoomIdentity);
+  resetBtn.onclick = () => {
+    mNodes.forEach(n => { if (!n.isFocus) { n.fx = null; n.fy = null; } });
+    sim.alpha(0.4).restart();
+    _pendingFit = true;
+  };
   container.appendChild(resetBtn);
 }
 
@@ -976,6 +1041,10 @@ export function renderDetailView(entityId, fromEntityId = null) {
   const healthPct = healthScore != null ? Math.max(0, Math.min(100, healthScore * 100)) : 0;
   const healthLabel = healthLevel ? HEALTH_LEVEL_LABELS[healthLevel] || healthLevel : null;
 
+  const profileSections = getProfileSections(entity);
+  const leftProfileHTML  = profileSections.filter(s => LEFT_PROFILE_KEYS.has(s.key)).map(renderProfileWidget).join('');
+  const rightProfileHTML = profileSections.filter(s => RIGHT_PROFILE_KEYS.has(s.key)).map(renderProfileWidget).join('');
+
   container.innerHTML = `
     <div class="dv-inner">
       <div class="dv-nav">
@@ -994,9 +1063,11 @@ export function renderDetailView(entityId, fromEntityId = null) {
         </div>
       </div>
 
+      ${renderAppellateChainStrip(entity)}
+
       <div class="dv-layout">
 
-        <!-- Left: scores, gaps, case volume -->
+        <!-- Left: scores, gaps -->
         <div class="dv-left">
           <div class="dv-header">
             <h1 class="dv-name">${entity.name}</h1>
@@ -1062,26 +1133,8 @@ export function renderDetailView(entityId, fromEntityId = null) {
             ` : ''}
           `}
 
-          ${renderAppellateChainStrip(entity)}
-
-          ${renderCaseVolume(detail.case_volume) ? `
-            <!-- 3. Case volume & clog (collapsed by default, summary surfaces key stats) -->
-            <details class="dv-section">
-              <summary>
-                <span>Case volume & clog</span>
-                <span class="dv-section-summary-stats">${renderCaseVolumeSummary(detail.case_volume)}</span>
-              </summary>
-              <div class="dv-section-body">${renderCaseVolume(detail.case_volume)}</div>
-            </details>
-          ` : ''}
-
-          <!-- 4. Profile (collapsed by default) -->
-          <details class="dv-section">
-            <summary>Profile</summary>
-            <div class="dv-section-body">
-              <div class="dv-profile-body" id="dv-profile-body"></div>
-            </div>
-          </details>
+          <!-- Themed profile widgets (governance / structural setup) -->
+          ${leftProfileHTML}
         </div>
 
         <!-- Right: neighborhood graph -->
@@ -1094,25 +1147,33 @@ export function renderDetailView(entityId, fromEntityId = null) {
           </div>
           <div class="nb-graph-wrap" id="nb-graph-wrap"></div>
           <p class="nb-hint">● filled = focus &nbsp;○ ring = neighbor · hover to highlight · click neighbor to open</p>
+
+          ${renderCaseVolume(detail.case_volume) ? `
+            <details class="dv-section" open>
+              <summary>
+                <span>Case volume & clog</span>
+                <span class="dv-section-summary-stats">${renderCaseVolumeSummary(detail.case_volume)}</span>
+              </summary>
+              <div class="dv-section-body">${renderCaseVolume(detail.case_volume)}</div>
+            </details>
+          ` : ''}
+
+          <!-- Themed profile widgets (evidence / accountability) -->
+          ${rightProfileHTML}
         </div>
 
       </div>
     </div>
   `;
 
-  // Auto-render the full structural profile (open by default)
-  const _profileBody = container.querySelector('#dv-profile-body');
-  if (_profileBody) {
-    _profileBody.innerHTML = buildPanelHTML(entity, { omitRiskIndicators: true });
-    _profileBody.dataset.rendered = '1';
-    _profileBody.addEventListener('click', ev => {
-      const lnk = ev.target.closest('.detail-connection-row');
-      if (!lnk) return;
-      ev.preventDefault();
-      const id = lnk.getAttribute('data-entity-id');
-      if (id) State.emit('navigateToDetail', id);
-    });
-  }
+  // Any .detail-connection-row inside a themed widget should navigate.
+  container.querySelector('.dv-layout')?.addEventListener('click', ev => {
+    const lnk = ev.target.closest('.detail-connection-row');
+    if (!lnk) return;
+    ev.preventDefault();
+    const id = lnk.getAttribute('data-entity-id');
+    if (id) State.emit('navigateToDetail', id);
+  });
 
   // ── Wire back button ────────────────────────────────────────────────────────
   container.querySelector('#dv-back')?.addEventListener('click', () => {
