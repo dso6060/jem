@@ -80,14 +80,17 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
 #toolbar {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: 64px;
+  min-height: 64px;
   background: var(--bg-surface);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   padding: 8px 12px;
-  gap: 12px;
+  gap: 8px 12px;
   z-index: 499;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .app-title {
@@ -100,7 +103,7 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
   margin-right: 4px;
 }
 
-#search-container { position: relative; }
+#search-container { position: relative; flex: 1 1 200px; min-width: 0; }
 #search-input {
   background: #fff;
   border: 1px solid var(--border);
@@ -108,7 +111,8 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
   padding: 5px 12px;
   border-radius: 6px;
   font-size: 12px;
-  width: 220px;
+  width: 100%;
+  max-width: 320px;
   outline: none;
   font-family: var(--font-main);
 }
@@ -153,11 +157,12 @@ code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); paddin
   flex-shrink: 0;
 }
 .mode-btn {
-  height: 48px;
-  padding: 0 20px;
+  height: 40px;
+  padding: 0 16px;
   border-radius: 9999px;
   font-size: 13px;
   font-weight: 600;
+  white-space: nowrap;
   font-family: var(--font-main);
   cursor: pointer;
   transition: background 0.15s, color 0.15s, border-color 0.15s;
@@ -1709,11 +1714,11 @@ body.jem-resizing-inspector * {
 /* ── About panel (slide-over, same vertical band as detail) ──────────────── */
 #about-panel {
   position: fixed;
-  top: 160px;
+  top: var(--jem-chrome-top);
   right: 0;
-  bottom: 54px;
+  bottom: var(--jem-chrome-bottom);
   width: 520px;
-  max-width: 100%;
+  max-width: 100vw;
   background: #161b22;
   border-left: 1px solid rgba(240, 246, 252, 0.12);
   overflow: hidden;
@@ -2504,17 +2509,22 @@ body.jem-resizing-inspector * {
 /* ── Stat band ────────────────────────────────────────────────────────────── */
 
 .stat-band {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 0;
   border-top: 1px solid var(--jem-ink);
   border-bottom: 1px solid var(--jem-faint);
   margin-bottom: 28px;
   padding: 16px 0;
+  align-items: stretch;
 }
 
 .stat-item {
-  flex: 1;
-  padding: 4px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 20px;
   border-right: 1px solid var(--jem-faint);
   /* Reset button defaults so it behaves like the previous div */
   background: transparent;
@@ -2526,9 +2536,11 @@ body.jem-resizing-inspector * {
   border-left: none;
   position: relative;
   transition: background 0.12s;
+  min-height: 76px;
 }
-.stat-item:last-child { border-right: none; padding-right: 0; }
-.stat-item:first-child { padding-left: 0; }
+/* Hide the right divider on the rightmost column at every row width so we
+   never get a stray border floating in the gutter. */
+.stat-item:last-child { border-right: none; }
 .stat-item:hover { background: rgba(0,0,0,0.02); }
 .stat-item::after {
   content: '↗';
@@ -2786,13 +2798,20 @@ body.jem-resizing-inspector * {
   font-weight: 600;
   color: var(--jem-ink);
   font-variant-numeric: tabular-nums;
-  line-height: 1.2;
+  line-height: 1.1;
+  height: 32px;
 }
-.stat-denom { font-size: 16px; color: var(--jem-mute); font-weight: 400; }
+.stat-denom { font-size: 15px; color: var(--jem-mute); font-weight: 400; margin-left: 2px; }
 .stat-item-risk .stat-num { color: #dc2626; }
 .stat-item-nc  .stat-num { color: #c2722b; }
 .stat-item-abolished .stat-num { color: #6d28d9; }
-.stat-lbl { font-size: 11px; color: var(--jem-mute); margin-top: 2px; display: block; }
+.stat-lbl {
+  font-size: 11px;
+  color: var(--jem-mute);
+  display: block;
+  line-height: 1.35;
+  align-self: flex-start;
+}
 
 /* ── Small multiples ──────────────────────────────────────────────────────── */
 
@@ -4182,8 +4201,8 @@ body[data-app-view="detail"]  #zoom-controls { display: none !important; }
   border: 1px solid #e5e7eb;
   border-radius: 10px;
   padding: 14px 16px 12px;
-  width: max-content;
-  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 .ts-meta {
   display: flex;
@@ -4277,14 +4296,12 @@ body[data-app-view="detail"]  #zoom-controls { display: none !important; }
 }
 .ts-svg-wrap {
   overflow: hidden;
-  width: 760px;
-  max-width: 100%;
+  width: 100%;
   padding: 4px 0;
 }
 .ts-svg {
   display: block;
-  width: 760px;
-  max-width: 100%;
+  width: 100%;
   height: auto;
   cursor: ew-resize;
   overflow: visible;
@@ -4494,97 +4511,185 @@ body[data-app-view="detail"]  #zoom-controls { display: none !important; }
   font-weight: 700;
   color: #111827;
 }
-.ah-grid {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 24px;
-  align-items: start;
-}
-@media (max-width: 860px) {
-  .ah-grid { grid-template-columns: 1fr; }
-}
-.ah-col-head {
-  font-family: Georgia, serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: #111827;
-  margin-bottom: 12px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid #e5e7eb;
-  letter-spacing: 0.01em;
-}
-.ah-col-sub {
-  font-size: 11px;
-  color: #6b7280;
-  line-height: 1.45;
-  margin: -6px 0 12px;
+/* ── Twin-cascade hierarchy ──────────────────────────────────────────────── */
+.hs-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-/* ── Spine ─────────────────────────────────────────────────────────────── */
-.ah-spine { position: relative; }
-.ah-tier-row {
-  display: grid;
-  grid-template-columns: 32px 1fr;
-  gap: 12px;
-  padding: 12px 0;
-  position: relative;
-}
-.ah-tier-row::before {
-  content: '';
-  position: absolute;
-  left: 15px;
-  top: 28px;
-  bottom: -8px;
-  width: 1px;
-  background: #e5e7eb;
-}
-.ah-tier-row:last-child::before { display: none; }
-.ah-tier-num {
-  font-family: var(--font-mono, monospace);
-  font-size: 11px;
-  font-weight: 700;
-  color: #6b7280;
-  background: #fff;
-  border: 1px solid #d1d5db;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
+/* Apex banner — Supreme Court spans the page; the fork sits below it. */
+.hs-apex {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   position: relative;
-  z-index: 1;
 }
-.ah-tier-body { min-width: 0; }
-.ah-tier-head {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  flex-wrap: wrap;
+.hs-apex-card {
+  width: min(620px, 100%);
+  border: 1.5px solid #111827;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 18px 22px 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(17,24,39,0.06);
 }
-.ah-tier-name {
-  font-size: 13px;
+.hs-apex-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+.hs-apex-name {
+  font-family: Georgia, serif;
+  font-size: 20px;
   font-weight: 700;
   color: #111827;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.hs-apex-note {
+  font-size: 12px;
+  color: #4b5563;
+  line-height: 1.45;
+  margin: 0 0 10px;
+}
+.hs-apex-chip-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+/* Y-fork connector that descends from the apex into the two branches. */
+.hs-apex-fork {
+  width: 2px;
+  height: 18px;
+  background: #cbd5e1;
+}
+
+/* Two parallel branches descending from the apex. */
+.hs-cascade {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 4vw, 36px);
+  position: relative;
+}
+.hs-cascade::before {
+  /* Horizontal bar that visually unifies the fork to both branch tops. */
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 25%;
+  right: 25%;
+  height: 2px;
+  background: #cbd5e1;
+}
+.hs-cascade::after {
+  /* Drop-tick from the horizontal bar into each branch top. */
+  content: '';
+  position: absolute;
+  top: -8px;
+  height: 8px;
+}
+
+.hs-branch {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.hs-branch-head {
   font-family: Georgia, serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #111827;
+  padding: 6px 10px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  text-align: center;
 }
-.ah-tier-count {
+.hs-branch-judicial  .hs-branch-head { background: #ecfeff; color: #155e75; }
+.hs-branch-tribunals .hs-branch-head { background: #fef3c7; color: #92400e; }
+
+/* Each step is a card; descending steps are slightly indented to reinforce
+   the "stepped" cascade metaphor. Connector lines join successive steps. */
+.hs-step {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px 14px;
+  min-width: 0;
+}
+.hs-step + .hs-step {
+  margin-top: 14px;
+}
+.hs-step + .hs-step::before {
+  /* Vertical connector from the previous step into this one. */
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 22px;
+  width: 2px;
+  height: 14px;
+  background: #cbd5e1;
+}
+.hs-step[data-step-index="1"] { margin-left: clamp(8px, 2vw, 18px); }
+.hs-step[data-step-index="2"] { margin-left: clamp(16px, 4vw, 36px); }
+.hs-step-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+.hs-step-name {
+  font-family: Georgia, serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}
+.hs-step-count {
   font-family: var(--font-mono, monospace);
-  font-size: 11px;
-  color: #6b7280;
+  font-size: 12px;
+  font-weight: 700;
+  color: #374151;
+  background: #f3f4f6;
+  padding: 1px 8px;
+  border-radius: 999px;
 }
-.ah-tier-note {
+.hs-step-note {
   font-size: 11px;
   color: #6b7280;
   line-height: 1.45;
-  margin: 4px 0 8px;
+  margin: 0 0 8px;
   font-style: italic;
 }
-.ah-tier-refs {
+.hs-step-refs {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   align-items: center;
+  min-width: 0;
+}
+.hs-step-empty {
+  font-size: 11px;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+/* Collapse to a single column on narrow screens — branches stack vertically.
+   The fork visualization disappears (it stops making sense in 1D). */
+@media (max-width: 720px) {
+  .hs-cascade { grid-template-columns: 1fr; gap: 18px; }
+  .hs-cascade::before { display: none; }
+  .hs-apex-fork { display: none; }
+  .hs-step[data-step-index="1"],
+  .hs-step[data-step-index="2"] { margin-left: 0; }
 }
 .ah-chip {
   background: #fff;
@@ -4836,4 +4941,222 @@ body[data-app-view="detail"]  #zoom-controls { display: none !important; }
 
 /* Hide the old sm-grid (no longer used) */
 .sm-grid { display: none; }
+
+/* ── Responsiveness: shrink chrome before falling to mobile (900-1300px) ─── */
+@media (max-width: 1300px) and (min-width: 901px) {
+  :root {
+    --jem-nav-width: 220px;
+    --jem-inspector-width: 360px;
+  }
+}
+@media (max-width: 1080px) and (min-width: 901px) {
+  :root {
+    --jem-nav-width: 200px;
+    --jem-inspector-width: 320px;
+    --jem-inspector-min: 260px;
+  }
+  .app-title { font-size: 11px; }
+  #search-input { max-width: 200px; }
+  .mode-btn { height: 36px; padding: 0 12px; font-size: 12px; }
+}
+
+/* Phone: tighter timeline + toolbar so nothing horizontally overflows */
+@media (max-width: 540px) {
+  :root {
+    --jem-timeline-height: 44px;
+  }
+  #timeline-container { padding: 0 8px; gap: 6px; }
+  #timeline-label-left, #timeline-label-right { min-width: 0; }
+  #timeline-year-display { font-size: 16px; min-width: 40px; }
+  .mode-btn { height: 34px; padding: 0 10px; font-size: 11px; }
+  .app-title { font-size: 11px; }
+  #toolbar { padding: 6px; gap: 6px; }
+  #btn-about, #btn-summary { padding: 3px 8px; font-size: 10px; }
+}
+
+/* Lock both views to vertical scrolling only; child cards/graphs must fit
+   within their column. Combined with the inner padding below, card shadows
+   and carousel arrows have breathing room without producing a horizontal
+   scrollbar. */
+.summary-view, .detail-view {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.summary-view .sum-inner {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+}
+.sum-inner { padding: clamp(16px, 4vw, 28px) clamp(20px, 4vw, 36px) 60px; }
+
+/* Bring spotlight carousel arrows just inside the card border so they
+   never clip against the page's right edge on narrow widths. */
+.sp-arrow-prev { left: 8px; }
+.sp-arrow-next { right: 8px; }
+
+/* ── Mobile entity profile: tabbed sections (≤900px) ─────────────────────── */
+/* Desktop default: hide the mobile-only chrome; every tag class shows. */
+.dv-mobile-sticky-wrap,
+.dv-mobile-identity,
+.dv-tab-strip { display: none; }
+
+@media (max-width: 900px) {
+  /* On mobile the in-flow desktop header/meta/hero are replaced by the
+     sticky mobile identity block. */
+  .detail-view .dv-header,
+  .detail-view .dv-meta,
+  .detail-view .summary-score-card {
+    display: none !important;
+  }
+
+  .dv-mobile-sticky-wrap { display: block; }
+  .dv-mobile-identity {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    padding: 12px 0 10px;
+    background: var(--jem-bg-page, #fbfbf8);
+    border-bottom: 1px solid var(--jem-faint);
+    margin-bottom: 0;
+  }
+  .dv-name-mobile {
+    font-family: Georgia, serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--jem-ink);
+    flex: 1 1 60%;
+    min-width: 0;
+    line-height: 1.25;
+  }
+  .dv-mobile-health {
+    flex: 1 1 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 10px;
+    border: 1px solid var(--jem-faint);
+    border-left: 3px solid var(--h-color);
+    border-radius: 8px;
+    background: #fff;
+  }
+  .dv-mobile-health-num {
+    font-family: var(--font-mono, monospace);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--h-color);
+    line-height: 1;
+  }
+  .dv-mobile-health-label {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--jem-mute);
+    text-transform: uppercase;
+  }
+  .dv-mobile-health-band {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--h-color);
+    letter-spacing: 0.04em;
+  }
+
+  /* Tab strip — part of the sticky wrap, sits below the identity. */
+  .dv-tab-strip {
+    display: flex;
+    gap: 0;
+    padding: 0;
+    background: var(--jem-bg-page, #fbfbf8);
+    border-bottom: 1px solid var(--jem-faint);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .dv-tab-strip::-webkit-scrollbar { display: none; }
+  .dv-tab-btn {
+    flex: 1 1 0;
+    min-width: 72px;
+    padding: 10px 6px;
+    border: none;
+    background: transparent;
+    font-family: var(--font-main);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--jem-mute);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+  .dv-tab-btn.active {
+    color: var(--jem-ink);
+    border-bottom-color: var(--jem-ink);
+  }
+
+  /* The tab filter itself — hide blocks not belonging to the active tab. */
+  .detail-view[data-dv-tab="score"]    .dv-tab-network,
+  .detail-view[data-dv-tab="score"]    .dv-tab-setup,
+  .detail-view[data-dv-tab="score"]    .dv-tab-activity,
+  .detail-view[data-dv-tab="network"]  .dv-tab-score,
+  .detail-view[data-dv-tab="network"]  .dv-tab-setup,
+  .detail-view[data-dv-tab="network"]  .dv-tab-activity,
+  .detail-view[data-dv-tab="setup"]    .dv-tab-score,
+  .detail-view[data-dv-tab="setup"]    .dv-tab-network,
+  .detail-view[data-dv-tab="setup"]    .dv-tab-activity,
+  .detail-view[data-dv-tab="activity"] .dv-tab-score,
+  .detail-view[data-dv-tab="activity"] .dv-tab-network,
+  .detail-view[data-dv-tab="activity"] .dv-tab-setup {
+    display: none !important;
+  }
+
+  /* Tighten the dv-layout single-column on mobile — no extra padding inside
+     the columns, no sticky on the (now-hidden) hero card. */
+  .dv-layout { gap: 12px; }
+  .dv-right .nb-section-head { flex-direction: column; align-items: stretch; gap: 6px; }
+  .nb-graph-wrap {
+    aspect-ratio: auto;
+    min-height: clamp(320px, 60vh, 520px);
+    max-height: none;
+  }
+
+  /* Cards must fit inside their parent — grid/flex children default to
+     min-width: auto which is min-content, expanding the column. Lock them
+     to the available track and let long tokens (URLs, IDs) wrap. */
+  .detail-view .dv-inner,
+  .detail-view .dv-layout,
+  .detail-view .dv-left,
+  .detail-view .dv-right,
+  .detail-view .dv-section,
+  .detail-view .dv-section-body,
+  .detail-view .summary-score-card,
+  .detail-view .nb-graph-wrap,
+  .detail-view .wtf-card,
+  .detail-view .dv-mobile-health,
+  .detail-view .dv-mobile-identity {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .detail-view .dv-section-body,
+  .detail-view .dv-mobile-identity,
+  .detail-view .nb-section-head,
+  .detail-view .detail-connection-row,
+  .detail-view .wtf-card {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* dv-inner provides the only horizontal padding on mobile. Drop section
+     internal side-padding so cards span the full content width. */
+  .detail-view .dv-inner { padding-left: 16px; padding-right: 16px; }
+  .dv-tab-strip { margin: 0 -16px 12px; }
+
+  /* Sticky group — identity scrolls until it meets the top, tab strip
+     stays glued just below it (because they share the same sticky wrap). */
+  .dv-mobile-sticky-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 6;
+    background: var(--jem-bg-page, #fbfbf8);
+  }
+  .dv-mobile-identity { border-bottom: none; }
+}
 

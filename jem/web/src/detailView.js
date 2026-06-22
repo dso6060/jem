@@ -7,9 +7,24 @@ import { getProfileSections } from './panel.js';
 const LEFT_PROFILE_KEYS  = new Set(['lifecycle', 'parent_hc', 'judges', 'appointment', 'funding']);
 const RIGHT_PROFILE_KEYS = new Set(['audit', 'complaint', 'gaps', 'sources']);
 
+// Mobile tab bucketing — used only at ≤900px via CSS. On desktop every
+// section renders side-by-side as before.
+const SECTION_TAB_MAP = {
+  lifecycle:   'setup',
+  parent_hc:   'setup',
+  judges:      'setup',
+  appointment: 'setup',
+  funding:     'setup',
+  audit:       'activity',
+  complaint:   'activity',
+  sources:     'activity',
+  gaps:        'score',
+};
+
 function renderProfileWidget(s) {
+  const tab = SECTION_TAB_MAP[s.key] || 'setup';
   return `
-    <details class="dv-section"${s.defaultOpen ? ' open' : ''}>
+    <details class="dv-section dv-tab-${tab}"${s.defaultOpen ? ' open' : ''}>
       <summary><span>${s.title}</span></summary>
       <div class="dv-section-body">${s.body}</div>
     </details>
@@ -1063,27 +1078,50 @@ export function renderDetailView(entityId, fromEntityId = null) {
         </div>
       </div>
 
-      ${renderAppellateChainStrip(entity)}
+      <div class="dv-mobile-sticky-wrap">
+        <div class="dv-mobile-identity">
+          <h1 class="dv-name dv-name-mobile">${entity.name}</h1>
+          ${statusPill(entity)}
+          ${!isScoreExcluded ? `
+            <div class="dv-mobile-health" style="--h-color:${healthColor}">
+              <div class="dv-mobile-health-num">${healthScore != null ? healthScore.toFixed(2) : '—'}</div>
+              <div class="dv-mobile-health-meta">
+                <div class="dv-mobile-health-label">Structural health</div>
+                ${healthLabel ? `<div class="dv-mobile-health-band">${healthLabel.toUpperCase()}</div>` : ''}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+
+        <nav class="dv-tab-strip" role="tablist" aria-label="Entity profile sections">
+          <button type="button" class="dv-tab-btn active" role="tab" data-dv-tab="activity" aria-selected="true">Activity</button>
+          <button type="button" class="dv-tab-btn" role="tab" data-dv-tab="setup" aria-selected="false">Profile</button>
+          <button type="button" class="dv-tab-btn" role="tab" data-dv-tab="network" aria-selected="false">Relationships</button>
+          <button type="button" class="dv-tab-btn" role="tab" data-dv-tab="score" aria-selected="false">Score</button>
+        </nav>
+      </div>
+
+      <div class="dv-tab-network">${renderAppellateChainStrip(entity)}</div>
 
       <div class="dv-layout">
 
         <!-- Left: scores, gaps -->
         <div class="dv-left">
-          <div class="dv-header">
+          <div class="dv-header dv-tab-score">
             <h1 class="dv-name">${entity.name}</h1>
             ${statusPill(entity)}
           </div>
-          <div class="dv-meta">
+          <div class="dv-meta dv-tab-score">
             ${entity.abbreviation ? `<span class="dv-abbr">${entity.abbreviation}</span>` : ''}
             <span class="dv-cluster">${CLUSTER_LABELS[entity.cluster] || entity.cluster || ''}</span>
             ${entity.created_year ? `<span class="dv-year">Est. ${entity.created_year}</span>` : ''}
           </div>
 
           ${isScoreExcluded ? `
-            <div class="dv-no-score">Structural scores not computed for this entity type (governance anchor).</div>
+            <div class="dv-no-score dv-tab-score">Structural scores not computed for this entity type (governance anchor).</div>
           ` : `
             <!-- 1. Summary score card (sticky, not collapsible) -->
-            <div class="summary-score-card" style="--h-color:${healthColor}">
+            <div class="summary-score-card dv-tab-score" style="--h-color:${healthColor}">
               <div class="health-hero-top">
                 <div class="health-hero-num">${healthScore != null ? healthScore.toFixed(2) : '—'}</div>
                 <div class="health-hero-meta">
@@ -1098,7 +1136,7 @@ export function renderDetailView(entityId, fromEntityId = null) {
 
             ${(score != null || dpScore != null) ? `
               <!-- 2. Constituent score breakdown (open by default) -->
-              <details class="dv-section dv-section-constituents" open>
+              <details class="dv-section dv-section-constituents dv-tab-score" open>
                 <summary>Constituent score breakdown</summary>
                 <div class="dv-section-body">
                   ${score != null ? `
@@ -1139,17 +1177,17 @@ export function renderDetailView(entityId, fromEntityId = null) {
 
         <!-- Right: neighborhood graph -->
         <div class="dv-right">
-          <div class="nb-section-head">
+          <div class="nb-section-head dv-tab-network">
             <span class="nb-section-title">Neighborhood</span>
             <div class="nb-lens-group" id="nb-lens-group" role="group" aria-label="Relationship lens filters">
               ${lensToggleBtns}
             </div>
           </div>
-          <div class="nb-graph-wrap" id="nb-graph-wrap"></div>
-          <p class="nb-hint">● filled = focus &nbsp;○ ring = neighbor · hover to highlight · click neighbor to open</p>
+          <div class="nb-graph-wrap dv-tab-network" id="nb-graph-wrap"></div>
+          <p class="nb-hint dv-tab-network">● filled = focus &nbsp;○ ring = neighbor · hover to highlight · click neighbor to open</p>
 
           ${renderCaseVolume(detail.case_volume) ? `
-            <details class="dv-section" open>
+            <details class="dv-section dv-tab-activity" open>
               <summary>
                 <span>Case volume & clog</span>
                 <span class="dv-section-summary-stats">${renderCaseVolumeSummary(detail.case_volume)}</span>
@@ -1173,6 +1211,36 @@ export function renderDetailView(entityId, fromEntityId = null) {
     ev.preventDefault();
     const id = lnk.getAttribute('data-entity-id');
     if (id) State.emit('navigateToDetail', id);
+  });
+
+  // ── Mobile tab strip (≤900px only, hidden on desktop via CSS) ──────────────
+  // Default active tab is "score". When the Network tab is activated for the
+  // first time the neighborhood graph must be re-measured because it was
+  // initially painted while hidden (display: none → zero size).
+  container.setAttribute('data-dv-tab', 'activity');
+  let _nbDrawnAtSize = '';
+  container.querySelector('.dv-tab-strip')?.addEventListener('click', ev => {
+    const btn = ev.target.closest('.dv-tab-btn');
+    if (!btn) return;
+    const tab = btn.getAttribute('data-dv-tab');
+    if (!tab) return;
+    container.setAttribute('data-dv-tab', tab);
+    container.querySelectorAll('.dv-tab-btn').forEach(b => {
+      const isActive = b === btn;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+    if (tab === 'network') {
+      const wrap = container.querySelector('#nb-graph-wrap');
+      const size = wrap ? `${wrap.clientWidth}x${wrap.clientHeight}` : '';
+      if (size && size !== _nbDrawnAtSize) {
+        _redrawNeighborhood(container);
+        _nbDrawnAtSize = size;
+      }
+    }
+    // Scroll the body to the top so the user lands at the start of the tab.
+    const dv = document.getElementById('detail-view');
+    if (dv) dv.scrollTop = 0;
   });
 
   // ── Wire back button ────────────────────────────────────────────────────────

@@ -1250,100 +1250,136 @@ function _wireTemporalStructure(tsWrap, entities) {
   });
 }
 
+// Twin-cascade step buckets. SC sits as the shared apex; below it the page
+// splits into the judicial branch (constitutional + subordinate courts) and
+// the tribunal / quasi-judicial branch.
+const STEP_BUCKETS = {
+  judicial: [
+    {
+      key: 'high_courts',
+      name: 'High Courts',
+      note: 'Constitutional courts of the states · Art. 214',
+      types: ['ConstitutionalCourt', 'HighCourtBench'],
+      excludeIds: ['supreme_court_india'],
+    },
+    {
+      key: 'subordinate',
+      name: 'Subordinate Courts',
+      note: 'District, Sessions, Magistrate & special courts',
+      types: ['SubordinateCivilCourt', 'CityCivilCourt', 'SpecialCourt'],
+    },
+  ],
+  tribunals: [
+    {
+      key: 'central_tribunals',
+      name: 'Central Tribunals',
+      note: 'Appellate & original tribunals under central statutes',
+      types: ['CentralTribunal'],
+    },
+    {
+      key: 'state_regulators',
+      name: 'State Tribunals & Regulators',
+      note: 'State-level tribunals and quasi-judicial regulators',
+      types: ['StateTribunal', 'RegulatoryBodyQJ'],
+    },
+    {
+      key: 'consumer_adr',
+      name: 'Consumer & ADR',
+      note: 'Consumer commissions, mediation & arbitration',
+      types: ['ConsumerCommission', 'ADRBody', 'ArbitralInstitution', 'MediationBody'],
+    },
+  ],
+};
+
 function renderAppellateHierarchy() {
-  const { tiers } = buildAppellateHierarchy();
-  if (!tiers.length || tiers.every(t => !t.length)) {
-    return '<p class="sum-empty">No appellate-chain relationships in the dataset yet.</p>';
+  const allEntities = State.graph?.entities || [];
+  if (!allEntities.length) {
+    return '<p class="sum-empty">No entities loaded yet.</p>';
   }
 
-  // Curate each tier: surface 4 reference entities. Sort by structural salience —
-  // anomaly status first (so a Not Constituted entity at tier 1 is visible),
-  // then by entity name length (shorter ≈ more canonical) as a stable secondary.
-  const inGraph = _entitiesInAppellateGraph();
-  const salience = (id) => {
-    const e = State.getEntityById(id);
-    if (!e) return 99;
+  const salience = (e) => {
     if (e.operational_status === 'Not_Constituted') return 0;
     if (e.operational_status === 'De_Facto_Blocked') return 1;
     if (e.operational_status === 'Partial_Operational') return 2;
     return 10;
   };
 
-  const referenceChip = (id) => {
-    const e = State.getEntityById(id);
-    if (!e) return '';
+  const referenceChip = (e) => {
+    const id = e.id;
     const label = e.abbreviation || e.name;
     const full = (e.name || id).replace(/"/g, '&quot;');
-    const flag = e.operational_status === 'Not_Constituted' ? '<span class="ah-flag" title="Not Constituted">NOT CONSTITUTED</span>'
-               : e.operational_status === 'De_Facto_Blocked' ? '<span class="ah-flag ah-flag-blocked" title="De Facto Blocked">DE FACTO BLOCKED</span>'
-               : e.operational_status === 'Abolished'        ? `<span class="ah-flag ah-flag-abolished" title="Abolished${e.abolished_year ? ' ' + e.abolished_year : ''}">ABOLISHED${e.abolished_year ? ' ' + e.abolished_year : ''}</span>`
+    const flag = e.operational_status === 'Not_Constituted' ? '<span class="ah-flag" title="Not Constituted">NC</span>'
+               : e.operational_status === 'De_Facto_Blocked' ? '<span class="ah-flag ah-flag-blocked" title="De Facto Blocked">BLOCKED</span>'
+               : e.operational_status === 'Abolished'        ? `<span class="ah-flag ah-flag-abolished" title="Abolished${e.abolished_year ? ' ' + e.abolished_year : ''}">ABOLISHED</span>`
                : '';
     const chipClass = e.operational_status === 'Abolished' ? 'ah-chip ah-chip-abolished' : 'ah-chip';
     return `<button type="button" class="${chipClass}" data-entity-id="${id}" title="${full}"><span class="ah-chip-label">${label}</span>${flag}</button>`;
   };
 
-  const tierRow = (tier, ti) => {
-    const def = TIER_DEFS[ti] || { name: `Tier ${ti + 1}`, note: '' };
-    const sorted = [...tier].sort((a, b) => salience(a) - salience(b) || (State.getEntityById(a)?.name || a).length - (State.getEntityById(b)?.name || b).length);
-    const refs = sorted.slice(0, 4).map(referenceChip).join('');
-    const moreCount = tier.length - 4;
-    const rest = sorted.slice(4).map(referenceChip).join('');
+  const bucketMembers = (bucket) => {
+    const exclude = new Set(bucket.excludeIds || []);
+    const typeSet = new Set(bucket.types);
+    return allEntities
+      .filter(e => typeSet.has(e.type) && !exclude.has(e.id))
+      .sort((a, b) => salience(a) - salience(b) || (a.name || '').length - (b.name || '').length);
+  };
+
+  const renderStep = (bucket, idx) => {
+    const members = bucketMembers(bucket);
+    const refs = members.slice(0, 4).map(referenceChip).join('');
+    const moreCount = members.length - 4;
+    const rest = members.slice(4).map(referenceChip).join('');
     return `
-      <div class="ah-tier-row">
-        <div class="ah-tier-num">${ti + 1}</div>
-        <div class="ah-tier-body">
-          <div class="ah-tier-head">
-            <span class="ah-tier-name">${def.name}</span>
-            <span class="ah-tier-count">${tier.length} ${tier.length === 1 ? 'entity' : 'entities'}</span>
-          </div>
-          ${def.note ? `<div class="ah-tier-note">${def.note}</div>` : ''}
-          <div class="ah-tier-refs">
-            ${refs}
-            ${moreCount > 0 ? `<details class="ah-tier-more-wrap"><summary class="ah-tier-more">+ ${moreCount} more</summary><div class="ah-tier-rest">${rest}</div></details>` : ''}
-          </div>
+      <div class="hs-step" data-step="${bucket.key}" data-step-index="${idx}">
+        <div class="hs-step-head">
+          <span class="hs-step-name">${bucket.name}</span>
+          <span class="hs-step-count">${members.length}</span>
+        </div>
+        <p class="hs-step-note">${bucket.note}</p>
+        <div class="hs-step-refs">
+          ${refs || '<span class="hs-step-empty">No entities mapped yet</span>'}
+          ${moreCount > 0 ? `<details class="ah-tier-more-wrap"><summary class="ah-tier-more">+ ${moreCount} more</summary><div class="ah-tier-rest">${rest}</div></details>` : ''}
         </div>
       </div>
     `;
   };
 
-  const anomalyGroups = _appellateAnomalyGroups();
-  const anomalyTotal = anomalyGroups.reduce((acc, g) => acc + g.entities.length, 0);
-  const anomalyHTML = anomalyGroups.length ? anomalyGroups.map(g => `
-    <details class="ah-anom-group ah-anom-sev-${g.severity}" ${g.tag === 'Not Constituted' ? 'open' : ''}>
-      <summary class="ah-anom-group-head">
-        <span class="ah-anom-group-tag">${g.tag}</span>
-        <span class="ah-anom-group-count">${g.entities.length}</span>
-      </summary>
-      <div class="ah-anom-list">
-        ${g.entities.map(a => `
-          <button type="button" class="ah-anom" data-entity-id="${a.id}">
-            <span class="ah-anom-name">${a.name}</span>
-            ${a.fact ? `<span class="ah-anom-fact">${a.fact}</span>` : ''}
-          </button>
-        `).join('')}
-      </div>
-    </details>
-  `).join('') : '<p class="ah-anom-empty">No structural anomalies flagged in appellate graph.</p>';
+  const sc = State.getEntityById('supreme_court_india');
+  const apexChip = sc ? referenceChip(sc) : '';
+  const apexName = sc ? sc.name : 'Supreme Court of India';
 
-  const totalEntities = tiers.reduce((acc, t) => acc + t.length, 0);
+  const totalJudicial = STEP_BUCKETS.judicial.reduce((n, b) => n + bucketMembers(b).length, 0);
+  const totalTribunals = STEP_BUCKETS.tribunals.reduce((n, b) => n + bucketMembers(b).length, 0);
+  const grandTotal = totalJudicial + totalTribunals + (sc ? 1 : 0);
 
   return `
-    <div class="ah-wrap">
+    <div class="hs-wrap">
       <div class="ah-meta">
-        <span class="ah-meta-num">${totalEntities}</span> entities across
-        <span class="ah-meta-num">${tiers.length}</span> appellate tiers ·
-        <span class="ah-meta-num">${anomalyTotal}</span> structural anomalies
+        <span class="ah-meta-num">${grandTotal}</span> entities · apex
+        <span class="ah-meta-num">1</span> · judicial branch
+        <span class="ah-meta-num">${totalJudicial}</span> · tribunal branch
+        <span class="ah-meta-num">${totalTribunals}</span>
       </div>
-      <div class="ah-grid">
-        <section class="ah-spine" aria-label="Appellate spine">
-          <header class="ah-col-head">The spine</header>
-          ${tiers.map(tierRow).join('')}
+
+      <div class="hs-apex">
+        <div class="hs-apex-card">
+          <div class="hs-apex-label">APEX · CONSTITUTIONAL COURT</div>
+          <div class="hs-apex-name">${apexName}</div>
+          <p class="hs-apex-note">Final court of appeal · Article 124 of the Constitution</p>
+          ${apexChip ? `<div class="hs-apex-chip-row">${apexChip}</div>` : ''}
+        </div>
+        <div class="hs-apex-fork" aria-hidden="true"></div>
+      </div>
+
+      <div class="hs-cascade">
+        <section class="hs-branch hs-branch-judicial" aria-label="Judicial branch">
+          <header class="hs-branch-head">Judicial branch</header>
+          ${STEP_BUCKETS.judicial.map(renderStep).join('')}
         </section>
-        <aside class="ah-anomalies" aria-label="Structural anomalies">
-          <header class="ah-col-head">Structural anomaly register</header>
-          <p class="ah-col-sub">Every materially anomalous entity across the map — by operational status (Not Constituted, Abolished, Suspended, Merged, etc.), structural exception, contested data quality, or documented gap. One row per entity, single primary category.</p>
-          ${anomalyHTML}
-        </aside>
+        <section class="hs-branch hs-branch-tribunals" aria-label="Tribunal & quasi-judicial branch">
+          <header class="hs-branch-head">Tribunal &amp; quasi-judicial branch</header>
+          ${STEP_BUCKETS.tribunals.map(renderStep).join('')}
+        </section>
       </div>
     </div>
   `;
@@ -1712,9 +1748,9 @@ export function initSummaryView() {
 
       <div class="sm-section">
         <div class="sm-section-head">
-          <span class="sm-section-title">Appellate hierarchy</span>
+          <span class="sm-section-title">Judicial hierarchy</span>
         </div>
-        <p class="sm-note-global">The five-tier appellate spine on the left; a project-wide structural anomaly register on the right — every entity flagged by operational status, structural exception, contested data, or documented gap. Click any reference entity or anomaly to open its structural profile.</p>
+        <p class="sm-note-global">From the Supreme Court down two parallel branches — the constitutional/judicial cascade and the tribunal/quasi-judicial cascade. Each step shows the count and a few reference entities; click any chip to open its structural profile.</p>
         <div class="ah-section-wrap" id="appellate-hierarchy-wrap"></div>
       </div>
 
