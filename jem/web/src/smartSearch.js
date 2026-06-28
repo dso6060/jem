@@ -2,7 +2,7 @@
 // Answers common researcher questions from sourced fields only.
 
 import { isScoredEntity, shouldShowStructuralScores } from './scoreDisplay.js';
-import { extractGapEntries } from './gapDisplay.js';
+import { extractGapEntries, extractSpilloverEntries } from './gapDisplay.js';
 
 function judgeStrength(e) {
   const js = e._detail?.judge_strength;
@@ -151,6 +151,10 @@ const INSIGHT_STAT_MODE = {
   longest_institutional_gap: 'gap',
   critical_structural_gaps: 'gap',
   tribunal_gap_hc_writ_load: 'gap',
+  documented_gap_spillover: 'gap',
+  capacity_structural_gaps: 'gap',
+  critical_case_clog: 'pending_cases',
+  tribunal_vacancy_highest: 'judge_strength',
   not_constituted: 'status',
   partial_operational_tribunals: 'status',
   de_facto_blocked: 'status',
@@ -429,6 +433,10 @@ const FEATURED_CHIP_IDS = [
   'subordinate_highest_pendency',
   'not_constituted',
   'tribunal_gap_hc_writ_load',
+  'documented_gap_spillover',
+  'capacity_structural_gaps',
+  'critical_case_clog',
+  'tribunal_vacancy_highest',
   'newest_entity',
   'critical_structural_gaps',
 ];
@@ -693,10 +701,15 @@ const INSIGHT_DEFS = [
     chip: 'Tribunal → HC load',
     compute(graph) {
       const HC_RE = /\b(high court|writ petition|writ jurisdiction|hc\b|art\.?\s*226)/i;
+      const HC_BODY_RE = /^hc_|high_courts/;
       const matches = [];
       for (const e of graph.entities) {
         const gaps = extractGapEntries(e);
-        const gapHits = gaps.filter((g) => HC_RE.test(g.gap_description || '') || HC_RE.test(g.gap_source || ''));
+        const gapHits = gaps.filter((g) => {
+          if (HC_RE.test(g.gap_description || '') || HC_RE.test(g.gap_source || '')) return true;
+          const spillovers = Array.isArray(g.gap_spillover) ? g.gap_spillover : (g.gap_spillover ? [g.gap_spillover] : []);
+          return spillovers.some((s) => HC_BODY_RE.test(s.affected_body || '') || HC_RE.test(s.metric_note || ''));
+        });
         const notesHit = HC_RE.test(e.data_quality_notes || '');
         if (gapHits.length || (notesHit && ['Not_Constituted', 'Partial_Operational', 'De_Facto_Blocked'].includes(e.operational_status))) {
           matches.push({ e, gapHits });
@@ -725,6 +738,182 @@ const INSIGHT_DEFS = [
           + `Example (${lead.e.name}): ${trimmed}`,
         entities.slice(0, 8),
         topSourcesFromEntities(entities),
+        graph,
+      );
+    },
+  },
+  {
+    id: 'documented_gap_spillover',
+    title: 'Entities with documented gap spillover (HC / district / SC load shift)',
+    aliases: [
+      'gap spillover',
+      'documented spillover',
+      'spillover to high court',
+      'tribunal spillover',
+      'HC writ load spillover',
+      'load shift spillover',
+    ],
+    keywords: ['spillover', 'writ', 'high court', 'backlog', 'load', 'appellate_backlog', 'trial_court_pendency'],
+    chip: 'Gap spillover',
+    compute(graph) {
+      const matches = [];
+      for (const e of concreteEntities(graph.entities)) {
+        const spillovers = extractSpilloverEntries(e);
+        if (spillovers.length) matches.push({ e, spillovers });
+      }
+      if (!matches.length) {
+        return insufficient(
+          this.id,
+          this.title,
+          'Insufficient sourced data in JEM for this query. No gap_spillover records in the current graph.',
+          graph,
+        );
+      }
+      matches.sort((a, b) => b.spillovers.length - a.spillovers.length);
+      const lead = matches[0];
+      const verified = matches.reduce((n, m) => n + m.spillovers.filter((x) => x.spillover.spillover_data_quality === 'verified').length, 0);
+      const excerpt = lead.spillovers[0]?.spillover?.metric_note || '';
+      const trimmed = excerpt.length > 200 ? `${excerpt.slice(0, 197)}…` : excerpt;
+      return ok(
+        this.id,
+        this.title,
+        `${matches.length} entit${matches.length === 1 ? 'y has' : 'ies have'} maintainer-documented gap_spillover records `
+          + `(${verified} verified spillover citation${verified === 1 ? '' : 's'}). `
+          + `Example (${lead.e.name}): ${trimmed}`,
+        matches.slice(0, 8).map((m) => m.e),
+        topSourcesFromEntities(matches.map((m) => m.e)),
+        graph,
+      );
+    },
+  },
+  {
+    id: 'capacity_structural_gaps',
+    title: 'Capacity / institutional structural gaps (understaffing, rollout)',
+    aliases: [
+      'capacity gap',
+      'institutional gap',
+      'appointment gap',
+      'understaffed tribunal',
+      'Capacity_Gap',
+      'Institutional_Gap',
+      'Appointment_Gap',
+    ],
+    keywords: [
+      'capacity gap', 'capacity_gap', 'institutional gap', 'institutional_gap',
+      'appointment gap', 'appointment_gap', 'understaffed', 'vacancy', 'rollout',
+    ],
+    chip: 'Capacity gaps',
+    compute(graph) {
+      const GAP_TYPES = new Set(['Capacity_Gap', 'Institutional_Gap', 'Appointment_Gap', 'Data_Gap']);
+      const matches = [];
+      for (const e of concreteEntities(graph.entities)) {
+        const hits = extractGapEntries(e).filter((g) => GAP_TYPES.has(g.gap_type));
+        if (hits.length) matches.push({ e, hits });
+      }
+      if (!matches.length) {
+        return insufficient(
+          this.id,
+          this.title,
+          'Insufficient sourced data in JEM for this query. No Capacity_Gap, Institutional_Gap, Appointment_Gap, or Data_Gap records in the current graph.',
+          graph,
+        );
+      }
+      matches.sort((a, b) => {
+        const sev = (x) => (x.hits[0]?.gap_severity === 'Critical' ? 2 : x.hits[0]?.gap_severity === 'High' ? 1 : 0);
+        return sev(b) - sev(a);
+      });
+      const lead = matches[0];
+      const excerpt = lead.hits[0]?.gap_description || '';
+      const trimmed = excerpt.length > 240 ? `${excerpt.slice(0, 237)}…` : excerpt;
+      return ok(
+        this.id,
+        this.title,
+        `${matches.length} entit${matches.length === 1 ? 'y has' : 'ies have'} maintainer-documented capacity/institutional/appointment gaps. `
+          + `Example (${lead.e.name}, ${lead.hits[0]?.gap_type?.replace(/_/g, ' ')}): ${trimmed}`,
+        matches.slice(0, 8).map((m) => m.e),
+        topSourcesFromEntities(matches.map((m) => m.e)),
+        graph,
+      );
+    },
+  },
+  {
+    id: 'critical_case_clog',
+    title: 'Critical case backlog (clog_severity critical)',
+    aliases: [
+      'critical clog',
+      'critical backlog',
+      'critical pendency',
+      'severe case backlog',
+      'critical case volume',
+    ],
+    keywords: ['critical', 'clog', 'backlog', 'pendency', 'severe'],
+    chip: 'Critical clog',
+    compute(graph) {
+      const matches = concreteEntities(graph.entities)
+        .map((e) => ({ e, cv: caseVolume(e) }))
+        .filter((x) => x.cv && String(x.cv.clog_severity || '').toLowerCase() === 'critical');
+      if (!matches.length) {
+        return insufficient(
+          this.id,
+          this.title,
+          'Insufficient sourced data in JEM for this query. No case_volume.clog_severity critical with source references.',
+          graph,
+        );
+      }
+      matches.sort((a, b) => (b.cv.pending_cases || 0) - (a.cv.pending_cases || 0));
+      const top = matches[0];
+      const pendency = top.cv.pending_cases != null ? top.cv.pending_cases.toLocaleString('en-IN') : '—';
+      return ok(
+        this.id,
+        this.title,
+        `${matches.length} entit${matches.length === 1 ? 'y has' : 'ies have'} case_volume.clog_severity critical in JEM. `
+          + `Highest pendency: ${top.e.name} (${pendency} pending).`,
+        matches.slice(0, 8).map((x) => x.e),
+        top.cv.source_url
+          ? [{ label: top.cv.source_type || 'Case volume source', url: top.cv.source_url }]
+          : topSourcesFromEntities(matches.map((x) => x.e)),
+        graph,
+      );
+    },
+  },
+  {
+    id: 'tribunal_vacancy_highest',
+    title: 'Tribunal with highest sourced member vacancy count',
+    aliases: [
+      'tribunal vacancies',
+      'tribunal vacancy',
+      'most vacant tribunal',
+      'highest tribunal vacancy',
+      'AFT vacancies',
+      'NGT vacancies',
+    ],
+    keywords: ['tribunal', 'vacancy', 'vacancies', 'member', 'bench'],
+    chip: 'Tribunal vacancies',
+    compute(graph) {
+      const ranked = concreteEntities(graph.entities)
+        .filter(isTribunal)
+        .map((e) => ({ e, js: judgeStrength(e) }))
+        .filter((x) => x.js?.vacancy_count != null)
+        .sort((a, b) => b.js.vacancy_count - a.js.vacancy_count);
+      if (!ranked.length) {
+        return insufficient(
+          this.id,
+          this.title,
+          'Insufficient sourced data in JEM for this query. Tribunals lack judge_strength vacancy_count with source references.',
+          graph,
+        );
+      }
+      const top = ranked[0];
+      const asOf = top.js.data_as_of ? ` (as of ${top.js.data_as_of})` : '';
+      return ok(
+        this.id,
+        this.title,
+        `${top.e.name} has the highest recorded tribunal vacancy count in JEM: ${top.js.vacancy_count} vacant post(s) `
+          + `of ${top.js.allotted ?? '—'} sanctioned${asOf}.`,
+        ranked.slice(0, 6).map((x) => x.e),
+        top.js.source_url
+          ? [{ label: top.js.source_type || 'Strength source', url: top.js.source_url }]
+          : topSourcesFromEntities(ranked.map((x) => x.e)),
         graph,
       );
     },
@@ -1159,6 +1348,10 @@ function entityStatLine(entity, mode) {
       }
       if (js.vacancy_count != null && js.allotted != null) {
         return `${js.vacancy_count} vacant of ${js.allotted} sanctioned`;
+      }
+      if (js.appointed != null) {
+        const asOf = js.data_as_of ? ` · as of ${js.data_as_of}` : '';
+        return `${js.appointed} member(s) in post${asOf}`;
       }
       return '';
     }

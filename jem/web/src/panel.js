@@ -8,7 +8,7 @@ import { buildEntityConnectionSummary, formatCategoryLabel } from './entityConne
 import { commentsHTML, wireComments } from './comments.js';
 import { shouldShowStructuralScores } from './scoreDisplay.js';
 import { getJurisdictionProfileSections } from './jurisdictionDisplay.js';
-import { entityHasGapContent, renderGapListHTML } from './gapDisplay.js';
+import { entityHasGapContent, renderGapListHTML, entityHasSpilloverContent, spilloverSummaryText } from './gapDisplay.js';
 
 export function openDetailPanel(entity) {
   const panel = document.getElementById('detail-panel');
@@ -564,7 +564,7 @@ function caseVolumeBody(entity, d) {
   if (cv.working_strength != null && d.judge_strength?.appointed == null) {
     rows.push(row('Working strength (legacy)', String(cv.working_strength)));
   }
-  if (cv.clog_severity) rows.push(row('Clog severity', cv.clog_severity));
+  if (cv.clog_severity) rows.push(row('Clog severity', `<span class="clog-severity clog-${String(cv.clog_severity).toLowerCase()}">${cv.clog_severity}</span>`));
   if (cv.source_type) rows.push(row('Volume source type', cv.source_type));
   if (cv.source_url) {
     rows.push(`<div class="detail-row"><span class="lbl">Volume source</span><span><a href="${cv.source_url}" target="_blank" rel="noopener noreferrer">${cv.source_url}</a></span></div>`);
@@ -598,6 +598,15 @@ function dataCompletenessBanner(entity, d) {
   }
   if (entity.data_quality === 'contested') {
     flags.push('contested data — see sources');
+  }
+
+  if (entityHasSpilloverContent(entity)) {
+    flags.push(spilloverSummaryText(entity));
+  }
+
+  const cvClog = cv.clog_severity;
+  if (cvClog && ['critical', 'high'].includes(String(cvClog).toLowerCase())) {
+    flags.push(`case clog: ${cvClog}`);
   }
 
   if (!flags.length) return '';

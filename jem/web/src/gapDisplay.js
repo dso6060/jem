@@ -31,6 +31,33 @@ export function extractGapEntries(entity) {
   return out;
 }
 
+/** Flatten documented spillover records from all gap entries on an entity. */
+export function extractSpilloverEntries(entity) {
+  const spillovers = [];
+  for (const g of extractGapEntries(entity)) {
+    const items = Array.isArray(g.gap_spillover) ? g.gap_spillover : (g.gap_spillover ? [g.gap_spillover] : []);
+    for (const s of items) {
+      if (s && typeof s === 'object') spillovers.push({ gap: g, spillover: s });
+    }
+  }
+  return spillovers;
+}
+
+export function entityHasSpilloverContent(entity) {
+  return extractSpilloverEntries(entity).length > 0;
+}
+
+export function spilloverSummaryText(entity) {
+  const items = extractSpilloverEntries(entity);
+  if (!items.length) return '';
+  const verified = items.filter((x) => x.spillover.spillover_data_quality === 'verified').length;
+  const partial = items.filter((x) => x.spillover.spillover_data_quality === 'partial').length;
+  const parts = [`${items.length} documented spillover record${items.length === 1 ? '' : 's'}`];
+  if (verified) parts.push(`${verified} verified`);
+  if (partial) parts.push(`${partial} partial`);
+  return parts.join(' · ');
+}
+
 export function entityHasGapContent(entity) {
   if (!entity) return false;
   return Boolean(
@@ -77,6 +104,27 @@ export function renderGapListHTML(entity, { includeOperationalNote = true } = {}
     const source = g.gap_source
       ? `<div class="gap-source">${String(g.gap_source).replace(/</g, '&lt;')}</div>`
       : '';
+    const spillovers = Array.isArray(g.gap_spillover) ? g.gap_spillover : (g.gap_spillover ? [g.gap_spillover] : []);
+    let spilloverHtml = '';
+    if (spillovers.length) {
+      spilloverHtml = '<div class="gap-spillover-block"><div class="gap-spillover-title">Documented spillover</div><ul class="gap-spillover-list">';
+      for (const s of spillovers) {
+        const body = s.affected_body ? String(s.affected_body).replace(/_/g, ' ') : '';
+        const kind = s.spillover_type ? String(s.spillover_type).replace(/_/g, ' ') : '';
+        const metric = s.metric_note ? String(s.metric_note).replace(/</g, '&lt;') : '';
+        const dq = s.spillover_data_quality ? ` [${s.spillover_data_quality}]` : '';
+        const src = s.source_url
+          ? `<a href="${s.source_url}" target="_blank" rel="noopener">${String(s.source_label || s.source_url).replace(/</g, '&lt;')}</a>`
+          : (s.source_label ? String(s.source_label).replace(/</g, '&lt;') : '');
+        const asOf = s.data_as_of ? ` (${s.data_as_of})` : '';
+        spilloverHtml += `<li class="gap-spillover-item">
+          <span class="gap-spillover-meta">${body}${kind ? ` · ${kind}` : ''}${dq}${asOf}</span>
+          ${metric ? `<div class="gap-spillover-metric">${metric}</div>` : ''}
+          ${src ? `<div class="gap-spillover-src">${src}</div>` : ''}
+        </li>`;
+      }
+      spilloverHtml += '</ul></div>';
+    }
 
     html += `<li class="gap-item">
       <div class="gap-item-head">
@@ -87,6 +135,7 @@ export function renderGapListHTML(entity, { includeOperationalNote = true } = {}
       </div>
       ${desc ? `<div class="gap-desc">${desc}</div>` : ''}
       ${timeline ? `<div class="gap-timeline">${timeline}</div>` : ''}
+      ${spilloverHtml}
       ${source}
     </li>`;
   }

@@ -1250,10 +1250,51 @@ body.jem-resizing-inspector * {
   color: #b45309;
   font-style: italic;
 }
+.gap-spillover-block {
+  margin-top: 6px;
+  padding: 6px 8px;
+  border-left: 3px solid #7c3aed;
+  background: rgba(124, 58, 237, 0.06);
+  border-radius: 0 4px 4px 0;
+}
+.gap-spillover-title {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #7c3aed;
+  margin-bottom: 4px;
+}
+.gap-spillover-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.gap-spillover-item + .gap-spillover-item {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--border);
+}
+.gap-spillover-meta {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.gap-spillover-metric, .gap-spillover-src {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
 .gap-source {
   font-size: 10px;
   opacity: 0.85;
 }
+
+.clog-severity { font-weight: 600; text-transform: capitalize; }
+.clog-critical { color: #dc2626; }
+.clog-high { color: #d97706; }
+.clog-moderate, .clog-medium { color: #ca8a04; }
+.clog-low { color: #16a34a; }
 
 /* ── Timeline ─────────────────────────────────────────────────────────────── */
 #timeline-container {

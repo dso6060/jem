@@ -182,8 +182,8 @@ relationships:
     is_constitutional: false
     statutory_basis: >-
       SEBI Act 1992, s.15Z(2) — appeal to Supreme Court on question of law from
-      SAT order; parallel provisions for IRDAI (s.18A) and PFRDA (s.36) appeals
-      routed through SAT
+      SAT order; IRDAI and PFRDA matters heard by SAT benches use the same s.15Z
+      SC appeal route (IRDAI Act s.18A assigns SAT jurisdiction, not a separate SC path)
     year_established: 1995
     data_quality: verified
     sources:

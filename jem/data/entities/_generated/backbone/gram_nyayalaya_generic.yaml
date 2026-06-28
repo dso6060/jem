@@ -47,7 +47,7 @@ structural_gap:
   flag: true
   gaps:
   - gap_id: gram_nyayalaya_under_rollout
-    gap_type: Capacity_Gap
+    gap_type: Appointment_Gap
     gap_severity: High
     gap_description: 333 of 488 notified Gram Nyayalayas operational in 11 States/UTs (Oct 2025 Lok Sabha reply). Law Commission
       114th Report (1986) envisaged ~6,000 village courts nationwide; rollout remains far below target. UP leads with 109
@@ -60,6 +60,27 @@ structural_gap:
       s.3; no Union deadline for full national rollout. Expansion depends on state
       notifications and judicial officer postings — monitor DoJ operational dashboard
       and state High Court notifications.
+    gap_spillover:
+    - affected_body: gram_nyayalaya_generic
+      spillover_type: trial_court_pendency
+      metric_note: >-
+        DoJ operational dashboard: 337 Gram Nyayalayas operational across
+        reporting states (grand total); Lok Sabha reply 31 Oct 2025 cited 333
+        operational in 11 states of 488 notified.
+      source_url: https://dashboard.doj.gov.in/gn/operational_gram_nyayalaya
+      source_label: DoJ Gram Nyayalaya operational dashboard
+      data_as_of: '2026-06-26'
+      spillover_data_quality: verified
+    - affected_body: district_courts_all
+      spillover_type: trial_court_pendency
+      metric_note: >-
+        SC bench (Aug 2024, NFSFJ): only 309 of ~6,000 envisaged Gram Nyayalayas
+        functional; trial courts carry 4.5+ crore pending cases — SC noted
+        activating village courts could ease district-court clog.
+      source_url: https://timesofindia.indiatimes.com/india/16-years-on-only-481-rural-courts-set-up-6000-needed-sc-told/articleshow/111698191.cms
+      source_label: Times of India — SC hearing National Federation of Societies for Fast Justice, Aug 2024
+      data_as_of: '2024-08-16'
+      spillover_data_quality: partial
 data_quality: partial
 data_quality_notes: 'Aggregate generic node. Operational count 333/488 notified (Oct 2025) per MoS Law Arjun Ram Meghwal Lok
   Sabha reply; DoJ dashboard shows 337 operational (state totals may lag reply). Prior claim "UP: zero" is incorrect — UP

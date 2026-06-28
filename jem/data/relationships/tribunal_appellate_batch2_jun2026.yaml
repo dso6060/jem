@@ -10,7 +10,7 @@ relationships:
     relationship_category: appellate_chain
     is_binding: true
     is_constitutional: false
-    statutory_basis: Insolvency and Bankruptcy Code 2016, s.221 — appeal to NCLAT against order of Board under Chapter VII
+    statutory_basis: Insolvency and Bankruptcy Code 2016, s.202 — appeal to NCLAT against order of Insolvency and Bankruptcy Board of India
     year_established: 2016
     data_quality: verified
     sources:
@@ -90,9 +90,10 @@ relationships:
     is_binding: true
     is_constitutional: false
     statutory_basis: >-
-      Central Goods and Services Tax Act 2017, s.112 — appeal to Appellate
+      Central Goods and Services Tax Act 2017, s.109 — appeal to Appellate
       Tribunal from order of Appellate Authority (Commissioner Appeals under
-      s.107) or Revisional Authority (s.108)
+      s.107) or Revisional Authority (s.108); s.112 is the further appeal to
+      High Court on substantial questions of law
     year_established: 2017
     notes: >-
       First appellate tier under CGST is Commissioner (Appeals) s.107; GSTAT is
