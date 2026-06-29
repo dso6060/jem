@@ -226,8 +226,44 @@ get_structural_gaps for entity_id=nclt. List each gap type and severity from JEM
 
 ## Deployment notes (maintainers)
 
-- **Static map** (friedso.com) ships `graph.json` + `jem/web/` — search can call the API when nginx proxies `/api/jem/`.
-- **Researcher stack** needs: `jem.db` built from the same `graph.json` revision you ship, and `uvicorn` (or gunicorn) behind a reverse proxy.
+### Static map only
+
+```bash
+./jem/scripts/deploy_friedso_production.sh --both
+```
+
+### Static map + researcher API (REST, MCP, portal, admin)
+
+First time (installs nginx snippets, systemd units, venv on VPS):
+
+```bash
+./jem/scripts/deploy_friedso_production.sh --both --api
+# or API only after graph.json is current:
+./jem/scripts/deploy_friedso_api.sh --both --install
+```
+
+Subsequent API-only updates (code + `jem.db` from current `graph.json`):
+
+```bash
+./jem/scripts/deploy_friedso_api.sh --both
+```
+
+**Production URLs** (nginx proxies to uvicorn on port 8002):
+
+| Surface | URL |
+|---------|-----|
+| REST health | `https://friedso.com/api/jem/v1/health` |
+| Entity search | `https://friedso.com/api/jem/v1/entities?q=NCLT` |
+| Swagger | `https://friedso.com/docs` |
+| MCP tools | `https://friedso.com/mcp/tools` |
+| Expert portal | `https://friedso.com/portal/` |
+| Admin | `https://friedso.com/admin/` |
+
+Server env: `/etc/friedso/jem-prod.env` (templates in `jem/config/jem-api.*.env.example`).  
+Infra snippets: `friedso/infra/ops/nginx/jem-api-proxy-prod.conf`, `friedso/infra/ops/systemd/friedso-jem-prod.service`.
+
+- **Static map** (friedso.com) ships `graph.json` + `jem/web/` — map auto-detects `/api/jem/v1` when the API is deployed.
+- **Researcher stack** needs: `jem.db` built from the same `graph.json` revision you ship, and `uvicorn` behind nginx.
 - Rebuild DB after data releases: `python scripts/build_db.py --force`
 - Rate-limit public REST/MCP if exposed. See [`.github/SECURITY.md`](../../.github/SECURITY.md).
 

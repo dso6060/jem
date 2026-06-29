@@ -36,18 +36,41 @@ function maintainerLine({ name, linkedin, github, handle, role }) {
   return `<li><a href="${linkedin}" target="_blank" rel="noopener noreferrer">${name}</a>(<a href="${github}" target="_blank" rel="noopener noreferrer">${handle}</a>) — ${role}</li>`;
 }
 
-function apiLinks(origin) {
-  const base = origin || null;
+function resolveMaintainerToolsContext() {
+  const { hostname, origin } = window.location;
+  const isLocal = hostname === 'localhost' || hostname === '127.0.0.1';
+
+  if (isLocal) {
+    let serverOrigin = 'http://127.0.0.1:8001';
+    const base = window.JEM_API_BASE;
+    if (typeof base === 'string' && base) {
+      try {
+        const u = new URL(base);
+        serverOrigin = `${u.protocol}//${u.host}`;
+      } catch { /* keep default */ }
+    }
+    return { origin: serverOrigin, apiPrefix: '/api/v1' };
+  }
+
+  if (hostname === 'friedso.com' || hostname === 'www.friedso.com' || hostname === 'staging.friedso.com') {
+    return { origin, apiPrefix: '/api/jem/v1' };
+  }
+
+  return null;
+}
+
+function apiLinks(ctx) {
   const row = (label, path, note = '') => {
-    if (!base) {
+    if (!ctx?.origin) {
       return `<li><strong>${label}</strong> — <code>${path}</code>${note ? ` <span class="about-muted">${note}</span>` : ''}</li>`;
     }
-    const href = `${base}${path}`;
+    const href = `${ctx.origin}${path}`;
     return `<li><a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>${note ? ` <span class="about-muted">${note}</span>` : ''}</li>`;
   };
+  const apiPrefix = ctx?.apiPrefix || '/api/v1';
   return `
     <ul class="about-link-list">
-      ${row('API health check', '/api/v1/health')}
+      ${row('API health check', `${apiPrefix}/health`)}
       ${row('OpenAPI docs (Swagger)', '/docs', 'try entity search here')}
       ${row('Expert staging portal', '/portal/', 'maintainer review queue')}
       ${row('Admin — corrections queue', '/admin/', 'maintainer role required')}
@@ -55,7 +78,19 @@ function apiLinks(origin) {
     </ul>`;
 }
 
-/** @param {{ meta?: object, entities?: object[], apiOrigin?: string|null }} ctx */
+function entityApiExamples(ctx) {
+  const apiPrefix = ctx?.apiPrefix || '/api/v1';
+  const searchPath = `${apiPrefix}/entities?q=NCLT`;
+  const clusterPath = `${apiPrefix}/clusters/summary`;
+  if (!ctx?.origin) {
+    return `<p class="about-muted"><strong>Entity ids:</strong> search first — <code>GET ${searchPath}</code> returns an <code>id</code> slug (e.g. <code>nclt</code>). Use that for detail and relationships. Cluster overview: <code>GET ${clusterPath}</code>.</p>`;
+  }
+  const searchHref = `${ctx.origin}${searchPath}`;
+  const clusterHref = `${ctx.origin}${clusterPath}`;
+  return `<p class="about-muted"><strong>Entity ids:</strong> search first — <a href="${searchHref}" target="_blank" rel="noopener noreferrer"><code>GET ${searchPath}</code></a> returns an <code>id</code> slug (e.g. <code>nclt</code>). Use that for detail and relationships. Cluster overview: <a href="${clusterHref}" target="_blank" rel="noopener noreferrer"><code>GET ${clusterPath}</code></a>.</p>`;
+}
+
+/** @param {{ meta?: object, entities?: object[], maintainerTools?: { origin: string, apiPrefix: string } | null }} ctx */
 export function aboutPageHTML(ctx = {}) {
   const meta = ctx.meta || {};
   const entities = ctx.entities || [];
@@ -121,10 +156,10 @@ export function aboutPageHTML(ctx = {}) {
         </div>
         <div class="about-nav-card">
           <h3>API &amp; maintainer tools</h3>
-          <p class="about-muted">Requires the FastAPI server (<code>uvicorn api.main:app</code>). The public demo at friedso.com ships the <strong>map only</strong> — API, portal, admin, and MCP run on your local uvicorn host (or a maintainer-deployed API), not on friedso.com paths.</p>
+          <p class="about-muted">Requires the FastAPI server (<code>uvicorn api.main:app</code>) locally, or the maintainer-deployed API on <a href="${DEMO}" target="_blank" rel="noopener noreferrer">friedso.com</a> (links below when deployed).</p>
           <p class="about-muted">Setup: <a href="${GITHUB}/blob/main/jem/docs/MCP_SETUP.md" target="_blank" rel="noopener noreferrer">API &amp; MCP setup guide</a></p>
-          <p class="about-muted"><strong>Entity ids:</strong> search first — <code>GET /api/v1/entities?q=NCLT</code> returns an <code>id</code> slug (e.g. <code>nclt</code>). Use that for detail and relationships. Cluster overview: <code>GET /api/v1/clusters/summary</code>.</p>
-          ${apiLinks(ctx.apiOrigin)}
+          ${entityApiExamples(ctx.maintainerTools)}
+          ${apiLinks(ctx.maintainerTools)}
         </div>
         <div class="about-nav-card">
           <h3>Feedback &amp; community</h3>
@@ -249,22 +284,6 @@ export function aboutPageHTML(ctx = {}) {
   `;
 }
 
-function resolveApiOrigin() {
-  const { hostname } = window.location;
-  const isLocal = hostname === 'localhost' || hostname === '127.0.0.1';
-  // Hosted demo (friedso.com) serves static map only — no API on same origin.
-  if (!isLocal) return null;
-
-  const base = window.JEM_API_BASE;
-  if (typeof base === 'string' && base) {
-    try {
-      const u = new URL(base);
-      return `${u.protocol}//${u.host}`;
-    } catch { /* fall through */ }
-  }
-  return null;
-}
-
 export function renderAboutPage() {
   const el = document.getElementById('about-view');
   if (!el) return;
@@ -274,6 +293,6 @@ export function renderAboutPage() {
   el.innerHTML = `<div class="about-inner">${aboutPageHTML({
     meta,
     entities,
-    apiOrigin: resolveApiOrigin(),
+    maintainerTools: resolveMaintainerToolsContext(),
   })}</div>`;
 }

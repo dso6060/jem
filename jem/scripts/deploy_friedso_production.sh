@@ -8,6 +8,7 @@
 #   ./jem/scripts/deploy_friedso_production.sh
 #   ./jem/scripts/deploy_friedso_production.sh --deploy
 #   ./jem/scripts/deploy_friedso_production.sh --both          # prod + staging + friedso repo copy
+#   ./jem/scripts/deploy_friedso_production.sh --both --api    # static + researcher API (uvicorn)
 #   JEM_REMOTE='user@host:~/path/to/apps/jem' ./jem/scripts/deploy_friedso_production.sh --deploy
 #
 # --both defaults (override with env):
@@ -28,6 +29,7 @@ DEPLOY_BRANCH="${JEM_DEPLOY_BRANCH:-friedso_v1}"
 MIN_ENTITIES=400
 DO_DEPLOY=0
 DEPLOY_BOTH=0
+DEPLOY_API=0
 BUNDLE_NAME=""
 JEM_REMOTE_PROD="${JEM_REMOTE_PROD:-root@157.10.98.182:/srv/friedso/prod/web/site/apps/jem}"
 JEM_REMOTE_STAGE="${JEM_REMOTE_STAGE:-root@157.10.98.182:/srv/friedso/stage/web/site/apps/jem}"
@@ -37,6 +39,7 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --deploy) DO_DEPLOY=1; shift ;;
     --both) DEPLOY_BOTH=1; DO_DEPLOY=1; shift ;;
+    --api) DEPLOY_API=1; shift ;;
     --branch)
       DEPLOY_BRANCH="$2"
       shift 2
@@ -215,4 +218,11 @@ if [[ "${DO_DEPLOY}" -eq 1 ]]; then
     deploy_to_remote "${JEM_REMOTE}" "remote"
     echo "Run smoke tests at \${JEM_PUBLIC_URL:-https://friedso.com/apps/jem/}"
   fi
+fi
+
+if [[ "${DEPLOY_API}" -eq 1 ]]; then
+  API_DEPLOY_ARGS=(--install)
+  [[ "${DEPLOY_BOTH}" -eq 1 ]] && API_DEPLOY_ARGS+=(--both)
+  echo "==> Deploy researcher API (FastAPI + SQLite)"
+  "${SCRIPT_DIR}/deploy_friedso_api.sh" "${API_DEPLOY_ARGS[@]}"
 fi
