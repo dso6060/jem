@@ -18,7 +18,7 @@ JEM uses **Sign In with LinkedIn using OpenID Connect** for researcher accounts 
    For production, add your HTTPS URL with the same path, e.g.:
 
    ```
-   https://friedso.com/api/v1/auth/linkedin/callback
+   https://friedso.com/api/jem/v1/auth/linkedin/callback
    ```
 
 5. Copy **Client ID** and **Client Secret** from the **Auth** tab.
