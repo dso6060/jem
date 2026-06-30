@@ -16,6 +16,7 @@ import { initSmartSearch, entityDisplayName } from './smartSearch.js';
 import { renderAboutPage } from './aboutContent.js';
 import { initToolbarAuth } from './auth.js';
 import { mountMapShell } from './mapShell.js';
+import { loadD3 } from './loadD3.js';
 
 const GRAPH_URL = './public/graph.json';
 
@@ -47,6 +48,7 @@ function initChromeTopSync() {
 // Views: 'summary' | 'detail' | 'map' | 'about'
 
 let _mapBooted = false;       // full map initialised lazily on first switch
+let _mapBootPromise = null;   // in-flight D3 + map shell init
 let _mapReturnTarget = null;  // reserved for map navigation context
 
 // ── URL hash routing ──────────────────────────────────────────────────────────
@@ -184,18 +186,19 @@ function switchView(view, entityId = null) {
     document.body.dataset.prevDetailEntity = entityId;
     syncChromeTop();
   } else if (view === 'map') {
-    ensureMapBooted();
-    if (entityId) {
-      const e = State.getEntityById(entityId);
-      if (e) {
-        selectAndOpenEntity(e);
-        expandPathToEntity(entityId);
+    void ensureMapBooted().then(() => {
+      if (entityId) {
+        const e = State.getEntityById(entityId);
+        if (e) {
+          selectAndOpenEntity(e);
+          expandPathToEntity(entityId);
+        }
       }
-    }
-    // Defer render until after the workspace element is visible in the DOM
-    requestAnimationFrame(() => {
-      render();
-      requestAnimationFrame(() => fitFocusToView({ animate: false }));
+      // Defer render until after the workspace element is visible in the DOM
+      requestAnimationFrame(() => {
+        render();
+        requestAnimationFrame(() => fitFocusToView({ animate: false }));
+      });
     });
   }
 
@@ -394,10 +397,17 @@ function populateKpiCards(metrics) {
 }
 
 function ensureMapBooted() {
+  if (_mapBooted) return _mapBootPromise || Promise.resolve();
+  if (!_mapBootPromise) _mapBootPromise = bootMapWorkspace();
+  return _mapBootPromise;
+}
+
+async function bootMapWorkspace() {
   if (_mapBooted) return;
   _mapBooted = true;
 
   mountMapShell();
+  await loadD3();
 
   initViewStatus();
   initFocusCanvas();
@@ -807,10 +817,7 @@ function initSearch(graph) {
 
   const pickEntity = (id) => {
     window.__jemSmartSearch?.collapseSearchUI?.();
-    const entity = State.getEntityById(id);
-    if (!entity) return;
-    selectAndOpenEntity(entity);
-    expandPathToEntity(id);
+    if (!State.getEntityById(id)) return;
     switchView('detail', id);
   };
 
